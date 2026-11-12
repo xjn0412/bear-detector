@@ -33,7 +33,7 @@ Bear is substantially heavier. This table does **not** establish a better accura
 | Model | Parameters | Current availability |
 |---|---:|---|
 | Small | 73.68M | [Compact155.18MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) · [Lossless274.17MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Tiny | 52.05M | [Preview: epoch31, AP55.0151](https://github.com/xjn0412/bear-detector/releases/tag/v0.2.0-tiny-preview); training continues |
+| Tiny | 52.05M | [EMA epoch 58, AP 56.4597](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
 | Base | 112.11M | Queued after Tiny; fresh backbone initialization; original detector checkpoint lost |
 | Large | 221.40M | Queued after Base; no detection AP yet |
 
