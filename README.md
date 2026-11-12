@@ -101,3 +101,5 @@ The preparation tool converts YOLO annotations to the same internal COCO pipelin
 [Epoch-by-epoch validation history](docs/TRAINING_HISTORY.md)
 
 [Comparison with related detectors](docs/COMPARISON.md): published AP/parameter references, with pretraining and speed-comparison caveats.
+
+[Weight formats and smaller download packages](docs/WEIGHTS.md).

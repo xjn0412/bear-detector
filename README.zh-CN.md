@@ -81,3 +81,5 @@ python tools/train_custom.py --run runs/my_dataset
 [逐轮验证 mAP 记录](docs/TRAINING_HISTORY.md)
 
 [相近检测器比较](docs/COMPARISON.zh-CN.md)：官方AP与参数量参照，明确预训练和测速口径差异。
+
+[权重格式与较小下载包](docs/WEIGHTS.zh-CN.md)。
