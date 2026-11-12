@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+**Training status:** Tiny training and Base retraining are in progress; final checkpoints and results will be published after validation. Base is currently in the setup/restart stage following loss of access to the original node. Small pretrained weights are available now.
+
 **A little heavy, just like a bear.** The name comes from the author’s love of bears—and the model’s rather substantial size. Bear Detector is a general multi-class detector, not a bear-only model.
 
 ![Bear Detector detects its mascot](assets/bear-detected.jpg)
@@ -33,7 +35,7 @@ Bear is substantially heavier. This table does **not** establish a better accura
 | Compact, FP16 bulk storage + FP32 decoder | [155.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) | 57.8904 |
 | Lossless FP32 reference | [274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) | 57.8962 |
 
-The compact archive is **47.5% smaller than the uncompressed FP32 checkpoint**. Full 5,000-image validation passed in FP32 and mixed precision; the largest measured compression loss was **0.0096 AP point**. Decompress before loading. [Instructions, results and scope](docs/WEIGHTS.md). Base download awaits validation after a server/device failure; Tiny is training. Compact TensorRT accuracy is not yet validated.
+The compact archive is **47.5% smaller than the uncompressed FP32 checkpoint**. Full 5,000-image validation passed in FP32 and mixed precision; the largest measured compression loss was **0.0096 AP point**. Decompress before loading. [Instructions, results and scope](docs/WEIGHTS.md). Base is being retrained and Tiny is still training; their new checkpoints will be released after validation. Compact TensorRT accuracy is not yet validated.
 
 ## A personal note
 
@@ -61,7 +63,7 @@ Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch val
 | Small | 73.68M | 49.45M | 57 | **57.8987** |
 | Tiny | 52.05M | 27.82M | — | Not measured |
 
-Snapshot: 2026-11-12. Base and Small were stopped by the author at completed epochs56 and68; Tiny is now training. These are selected checkpoints from repaired runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
+Snapshot: 2026-11-12. The earlier Base and Small runs were stopped by the author at completed epochs56 and68. Tiny training and a new Base retraining effort are now in progress; the Base result below belongs to the earlier run. These are selected checkpoints from repaired runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
 
 Same **Base epoch41 EMA** checkpoint, fixed 1,000-image coverage-stratified COCO val subset, RTX 5090:
 

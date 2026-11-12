@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+**训练状态：Tiny训练与Base重新训练仍在进行中，最终权重和结果将在验证后发布。** 原Base节点无法访问，新Base目前处于环境准备/重新启动阶段。Small预训练权重已可下载。
+
 **有一点重，就像熊一样。** 作者喜欢熊，而这个检测器也确实有点“大块头”，于是有了 Bear Detector 这个名字。它仍然是通用多类别检测器，并不只检测熊。
 
 ![Bear Detector 检测小熊](assets/bear-detected.jpg)
@@ -33,7 +35,7 @@ Bear模型明显更重，此表**不能证明精度与延迟权衡更好**。本
 | 紧凑包：主体FP16存储，解码器FP32 | [155.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) | 57.8904 |
 | 无损FP32参考包 | [274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) | 57.8962 |
 
-紧凑下载包比未压缩FP32检查点小**47.5%**。全量5,000张COCO双模式验证通过；压缩导致的最大实测下降仅**0.0096 AP点**。先解压，再加载。[使用方法与验证范围](docs/WEIGHTS.zh-CN.md)。Base因服务器/设备故障暂待验证后发布；Tiny正在训练。紧凑权重的TensorRT精度尚未验证。
+紧凑下载包比未压缩FP32检查点小**47.5%**。全量5,000张COCO双模式验证通过；压缩导致的最大实测下降仅**0.0096 AP点**。先解压，再加载。[使用方法与验证范围](docs/WEIGHTS.zh-CN.md)。Base正在重新训练准备中，Tiny仍在训练；新权重将在验证后发布。紧凑权重的TensorRT精度尚未验证。
 
 ## 写给自己
 
@@ -59,7 +61,7 @@ DINOv3 预训练 **ConvNeXt CNN 骨干**，配合两个最深层上下文注意�
 | Bear-S | 73.68M | 49.45M | 57 | 57.8987 |
 | Bear-T | 52.05M | 27.82M | — | 尚未测得 |
 
-2026-11-12：作者已停止B/S训练，分别完成56/68轮；T开始训练。不是完整、无中断的对照实验。B在第20轮后、S在第30轮后修复数值问题并从完整检查点恢复。没有达到65AP的主张。检测监督仅用COCO train2017，但DINOv3骨干使用外部LVD-1689M预训练，因此不是所有预训练数据都仅来自COCO，也不是COCO零样本检测。
+2026-11-12：此前B/S训练由作者停止，分别完成56/68轮；目前T继续训练，并开展新的Base重新训练。表中Base结果来自之前运行。不是完整、无中断的对照实验。B在第20轮后、S在第30轮后修复数值问题并从完整检查点恢复。没有达到65AP的主张。检测监督仅用COCO train2017，但DINOv3骨干使用外部LVD-1689M预训练，因此不是所有预训练数据都仅来自COCO，也不是COCO零样本检测。
 
 相同 Base 第41轮 EMA 权重，在固定的1,000张 COCO验证子集上、RTX5090、batch1：
 
