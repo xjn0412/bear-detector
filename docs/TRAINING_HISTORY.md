@@ -59,7 +59,7 @@ Full COCO val2017 (5,000 images), 640, EMA, mAP50:95 (%). Active history only; a
 | 53 | 58.679 | 57.853 |
 | 54 | 58.598 | 57.842 |
 | 55 | 58.573 | 57.839 |
-| 56 | — | 57.899 |
+| 56 | 58.544 | 57.899 |
 | 57 | — | 57.899 |
 | 58 | — | 57.873 |
 | 59 | — | 57.885 |
@@ -71,6 +71,7 @@ Full COCO val2017 (5,000 images), 640, EMA, mAP50:95 (%). Active history only; a
 | 65 | — | 57.747 |
 | 66 | — | 57.789 |
 | 67 | — | 57.797 |
+| 68 | — | 57.673 |
 
-Snapshot 2026-11-12. T remains queued. / 2026-11-12快照，T仍在队列中。
+Snapshot 2026-11-12. B/S stopped by user after completed56/68. Best B41=58.9306, S57=57.8987. Tiny now training, no validation result yet. / 用户停止B/S，T开始训练，尚无验证结果。
 

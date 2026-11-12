@@ -34,7 +34,7 @@ Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch val
 | Small | 73.68M | 49.45M | 57 | **57.8987** |
 | Tiny | 52.05M | 27.82M | — | Not measured |
 
-Snapshot: 2026-11-12. These are selected checkpoints from ongoing runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
+Snapshot: 2026-11-12. Base and Small were stopped by the author at completed epochs56 and68; Tiny is now training. These are selected checkpoints from repaired runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
 
 Same **Base epoch41 EMA** checkpoint, fixed 1,000-image coverage-stratified COCO val subset, RTX 5090:
 
@@ -99,3 +99,5 @@ The preparation tool converts YOLO annotations to the same internal COCO pipelin
 [DEIMv2](https://github.com/Intellindust-AI-Lab/DEIMv2), [DEIM](https://github.com/Intellindust-AI-Lab/DEIM), [D-FINE](https://github.com/Peterande/D-FINE), [RT-DETR](https://github.com/lyuwenyu/RT-DETR), [DINOv3](https://github.com/facebookresearch/dinov3), and [timm](https://github.com/huggingface/pytorch-image-models). Original notices are retained in `source/`.
 
 [Epoch-by-epoch validation history](docs/TRAINING_HISTORY.md)
+
+[Comparison with related detectors](docs/COMPARISON.md): published AP/parameter references, with pretraining and speed-comparison caveats.

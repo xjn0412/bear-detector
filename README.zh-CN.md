@@ -32,7 +32,7 @@ DINOv3 预训练 **ConvNeXt CNN 骨干**，配合两个最深层上下文注意�
 | Bear-S | 73.68M | 49.45M | 57 | 57.8987 |
 | Bear-T | 52.05M | 27.82M | — | 尚未测得 |
 
-2026-11-12快照，训练仍在进行；不是完整、无中断的对照实验。B在第20轮后、S在第30轮后修复数值问题并从完整检查点恢复。没有达到65AP的主张。检测监督仅用COCO train2017，但DINOv3骨干使用外部LVD-1689M预训练，因此不是所有预训练数据都仅来自COCO，也不是COCO零样本检测。
+2026-11-12：作者已停止B/S训练，分别完成56/68轮；T开始训练。不是完整、无中断的对照实验。B在第20轮后、S在第30轮后修复数值问题并从完整检查点恢复。没有达到65AP的主张。检测监督仅用COCO train2017，但DINOv3骨干使用外部LVD-1689M预训练，因此不是所有预训练数据都仅来自COCO，也不是COCO零样本检测。
 
 相同 Base 第41轮 EMA 权重，在固定的1,000张 COCO验证子集上、RTX5090、batch1：
 
@@ -79,3 +79,5 @@ python tools/train_custom.py --run runs/my_dataset
 感谢 DEIMv2、DEIM、D-FINE、RT-DETR、DINOv3 与 timm；原始版权声明保留在 `source/` 中。
 
 [逐轮验证 mAP 记录](docs/TRAINING_HISTORY.md)
+
+[相近检测器比较](docs/COMPARISON.zh-CN.md)：官方AP与参数量参照，明确预训练和测速口径差异。
