@@ -71,6 +71,10 @@ DINOv3 预训练 **ConvNeXt CNN 骨干**，配合两个最深层上下文注意�
 
 子集AP不能当作全量COCO AP。计时无CUDA Graph，包含top300后处理，不含图像预处理与主机传输；TensorRT额外包含设备缓冲区拷贝。全量COCO TensorRT精度一致性、S/T部署速度尚未验证。[基准说明](docs/BENCHMARKS.zh-CN.md)。
 
+## Docker微调
+
+NVIDIA微调镜像：`ghcr.io/xjn0412/bear-detector:finetune-cu130`，支持COCO/YOLO标注。[Docker指南](docs/DOCKER.zh-CN.md)包含私有镜像登录、持久化数据/检查点挂载、Small预训练初始化、单多卡训练和恢复。镜像构建并通过CPU自检后发布；目标主机仍需验证GPU容器执行。
+
 ## 使用指南
 
 - [安装与离线自检](docs/INSTALL.zh-CN.md)

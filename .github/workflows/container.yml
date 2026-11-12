@@ -1,0 +1,65 @@
+name: Verify and publish fine-tuning image
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - docker/**
+      - requirements.txt
+      - constraints-tested.txt
+      - backbone.py
+      - runtime.py
+      - compat.py
+      - configs/**
+      - source/**
+      - tools/**
+      - tests/**
+      - .github/workflows/container.yml
+concurrency:
+  group: bear-container-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Free unused runner disk
+        run: sudo rm -rf /usr/local/lib/android /opt/ghc /usr/share/dotnet
+      - name: Build CUDA training image
+        run: docker build --build-arg SOURCE_REVISION=${{ github.sha }} -t bear-detector:test .
+      - name: Test installed image and offline COCO/YOLO paths
+        run: |
+          mkdir -p container-results
+          docker run --rm -v "$PWD/container-results:/results" bear-detector:test python tools/verify_cpu.py --output /results/cpu-verification.json
+          docker run --rm bear-detector:test python tools/train_custom.py --help
+          docker run --rm bear-detector:test python tools/evaluate.py --help
+      - name: Record installed environment
+        run: |
+          docker run --rm bear-detector:test python -m pip freeze > container-results/pip-freeze.txt
+          docker image inspect bear-detector:test > container-results/image-inspect.json
+      - name: Authenticate to GitHub Container Registry
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: printf '%s' "$GH_TOKEN" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+      - name: Publish tested image
+        run: |
+          IMAGE="ghcr.io/${GITHUB_REPOSITORY,,}"
+          docker tag bear-detector:test "$IMAGE:sha-${GITHUB_SHA}"
+          docker tag bear-detector:test "$IMAGE:finetune-cu130"
+          docker push "$IMAGE:sha-${GITHUB_SHA}"
+          docker push "$IMAGE:finetune-cu130"
+          docker image inspect "$IMAGE:finetune-cu130" --format '{{json .RepoDigests}}' > container-results/registry-digests.json
+          echo "### Verified fine-tuning image" >> "$GITHUB_STEP_SUMMARY"
+          echo "$IMAGE:sha-${GITHUB_SHA}" >> "$GITHUB_STEP_SUMMARY"
+          cat container-results/registry-digests.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: container-verification
+          path: container-results/

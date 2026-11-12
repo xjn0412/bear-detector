@@ -73,6 +73,10 @@ Same **Base epoch41 EMA** checkpoint, fixed 1,000-image coverage-stratified COCO
 
 Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image preprocessing/host transfers. TensorRT includes device-buffer copies. **Subset AP is not full COCO AP.** Full-set TensorRT parity and Small/Tiny inference speed have not been validated. [Benchmark protocol and evidence](docs/BENCHMARKS.md).
 
+## Docker fine-tuning
+
+Use `ghcr.io/xjn0412/bear-detector:finetune-cu130` for NVIDIA fine-tuning with COCO or YOLO annotations. [Docker guide](docs/DOCKER.md) covers private-registry login, persistent dataset/checkpoint mounts, Small pretrained initialization, single/multi-GPU training and resume. The image is built and CPU smoke-tested before publishing; GPU container execution must be checked on your host.
+
 ## Start here
 
 1. [Install and run the offline smoke test](docs/INSTALL.md).

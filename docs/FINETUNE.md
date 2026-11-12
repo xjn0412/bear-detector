@@ -10,7 +10,7 @@ Preparation writes normalized zero-based annotation copies and `classes.json`, p
 
 ## 1. Choose initialization
 
-For transfer learning, supply a compatible trained **full detector checkpoint**. Match `configs/B.yml`, `S.yml` or `T.yml` to its backbone. Upstream DEIMv2 weights for a different architecture will fail strict loading. Trained detector downloads are not bundled in this code release.
+For transfer learning, supply a compatible trained **full detector checkpoint**. Match `configs/B.yml`, `S.yml` or `T.yml` to its backbone. Upstream DEIMv2 weights for a different architecture will fail strict loading. Small pretrained detector weights are available in [Releases](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights); decompress before preparation. Base checkpoint availability is pending recovery.
 
 Alternatively initialize from the public matching DINOv3 CNN backbone:
 
