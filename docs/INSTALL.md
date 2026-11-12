@@ -56,3 +56,5 @@ Run the entire offline CPU pipeline with automatic temporary outputs:
 ```bash
 python tools/verify_cpu.py --onnx --output results/cpu-verification.json
 ```
+
+For a prebuilt NVIDIA fine-tuning environment, use the [Docker guide](DOCKER.md). It includes persistent mounts and COCO/YOLO examples.

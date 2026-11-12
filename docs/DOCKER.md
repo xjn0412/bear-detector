@@ -18,7 +18,7 @@ docker run --rm --gpus all "$BEAR_IMAGE" python -c \
   "import torch; assert torch.cuda.is_available(); print(torch.__version__,torch.version.cuda); print([torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())])"
 ```
 
-The package remains access-controlled while the repository is private. For reproducibility use the immutable `sha-<full-source-commit>` tag or registry digest from the successful [image workflow](https://github.com/xjn0412/bear-detector/actions/workflows/container.yml), rather than relying on the moving `finetune-cu130` tag.
+The package remains access-controlled while the repository is private. For reproducibility use the commit-specific `sha-<full-source-commit>` tag or registry digest from the successful [image workflow](https://github.com/xjn0412/bear-detector/actions/workflows/container.yml), rather than relying on the moving `finetune-cu130` tag.
 
 ## Prepare persistent host files
 

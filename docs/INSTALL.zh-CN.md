@@ -35,3 +35,5 @@ python tools/verify_cpu.py --onnx --output results/cpu-verification.json
 ```
 
 微调和PyTorch推理不需要TensorRT。离线CPU自检不下载权重，用临时目录验证COCO/YOLO准备、CPU预测与ONNX构建；合成数据AP不代表精度。ONNX固定batch1/640，相关固定shape tracing警告可预期。
+
+需要预构建NVIDIA微调环境，可直接使用[Docker指南](DOCKER.zh-CN.md)，包含持久化挂载和COCO/YOLO示例。

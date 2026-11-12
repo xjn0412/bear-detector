@@ -75,6 +75,10 @@ Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image prep
 
 ## Docker fine-tuning
 
+```bash
+docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
+```
+
 Use `ghcr.io/xjn0412/bear-detector:finetune-cu130` for NVIDIA fine-tuning with COCO or YOLO annotations. [Docker guide](docs/DOCKER.md) covers private-registry login, persistent dataset/checkpoint mounts, Small pretrained initialization, single/multi-GPU training and resume. The image is built and CPU smoke-tested before publishing; GPU container execution must be checked on your host.
 
 ## Start here
