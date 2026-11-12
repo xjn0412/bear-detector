@@ -99,7 +99,7 @@ GitHub托管runner没有GPU，不能把CPU检查当作镜像内GPU反向/DDP、�
 
 ## 已发布验证记录
 
-2026-11-12通过[实际构建与镜像内检查](https://github.com/xjn0412/bear-detector/actions/runs/43174916168)后发布。[机器可读记录](../validation/docker-image.json)、[完整依赖版本](../validation/docker-pip-freeze.txt)。镜像未压缩大小3.27GB，不含权重/数据。固定使用本次验证版本：
+2026-11-12通过[实际构建与镜像内检查](https://github.com/xjn0412/bear-detector/actions/runs/43174916168)后发布。[机器可读记录](../validation/containers/docker-image.json)、[完整依赖版本](../validation/containers/docker-pip-freeze.txt)。镜像未压缩大小3.27GB，不含权重/数据。固定使用本次验证版本：
 
 ```bash
 export BEAR_IMAGE=ghcr.io/xjn0412/bear-detector@sha256:7cb2803c3a25143b36a97c35bf1c85520a51013f67739abe08ff0086a7f56a72

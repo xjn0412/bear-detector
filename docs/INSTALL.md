@@ -24,7 +24,7 @@ python tests/test_classes.py
 python tests/test_sampling.py
 ```
 
-The full measured version record is `validation/environment.json`; additional package versions used in source verification are in `constraints-tested.txt`. These record a tested environment, not a guarantee that historical wheels remain available for every OS. To reproduce the non-torch versions, add `-c constraints-tested.txt` to the requirements installation. CUDA/driver installation is outside this repository.
+The full measured version record is `validation/environment/environment.json`; additional package versions used in source verification are in `constraints-tested.txt`. These record a tested environment, not a guarantee that historical wheels remain available for every OS. To reproduce the non-torch versions, add `-c constraints-tested.txt` to the requirements installation. CUDA/driver installation is outside this repository.
 
 For CPU-only unit tests, substitute an official CPU torch/torchvision installation. CPU is not a training-performance target.
 
@@ -42,7 +42,7 @@ The builder uses TensorRT10 weakly typed precision constraints. TensorRT11 and s
 
 ## Offline smoke test
 
-Run the README smoke commands. They require no model download or real dataset. `--random-init` is explicitly for wiring tests. ONNX export can also be checked without a GPU:
+Run `python tools/verify_cpu.py --output results/cpu-verification.json` for the complete offline pipeline. They require no model download or real dataset. `--random-init` is explicitly for wiring tests. ONNX export can also be checked without a GPU:
 
 ```bash
 python tools/export_engine.py --config runs/smoke/config.yml \

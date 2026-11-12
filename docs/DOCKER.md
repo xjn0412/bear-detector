@@ -105,7 +105,7 @@ For a local build: `docker build -t bear-detector:local .`. Retained DEIMv2 non-
 
 ## Published verification record
 
-Published2026-11-12 after [successful build and in-image checks](https://github.com/xjn0412/bear-detector/actions/runs/43174916168). [Machine-readable evidence](../validation/docker-image.json) and [installed package versions](../validation/docker-pip-freeze.txt). Image size3.27GB uncompressed, excluding weights/data.
+Published2026-11-12 after [successful build and in-image checks](https://github.com/xjn0412/bear-detector/actions/runs/43174916168). [Machine-readable evidence](../validation/containers/docker-image.json) and [installed package versions](../validation/containers/docker-pip-freeze.txt). Image size3.27GB uncompressed, excluding weights/data.
 
 Pin this exact tested image:
 

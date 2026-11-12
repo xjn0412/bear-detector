@@ -12,7 +12,7 @@ The training history contains numerical repairs/resumes: B completed20 then resu
 
 ## Deployment subset
 
-`validation/RESULTS.md` and adjacent JSON files record the measured Base41 comparison. Manifest: `validation/coco_val1k.manifest.json` contains selected image IDs/source hash/subset hash. Selection greedily covers category/size combinations then uses seeded random fill; it is model-score independent but not an unbiased estimate of full COCO AP.
+`validation/benchmarks/base41/RESULTS.md` and adjacent JSON files record the measured Base41 comparison. Manifest: `validation/benchmarks/base41/coco_val1k.manifest.json` contains selected image IDs/source hash/subset hash. Selection greedily covers category/size combinations then uses seeded random fill; it is model-score independent but not an unbiased estimate of full COCO AP.
 
 All three backends use the exact same immutable EMA checkpoint hash, same images, PIL bilinear direct resize, normalization, coordinate conversion and top300. TensorRT drops0.0459077 AP points versus FP32 on this subset. No full-COCO TensorRT parity approval and no Small/Tiny deployment speed/accuracy claim is implied.
 

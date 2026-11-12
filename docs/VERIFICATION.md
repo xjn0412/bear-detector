@@ -19,8 +19,8 @@ Run the offline checks yourself:
 ```bash
 python -m pip install -r requirements-export.txt
 python tools/verify_cpu.py --onnx --output results/cpu-verification.json
-python tools/compare_results.py --reference validation/B_torch-fp32.json \
-  --candidate validation/portable_B_tensorrt.json --max-drop 0.1 \
+python tools/compare_results.py --reference validation/benchmarks/base41/B_torch-fp32.json \
+  --candidate validation/benchmarks/base41/portable_B_tensorrt.json --max-drop 0.1 \
   --output results/recorded-parity.json
 ```
 
@@ -42,6 +42,6 @@ Six YOLO tests cover class/coordinate conversion, directory/image/text-list path
 
 ## Small compact release validation
 
-Full COCO val2017, 5,000 images, 640, batch2, PyTorch2.14.1+cu130, selected epoch57 EMA. Both reference and compact loaded strictly into FP32 models; AMP used FP16 bulk plus an FP32 decoder. All predictions were finite. Compact AP changed by -0.005814 points in FP32 and -0.009586 in AMP, passing the preset maximum0.1-point loss in each mode. [Full metrics and evaluated checkpoint hashes](../validation/S_compact_coco.json).
+Full COCO val2017, 5,000 images, 640, batch2, PyTorch2.14.1+cu130, selected epoch57 EMA. Both reference and compact loaded strictly into FP32 models; AMP used FP16 bulk plus an FP32 decoder. All predictions were finite. Compact AP changed by -0.005814 points in FP32 and -0.009586 in AMP, passing the preset maximum0.1-point loss in each mode. [Full metrics and evaluated checkpoint hashes](../validation/releases/small/S_compact_coco.json).
 
 The release repacks metadata only; tensor keys, dtypes and values were checked identical to the evaluated candidate. The release manifest links evaluated and released hashes. Gzip round trips were byte-exact, and GitHub asset SHA256 digests and sizes were checked after upload. This was an accuracy check alongside Tiny training, without speed claims. TensorRT compact accuracy and custom-dataset accuracy require separate validation; Base compact remains unpublished pending source-server recovery.

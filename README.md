@@ -1,14 +1,14 @@
 # 🐻 Bear Detector
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[English](README.md) | [简体中文](README.zh-CN.md) · [Documentation](docs/README.md) · [Weights](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights) · [Docker](docs/DOCKER.md)
 
-**Training status:** Tiny training and Base retraining are in progress; final checkpoints and results will be published after validation. Base is currently in the setup/restart stage following loss of access to the original node. Small pretrained weights are available now.
+**A little heavy, just like a bear.** A general object detector named for the author’s love of bears and the model’s substantial size.
 
-**A little heavy, just like a bear.** The name comes from the author’s love of bears—and the model’s rather substantial size. Bear Detector is a general multi-class detector, not a bear-only model.
+**Training status:** Tiny training and Base retraining are in progress. Base is in the setup/restart stage following loss of access to the original node. Small pretrained weights are available; new Tiny/Base checkpoints will follow validation.
 
 ![Bear Detector detects its mascot](assets/bear-detected.jpg)
 
-The image is AI-generated; the box and **0.9637 confidence** are actual predictions from **Base epoch41 EMA**, PyTorch CPU FP32 at640. [Raw prediction and checkpoint hash](assets/bear-inference.json). This is an illustration, not a benchmark.
+AI-generated image; the box and **0.9637 confidence** are actual **Base epoch41 EMA** predictions, PyTorch CPU FP32 at640. [Raw prediction and checkpoint hash](assets/bear-inference.json). An illustration, not a benchmark.
 
 ## Model comparison at640
 
@@ -16,7 +16,7 @@ COCO val2017 box AP50:95. **Bear rows are our measurements; other rows are autho
 
 | Model | Parameters | AP50:95 | Source / pretraining distinction |
 |---|---:|---:|---|
-| Bear-B | 112.11M | **58.93** | EMA epoch41; DINOv3 ConvNeXt-B backbone pretraining |
+| Bear-B | 112.11M | **58.93** | Historical EMA epoch41; DINOv3 ConvNeXt-B backbone pretraining |
 | Bear-S | 73.68M | **57.90** | EMA epoch57; DINOv3 ConvNeXt-S backbone pretraining |
 | [DEIMv2-X](https://github.com/Intellindust-AI-Lab/DEIMv2) | 50.3M | 57.8 | Published DINOv3-based detector |
 | [D-FINE-X](https://github.com/Peterande/D-FINE) | 62M | 55.8 | Published COCO row |
@@ -26,16 +26,44 @@ COCO val2017 box AP50:95. **Bear rows are our measurements; other rows are autho
 
 Bear is substantially heavier. This table does **not** establish a better accuracy/latency tradeoff. Our RTX5090 timings are separate from authors’ T4 timings. [Full comparison and source notes](docs/COMPARISON.md).
 
-## Download pretrained Small weights
+## Models and downloads
 
-[Release and SHA256 checksums](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights). Public downloads; no GitHub login required.
+**M = one million parameters.** The Base AP above is a historical result from the previous run; its checkpoint is currently inaccessible. No65AP claim is made.
 
-| Small epoch57 EMA | Download | Full COCO FP32 AP50:95 |
-|---|---:|---:|
-| Compact, FP16 bulk storage + FP32 decoder | [155.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) | 57.8904 |
-| Lossless FP32 reference | [274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) | 57.8962 |
+| Model | Parameters | Current availability |
+|---|---:|---|
+| Small | 73.68M | [Compact155.18MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) · [Lossless274.17MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
+| Tiny | 52.05M | Training; final release pending |
+| Base | 112.11M | Retraining/setup; new release pending |
 
-The compact archive is **47.5% smaller than the uncompressed FP32 checkpoint**. Full 5,000-image validation passed in FP32 and mixed precision; the largest measured compression loss was **0.0096 AP point**. Decompress before loading. [Instructions, results and scope](docs/WEIGHTS.md). Base is being retrained and Tiny is still training; their new checkpoints will be released after validation. Compact TensorRT accuracy is not yet validated.
+Small compact weights passed full COCO val2017 at640: **57.8904AP** in FP32 versus **57.8962** for the reference rerun. Maximum compression loss across FP32/AMP was **0.0096AP point**. Decompress before loading; keep the decoder FP32. Compact TensorRT accuracy remains unvalidated. [Checksums and usage](docs/WEIGHTS.md) · [Detailed model results and speed](docs/MODEL_ZOO.md).
+
+Detector supervision used COCO train2017; DINOv3 backbone pretraining used external LVD-1689M data. This is not all-data COCO-only training or zero-shot COCO detection.
+
+## Get started
+
+The public NVIDIA fine-tuning image needs no registry login:
+
+```bash
+docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
+```
+
+| Task | Guide |
+|---|---|
+| Fine-tune with Docker, persistent mounts and Small weights | [Docker guide](docs/DOCKER.md) |
+| Install from source and run offline checks | [Installation](docs/INSTALL.md) |
+| Fine-tune any positive class count with COCO JSON or YOLO labels | [Fine-tuning](docs/FINETUNE.md) |
+| Predict and evaluate in PyTorch | [Inference](docs/INFERENCE.md) |
+| Export ONNX/TensorRT and check accuracy | [Export](docs/EXPORT.md) |
+| Inspect every command and the project layout | [CLI reference](docs/TOOLS.md) · [Repository map](docs/REPOSITORY.md) |
+
+The image passed build, dependency and CPU pipeline checks; GPU container backward/DDP still needs host-side verification. Weights and datasets are mounted separately. [All documentation](docs/README.md) · [Verification scope](docs/VERIFICATION.md).
+
+## Architecture
+
+DINOv3-pretrained **ConvNeXt CNN** → two stride32 context-attention blocks → convolutional multiscale neck with cheap P2→P3 detail → six-layer, three-level DEIMv2 query decoder,300 queries, fixed640 input. FP16 bulk forward; **entire decoder, predictions, matching and criterion FP32**. No ViT backbone in these configurations. [Architecture](docs/ARCHITECTURE.md).
+
+This is a research integration derived from DEIMv2 / DEIM / D-FINE / RT-DETR, not an independently invented decoder. [Training history](docs/TRAINING_HISTORY.md) · [Benchmark methodology](docs/BENCHMARKS.md) · [Evidence index](validation/README.md).
 
 ## A personal note
 
@@ -43,100 +71,8 @@ This personal repository is also a keepsake of my seven years in computer vision
 
 — xjn0412
 
-## The model
+## License and acknowledgments
 
-A fixed-resolution object detector combining a **DINOv3-pretrained ConvNeXt CNN**, two deep context-attention blocks, a convolutional multiscale neck and a six-layer DEIMv2 query decoder. Three sizes: Tiny, Small and Base. This is a research integration derived from **DEIMv2 / DEIM / D-FINE / RT-DETR**, with the changes documented below; it is not an independently invented decoder.
+Upstream DEIMv2 code is **non-commercial**; DINOv3 weights have separate terms. This repository grants no commercial deployment rights. [LICENSE.md](LICENSE.md) · [THIRD_PARTY.md](THIRD_PARTY.md) · [Contribution guide](CONTRIBUTING.md).
 
-**Status:** research preview for NVIDIA GPUs. Includes arbitrary-class COCO/YOLO fine-tuning, PyTorch image inference, fixed-shape ONNX/TensorRT export, and same-checkpoint accuracy comparison. **No 65 AP claim.** Verified Small pretrained downloads are available above. You can also initialize from the public DINOv3 backbone and train your own detector.
-
-**License:** upstream DEIMv2 code is non-commercial. Read [LICENSE.md](LICENSE.md) and [THIRD_PARTY.md](THIRD_PARTY.md); DINOv3 weights have separate terms. This repository does not grant commercial deployment rights.
-
-Parameters below use **M = one million parameters**.
-
-## Measured results
-
-Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch validation:
-
-| Model | Total parameters (80 classes) | Backbone parameters | Selected epoch | mAP50:95 |
-|---|---:|---:|---:|---:|
-| Base | 112.11M | 87.56M | 41 | **58.9306** |
-| Small | 73.68M | 49.45M | 57 | **57.8987** |
-| Tiny | 52.05M | 27.82M | — | Not measured |
-
-Snapshot: 2026-11-12. The earlier Base and Small runs were stopped by the author at completed epochs56 and68. Tiny training and a new Base retraining effort are now in progress; the Base result below belongs to the earlier run. These are selected checkpoints from repaired runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
-
-Same **Base epoch41 EMA** checkpoint, fixed 1,000-image coverage-stratified COCO val subset, RTX 5090:
-
-| Inference backend | Subset mAP50:95 | GPU mean latency | FPS |
-|---|---:|---:|---:|
-| PyTorch FP32 | 59.4238 | 19.4644 ms | 51.38 |
-| PyTorch FP16 bulk + FP32 decoder | 59.4149 | 19.1562 ms | 52.20 |
-| TensorRT FP16 bulk + FP32 decoder | 59.3778 | 4.0203 ms | 248.74 |
-
-Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image preprocessing/host transfers. TensorRT includes device-buffer copies. **Subset AP is not full COCO AP.** Full-set TensorRT parity and Small/Tiny inference speed have not been validated. [Benchmark protocol and evidence](docs/BENCHMARKS.md).
-
-## Docker fine-tuning
-
-```bash
-docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
-```
-
-Use `ghcr.io/xjn0412/bear-detector:finetune-cu130` for NVIDIA fine-tuning with COCO or YOLO annotations. [Docker guide](docs/DOCKER.md) covers anonymous pulls, persistent dataset/checkpoint mounts, Small pretrained initialization, single/multi-GPU training and resume. The image is built and CPU smoke-tested before publishing; GPU container execution must be checked on your host.
-
-## Start here
-
-1. [Install and run the offline smoke test](docs/INSTALL.md).
-2. [Architecture and numerical policy](docs/ARCHITECTURE.md).
-3. [Fine-tune on your classes, or initialize from a public backbone](docs/FINETUNE.md).
-4. [Run PyTorch inference](docs/INFERENCE.md).
-5. [Export and check TensorRT accuracy](docs/EXPORT.md).
-6. [What was actually verified](docs/VERIFICATION.md).
-
-```bash
-# From the repository root, after installation:
-python tests/test_classes.py
-python tests/test_sampling.py
-python tools/initialize.py --config configs/T.yml --random-init --output weights/smoke-initial.pt
-python tools/make_smoke_data.py --output data/smoke
-python tools/prepare_finetune.py --config configs/T.yml --checkpoint weights/smoke-initial.pt \
-  --train-json data/smoke/train.json --val-json data/smoke/val.json \
-  --train-images data/smoke/images --val-images data/smoke/images \
-  --output runs/smoke --epochs 2 --batch 2
-python tools/predict.py --config runs/smoke/config.yml --checkpoint runs/smoke/initial.pth \
-  --classes runs/smoke/classes.json --image data/smoke/images/4.jpg \
-  --device cpu --output results/smoke-prediction.json
-```
-
-This checks wiring with random weights and synthetic rectangles. It is **not** a trained detector or meaningful accuracy result. Output directories must not already exist; use a new name when repeating preparation.
-
-## YOLO or COCO annotations
-
-COCO JSON uses the four explicit dataset arguments in the fine-tuning guide. For YOLO detection text labels, use a dataset YAML directly:
-
-```bash
-python tools/prepare_finetune.py --config configs/T.yml --checkpoint weights/t_initial.pt \
-  --data data/my_dataset/data.yaml --output runs/my_yolo_dataset --epochs 30 --batch 8
-python tools/train_custom.py --run runs/my_yolo_dataset
-```
-
-The preparation tool converts YOLO annotations to the same internal COCO pipeline, retaining class names. It supports directories and text image lists, normalized `class cx cy w h`, background images, and checks for invalid labels and train/validation overlap. It does not require Ultralytics. Detection only: segmentation/pose/OBB labels are rejected. [Detailed YOLO/COCO instructions](docs/FINETUNE.md).
-
-## Main design choices
-
-- ConvNeXt T/S/B pyramid at strides 4, 8, 16, 32; no ViT backbone in these models.
-- Two six-head context blocks only at stride32: 20×20 = 400 tokens.
-- Cheap stride4 detail branch feeds stride8 features; there is no stride4 decoder memory level.
-- Three 256-channel neck outputs, six query-decoder layers, 300 queries.
-- FP16 autocast for backbone/context/neck; **entire decoder, floating predictions, matching and losses in FP32**. FP32 master parameters/optimizer and dynamic GradScaler. Do not call `model.half()`.
-- Fine-tuning resets every class head and denoising class embedding, including when the old and new class counts happen to match. Resume is a separate operation.
-- TensorRT export uses explicit bilinear GatherElements sampling instead of native ONNX GridSample, which failed our TensorRT accuracy checks.
-
-## Acknowledgments
-
-[DEIMv2](https://github.com/Intellindust-AI-Lab/DEIMv2), [DEIM](https://github.com/Intellindust-AI-Lab/DEIM), [D-FINE](https://github.com/Peterande/D-FINE), [RT-DETR](https://github.com/lyuwenyu/RT-DETR), [DINOv3](https://github.com/facebookresearch/dinov3), and [timm](https://github.com/huggingface/pytorch-image-models). Original notices are retained in `source/`.
-
-[Epoch-by-epoch validation history](docs/TRAINING_HISTORY.md)
-
-[Comparison with related detectors](docs/COMPARISON.md): published AP/parameter references, with pretraining and speed-comparison caveats.
-
-[Weight formats and smaller download packages](docs/WEIGHTS.md).
+Thanks to [DEIMv2](https://github.com/Intellindust-AI-Lab/DEIMv2), [DEIM](https://github.com/Intellindust-AI-Lab/DEIM), [D-FINE](https://github.com/Peterande/D-FINE), [RT-DETR](https://github.com/lyuwenyu/RT-DETR), [DINOv3](https://github.com/facebookresearch/dinov3) and [timm](https://github.com/huggingface/pytorch-image-models). Original notices remain in `source/` and `licenses/`.

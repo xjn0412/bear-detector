@@ -13,11 +13,11 @@ Decimal MB, 1 MB = 1,000,000 bytes. The original uncompressed Small FP32 checkpo
 
 ## Accuracy and storage policy
 
-Full COCO val2017, all5,000 images, 640, batch2. Compact lost **0.00581 AP point in FP32** and **0.00959 in AMP**, passing the preset maximum0.1-point loss in each mode. Outputs were finite. [All metrics and evaluated hashes](../validation/S_compact_coco.json). The reference rerun differs by0.00251 AP point from the historical training validation (57.89868); the paired results above are the appropriate compression comparison.
+Full COCO val2017, all5,000 images, 640, batch2. Compact lost **0.00581 AP point in FP32** and **0.00959 in AMP**, passing the preset maximum0.1-point loss in each mode. Outputs were finite. [All metrics and evaluated hashes](../validation/releases/small/S_compact_coco.json). The reference rerun differs by0.00251 AP point from the historical training validation (57.89868); the paired results above are the appropriate compression comparison.
 
 Compact stores FP16 backbone/context/neck tensors, with the original decoder tensors preserved in FP32. Load into a normal **FP32 model** through the repository tools; do not call `model.half()`. AMP inference keeps the entire decoder FP32. Loading FP16 storage into FP32 parameters does not undo rounding. The lossless package preserves the original file byte for byte.
 
-The release adds validation metadata to the evaluated compact checkpoint; tensor keys/dtypes/values were verified identical. [Manifest](../validation/S_release_manifest.json) records evaluated and released hashes. Gzip round trips and uploaded GitHub asset SHA256 digests were verified. **Compact TensorRT accuracy is not validated.** Build a fresh engine and validate it; older engines contain different weights. Custom tasks also need their own accuracy check. Validation ran alongside training, without timing claims.
+The release adds validation metadata to the evaluated compact checkpoint; tensor keys/dtypes/values were verified identical. [Manifest](../validation/releases/small/S_release_manifest.json) records evaluated and released hashes. Gzip round trips and uploaded GitHub asset SHA256 digests were verified. **Compact TensorRT accuracy is not validated.** Build a fresh engine and validate it; older engines contain different weights. Custom tasks also need their own accuracy check. Validation ran alongside training, without timing claims.
 
 ## Download and use
 
