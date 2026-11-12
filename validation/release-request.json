@@ -1,0 +1,23 @@
+{
+  "tag": "v0.1.0-weights",
+  "assets": [
+    {
+      "model": "B",
+      "name": "bear-b-coco-ema.pt",
+      "url": "https://mcp.sentinelx.app/files/d/hSCBzMCnV9SQp9aMQ7Bgbnm3aoY4U2FHWbWT2LXcZN4",
+      "bytes": 449160182,
+      "sha256": "b4998903098aba5513f04bdac7c8096a08703747159c0c1bc252cb856ff190e9",
+      "best_epoch": 41,
+      "reference_AP": 58.93056419385587
+    },
+    {
+      "model": "S",
+      "name": "bear-s-coco-ema.pt",
+      "url": "https://mcp.sentinelx.app/files/d/B8QZw06i3ikuG_-rtT8aN2w1huizTTZfSZPJPupOAPc",
+      "bytes": 295460598,
+      "sha256": "3b6c0603524ff2489be1f6a3c4f7dc7ee19e4f8267b31ce144baf3f4d59439e3",
+      "best_epoch": 57,
+      "reference_AP": 57.89868013884756
+    }
+  ]
+}

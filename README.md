@@ -8,6 +8,22 @@
 
 The image is AI-generated; the box and **0.9637 confidence** are actual predictions from **Base epoch41 EMA**, PyTorch CPU FP32 at640. [Raw prediction and checkpoint hash](assets/bear-inference.json). This is an illustration, not a benchmark.
 
+## Model comparison at640
+
+COCO val2017 box AP50:95. **Bear rows are our measurements; other rows are author-reported results, not rerun here.** Training/pretraining and parameter-count conventions differ.
+
+| Model | Parameters | AP50:95 | Source / pretraining distinction |
+|---|---:|---:|---|
+| Bear-B | 112.11M | **58.93** | EMA epoch41; DINOv3 ConvNeXt-B backbone pretraining |
+| Bear-S | 73.68M | **57.90** | EMA epoch57; DINOv3 ConvNeXt-S backbone pretraining |
+| [DEIMv2-X](https://github.com/Intellindust-AI-Lab/DEIMv2) | 50.3M | 57.8 | Published DINOv3-based detector |
+| [D-FINE-X](https://github.com/Peterande/D-FINE) | 62M | 55.8 | Published COCO row |
+| D-FINE-X, Objects365→COCO | 62M | 59.3 | Additional detection pretraining |
+| [RT-DETRv2-X](https://github.com/lyuwenyu/RT-DETR) | 76M | 54.3 | Published COCO row |
+| [YOLO26-X](https://docs.ultralytics.com/models/yolo26/) | 55.7M | 57.5 | Default NMS head; Objects365 pretraining; fused/deployed parameters |
+
+Bear is substantially heavier. This table does **not** establish a better accuracy/latency tradeoff. Our RTX5090 timings are separate from authors’ T4 timings. [Full comparison and source notes](docs/COMPARISON.md).
+
 ## A personal note
 
 This personal repository is also a keepsake of my seven years in computer vision. I can’t say I worked especially hard, but they were seven years of my life. I hope that, in time, I will find a goal in life.

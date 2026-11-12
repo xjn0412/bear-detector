@@ -1,0 +1,54 @@
+name: Publish verified weights
+on:
+  push:
+    branches: [main]
+    paths: [validation/release-request.json]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: bear-weight-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CUDA_VISIBLE_DEVICES: ''
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install CPU dependencies
+        run: |
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements.txt
+      - name: Fetch, verify and package weights
+        run: python tools/build_weight_release.py
+      - name: Publish all verified assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          tag=$(python -c "import json; print(json.load(open('validation/release-request.json'))['tag'])")
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo 'Release already exists; refusing to replace assets.' >&2
+            exit 1
+          fi
+          gh release create "$tag" dist/* --draft --prerelease --target "$GITHUB_SHA" --title 'Bear Detector B/S pretrained EMA weights' --notes-file docs/RELEASE_NOTES.md
+          gh release view "$tag" --json assets > incoming/release-assets.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual={a['name']:a['size'] for a in json.load(open('incoming/release-assets.json'))['assets']}
+          expected={p.name:p.stat().st_size for p in Path('dist').iterdir() if p.is_file()}
+          assert actual==expected, (actual,expected)
+          print('All release asset names and sizes verified.')
+          PY
+          gh release edit "$tag" --draft=false --prerelease
+          gh release view "$tag" --json url,assets

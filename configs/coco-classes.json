@@ -1,0 +1,405 @@
+{
+  "num_classes": 80,
+  "classes": [
+    {
+      "index": 0,
+      "category_id": 1,
+      "name": "person"
+    },
+    {
+      "index": 1,
+      "category_id": 2,
+      "name": "bicycle"
+    },
+    {
+      "index": 2,
+      "category_id": 3,
+      "name": "car"
+    },
+    {
+      "index": 3,
+      "category_id": 4,
+      "name": "motorcycle"
+    },
+    {
+      "index": 4,
+      "category_id": 5,
+      "name": "airplane"
+    },
+    {
+      "index": 5,
+      "category_id": 6,
+      "name": "bus"
+    },
+    {
+      "index": 6,
+      "category_id": 7,
+      "name": "train"
+    },
+    {
+      "index": 7,
+      "category_id": 8,
+      "name": "truck"
+    },
+    {
+      "index": 8,
+      "category_id": 9,
+      "name": "boat"
+    },
+    {
+      "index": 9,
+      "category_id": 10,
+      "name": "traffic light"
+    },
+    {
+      "index": 10,
+      "category_id": 11,
+      "name": "fire hydrant"
+    },
+    {
+      "index": 11,
+      "category_id": 13,
+      "name": "stop sign"
+    },
+    {
+      "index": 12,
+      "category_id": 14,
+      "name": "parking meter"
+    },
+    {
+      "index": 13,
+      "category_id": 15,
+      "name": "bench"
+    },
+    {
+      "index": 14,
+      "category_id": 16,
+      "name": "bird"
+    },
+    {
+      "index": 15,
+      "category_id": 17,
+      "name": "cat"
+    },
+    {
+      "index": 16,
+      "category_id": 18,
+      "name": "dog"
+    },
+    {
+      "index": 17,
+      "category_id": 19,
+      "name": "horse"
+    },
+    {
+      "index": 18,
+      "category_id": 20,
+      "name": "sheep"
+    },
+    {
+      "index": 19,
+      "category_id": 21,
+      "name": "cow"
+    },
+    {
+      "index": 20,
+      "category_id": 22,
+      "name": "elephant"
+    },
+    {
+      "index": 21,
+      "category_id": 23,
+      "name": "bear"
+    },
+    {
+      "index": 22,
+      "category_id": 24,
+      "name": "zebra"
+    },
+    {
+      "index": 23,
+      "category_id": 25,
+      "name": "giraffe"
+    },
+    {
+      "index": 24,
+      "category_id": 27,
+      "name": "backpack"
+    },
+    {
+      "index": 25,
+      "category_id": 28,
+      "name": "umbrella"
+    },
+    {
+      "index": 26,
+      "category_id": 31,
+      "name": "handbag"
+    },
+    {
+      "index": 27,
+      "category_id": 32,
+      "name": "tie"
+    },
+    {
+      "index": 28,
+      "category_id": 33,
+      "name": "suitcase"
+    },
+    {
+      "index": 29,
+      "category_id": 34,
+      "name": "frisbee"
+    },
+    {
+      "index": 30,
+      "category_id": 35,
+      "name": "skis"
+    },
+    {
+      "index": 31,
+      "category_id": 36,
+      "name": "snowboard"
+    },
+    {
+      "index": 32,
+      "category_id": 37,
+      "name": "sports ball"
+    },
+    {
+      "index": 33,
+      "category_id": 38,
+      "name": "kite"
+    },
+    {
+      "index": 34,
+      "category_id": 39,
+      "name": "baseball bat"
+    },
+    {
+      "index": 35,
+      "category_id": 40,
+      "name": "baseball glove"
+    },
+    {
+      "index": 36,
+      "category_id": 41,
+      "name": "skateboard"
+    },
+    {
+      "index": 37,
+      "category_id": 42,
+      "name": "surfboard"
+    },
+    {
+      "index": 38,
+      "category_id": 43,
+      "name": "tennis racket"
+    },
+    {
+      "index": 39,
+      "category_id": 44,
+      "name": "bottle"
+    },
+    {
+      "index": 40,
+      "category_id": 46,
+      "name": "wine glass"
+    },
+    {
+      "index": 41,
+      "category_id": 47,
+      "name": "cup"
+    },
+    {
+      "index": 42,
+      "category_id": 48,
+      "name": "fork"
+    },
+    {
+      "index": 43,
+      "category_id": 49,
+      "name": "knife"
+    },
+    {
+      "index": 44,
+      "category_id": 50,
+      "name": "spoon"
+    },
+    {
+      "index": 45,
+      "category_id": 51,
+      "name": "bowl"
+    },
+    {
+      "index": 46,
+      "category_id": 52,
+      "name": "banana"
+    },
+    {
+      "index": 47,
+      "category_id": 53,
+      "name": "apple"
+    },
+    {
+      "index": 48,
+      "category_id": 54,
+      "name": "sandwich"
+    },
+    {
+      "index": 49,
+      "category_id": 55,
+      "name": "orange"
+    },
+    {
+      "index": 50,
+      "category_id": 56,
+      "name": "broccoli"
+    },
+    {
+      "index": 51,
+      "category_id": 57,
+      "name": "carrot"
+    },
+    {
+      "index": 52,
+      "category_id": 58,
+      "name": "hot dog"
+    },
+    {
+      "index": 53,
+      "category_id": 59,
+      "name": "pizza"
+    },
+    {
+      "index": 54,
+      "category_id": 60,
+      "name": "donut"
+    },
+    {
+      "index": 55,
+      "category_id": 61,
+      "name": "cake"
+    },
+    {
+      "index": 56,
+      "category_id": 62,
+      "name": "chair"
+    },
+    {
+      "index": 57,
+      "category_id": 63,
+      "name": "couch"
+    },
+    {
+      "index": 58,
+      "category_id": 64,
+      "name": "potted plant"
+    },
+    {
+      "index": 59,
+      "category_id": 65,
+      "name": "bed"
+    },
+    {
+      "index": 60,
+      "category_id": 67,
+      "name": "dining table"
+    },
+    {
+      "index": 61,
+      "category_id": 70,
+      "name": "toilet"
+    },
+    {
+      "index": 62,
+      "category_id": 72,
+      "name": "tv"
+    },
+    {
+      "index": 63,
+      "category_id": 73,
+      "name": "laptop"
+    },
+    {
+      "index": 64,
+      "category_id": 74,
+      "name": "mouse"
+    },
+    {
+      "index": 65,
+      "category_id": 75,
+      "name": "remote"
+    },
+    {
+      "index": 66,
+      "category_id": 76,
+      "name": "keyboard"
+    },
+    {
+      "index": 67,
+      "category_id": 77,
+      "name": "cell phone"
+    },
+    {
+      "index": 68,
+      "category_id": 78,
+      "name": "microwave"
+    },
+    {
+      "index": 69,
+      "category_id": 79,
+      "name": "oven"
+    },
+    {
+      "index": 70,
+      "category_id": 80,
+      "name": "toaster"
+    },
+    {
+      "index": 71,
+      "category_id": 81,
+      "name": "sink"
+    },
+    {
+      "index": 72,
+      "category_id": 82,
+      "name": "refrigerator"
+    },
+    {
+      "index": 73,
+      "category_id": 84,
+      "name": "book"
+    },
+    {
+      "index": 74,
+      "category_id": 85,
+      "name": "clock"
+    },
+    {
+      "index": 75,
+      "category_id": 86,
+      "name": "vase"
+    },
+    {
+      "index": 76,
+      "category_id": 87,
+      "name": "scissors"
+    },
+    {
+      "index": 77,
+      "category_id": 88,
+      "name": "teddy bear"
+    },
+    {
+      "index": 78,
+      "category_id": 89,
+      "name": "hair drier"
+    },
+    {
+      "index": 79,
+      "category_id": 90,
+      "name": "toothbrush"
+    }
+  ]
+}

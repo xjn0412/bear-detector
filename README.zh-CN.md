@@ -8,6 +8,22 @@
 
 小熊图片由 AI 生成；图中的框与 **0.9637 置信度**来自真实的 **Base 第41轮 EMA 权重**，使用 PyTorch CPU FP32、640输入推理。[原始结果与权重哈希](assets/bear-inference.json)。这是展示图片，不是精度基准。
 
+## 640输入模型比较
+
+COCO val2017框AP50:95。**Bear为本项目实测，其他为作者发布结果，本仓库未复测。** 预训练数据、训练过程及参数统计口径不同。
+
+| 模型 | 参数量 | AP50:95 | 来源 / 预训练说明 |
+|---|---:|---:|---|
+| Bear-B | 112.11M | **58.93** | EMA第41轮；DINOv3 ConvNeXt-B骨干预训练 |
+| Bear-S | 73.68M | **57.90** | EMA第57轮；DINOv3 ConvNeXt-S骨干预训练 |
+| [DEIMv2-X](https://github.com/Intellindust-AI-Lab/DEIMv2) | 50.3M | 57.8 | 官方DINOv3检测器 |
+| [D-FINE-X](https://github.com/Peterande/D-FINE) | 62M | 55.8 | 官方COCO结果 |
+| D-FINE-X，Objects365→COCO | 62M | 59.3 | 额外检测预训练 |
+| [RT-DETRv2-X](https://github.com/lyuwenyu/RT-DETR) | 76M | 54.3 | 官方COCO结果 |
+| [YOLO26-X](https://docs.ultralytics.com/models/yolo26/) | 55.7M | 57.5 | 默认NMS检测头；Objects365预训练；融合部署参数量 |
+
+Bear模型明显更重，此表**不能证明精度与延迟权衡更好**。本项目RTX5090测速与官方T4测速分开列示。[完整比较与来源说明](docs/COMPARISON.zh-CN.md)。
+
 ## 写给自己
 
 这个个人仓库，也是我在计算机视觉领域走过七年的一份纪念。说不上多么努力，但那是我人生中的七年。希望未来的我，能找到人生的目标。
