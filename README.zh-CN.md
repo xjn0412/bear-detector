@@ -33,7 +33,7 @@ Bear模型明显更重，此表**不能证明精度与延迟权衡更好**。本
 | 模型 | 参数量 | 当前状态 |
 |---|---:|---|
 | Small | 73.68M | [紧凑155.18MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) · [无损274.17MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Tiny | 52.05M | [Preview: epoch31, AP55.0151](https://github.com/xjn0412/bear-detector/releases/tag/v0.2.0-tiny-preview); 训练继续 |
+| Tiny | 52.05M | [EMA epoch 58, AP 56.4597](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
 | Base | 112.11M | Tiny之后从预训练骨干重新训练；原检测权重丢失 |
 | Large | 221.40M | Base之后训练；尚无检测精度结果 |
 
