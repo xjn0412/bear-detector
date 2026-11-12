@@ -11,3 +11,5 @@ This repository is a modified research integration, not a new implementation of 
 | Dataset | [COCO](https://cocodataset.org/), annotation and image terms apply separately |
 
 Modifications: ConvNeXt context/detail backbone integration; shared B/S/T configurations; runtime finite guards and decoderFP32 safety; strict arbitrary-class transfer/schema tooling; inference/evaluation/export utilities; portable bilinear sampling for TensorRT; documentation and tests. These modifications do not remove third-party restrictions. No pretrained weights, data images or TensorRT engines are committed in this initial source release.
+
+Copies of the DINOv3, DEIM, D-FINE and RT-DETR license texts are retained under `licenses/`. Their scope remains with the respective third-party materials.
