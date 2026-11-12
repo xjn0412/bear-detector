@@ -104,3 +104,13 @@ Before pushing, GitHub Actions builds this exact CUDA image and runs its offline
 Hosted CI has no GPU. These image checks do not claim Docker GPU backward/DDP execution, custom-dataset convergence, TensorRT accuracy or speed. The same runtime has separate GPU training evidence in [VERIFICATION.md](VERIFICATION.md); run the GPU availability command above on your own host. TensorRT export needs the additional dependencies and validation in [EXPORT.md](EXPORT.md).
 
 For a local build: `docker build -t bear-detector:local .`. Retained DEIMv2 non-commercial and separate DINOv3 terms apply; see LICENSE.md and THIRD_PARTY.md.
+
+## Published verification record
+
+Published2026-11-12 after [successful build and in-image checks](https://github.com/xjn0412/bear-detector/actions/runs/43174916168). [Machine-readable evidence](../validation/docker-image.json) and [installed package versions](../validation/docker-pip-freeze.txt). Image size3.27GB uncompressed, excluding weights/data.
+
+Pin this exact tested image:
+
+```bash
+export BEAR_IMAGE=ghcr.io/xjn0412/bear-detector@sha256:7cb2803c3a25143b36a97c35bf1c85520a51013f67739abe08ff0086a7f56a72
+```

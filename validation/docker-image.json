@@ -1,0 +1,67 @@
+{
+  "image": "ghcr.io/xjn0412/bear-detector",
+  "tags": [
+    "finetune-cu130",
+    "sha-814c5c87f094e0ac32881437ea03963486b2f8cc"
+  ],
+  "digest": "sha256:7cb2803c3a25143b36a97c35bf1c85520a51013f67739abe08ff0086a7f56a72",
+  "source_commit": "814c5c87f094e0ac32881437ea03963486b2f8cc",
+  "workflow": "https://github.com/xjn0412/bear-detector/actions/runs/43174916168",
+  "published_at_UTC": "2026-11-12T07:33:15Z",
+  "platform": "linux/amd64",
+  "local_image_bytes": 3271842421,
+  "torch": "2.14.1+cu130",
+  "torchvision": "0.29.1+cu130",
+  "python": "3.11.18",
+  "build_passed": true,
+  "pip_check_passed": true,
+  "training_evaluation_cli_passed": true,
+  "cpu_pipeline": {
+    "passed": true,
+    "scope": "CPU offline wiring; no training convergence or GPU speed claim",
+    "commands": [
+      {
+        "tool": "tests/test_classes.py",
+        "exit_code": 0
+      },
+      {
+        "tool": "tests/test_sampling.py",
+        "exit_code": 0
+      },
+      {
+        "tool": "tests/test_yolo.py",
+        "exit_code": 0
+      },
+      {
+        "tool": "tools/initialize.py",
+        "exit_code": 0
+      },
+      {
+        "tool": "tools/make_smoke_data.py",
+        "exit_code": 0
+      },
+      {
+        "tool": "tools/prepare_finetune.py",
+        "exit_code": 0
+      },
+      {
+        "tool": "tools/predict.py",
+        "exit_code": 0
+      },
+      {
+        "tool": "tools/prepare_finetune.py",
+        "exit_code": 0
+      },
+      {
+        "tool": "tools/predict.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  "registry_push_both_tags_passed": true,
+  "gpu_container_training_verified": false,
+  "TensorRT_included": false,
+  "weights_included": false,
+  "visibility": "private",
+  "notes": "Plain single-platform manifest; provenance/SBOM disabled after initial attestation-index push rejection. CPU wiring checks do not establish GPU execution or custom-dataset convergence."
+}

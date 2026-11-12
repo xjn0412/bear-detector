@@ -96,3 +96,11 @@ docker run --rm --gpus all --shm-size=16g \
 GitHub托管runner没有GPU，不能把CPU检查当作镜像内GPU反向/DDP、自定义任务收敛、TensorRT精度或速度验证。相同源码已有单独GPU训练记录，见[验证页](VERIFICATION.zh-CN.md)；目标主机先执行上面的GPU可用性命令。TensorRT需另装依赖并按[导出指南](EXPORT.zh-CN.md)验证。
 
 本地构建：`docker build -t bear-detector:local .`。请遵循DEIMv2非商业许可与DINOv3单独条款。
+
+## 已发布验证记录
+
+2026-11-12通过[实际构建与镜像内检查](https://github.com/xjn0412/bear-detector/actions/runs/43174916168)后发布。[机器可读记录](../validation/docker-image.json)、[完整依赖版本](../validation/docker-pip-freeze.txt)。镜像未压缩大小3.27GB，不含权重/数据。固定使用本次验证版本：
+
+```bash
+export BEAR_IMAGE=ghcr.io/xjn0412/bear-detector@sha256:7cb2803c3a25143b36a97c35bf1c85520a51013f67739abe08ff0086a7f56a72
+```
