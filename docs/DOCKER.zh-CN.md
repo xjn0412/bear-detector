@@ -6,7 +6,7 @@
 
 ## 主机与访问要求
 
-主机需安装Docker、NVIDIA Container Toolkit以及兼容CUDA13.0的NVIDIA驱动。镜像不会安装/升级主机驱动。仓库和包私有期间，先执行`docker login ghcr.io -u YOUR_GITHUB_USER`，在密码提示中输入具备`read:packages`的classic PAT；账号需有仓库/包访问权限，不要把token直接写进命令。
+主机需安装Docker、NVIDIA Container Toolkit以及兼容CUDA13.0的NVIDIA驱动。镜像不会安装/升级主机驱动。仓库和镜像现已公开，无需docker登录或GitHub token。已验证匿名访问镜像manifest及全部10个layer。
 
 ```bash
 docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
@@ -24,12 +24,12 @@ docker run --rm --gpus all "$BEAR_IMAGE" python -c \
 ```bash
 export BEAR_WORK="$PWD/bear-work"  # 换成你的持久化绝对路径
 mkdir -p "$BEAR_WORK/data" "$BEAR_WORK/weights" "$BEAR_WORK/runs"
-gh release download v0.1.0-weights --repo xjn0412/bear-detector \
-  --pattern bear-s-coco-compact.pt.gz --dir "$BEAR_WORK/weights"
+curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz \
+  -o "$BEAR_WORK/weights/bear-s-coco-compact.pt.gz"
 gzip -dk "$BEAR_WORK/weights/bear-s-coco-compact.pt.gz"
 ```
 
-按[权重页](WEIGHTS.zh-CN.md)核对SHA256。Small权重必须配`configs/S.yml`，不能配T/B。Base预训练检测权重当前待服务器恢复。随机初始化只用于代码自检。
+按[权重页](WEIGHTS.zh-CN.md)核对SHA256。Small权重必须配`configs/S.yml`，不能配T/B。Base重新训练正在准备/启动中，新权重将在验证后发布。随机初始化只用于代码自检。
 
 YOLO数据放在`$BEAR_WORK/data/my_dataset/`，包含`data.yaml`、`images/train`、`images/val`、`labels/train`、`labels/val`。YAML使用`path: .`和相对路径；主机绝对路径在容器里不可见。准备、训练、恢复、验证时保持相同容器挂载路径。
 

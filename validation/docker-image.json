@@ -62,6 +62,11 @@
   "gpu_container_training_verified": false,
   "TensorRT_included": false,
   "weights_included": false,
-  "visibility": "private",
-  "notes": "Plain single-platform manifest; provenance/SBOM disabled after initial attestation-index push rejection. CPU wiring checks do not establish GPU execution or custom-dataset convergence."
+  "visibility": "public",
+  "notes": "Plain single-platform manifest; provenance/SBOM disabled after initial attestation-index push rejection. CPU wiring checks do not establish GPU execution or custom-dataset convergence.",
+  "initial_visibility": "private",
+  "anonymous_manifest_verified": true,
+  "anonymous_layer_HEAD_verified": 10,
+  "anonymous_digest_matches_published": true,
+  "full_anonymous_docker_pull_executed": false
 }

@@ -9,16 +9,14 @@ Image: `ghcr.io/xjn0412/bear-detector:finetune-cu130` (Linux x86-64). It include
 Install Docker and NVIDIA Container Toolkit on a Linux NVIDIA host. A host NVIDIA driver compatible with CUDA13.0 is required; installing this image does not install or upgrade the host driver. Test GPU access before training:
 
 ```bash
-# While the package is private, first run `docker login ghcr.io -u YOUR_GITHUB_USER`.
-# Enter a classic GitHub PAT with read:packages at the password prompt.
-# Your GitHub account must have access to the package/repository. Do not put tokens in commands.
+# Public image: no docker login or GitHub token required.
 docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
 export BEAR_IMAGE=ghcr.io/xjn0412/bear-detector:finetune-cu130
 docker run --rm --gpus all "$BEAR_IMAGE" python -c \
   "import torch; assert torch.cuda.is_available(); print(torch.__version__,torch.version.cuda); print([torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())])"
 ```
 
-The package remains access-controlled while the repository is private. For reproducibility use the commit-specific `sha-<full-source-commit>` tag or registry digest from the successful [image workflow](https://github.com/xjn0412/bear-detector/actions/workflows/container.yml), rather than relying on the moving `finetune-cu130` tag.
+The repository and image are public. Anonymous registry manifest and all ten layer access checks passed. For reproducibility use the commit-specific `sha-<full-source-commit>` tag or registry digest from the successful [image workflow](https://github.com/xjn0412/bear-detector/actions/workflows/container.yml), rather than relying on the moving `finetune-cu130` tag.
 
 ## Prepare persistent host files
 
@@ -27,13 +25,13 @@ Choose a real persistent host directory; **do not keep your only checkpoints in 
 ```bash
 export BEAR_WORK="$PWD/bear-work"   # Replace with your persistent absolute directory.
 mkdir -p "$BEAR_WORK/data" "$BEAR_WORK/weights" "$BEAR_WORK/runs"
-# On the host, download the Small release (requires gh authentication while private):
-gh release download v0.1.0-weights --repo xjn0412/bear-detector \
-  --pattern bear-s-coco-compact.pt.gz --dir "$BEAR_WORK/weights"
+# On the host, download the public Small release:
+curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz \
+  -o "$BEAR_WORK/weights/bear-s-coco-compact.pt.gz"
 gzip -dk "$BEAR_WORK/weights/bear-s-coco-compact.pt.gz"
 ```
 
-Check the SHA256 against [WEIGHTS.md](WEIGHTS.md). Use `configs/S.yml` with Small weights. Tiny/Base configs cannot load Small checkpoints. Base pretrained detector weights are currently unavailable pending server recovery. Random initialization is only for wiring tests.
+Check the SHA256 against [WEIGHTS.md](WEIGHTS.md). Use `configs/S.yml` with Small weights. Tiny/Base configs cannot load Small checkpoints. Base retraining is in progress (setup/restart stage); new detector weights will follow validation. Random initialization is only for wiring tests.
 
 Put your YOLO dataset at `$BEAR_WORK/data/my_dataset/`, with `data.yaml`, `images/train`, `images/val`, `labels/train`, `labels/val`. In `data.yaml`, use `path: .` and relative splits as in [FINETUNE.md](FINETUNE.md); host absolute paths are not visible inside the container. Mounts below remain identical between preparation, training, evaluation and resume because the generated config records container paths.
 

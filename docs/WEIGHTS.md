@@ -2,7 +2,7 @@
 
 [English](WEIGHTS.md) | [简体中文](WEIGHTS.zh-CN.md)
 
-[Small release, manifests and SHA256SUMS](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights). The repository is private; downloads require repository access. Both packages contain selected epoch57 EMA tensors and metadata, without optimizer/scaler resume states. They support inference and fresh fine-tuning.
+[Small release, manifests and SHA256SUMS](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights). The repository and release assets are public; browser/curl downloads need no login. Both packages contain selected epoch57 EMA tensors and metadata, without optimizer/scaler resume states. They support inference and fresh fine-tuning.
 
 | Small package | Download size | Full COCO FP32 AP50:95 | Full COCO AMP AP50:95 |
 |---|---:|---:|---:|
@@ -21,11 +21,11 @@ The release adds validation metadata to the evaluated compact checkpoint; tensor
 
 ## Download and use
 
-Use the release links above, or GitHub CLI while the repository is private:
+Use the public release links above, or download without authentication:
 
 ```bash
-gh release download v0.1.0-weights --repo xjn0412/bear-detector \
-  --pattern 'bear-s-coco-compact.pt.gz' --pattern SHA256SUMS
+curl -fLO https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz
+curl -fLO https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/SHA256SUMS
 python -c "import gzip,shutil; shutil.copyfileobj(gzip.open('bear-s-coco-compact.pt.gz','rb'),open('bear-s-coco-compact.pt','wb'))"
 python tools/predict.py --config configs/S.yml --checkpoint bear-s-coco-compact.pt \
   --classes configs/coco-classes.json --image assets/bear-input.jpg \
@@ -48,4 +48,4 @@ python tools/validate_compact.py --config configs/S.yml \
   --images data/coco/val2017 --output results/compact-comparison.json
 ```
 
-Base download is pending validation after a source-server/device failure. Its prepared files remain preserved; no untested compact Base asset is published. Tiny is training and has no released trained checkpoint yet. Retained DEIMv2 non-commercial and separate DINOv3 license terms apply.
+The earlier Base checkpoint is currently inaccessible after a source-server failure. Base retraining is in progress (setup/restart stage); no untested Base asset is published. Tiny is training and has no released trained checkpoint yet. Retained DEIMv2 non-commercial and separate DINOv3 license terms apply.

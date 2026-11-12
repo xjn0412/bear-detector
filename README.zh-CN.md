@@ -28,7 +28,7 @@ Bear模型明显更重，此表**不能证明精度与延迟权衡更好**。本
 
 ## 下载Small预训练权重
 
-[发布页与SHA256校验和](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights)。仓库保持私有期间需要访问权限。
+[发布页与SHA256校验和](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights)。现已公开下载，无需GitHub登录。
 
 | Small第57轮EMA | 下载 | 全量COCO FP32 AP50:95 |
 |---|---:|---:|
@@ -79,7 +79,7 @@ DINOv3 预训练 **ConvNeXt CNN 骨干**，配合两个最深层上下文注意�
 docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
 ```
 
-NVIDIA微调镜像：`ghcr.io/xjn0412/bear-detector:finetune-cu130`，支持COCO/YOLO标注。[Docker指南](docs/DOCKER.zh-CN.md)包含私有镜像登录、持久化数据/检查点挂载、Small预训练初始化、单多卡训练和恢复。镜像构建并通过CPU自检后发布；目标主机仍需验证GPU容器执行。
+NVIDIA微调镜像：`ghcr.io/xjn0412/bear-detector:finetune-cu130`，支持COCO/YOLO标注。[Docker指南](docs/DOCKER.zh-CN.md)包含免登录拉取、持久化数据/检查点挂载、Small预训练初始化、单多卡训练和恢复。镜像构建并通过CPU自检后发布；目标主机仍需验证GPU容器执行。
 
 ## 使用指南
 

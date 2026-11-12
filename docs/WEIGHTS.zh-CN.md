@@ -2,7 +2,7 @@
 
 [English](WEIGHTS.md) | [简体中文](WEIGHTS.zh-CN.md)
 
-[Small发布页、manifest与SHA256SUMS](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights)。仓库仍为私有，下载需要访问权限。两个包都包含第57轮选定EMA张量与元数据，不含优化器/scaler完整续训状态；支持推理与新任务微调。
+[Small发布页、manifest与SHA256SUMS](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights)。仓库和权重已公开，网页/curl下载无需登录。两个包都包含第57轮选定EMA张量与元数据，不含优化器/scaler完整续训状态；支持推理与新任务微调。
 
 | Small包 | 下载大小 | 全量COCO FP32 AP50:95 | 全量COCO AMP AP50:95 |
 |---|---:|---:|---:|
@@ -21,11 +21,11 @@
 
 ## 下载与使用
 
-点击发布页下载，或在仓库私有期间使用已登录的GitHub CLI：
+点击发布页下载，或使用免登录curl下载：
 
 ```bash
-gh release download v0.1.0-weights --repo xjn0412/bear-detector \
-  --pattern 'bear-s-coco-compact.pt.gz' --pattern SHA256SUMS
+curl -fLO https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz
+curl -fLO https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/SHA256SUMS
 python -c "import gzip,shutil; shutil.copyfileobj(gzip.open('bear-s-coco-compact.pt.gz','rb'),open('bear-s-coco-compact.pt','wb'))"
 python tools/predict.py --config configs/S.yml --checkpoint bear-s-coco-compact.pt \
   --classes configs/coco-classes.json --image assets/bear-input.jpg \
@@ -43,4 +43,4 @@ python tools/validate_compact.py --config configs/S.yml \
   --images data/coco/val2017 --output results/compact-comparison.json
 ```
 
-Base因源服务器/设备故障暂待验证后发布，原文件已保留，未上传未经验证的Base紧凑包。Tiny正在训练，尚无发布权重。请遵循DEIMv2非商业许可与DINOv3单独条款。
+旧Base检查点因源服务器故障暂时无法访问；Base重新训练正在准备/启动中，未上传未经验证的Base权重。Tiny正在训练，尚无发布权重。请遵循DEIMv2非商业许可与DINOv3单独条款。

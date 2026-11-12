@@ -23,7 +23,7 @@ python tests/test_sampling.py
 python tests/test_yolo.py
 ```
 
-CPU自检可改装官方CPU版torch/torchvision。`constraints-tested.txt`记录实测非torch版本，不保证历史wheel始终可用于所有平台；驱动/CUDA安装不在仓库范围。私有仓库克隆需要GitHub访问权限。
+CPU自检可改装官方CPU版torch/torchvision。`constraints-tested.txt`记录实测非torch版本，不保证历史wheel始终可用于所有平台；驱动/CUDA安装不在仓库范围。仓库已公开，克隆无需GitHub登录。
 
 可选导出依赖：
 

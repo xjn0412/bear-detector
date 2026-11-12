@@ -34,7 +34,7 @@ The end-to-end training smoke used toy boxes and proves execution only. Multi-GP
 
 ## Scope of reproducibility
 
-The repository contains no COCO images, foundation weights or TensorRT engines. Small EMA and compact detector checkpoints are available as release assets. `--pretrained` is an alternative bootstrap route. Rebuild engines and repeat held-out accuracy checks for your own trained checkpoint, dataset and deployment machine. A private repository requires GitHub access before cloning.
+The repository contains no COCO images, foundation weights or TensorRT engines. Small EMA and compact detector checkpoints are available as release assets. `--pretrained` is an alternative bootstrap route. Rebuild engines and repeat held-out accuracy checks for your own trained checkpoint, dataset and deployment machine. This repository is now public; cloning requires no GitHub login.
 
 ## Bear Detector / YOLO update
 

@@ -28,7 +28,7 @@ Bear is substantially heavier. This table does **not** establish a better accura
 
 ## Download pretrained Small weights
 
-[Release and SHA256 checksums](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights). Repository access is required while this project is private.
+[Release and SHA256 checksums](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights). Public downloads; no GitHub login required.
 
 | Small epoch57 EMA | Download | Full COCO FP32 AP50:95 |
 |---|---:|---:|
@@ -81,7 +81,7 @@ Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image prep
 docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
 ```
 
-Use `ghcr.io/xjn0412/bear-detector:finetune-cu130` for NVIDIA fine-tuning with COCO or YOLO annotations. [Docker guide](docs/DOCKER.md) covers private-registry login, persistent dataset/checkpoint mounts, Small pretrained initialization, single/multi-GPU training and resume. The image is built and CPU smoke-tested before publishing; GPU container execution must be checked on your host.
+Use `ghcr.io/xjn0412/bear-detector:finetune-cu130` for NVIDIA fine-tuning with COCO or YOLO annotations. [Docker guide](docs/DOCKER.md) covers anonymous pulls, persistent dataset/checkpoint mounts, Small pretrained initialization, single/multi-GPU training and resume. The image is built and CPU smoke-tested before publishing; GPU container execution must be checked on your host.
 
 ## Start here
 
