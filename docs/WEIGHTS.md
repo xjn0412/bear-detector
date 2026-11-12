@@ -48,4 +48,10 @@ python tools/validate_compact.py --config configs/S.yml \
   --images data/coco/val2017 --output results/compact-comparison.json
 ```
 
-The earlier Base checkpoint is currently inaccessible after a source-server failure. Base retraining is in progress (setup/restart stage); no untested Base asset is published. Tiny is training and has no released trained checkpoint yet. Retained DEIMv2 non-commercial and separate DINOv3 license terms apply.
+The earlier Base checkpoint is currently inaccessible after a source-server failure. Fresh Base is queued after Tiny, then Large. Tiny has a lossless preview release; final releases follow the 10-epoch patience policy. Retained DEIMv2 non-commercial and separate DINOv3 license terms apply.
+
+## Tiny preview / Tiny预览
+
+[Epoch31 EMA, full COCO val2017 AP55.0151](https://github.com/xjn0412/bear-detector/releases/tag/v0.2.0-tiny-preview). Original FP32 EMA tensors in lossless gzip; configuration, SHA256SUMS, validation scope, and epoch CSV/JSON are attached. Training continues. Decompress and use `configs/T.yml`. The package passed strict loading, real-image CPU finite predictions and gzip byte round-trip; AP comes from the selected full training validation, not a new packaging rerun. TensorRT and quantized Tiny weights are unvalidated.
+
+[Training sequence and stopping policy](TRAINING_POLICY.md): Tiny → Base → Large.

@@ -8,9 +8,10 @@ Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch val
 |---|---:|---:|---:|---:|
 | Base | 112.11M | 87.56M | 41 | **58.9306** |
 | Small | 73.68M | 49.45M | 57 | **57.8987** |
-| Tiny | 52.05M | 27.82M | — | Not measured |
+| Tiny | 52.05M | 27.82M | 31 (preview) | **55.0151** |
+| Large | 221.40M | 196.23M | — | Queued; no AP yet |
 
-Snapshot: 2026-11-12. The earlier Base and Small runs were stopped by the author at completed epochs56 and68. Tiny training and a new Base retraining effort are now in progress; the Base result belongs to the earlier run. These are selected checkpoints from repaired runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
+Snapshot: 2026-11-12. The earlier Base and Small runs were stopped by the author at completed epochs56 and68. Tiny is training; fresh Base then Large are queued under the [10-epoch patience policy](TRAINING_POLICY.md). The Base result belongs to the earlier run and its detector checkpoint is lost. Tiny is an interim training-validation result, using FP16 bulk forward and an FP32 decoder/criterion. These are selected checkpoints from repaired runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
 
 Same **Base epoch41 EMA** checkpoint, fixed 1,000-image coverage-stratified COCO val subset, RTX 5090:
 
@@ -24,7 +25,7 @@ Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image prep
 
 ## Architecture choices
 
-- ConvNeXt T/S/B pyramid at strides 4, 8, 16, 32; no ViT backbone in these models.
+- ConvNeXt T/S/B/L pyramid at strides 4, 8, 16, 32; no ViT backbone in these models.
 - Two six-head context blocks only at stride32: 20×20 = 400 tokens.
 - Cheap stride4 detail branch feeds stride8 features; there is no stride4 decoder memory level.
 - Three 256-channel neck outputs, six query-decoder layers, 300 queries.

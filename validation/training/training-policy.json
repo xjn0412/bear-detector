@@ -1,0 +1,17 @@
+{
+  "sequence": [
+    "Tiny",
+    "Base",
+    "Large"
+  ],
+  "metric": "full COCO val2017 box mAP50:95",
+  "mode": "max",
+  "patience": 10,
+  "min_delta": 0,
+  "max_epochs_per_stage": 100,
+  "reset_patience_between_models": true,
+  "initialization": "matching DINOv3 ConvNeXt pretrained backbone, fresh detector for Base/Large",
+  "publish": "best EMA weights, full epoch statistics and checksums at each stage completion",
+  "small": "stopped",
+  "input_size": 640
+}

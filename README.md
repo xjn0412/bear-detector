@@ -4,7 +4,7 @@
 
 **A little heavy, just like a bear.** A general object detector named for the author’s love of bears and the model’s substantial size.
 
-**Training status:** Tiny training and Base retraining are in progress. Base is in the setup/restart stage following loss of access to the original node. Small pretrained weights are available; new Tiny/Base checkpoints will follow validation.
+**Training status:** Tiny → Base → Large. After 10 consecutive full COCO validation epochs without a higher mAP50:95, save the best checkpoint and move to the next model; each stage is capped at 100 epochs. Tiny is training; fresh Base and Large are queued. Small remains stopped. [Training policy](docs/TRAINING_POLICY.md).
 
 ![Bear Detector detects its mascot](assets/bear-detected.jpg)
 
@@ -33,8 +33,9 @@ Bear is substantially heavier. This table does **not** establish a better accura
 | Model | Parameters | Current availability |
 |---|---:|---|
 | Small | 73.68M | [Compact155.18MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) · [Lossless274.17MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Tiny | 52.05M | Training; final release pending |
-| Base | 112.11M | Retraining/setup; new release pending |
+| Tiny | 52.05M | [Preview: epoch31, AP55.0151](https://github.com/xjn0412/bear-detector/releases/tag/v0.2.0-tiny-preview); training continues |
+| Base | 112.11M | Queued after Tiny; fresh backbone initialization; original detector checkpoint lost |
+| Large | 221.40M | Queued after Base; no detection AP yet |
 
 Small compact weights passed full COCO val2017 at640: **57.8904AP** in FP32 versus **57.8962** for the reference rerun. Maximum compression loss across FP32/AMP was **0.0096AP point**. Decompress before loading; keep the decoder FP32. Compact TensorRT accuracy remains unvalidated. [Checksums and usage](docs/WEIGHTS.md) · [Detailed model results and speed](docs/MODEL_ZOO.md).
 

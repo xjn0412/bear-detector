@@ -27,4 +27,4 @@ Shared references / 通用索引:
 - [Raw validation evidence / 原始验证资料](../validation/README.md)
 - [Contributing / 贡献指南](../CONTRIBUTING.md)
 
-Tiny training and Base retraining are in progress; Small is the current downloadable trained detector. Historical benchmark records are not live progress reports. / T训练和B重新训练进行中，当前可下载训练模型为S；历史基准文件并非实时进度。
+Tiny is training; fresh Base then Large are queued with10-epoch patience. Small and Tiny preview weights are downloadable. [Training policy](TRAINING_POLICY.md). / Tiny训练中，之后依次为Base、Large；连续10轮mAP无提升切换。Small和Tiny预览权重已发布。

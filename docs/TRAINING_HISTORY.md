@@ -73,5 +73,11 @@ Full COCO val2017 (5,000 images), 640, EMA, mAP50:95 (%). Active history only; a
 | 67 | — | 57.797 |
 | 68 | — | 57.673 |
 
-Snapshot 2026-11-12. B/S stopped by user after completed56/68. Best B41=58.9306, S57=57.8987. Tiny now training, no validation result yet. / 用户停止B/S，T开始训练，尚无验证结果。
+Snapshot 2026-11-12. B/S stopped by user after completed56/68. Best B41=58.9306, S57=57.8987. Tiny is training; epoch31 reached 55.0151 AP. / Tiny训练中，第31轮为55.0151 AP。
 
+
+## Tiny and subsequent stages
+
+[Tiny per-epoch JSON](../validation/training/t-statistics.json) · [CSV](../validation/training/t-statistics.csv) · [Preview checkpoint](releases/TINY.md). These are full COCO val2017 training-validation results, with FP16 backbone/neck and the entire decoder/criterion FP32.
+
+Current sequence: **Tiny → fresh Base → Large**, patience10, min_delta0, maximum100 epochs per model. Best checkpoints and statistics are published at each stage completion. [Exact policy](TRAINING_POLICY.md). Historical Base/Small rows above are retained and do not initialize the fresh stages.

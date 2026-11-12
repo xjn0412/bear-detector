@@ -4,7 +4,7 @@
 
 **有一点重，就像熊一样。** 作者喜欢熊，而检测器也确实有点“大块头”，于是有了这个名字。它是通用多类别检测器，并不只检测熊。
 
-**训练状态：Tiny训练与Base重新训练仍在进行中。** 原Base节点无法访问，新Base目前处于环境准备/重新启动阶段；Small权重已可下载，新的T/B权重将在验证后发布。
+**训练状态：Tiny → Base → Large。** 每个模型连续10轮全量COCO验证mAP50:95无提升后停止，保留最佳权重并切换下一模型；每阶段最多100轮。Tiny仍在训练，Base和Large排队；Small保持停止。[训练策略](docs/TRAINING_POLICY.md)。
 
 ![Bear Detector检测小熊](assets/bear-detected.jpg)
 
@@ -33,8 +33,9 @@ Bear模型明显更重，此表**不能证明精度与延迟权衡更好**。本
 | 模型 | 参数量 | 当前状态 |
 |---|---:|---|
 | Small | 73.68M | [紧凑155.18MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) · [无损274.17MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Tiny | 52.05M | 训练中，最终权重待发布 |
-| Base | 112.11M | 重新训练准备中，新权重待发布 |
+| Tiny | 52.05M | [Preview: epoch31, AP55.0151](https://github.com/xjn0412/bear-detector/releases/tag/v0.2.0-tiny-preview); 训练继续 |
+| Base | 112.11M | Tiny之后从预训练骨干重新训练；原检测权重丢失 |
+| Large | 221.40M | Base之后训练；尚无检测精度结果 |
 
 Small紧凑包已通过全量COCO val2017、640验证：FP32为**57.8904AP**，参考包复测为**57.8962**；FP32/AMP中压缩最大下降仅**0.0096AP点**。先解压再加载，解码器保持FP32。紧凑包TensorRT精度尚未验证。[校验和与使用](docs/WEIGHTS.zh-CN.md) · [完整模型结果与速度](docs/MODEL_ZOO.zh-CN.md)。
 

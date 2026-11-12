@@ -43,4 +43,10 @@ python tools/validate_compact.py --config configs/S.yml \
   --images data/coco/val2017 --output results/compact-comparison.json
 ```
 
-旧Base检查点因源服务器故障暂时无法访问；Base重新训练正在准备/启动中，未上传未经验证的Base权重。Tiny正在训练，尚无发布权重。请遵循DEIMv2非商业许可与DINOv3单独条款。
+旧Base检测检查点已丢失；Tiny之后依次重新训练Base、Large。Tiny预览权重已发布，训练继续。请遵循DEIMv2非商业许可与DINOv3单独条款。
+
+## Tiny preview / Tiny预览
+
+[Epoch31 EMA, full COCO val2017 AP55.0151](https://github.com/xjn0412/bear-detector/releases/tag/v0.2.0-tiny-preview). Original FP32 EMA tensors in lossless gzip; configuration, SHA256SUMS, validation scope, and epoch CSV/JSON are attached. Training continues. Decompress and use `configs/T.yml`. The package passed strict loading, real-image CPU finite predictions and gzip byte round-trip; AP comes from the selected full training validation, not a new packaging rerun. TensorRT and quantized Tiny weights are unvalidated.
+
+[Training sequence and stopping policy](TRAINING_POLICY.md): Tiny → Base → Large.
