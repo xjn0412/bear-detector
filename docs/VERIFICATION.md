@@ -34,8 +34,14 @@ The end-to-end training smoke used toy boxes and proves execution only. Multi-GP
 
 ## Scope of reproducibility
 
-The public repository contains no COCO images, foundation weights, trained detector checkpoints or TensorRT engines. `--pretrained` is the usable bootstrap route for new users; supply a compatible trained checkpoint for detector transfer learning. Rebuild engines and repeat held-out accuracy checks for your own trained checkpoint, dataset and deployment machine. A private repository requires GitHub access before cloning.
+The repository contains no COCO images, foundation weights or TensorRT engines. Small EMA and compact detector checkpoints are available as release assets. `--pretrained` is an alternative bootstrap route. Rebuild engines and repeat held-out accuracy checks for your own trained checkpoint, dataset and deployment machine. A private repository requires GitHub access before cloning.
 
 ## Bear Detector / YOLO update
 
 Six YOLO tests cover class/coordinate conversion, directory/image/text-list paths, background and strict labels, invalid/NaN/out-of-range/task rejection, split overlap and class schema errors. `verify_cpu.py` now checks both COCO and direct YOLO-YAML preparation paths and CPU prediction. The generated bear illustration uses actual Base41 EMA CPU FP32 output; JSON retains input/checkpoint hashes and unedited model box coordinates. No active COCO run is changed.
+
+## Small compact release validation
+
+Full COCO val2017, 5,000 images, 640, batch2, PyTorch2.14.1+cu130, selected epoch57 EMA. Both reference and compact loaded strictly into FP32 models; AMP used FP16 bulk plus an FP32 decoder. All predictions were finite. Compact AP changed by -0.005814 points in FP32 and -0.009586 in AMP, passing the preset maximum0.1-point loss in each mode. [Full metrics and evaluated checkpoint hashes](../validation/S_compact_coco.json).
+
+The release repacks metadata only; tensor keys, dtypes and values were checked identical to the evaluated candidate. The release manifest links evaluated and released hashes. Gzip round trips were byte-exact, and GitHub asset SHA256 digests and sizes were checked after upload. This was an accuracy check alongside Tiny training, without speed claims. TensorRT compact accuracy and custom-dataset accuracy require separate validation; Base compact remains unpublished pending source-server recovery.

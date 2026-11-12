@@ -1,0 +1,105 @@
+{
+  "model": "Bear Detector Small",
+  "assets": [
+    {
+      "file": "bear-s-coco-ema.pt.gz",
+      "bytes": 274168457,
+      "sha256": "e2b7a9565a2ea9e646e070dc6d1f59b70a675f390dd2958f38218f465cb9710d",
+      "format": "FP32 EMA lossless",
+      "full_COCO_val2017_AP50_95": 57.89616691466081,
+      "selected_epoch": 57,
+      "num_classes": 80,
+      "input_size": 640
+    },
+    {
+      "file": "bear-s-coco-compact.pt.gz",
+      "bytes": 155177478,
+      "sha256": "90b17d14e3dc50ec59a0df846b85f203957c29ee4e3396e96ccfe26d9b308b14",
+      "format": "FP16 bulk storage; FP32 decoder",
+      "full_COCO_val2017_AP50_95": 57.89035306905427,
+      "selected_epoch": 57,
+      "num_classes": 80,
+      "input_size": 640
+    }
+  ],
+  "full_validation": {
+    "passed": true,
+    "gate": "all outputs finite and AP drop <= threshold in each measured precision mode",
+    "max_allowed_AP_drop": 0.1,
+    "full_COCO_val2017": true,
+    "images": 5000,
+    "input_size": 640,
+    "batch_size": 2,
+    "precision_modes": [
+      "fp32",
+      "amp"
+    ],
+    "annotations_sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f",
+    "reference_sha256": "3b6c0603524ff2489be1f6a3c4f7dc7ee19e4f8267b31ce144baf3f4d59439e3",
+    "candidate_sha256": "41c76ac349fc1ab58542f0fd825ac5f087ec5e34c8490d416f3ce9ef57fc8504",
+    "results": {
+      "reference-fp32": {
+        "AP": 57.89616691466081,
+        "AP50": 75.68633059952634,
+        "AP75": 62.80228145092101,
+        "AP_small": 41.0491448219935,
+        "AP_medium": 62.93753183545922,
+        "AP_large": 75.5381153224643
+      },
+      "reference-amp": {
+        "AP": 57.88758243821172,
+        "AP50": 75.6858682915549,
+        "AP75": 62.79012139135788,
+        "AP_small": 41.035583523484235,
+        "AP_medium": 62.93744254090505,
+        "AP_large": 75.5239881936083
+      },
+      "candidate-fp32": {
+        "AP": 57.89035306905427,
+        "AP50": 75.68153303340127,
+        "AP75": 62.804738874429056,
+        "AP_small": 41.04197384994152,
+        "AP_medium": 62.93187336299746,
+        "AP_large": 75.52707371379897
+      },
+      "candidate-amp": {
+        "AP": 57.877996222098425,
+        "AP50": 75.67218696203489,
+        "AP75": 62.786623316340155,
+        "AP_small": 41.028728985364594,
+        "AP_medium": 62.9278131218688,
+        "AP_large": 75.50982369075162
+      }
+    },
+    "deltas": {
+      "fp32": {
+        "AP": -0.005813845606539303,
+        "AP50": -0.004797566125077424,
+        "AP75": 0.0024574235080478957,
+        "AP_small": -0.007170972051980584,
+        "AP_medium": -0.005658472461760766,
+        "AP_large": -0.01104160866532311
+      },
+      "amp": {
+        "AP": -0.009586216113298462,
+        "AP50": -0.013681329520011332,
+        "AP75": -0.003498075017724034,
+        "AP_small": -0.006854538119640097,
+        "AP_medium": -0.009629419036251363,
+        "AP_large": -0.014164502856687022
+      }
+    },
+    "device": "cuda",
+    "torch": "2.14.1+cu130",
+    "timing_claim": false,
+    "TensorRT_validated": false,
+    "scope": "These checkpoints and COCO only; compact weight rounding requires separate validation on custom tasks"
+  },
+  "released_compact_pt_sha256": "3207fdc9f829b02c98ed9f2be9a405b4122afb0a1d5327c3e4c3541c5c9a2b0f",
+  "evaluated_compact_pt_sha256": "41c76ac349fc1ab58542f0fd825ac5f087ec5e34c8490d416f3ce9ef57fc8504",
+  "released_model_tensors_identical_to_evaluated": true,
+  "metadata_only_repack": true,
+  "TensorRT_compact_validated": false,
+  "Base_weights": "pending validation",
+  "Tiny_weights": "training"
+}

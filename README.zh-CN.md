@@ -24,6 +24,17 @@ COCO val2017框AP50:95。**Bear为本项目实测，其他为作者发布结果�
 
 Bear模型明显更重，此表**不能证明精度与延迟权衡更好**。本项目RTX5090测速与官方T4测速分开列示。[完整比较与来源说明](docs/COMPARISON.zh-CN.md)。
 
+## 下载Small预训练权重
+
+[发布页与SHA256校验和](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights)。仓库保持私有期间需要访问权限。
+
+| Small第57轮EMA | 下载 | 全量COCO FP32 AP50:95 |
+|---|---:|---:|
+| 紧凑包：主体FP16存储，解码器FP32 | [155.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) | 57.8904 |
+| 无损FP32参考包 | [274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) | 57.8962 |
+
+紧凑下载包比未压缩FP32检查点小**47.5%**。全量5,000张COCO双模式验证通过；压缩导致的最大实测下降仅**0.0096 AP点**。先解压，再加载。[使用方法与验证范围](docs/WEIGHTS.zh-CN.md)。Base因服务器/设备故障暂待验证后发布；Tiny正在训练。紧凑权重的TensorRT精度尚未验证。
+
 ## 写给自己
 
 这个个人仓库，也是我在计算机视觉领域走过七年的一份纪念。说不上多么努力，但那是我人生中的七年。希望未来的我，能找到人生的目标。
@@ -79,7 +90,7 @@ python tools/verify_cpu.py --onnx --output results/cpu-verification.json
 
 ## COCO 和 YOLO 微调
 
-当前代码发布不包含已训练检测权重、TensorRT引擎或数据图片。可自行提供匹配的完整检测器权重，或从公开DINOv3骨干开始：
+Small预训练检测权重已提供下载，不包含TensorRT引擎或数据图片。也可自行提供匹配的检测器权重，或从公开DINOv3骨干开始：
 
 ```bash
 python tools/initialize.py --config configs/T.yml --pretrained --output weights/t_initial.pt

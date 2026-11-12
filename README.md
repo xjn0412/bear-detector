@@ -24,6 +24,17 @@ COCO val2017 box AP50:95. **Bear rows are our measurements; other rows are autho
 
 Bear is substantially heavier. This table does **not** establish a better accuracy/latency tradeoff. Our RTX5090 timings are separate from authors’ T4 timings. [Full comparison and source notes](docs/COMPARISON.md).
 
+## Download pretrained Small weights
+
+[Release and SHA256 checksums](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights). Repository access is required while this project is private.
+
+| Small epoch57 EMA | Download | Full COCO FP32 AP50:95 |
+|---|---:|---:|
+| Compact, FP16 bulk storage + FP32 decoder | [155.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) | 57.8904 |
+| Lossless FP32 reference | [274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) | 57.8962 |
+
+The compact archive is **47.5% smaller than the uncompressed FP32 checkpoint**. Full 5,000-image validation passed in FP32 and mixed precision; the largest measured compression loss was **0.0096 AP point**. Decompress before loading. [Instructions, results and scope](docs/WEIGHTS.md). Base download awaits validation after a server/device failure; Tiny is training. Compact TensorRT accuracy is not yet validated.
+
 ## A personal note
 
 This personal repository is also a keepsake of my seven years in computer vision. I can’t say I worked especially hard, but they were seven years of my life. I hope that, in time, I will find a goal in life.
@@ -34,7 +45,7 @@ This personal repository is also a keepsake of my seven years in computer vision
 
 A fixed-resolution object detector combining a **DINOv3-pretrained ConvNeXt CNN**, two deep context-attention blocks, a convolutional multiscale neck and a six-layer DEIMv2 query decoder. Three sizes: Tiny, Small and Base. This is a research integration derived from **DEIMv2 / DEIM / D-FINE / RT-DETR**, with the changes documented below; it is not an independently invented decoder.
 
-**Status:** research preview for NVIDIA GPUs. Includes arbitrary-class COCO/YOLO fine-tuning, PyTorch image inference, fixed-shape ONNX/TensorRT export, and same-checkpoint accuracy comparison. **No 65 AP claim.** Source and instructions are included; trained detector weight downloads are not included in this initial code release. You can initialize from the public DINOv3 backbone and train your own detector, or supply a compatible detector checkpoint.
+**Status:** research preview for NVIDIA GPUs. Includes arbitrary-class COCO/YOLO fine-tuning, PyTorch image inference, fixed-shape ONNX/TensorRT export, and same-checkpoint accuracy comparison. **No 65 AP claim.** Verified Small pretrained downloads are available above. You can also initialize from the public DINOv3 backbone and train your own detector.
 
 **License:** upstream DEIMv2 code is non-commercial. Read [LICENSE.md](LICENSE.md) and [THIRD_PARTY.md](THIRD_PARTY.md); DINOv3 weights have separate terms. This repository does not grant commercial deployment rights.
 
