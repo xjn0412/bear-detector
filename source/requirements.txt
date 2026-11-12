@@ -1,0 +1,1 @@
+# Vendored upstream source; install ../requirements.txt instead.

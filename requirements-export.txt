@@ -1,0 +1,5 @@
+-r requirements.txt
+onnx==1.19.1
+# Optional numerical cross-check against PyTorch CPU:
+onnxruntime==1.23.2
+# TensorRT is installed separately; see docs/INSTALL.md.

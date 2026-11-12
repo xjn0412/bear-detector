@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-12",
+  "passed": true,
+  "gpu_work_performed": false,
+  "cuda_visible_devices": "",
+  "unit_tests": {
+    "class_schema_heads": 6,
+    "sampling": 2
+  },
+  "pipeline": [
+    "random Tiny initialization",
+    "synthetic three-class COCO generation",
+    "custom preparation",
+    "PyTorch CPU prediction",
+    "portable ONNX export and onnx.checker"
+  ],
+  "other_checks": [
+    "public timm pretrained Tiny initialization passed",
+    "all nine primary CLI help commands passed",
+    "runtime.install_training_loop passed",
+    "requirements + tested constraints dry-run passed against recorded installed environment",
+    "all relative documentation links resolved",
+    "recorded same-checkpoint subset AP comparison passed"
+  ],
+  "clean_wheel_install_verified": false,
+  "custom_training_gpu_evidence": "validation/train-cli-evidence-scale1.json (earlier real GPU smoke, not rerun)",
+  "accuracy_gate_delta_AP_points": -0.04590772952227695,
+  "training_queues_modified": false
+}

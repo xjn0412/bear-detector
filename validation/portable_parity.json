@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "AP_delta": -0.04590772952227695,
+  "max_allowed_drop_AP_points": 0.1,
+  "reference": "torch-fp32",
+  "candidate": "tensorrt",
+  "images": 1000,
+  "checkpoint_sha256": "abed9915f05e4f4abe729afd3ea3ae04f2e0faca12631453fefd10f804950b91",
+  "annotations_sha256": "a256e3df1ac80c8e5c566e2fa76551f0d2eec5c95c7951e711dc9fc495059b2f",
+  "scope": "This fixed subset and checkpoint only; not full COCO or all custom datasets",
+  "full_coco_accuracy_validated": false
+}

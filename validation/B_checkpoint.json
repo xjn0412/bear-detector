@@ -1,0 +1,5 @@
+{
+  "source": "B training/best.pt EMA",
+  "epoch": 41,
+  "sha256": "abed9915f05e4f4abe729afd3ea3ae04f2e0faca12631453fefd10f804950b91"
+}

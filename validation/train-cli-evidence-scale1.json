@@ -1,0 +1,11 @@
+{
+  "classes": 3,
+  "epochs": 2,
+  "actual_optimizer_step_counters": [
+    4
+  ],
+  "EMA_updates": 4,
+  "scaler_saved": true,
+  "full_training_cli_completed": true,
+  "dataset": "2 real images with synthetic boxes +1 validation image; smoke only, no accuracy claim"
+}

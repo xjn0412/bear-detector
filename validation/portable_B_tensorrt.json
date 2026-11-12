@@ -1,0 +1,28 @@
+{
+  "backend": "tensorrt",
+  "checkpoint_sha256": "abed9915f05e4f4abe729afd3ea3ae04f2e0faca12631453fefd10f804950b91",
+  "annotations_sha256": "a256e3df1ac80c8e5c566e2fa76551f0d2eec5c95c7951e711dc9fc495059b2f",
+  "images": 1000,
+  "input": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "class_count": 80,
+  "AP": 59.377845968181205,
+  "AP50": 76.9858060743147,
+  "AP75": 64.27808760732847,
+  "AP_small": 45.38117346025067,
+  "AP_medium": 64.5431410826134,
+  "AP_large": 75.75862089428706,
+  "gpu_mean_ms": 4.020323355197906,
+  "gpu_median_ms": 4.020335912704468,
+  "gpu_p95_ms": 4.028451299667358,
+  "gpu_FPS": 248.73621140625232,
+  "image_to_cpu_output_mean_ms": 16.104945087980013,
+  "peak_allocated_GiB": 0.013742923736572266,
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "timing_scope": "batch1 eager enqueue, GPU inputs through top300 postprocessing; TensorRT includes device-buffer copies; no CUDA graph; wall time includes image decode/resize/normalize/transfers/CPU outputs; excludes JSON/evaluator"
+}

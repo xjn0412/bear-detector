@@ -1,0 +1,5 @@
+{
+  "paused_miner_pid": 4558,
+  "training_contexts_exited": true,
+  "note": "Miner remains SIGSTOP with ~1GiB/GPU resident memory; no mining compute. Same residency for all comparisons."
+}

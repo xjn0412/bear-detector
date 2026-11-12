@@ -1,0 +1,48 @@
+[
+  {
+    "classes": 1,
+    "finite_loss": 94.57788848876953,
+    "optimizer_updates": 1,
+    "full_state_reload": true,
+    "reset_head_parameters": [
+      "decoder.denoising_class_embed.weight",
+      "decoder.enc_score_head.weight",
+      "decoder.enc_score_head.bias",
+      "decoder.dec_score_head.0.weight",
+      "decoder.dec_score_head.0.bias",
+      "decoder.dec_score_head.1.weight",
+      "decoder.dec_score_head.1.bias",
+      "decoder.dec_score_head.2.weight",
+      "decoder.dec_score_head.2.bias",
+      "decoder.dec_score_head.3.weight",
+      "decoder.dec_score_head.3.bias",
+      "decoder.dec_score_head.4.weight",
+      "decoder.dec_score_head.4.bias",
+      "decoder.dec_score_head.5.weight",
+      "decoder.dec_score_head.5.bias"
+    ]
+  },
+  {
+    "classes": 3,
+    "finite_loss": 88.07161712646484,
+    "optimizer_updates": 1,
+    "full_state_reload": true,
+    "reset_head_parameters": [
+      "decoder.denoising_class_embed.weight",
+      "decoder.enc_score_head.weight",
+      "decoder.enc_score_head.bias",
+      "decoder.dec_score_head.0.weight",
+      "decoder.dec_score_head.0.bias",
+      "decoder.dec_score_head.1.weight",
+      "decoder.dec_score_head.1.bias",
+      "decoder.dec_score_head.2.weight",
+      "decoder.dec_score_head.2.bias",
+      "decoder.dec_score_head.3.weight",
+      "decoder.dec_score_head.3.bias",
+      "decoder.dec_score_head.4.weight",
+      "decoder.dec_score_head.4.bias",
+      "decoder.dec_score_head.5.weight",
+      "decoder.dec_score_head.5.bias"
+    ]
+  }
+]

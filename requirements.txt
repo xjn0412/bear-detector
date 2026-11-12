@@ -1,0 +1,12 @@
+# Install a matching CUDA torch/torchvision pair separately (see docs/INSTALL.md).
+timm==1.0.22
+faster-coco-eval>=1.6.7,<2
+pycocotools>=2.0.11,<3
+PyYAML>=6,<7
+numpy>=1.26,<3
+scipy>=1.13,<2
+Pillow>=10,<14
+tensorboard>=2.16,<3
+calflops>=0.3.2,<1
+transformers>=4.51,<5
+safetensors>=0.4,<1

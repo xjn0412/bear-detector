@@ -1,0 +1,16 @@
+[
+  {
+    "classes": 1,
+    "prepare_cli": true,
+    "dataset_transform": true,
+    "sparse_ids": true,
+    "warmup_scaled": true
+  },
+  {
+    "classes": 3,
+    "prepare_cli": true,
+    "dataset_transform": true,
+    "sparse_ids": true,
+    "warmup_scaled": true
+  }
+]
