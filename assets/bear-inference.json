@@ -1,0 +1,13 @@
+{
+  "image": "assets/bear-input.jpg",
+  "width": 1448,
+  "height": 1086,
+  "detections": [{"class_index": 21, "category_id": 23, "name": "bear", "xyxy": [257.2630615234375, 155.0016632080078, 1063.760498046875, 873.5001831054688], "score": 0.9637070298194885}],
+  "provenance": {
+    "model": "Bear Detector-B", "checkpoint": "Base epoch41 EMA",
+    "checkpoint_sha256": "abed9915f05e4f4abe729afd3ea3ae04f2e0faca12631453fefd10f804950b91",
+    "backend": "PyTorch CPU FP32", "input_size": [640, 640], "threshold": 0.3,
+    "image_sha256": "31734f42ef8409d13c05601c1a14b4bcdefdf48e28f16cddf8bb9ce2c4d83040",
+    "generated_image": true, "scope": "Illustration only; generated image, not a benchmark."
+  }
+}

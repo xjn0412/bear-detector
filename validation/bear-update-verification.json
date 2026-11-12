@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-12",
+  "passed": true,
+  "tests": {
+    "classes_heads": 6,
+    "sampling": 2,
+    "yolo": 6
+  },
+  "pipeline": [
+    "random Tiny initialization",
+    "synthetic COCO + YOLO detection data",
+    "COCO prepare + CPU prediction",
+    "YOLO YAML prepare + CPU prediction",
+    "portable ONNX export + checker"
+  ],
+  "gpu_work_performed": false,
+  "mascot_inference": "Base41 EMA CPU FP32; actual bear score 0.9637070298194885",
+  "mascot_scope": "AI-generated illustration, not benchmark"
+}

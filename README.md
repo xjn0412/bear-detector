@@ -1,10 +1,28 @@
-# ConvNeXt Context Detector @640
+# 🐻 Bear Detector
+
+[English](README.md) | [简体中文](README.zh-CN.md)
+
+**A little heavy, just like a bear.** The name comes from the author’s love of bears—and the model’s rather substantial size. Bear Detector is a general multi-class detector, not a bear-only model.
+
+![Bear Detector detects its mascot](assets/bear-detected.jpg)
+
+The image is AI-generated; the box and **0.9637 confidence** are actual predictions from **Base epoch41 EMA**, PyTorch CPU FP32 at640. [Raw prediction and checkpoint hash](assets/bear-inference.json). This is an illustration, not a benchmark.
+
+## A personal note
+
+This personal repository is also a keepsake of my seven years in computer vision. I can’t say I worked especially hard, but they were seven years of my life. I hope that, in time, I will find a goal in life.
+
+— xjn0412
+
+## The model
 
 A fixed-resolution object detector combining a **DINOv3-pretrained ConvNeXt CNN**, two deep context-attention blocks, a convolutional multiscale neck and a six-layer DEIMv2 query decoder. Three sizes: Tiny, Small and Base. This is a research integration derived from **DEIMv2 / DEIM / D-FINE / RT-DETR**, with the changes documented below; it is not an independently invented decoder.
 
-**Status:** research preview for NVIDIA GPUs. Includes arbitrary-class fine-tuning, PyTorch image inference, fixed-shape ONNX/TensorRT export, and same-checkpoint accuracy comparison. **No 65 AP claim.** Source and instructions are included; trained detector weight downloads are not included in this initial code release. You can initialize from the public DINOv3 backbone and train your own detector, or supply a compatible detector checkpoint.
+**Status:** research preview for NVIDIA GPUs. Includes arbitrary-class COCO/YOLO fine-tuning, PyTorch image inference, fixed-shape ONNX/TensorRT export, and same-checkpoint accuracy comparison. **No 65 AP claim.** Source and instructions are included; trained detector weight downloads are not included in this initial code release. You can initialize from the public DINOv3 backbone and train your own detector, or supply a compatible detector checkpoint.
 
 **License:** upstream DEIMv2 code is non-commercial. Read [LICENSE.md](LICENSE.md) and [THIRD_PARTY.md](THIRD_PARTY.md); DINOv3 weights have separate terms. This repository does not grant commercial deployment rights.
+
+Parameters below use **M = one million parameters**.
 
 ## Measured results
 
@@ -12,9 +30,9 @@ Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch val
 
 | Model | Total parameters (80 classes) | Backbone parameters | Selected epoch | mAP50:95 |
 |---|---:|---:|---:|---:|
-| Base | 112,108,249 | 87,564,416 | 41 | **58.9306** |
-| Small | 73,683,385 | 49,453,152 | 57 | **57.8987** |
-| Tiny | 52,048,825 | 27,818,592 | — | Not measured |
+| Base | 112.11M | 87.56M | 41 | **58.9306** |
+| Small | 73.68M | 49.45M | 57 | **57.8987** |
+| Tiny | 52.05M | 27.82M | — | Not measured |
 
 Snapshot: 2026-11-12. These are selected checkpoints from ongoing runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
 
@@ -54,6 +72,18 @@ python tools/predict.py --config runs/smoke/config.yml --checkpoint runs/smoke/i
 
 This checks wiring with random weights and synthetic rectangles. It is **not** a trained detector or meaningful accuracy result. Output directories must not already exist; use a new name when repeating preparation.
 
+## YOLO or COCO annotations
+
+COCO JSON uses the four explicit dataset arguments in the fine-tuning guide. For YOLO detection text labels, use a dataset YAML directly:
+
+```bash
+python tools/prepare_finetune.py --config configs/T.yml --checkpoint weights/t_initial.pt \
+  --data data/my_dataset/data.yaml --output runs/my_yolo_dataset --epochs 30 --batch 8
+python tools/train_custom.py --run runs/my_yolo_dataset
+```
+
+The preparation tool converts YOLO annotations to the same internal COCO pipeline, retaining class names. It supports directories and text image lists, normalized `class cx cy w h`, background images, and checks for invalid labels and train/validation overlap. It does not require Ultralytics. Detection only: segmentation/pose/OBB labels are rejected. [Detailed YOLO/COCO instructions](docs/FINETUNE.md).
+
 ## Main design choices
 
 - ConvNeXt T/S/B pyramid at strides 4, 8, 16, 32; no ViT backbone in these models.
@@ -67,3 +97,5 @@ This checks wiring with random weights and synthetic rectangles. It is **not** a
 ## Acknowledgments
 
 [DEIMv2](https://github.com/Intellindust-AI-Lab/DEIMv2), [DEIM](https://github.com/Intellindust-AI-Lab/DEIM), [D-FINE](https://github.com/Peterande/D-FINE), [RT-DETR](https://github.com/lyuwenyu/RT-DETR), [DINOv3](https://github.com/facebookresearch/dinov3), and [timm](https://github.com/huggingface/pytorch-image-models). Original notices are retained in `source/`.
+
+[Epoch-by-epoch validation history](docs/TRAINING_HISTORY.md)

@@ -1,10 +1,12 @@
 # Installation
 
+[English](INSTALL.md) | [简体中文](INSTALL.zh-CN.md)
+
 Use Linux, Python3.11 and a CUDA-capable NVIDIA GPU for training and GPU evaluation. CPU supports unit tests, initialization, PyTorch FP32 prediction and ONNX export. Run commands from the repository root. No custom CUDA extension compilation is required by these tools.
 
 ```bash
-git clone https://github.com/xjn0412/coco640-convnext-detector.git
-cd coco640-convnext-detector
+git clone https://github.com/xjn0412/bear-detector.git
+cd bear-detector
 python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip

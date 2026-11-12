@@ -1,5 +1,7 @@
 # Architecture
 
+[English](ARCHITECTURE.md) | [简体中文](ARCHITECTURE.zh-CN.md)
+
 The model combines a pretrained convolutional feature pyramid with a query-based transformer detector. ConvNeXt is a CNN; the two deep context blocks and detection decoder use attention. It is not a ViT backbone. The shared head stays the same for Tiny/Small/Base, so backbone changes are interpretable.
 
 ```mermaid

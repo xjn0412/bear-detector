@@ -1,5 +1,7 @@
 # Verification record
 
+[English](VERIFICATION.md) | [简体中文](VERIFICATION.zh-CN.md)
+
 Verified on 2026-11-12 before the initial repository content commit. Checks ran on an isolated copy; active COCO training code and recipe were not changed. The CPU checks explicitly hid CUDA devices. Dependencies came from the recorded installed environment, not a newly downloaded clean wheel installation; installing on a different OS/CUDA combination still requires the installation checks.
 
 ## Current repository checks
@@ -33,3 +35,7 @@ The end-to-end training smoke used toy boxes and proves execution only. Multi-GP
 ## Scope of reproducibility
 
 The public repository contains no COCO images, foundation weights, trained detector checkpoints or TensorRT engines. `--pretrained` is the usable bootstrap route for new users; supply a compatible trained checkpoint for detector transfer learning. Rebuild engines and repeat held-out accuracy checks for your own trained checkpoint, dataset and deployment machine. A private repository requires GitHub access before cloning.
+
+## Bear Detector / YOLO update
+
+Six YOLO tests cover class/coordinate conversion, directory/image/text-list paths, background and strict labels, invalid/NaN/out-of-range/task rejection, split overlap and class schema errors. `verify_cpu.py` now checks both COCO and direct YOLO-YAML preparation paths and CPU prediction. The generated bear illustration uses actual Base41 EMA CPU FP32 output; JSON retains input/checkpoint hashes and unedited model box coordinates. No active COCO run is changed.

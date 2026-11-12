@@ -1,5 +1,7 @@
 # Fine-tuning on your dataset
 
+[English](FINETUNE.md) | [简体中文](FINETUNE.zh-CN.md)
+
 ## Data contract
 
 Provide COCO detection JSON files and corresponding RGB images. `images` need unique `id`, `file_name`, `width`, `height`; annotations need unique `id`, valid `image_id`, `category_id`, and `[x,y,width,height]` pixel boxes. Use finite, positive-sized boxes within the image. `categories` contain unique integer IDs and unique names; sparse IDs such as3/17/91 are supported. Training categories define the schema. Validation can lack instances of some classes but cannot rename IDs or introduce new ones. Use separate held-out images.
@@ -69,3 +71,36 @@ python tools/evaluate.py --backend torch-fp32 --config runs/my_dataset/config.ym
 ```
 
 Use the normalized validation JSON produced by preparation. Keep the complete category list, including classes without validation instances. See the export guide for backend parity checks. Smoke tests exercise code paths; they do not establish convergence or accuracy on arbitrary real datasets.
+
+## YOLO detection annotations
+
+Use the usual local layout: `images/train`, `images/val`, `labels/train`, `labels/val`. A label text file matches each image stem and contains one `class cx cy width height` row per object, normalized to[0,1], with zero-based classes. Missing or empty text files mean background; add `--strict-labels` to reject missing files. Boxes must have positive size and remain inside the image. Segmentation polygons, pose, OBB, NDJSON and remote image URLs are not supported by this converter.
+
+Example `data/my_dataset/data.yaml`:
+
+```yaml
+path: .
+train: images/train
+val: images/val
+names:
+  0: person
+  1: bear
+```
+
+A relative `path` is resolved **relative to the YAML file** (not a machine-specific Ultralytics dataset setting). Splits accept a directory, image, UTF-8 image list, or list of these. In text lists, `./` entries resolve relative to that list; other relative entries resolve from the dataset root. Images need an `images/` path component; labels replace its last occurrence with `labels/`. Class IDs must be contiguous0..N−1; names may be a list or dictionary.
+
+```bash
+python tools/prepare_finetune.py --config configs/T.yml --checkpoint weights/t_initial.pt \
+  --data data/my_dataset/data.yaml --output runs/my_yolo_dataset --epochs 30 --batch 8
+python tools/train_custom.py --run runs/my_yolo_dataset
+```
+
+The same classifier-reset, optimizer/EMA reset, FP32 decoder, resume, export and evaluation rules apply to both input formats. Preparation stores the converted source metadata at `runs/my_yolo_dataset/yolo/dataset.json`, including missing-label counts, then writes the canonical `train.json`, `val.json` and `classes.json` beside the config. Use these normalized JSON files for evaluation. **Annotation support does not imply YOLO model-weight compatibility.**
+
+Standalone conversion, without loading a detector:
+
+```bash
+python tools/yolo_to_coco.py --data data/my_dataset/data.yaml --output data/converted
+```
+
+Read `data/converted/dataset.json` for generated JSON/image roots. No Ultralytics dependency or automatic download scripts are executed. [YOLO detection format reference](https://docs.ultralytics.com/datasets/detect/).

@@ -5,11 +5,21 @@ from common import ROOT,categories,normalize,transfer,weights,config,digest
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--checkpoint',required=True)
- for n in ['train-json','val-json','train-images','val-images','output']:p.add_argument('--'+n,required=True)
+ for n in ['train-json','val-json','train-images','val-images']:p.add_argument('--'+n)
+ p.add_argument('--output',required=True)
+ p.add_argument('--data',help='YOLO detection dataset YAML; alternative to the four COCO arguments')
+ p.add_argument('--strict-labels',action='store_true',help='YOLO: reject missing label files rather than treating as background')
  p.add_argument('--epochs',type=int,default=30);p.add_argument('--batch',type=int,default=8);p.add_argument('--lr',type=float,default=1e-4)
  a=p.parse_args()
  if a.epochs<2 or a.batch<1 or a.lr<=0:raise ValueError('Invalid training settings')
+ coco_args=[a.train_json,a.val_json,a.train_images,a.val_images]
+ if a.data and any(coco_args):p.error('Use --data OR the four COCO arguments')
+ if not a.data and not all(coco_args):p.error('Provide --data or all four COCO arguments')
  out=Path(a.output).resolve();out.mkdir(parents=True,exist_ok=False)
+ if a.data:
+  from yolo_to_coco import convert
+  converted=convert(a.data,out/'yolo',a.strict_labels)
+  for k in ['train_json','val_json','train_images','val_images']:setattr(a,k,converted[k])
  tr=json.loads(Path(a.train_json).read_text());va=json.loads(Path(a.val_json).read_text());schema=categories(tr)
  for name,data,images in [('train',tr,a.train_images),('val',va,a.val_images)]:
   data=normalize(data,schema)

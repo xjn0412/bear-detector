@@ -19,7 +19,7 @@ def main():
     with tempfile.TemporaryDirectory(prefix='ccd-verify-') as tmp:
         t = Path(tmp)
         commands = [
-            ['tests/test_classes.py'], ['tests/test_sampling.py'],
+            ['tests/test_classes.py'], ['tests/test_sampling.py'], ['tests/test_yolo.py'],
             ['tools/initialize.py', '--config', 'configs/T.yml', '--random-init', '--output', str(t/'initial.pt')],
             ['tools/make_smoke_data.py', '--output', str(t/'data')],
             ['tools/prepare_finetune.py', '--config', 'configs/T.yml', '--checkpoint', str(t/'initial.pt'),
@@ -29,6 +29,12 @@ def main():
             ['tools/predict.py', '--config', str(t/'run/config.yml'), '--checkpoint', str(t/'run/initial.pth'),
              '--classes', str(t/'run/classes.json'), '--image', str(t/'data/images/4.jpg'),
              '--device', 'cpu', '--output', str(t/'predictions.json')],
+        ]
+        commands += [
+            ['tools/prepare_finetune.py', '--config','configs/T.yml','--checkpoint',str(t/'initial.pt'),
+             '--data',str(t/'data/data.yaml'),'--strict-labels','--output',str(t/'run-yolo'),'--epochs','2','--batch','2'],
+            ['tools/predict.py','--config',str(t/'run-yolo/config.yml'),'--checkpoint',str(t/'run-yolo/initial.pth'),
+             '--classes',str(t/'run-yolo/classes.json'),'--image',str(t/'data/images/4.jpg'),'--device','cpu','--output',str(t/'predictions-yolo.json')],
         ]
         if a.onnx:
             commands.append(['tools/export_engine.py', '--config', str(t/'run/config.yml'),

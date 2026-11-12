@@ -1,5 +1,7 @@
 # PyTorch inference
 
+[English](INFERENCE.md) | [简体中文](INFERENCE.zh-CN.md)
+
 Use the config matching your checkpoint and the exact preprocessing used during validation. FP32 is the reference. `--amp` enables FP16 only for backbone/context/neck and keeps the decoderFP32. Never use `model.half()`.
 
 ```bash
@@ -14,3 +16,12 @@ Omit `--amp` for FP32; use `--device cpu` for CPU FP32 inference. This command w
 Input images are converted to RGB, resized directly to640×640 with PIL bilinear, scaled to[0,1] and normalized with mean[.485,.456,.406]/std[.229,.224,.225]. This is **not letterbox preprocessing**. The second input is original `[width,height]`, not `[height,width]`. Outputs are top300 ranked class/query pairs; no additional NMS is applied. Match these conventions in your application.
 
 For batch1 PyTorch GPU accuracy/timing, `tools/evaluate.py --backend torch-fp32` or `torch-amp` uses the same path as prediction. TensorRT evaluation is documented in [EXPORT.md](EXPORT.md).
+
+## Draw the recorded mascot result
+
+```bash
+python tools/draw_predictions.py --image assets/bear-input.jpg \
+  --predictions assets/bear-inference.json --output results/bear-boxes.jpg
+```
+
+This draws actual stored predictions only. The illustration uses Base41 EMA CPU FP32; the image is AI-generated, not benchmark evidence.

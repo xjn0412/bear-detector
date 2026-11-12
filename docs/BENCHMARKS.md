@@ -1,5 +1,7 @@
 # Benchmark protocol and limitations
 
+[English](BENCHMARKS.md) | [简体中文](BENCHMARKS.zh-CN.md)
+
 The README contains two separate comparisons: full-COCO PyTorch validation of selected checkpoints, and same-checkpoint backend parity on a fixed1,000-image subset. Do not combine their AP numbers.
 
 ## Full COCO
