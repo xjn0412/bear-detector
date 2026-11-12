@@ -1,10 +1,10 @@
-# Bear Detector Tiny: preview
+# Bear Detector Tiny: final
 
-Selected EMA: epoch **31**, full COCO val2017 (5,000 images), 640, **55.015090% mAP50–95**.
+Selected EMA: epoch **58**, full COCO val2017 (5,000 images), 640, **56.459708% mAP50–95**.
 
-Training is still running; this is an interim checkpoint.
+This stage finished under the 10-epoch patience / 100-epoch cap policy.
 
-[Download original FP32 EMA weights, lossless gzip](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny-preview/bear-t-coco-ema.pt.gz). Decompress and use configs/T.yml. Keep model parameters and the entire decoder FP32; use FP16 autocast in the backbone/neck.
+[Download original FP32 EMA weights, lossless gzip](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz). Decompress and use configs/T.yml. Keep model parameters and the entire decoder FP32; use FP16 autocast in the backbone/neck.
 
 Epoch JSON/CSV, config, checksums and packaging checks are attached. No quantization or FP16 storage conversion. Full optimizer/scaler resume states remain on the training server and are not included in this inference/fine-tuning archive.
 
