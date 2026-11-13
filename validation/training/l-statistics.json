@@ -4,7 +4,7 @@
   "selected_epoch": 24,
   "selected_AP50_95": 60.07281456434691,
   "last_completed_epoch": 44,
-  "patience": 10,
+  "patience": 20,
   "min_delta": 0.0,
   "max_epochs": 100,
   "epochs": [
