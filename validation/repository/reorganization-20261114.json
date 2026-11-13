@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-14",
+  "scope": "Bilingual documentation reorganization and unified lossless EMA downloads",
+  "reference_layouts": [
+    "https://github.com/ultralytics/ultralytics",
+    "https://github.com/Intellindust-AI-Lab/EdgeCrafter",
+    "https://github.com/Intellindust-AI-Lab/DEIMv2"
+  ],
+  "runtime_changed": false,
+  "verification": {
+    "compileall": "passed",
+    "unit_tests": 14,
+    "unit_tests_passed": 14,
+    "relative_markdown_links": "passed",
+    "git_diff_check": "passed"
+  },
+  "small_release": {
+    "compact_weight_removed": true,
+    "lossless_weight_unchanged": true,
+    "remaining_assets_digest_and_size_verified": 9
+  },
+  "not_rerun": [
+    "GPU training",
+    "COCO evaluation",
+    "TensorRT benchmarks",
+    "Docker build"
+  ]
+}

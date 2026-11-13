@@ -6,12 +6,33 @@
   ],
   "metric": "full COCO val2017 box mAP50:95",
   "mode": "max",
-  "patience": 10,
   "min_delta": 0,
   "max_epochs_per_stage": 100,
   "reset_patience_between_models": true,
   "initialization": "matching DINOv3 ConvNeXt pretrained backbone, fresh detector for Base/Large",
   "publish": "best EMA weights, full epoch statistics and checksums at each stage completion",
   "small": "stopped",
-  "input_size": 640
+  "input_size": 640,
+  "status": "completed_all_stages",
+  "completed_models": {
+    "Tiny": {
+      "epochs": 68,
+      "patience": 10
+    },
+    "Base": {
+      "epochs": 52,
+      "patience": 10
+    },
+    "Large": {
+      "epochs": 44,
+      "patience": 20
+    }
+  },
+  "automatic_resume_authorized": false,
+  "note": "Final completed sequence; Large patience extended to20 without resetting no-gain history.",
+  "patience_by_model": {
+    "Tiny": 10,
+    "Base": 10,
+    "Large": 20
+  }
 }

@@ -1,8 +1,8 @@
 # Contributing · 贡献指南
 
-Start with the [repository map](docs/REPOSITORY.md) and [command catalog](docs/TOOLS.md). Keep user documentation in English and Chinese. Preserve upstream licenses and attribution. / 先读目录和命令索引；用户文档保持中英双语，保留上游许可与归属。
+Start with the [repository map](docs/reference/REPOSITORY.md) and [command catalog](docs/reference/TOOLS.md). Keep user documentation in English and Chinese. Preserve upstream licenses and attribution. / 先读目录和命令索引；用户文档保持中英双语，保留上游许可与归属。
 
-Install dependencies using the [installation guide](docs/INSTALL.md), then run:
+Install dependencies using the [installation guide](docs/getting-started/INSTALL.md), then run:
 
 ```bash
 python tests/test_classes.py
