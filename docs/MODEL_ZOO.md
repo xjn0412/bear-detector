@@ -9,7 +9,7 @@ Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch val
 | Base | 112.11M | 87.56M | 42 | **59.0008** |
 | Small | 73.68M | 49.45M | 57 | **57.8987** |
 | Tiny | 52.05M | 27.82M | 58 | **56.4597** |
-| Large | 221.40M | 196.23M | — | Queued; no AP yet |
+| Large | 221.40M | 196.23M | 24 | **60.0728** |
 
 Snapshot: 2026-11-12. The earlier Base and Small runs were stopped by the author at completed epochs56 and68. Tiny is training; fresh Base then Large are queued under the [10-epoch patience policy](TRAINING_POLICY.md). The Base result belongs to the earlier run and its detector checkpoint is lost. Tiny is an interim training-validation result, using FP16 bulk forward and an FP32 decoder/criterion. These are selected checkpoints from repaired runs, not completed, uninterrupted benchmark reproductions. Base resumed from epoch20 and Small from epoch30 after numerical repairs. Architecture stayed fixed; the repaired runtime keeps the entire decoder FP32. These results do **not** establish a controlled FP16-versus-BF16 comparison. Detector supervision used COCO train2017; the pretrained DINOv3 backbone used external LVD-1689M pretraining, so this is **not all-data COCO-only training** and is not zero-shot COCO detection.
 
