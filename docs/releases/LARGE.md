@@ -2,7 +2,7 @@
 
 Selected EMA: epoch **24**, full COCO val2017 (5,000 images), 640, **60.072815% mAP50–95**.
 
-This stage finished under the 10-epoch patience / 100-epoch cap policy.
+This stage finished under the 20-epoch patience / 100-epoch cap policy.
 
 [Download original FP32 EMA weights, lossless gzip](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz). Decompress and use configs/L.yml. Keep model parameters and the entire decoder FP32; use FP16 autocast in the backbone/neck.
 
