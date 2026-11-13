@@ -35,7 +35,7 @@ Bear模型明显更重，此表**不能证明精度与延迟权衡更好**。本
 | Small | 73.68M | [紧凑155.18MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) · [无损274.17MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
 | Tiny | 52.05M | [EMA epoch 58, AP 56.4597](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
 | Base | 112.11M | [EMA epoch 42, AP 59.0008](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
-| Large | 221.40M | Base之后训练；尚无检测精度结果 |
+| Large | 221.40M | [EMA epoch 24, AP 60.0728](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
 
 Small紧凑包已通过全量COCO val2017、640验证：FP32为**57.8904AP**，参考包复测为**57.8962**；FP32/AMP中压缩最大下降仅**0.0096AP点**。先解压再加载，解码器保持FP32。紧凑包TensorRT精度尚未验证。[校验和与使用](docs/WEIGHTS.zh-CN.md) · [完整模型结果与速度](docs/MODEL_ZOO.zh-CN.md)。
 
