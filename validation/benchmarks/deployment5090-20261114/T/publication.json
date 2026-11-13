@@ -1,0 +1,10 @@
+{
+  "tag": "v0.2.0-tiny",
+  "url": "https://github.com/xjn0412/bear-detector/releases/tag/v0.2.0-tiny",
+  "default": "bear-t-coco-mixed.pt.gz",
+  "bytes": 115075746,
+  "sha256": "ec8ea1d16b446a48fb0831fa298e8ce2022fca357cbec4a6c569c20c4d04d17c",
+  "assets_verified": 13,
+  "public_HEAD": 200,
+  "original_FP32_preserved": true
+}

@@ -1,6 +1,8 @@
 # Releases · 发布记录
 
-All model downloads now use lossless FP32 EMA gzip. The Small compact asset was retired on2026-11-14; historical measurements remain under validation/releases for provenance.
+Recommended downloads now use uniform FP16-bulk/FP32-decoder mixed storage for all sizes, validated on fullCOCO and TensorRT. Original FP32 EMA gzip files remain archival. The retired Small compact filename remains retired. / 全部尺寸统一混合存储为默认，原始FP32包保留归档。
+
+[Current latency, accuracy and storage results](../benchmarks/DEPLOYMENT5090.md) · [当前部署结果](../benchmarks/DEPLOYMENT5090.zh-CN.md). The epoch/AP rows below refer to original training validation.
 
 | Model | Release | Selected epoch | Full COCO AP50:95 |
 |---|---|---:|---:|

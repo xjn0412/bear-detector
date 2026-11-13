@@ -16,3 +16,7 @@ These are recorded measurements and execution checks, not live training status. 
 | `environment/` | Recorded measurement environment / 测量环境 | [Environment](environment/environment.json) |
 
 Full COCO AP, subset AP, synthetic-data smoke checks and latency measurements have different scopes. Read [benchmark methodology](../docs/benchmarks/BENCHMARKS.md) before comparing them. Compact TensorRT parity and Docker GPU training are not validated by the CPU checks. / 全量AP、子集AP、合成自检及延迟口径不同，不能混用；CPU检查不证明紧凑权重TRT精度或镜像GPU训练通过。
+
+## Final deployment measurements
+
+[Full T/S/B/L mixed-storage and TensorRT validation plus isolated RTX5090 timings](benchmarks/deployment5090-20261114/README.md). All5,000 COCO val2017 images;19CPU tests passed. Original weight archives and previous evidence remain unchanged.

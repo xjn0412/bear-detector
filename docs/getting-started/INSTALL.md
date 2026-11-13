@@ -34,7 +34,7 @@ For CPU-only unit tests, substitute an official CPU torch/torchvision installati
 python -m pip install -r requirements-export.txt
 # Install TensorRT for your CUDA platform using NVIDIA's instructions.
 # Tested TensorRT10 API environment:
-python -m pip install tensorrt-cu13==10.16.1.11
+python -m pip install tensorrt-cu13==10.13.3.9
 python -c "import onnx,tensorrt; print(onnx.__version__,tensorrt.__version__)"
 ```
 

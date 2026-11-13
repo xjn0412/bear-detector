@@ -2,7 +2,9 @@
 
 [English](WEIGHT_SIZE.md) | [简体中文](WEIGHT_SIZE.zh-CN.md)
 
-**Bear文件没有异常膨胀，但架构确实偏重。** 当前发布保存完整FP32 EMA，约4字节/参数；YOLO26公开检查点的参数以FP16存储，约2字节/参数。此外YOLO性能表是融合后部署参数，下载文件保留更多训练结构。
+**更新：推荐下载已改为主体FP16/解码器FP32混合包，四种尺寸均已验证。以下FP32大小表保留为原始归档审计。** [当前下载](WEIGHTS.zh-CN.md) · [部署验证](../benchmarks/DEPLOYMENT5090.zh-CN.md)。
+
+**Bear文件没有异常膨胀，但架构确实偏重。** 原始归档保存完整FP32 EMA，约4字节/参数；YOLO26公开检查点的参数以FP16存储，约2字节/参数。此外YOLO性能表是融合后部署参数，下载文件保留更多训练结构。
 
 MB=1,000,000 bytes; M=1,000,000 parameters. Gzip bytes are download/storage size, not GPU memory. AMP training dtype does not determine checkpoint storage dtype.
 
@@ -15,7 +17,7 @@ MB=1,000,000 bytes; M=1,000,000 parameters. Gzip bytes are download/storage size
 | Bear-B | 112.10825 | 448.43 | 449.16 | 416.91 | 0.162% |
 | Bear-L | 221.39830 | 885.59 | 886.32 | 822.79 | 0.082% |
 
-实际审计：所有浮点state张量为FP32；包仅含model、last_epoch、metadata，没有重复EMA副本、optimizer或GradScaler。多出的0.08–0.32%来自buffer（如anchors/归一化统计）、元数据和序列化开销。gzip无损，解压不会改变张量；当前所有尺寸均保留此方案，没有重做紧凑包。
+实际审计：所有浮点state张量为FP32；包仅含model、last_epoch、metadata，没有重复EMA副本、optimizer或GradScaler。多出的0.08–0.32%来自buffer（如anchors/归一化统计）、元数据和序列化开销。gzip无损，解压不会改变张量；原始归档保留，所有尺寸另有统一验证的混合包作为默认下载。
 
 ## YOLO26 public checkpoints
 
@@ -38,3 +40,12 @@ MB=1,000,000 bytes; M=1,000,000 parameters. Gzip bytes are download/storage size
 纯FP16存储可以理论上减半浮点字节，但会舍入权重，需要每个模型的精度验证；更不能对需要FP32解码器的模型直接model.half()。安全的无损safetensors等格式只能减少少量序列化开销，不能把FP32的4字节变为2字节。
 
 [Raw measurement evidence](../../validation/benchmarks/complexity640/README.md) · [Downloads](WEIGHTS.md) · [Complexity](../benchmarks/COMPLEXITY.md).
+
+## Current mixed-storage downloads
+
+| Model | Original gzip MB | Mixed gzip MB | Reduction |
+|---|---:|---:|---:|
+| Bear-T | 193.77 | 115.08 | 40.6% |
+| Bear-S | 274.17 | 155.18 | 43.4% |
+| Bear-B | 416.91 | 226.34 | 45.7% |
+| Bear-L | 822.79 | 428.79 | 47.9% |

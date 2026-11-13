@@ -46,3 +46,5 @@ python tools/profile_model.py --config configs/L.yml --output results/L-profile.
 ## Reference / 参考
 
 [YOLO26 performance](https://docs.ultralytics.com/models/yolo26/#performance-metrics) reports fused/deployed parameters and two FLOPs per MAC via[Ultralytics profiling code](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/utils/torch_utils.py). Its FLOPs use THOP, not this counter; omitted operations can differ. Its T4 TensorRT speed is not comparable directly with historical Bear RTX5090 speed. [Existing same-checkpoint backend timings](BENCHMARKS.md).
+
+[New final-model measured latency and full COCO deployment checks](DEPLOYMENT5090.md); no FLOPs recount was needed because architecture is unchanged.

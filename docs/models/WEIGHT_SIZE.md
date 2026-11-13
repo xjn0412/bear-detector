@@ -2,7 +2,9 @@
 
 [English](WEIGHT_SIZE.md) | [简体中文](WEIGHT_SIZE.zh-CN.md)
 
-**Bear files are not unexpectedly bloated; the architecture is genuinely heavy.** Bear releases retain full FP32 EMA tensors at approximately4 bytes per parameter. YOLO26 public checkpoints store FP16 parameters at approximately2 bytes each. YOLO performance tables also report fused/deployed counts, while downloads retain a larger training architecture.
+**Update: recommended downloads now use validated FP16-bulk/FP32-decoder mixed storage for all four sizes. The FP32 size table below is retained as an audit of original archives.** [Current downloads](WEIGHTS.md) · [Deployment validation](../benchmarks/DEPLOYMENT5090.md).
+
+**Bear files are not unexpectedly bloated; the architecture is genuinely heavy.** Original Bear archives retain full FP32 EMA tensors at approximately4 bytes per parameter. YOLO26 public checkpoints store FP16 parameters at approximately2 bytes each. YOLO performance tables also report fused/deployed counts, while downloads retain a larger training architecture.
 
 MB=1,000,000 bytes; M=1,000,000 parameters. Gzip bytes are download/storage size, not GPU memory. AMP training dtype does not determine checkpoint storage dtype.
 
@@ -15,7 +17,7 @@ MB=1,000,000 bytes; M=1,000,000 parameters. Gzip bytes are download/storage size
 | Bear-B | 112.10825 | 448.43 | 449.16 | 416.91 | 0.162% |
 | Bear-L | 221.39830 | 885.59 | 886.32 | 822.79 | 0.082% |
 
-Audit: every floating state tensor is FP32. Packages contain model, last_epoch and metadata, with no duplicate EMA copy, optimizer or GradScaler. The extra0.08–0.32% is buffers (anchors/normalization statistics), metadata and serialization overhead. Gzip is lossless; decompression changes no tensors. All sizes retain this policy; no compact package was recreated.
+Audit: every floating state tensor is FP32. Packages contain model, last_epoch and metadata, with no duplicate EMA copy, optimizer or GradScaler. The extra0.08–0.32% is buffers (anchors/normalization statistics), metadata and serialization overhead. Gzip is lossless; decompression changes no tensors. The originals remain archival; separately validated mixed packages are now the defaults.
 
 ## YOLO26 public checkpoints
 
@@ -38,3 +40,12 @@ However, Bear-Tiny is not an edge-small detector:52.05M full/51.10M deployed par
 FP16 storage could theoretically halve floating bytes but rounds weights and needs per-model accuracy validation; do not call model.half() on a model requiring an FP32 decoder. A lossless format such as safetensors can reduce small serialization overhead, not turn FP32's4 bytes into2.
 
 [Raw measurement evidence](../../validation/benchmarks/complexity640/README.md) · [Downloads](WEIGHTS.md) · [Complexity](../benchmarks/COMPLEXITY.md).
+
+## Current mixed-storage downloads
+
+| Model | Original gzip MB | Mixed gzip MB | Reduction |
+|---|---:|---:|---:|
+| Bear-T | 193.77 | 115.08 | 40.6% |
+| Bear-S | 274.17 | 155.18 | 43.4% |
+| Bear-B | 416.91 | 226.34 | 45.7% |
+| Bear-L | 822.79 | 428.79 | 47.9% |

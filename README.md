@@ -10,18 +10,20 @@
 
 AI-generated image; the box and **0.9637 confidence** are actual **Base epoch41 EMA** predictions, PyTorch CPU FP32 at640. [Raw prediction and checkpoint hash](assets/bear-inference.json). An illustration, not a benchmark.
 
-## Performance · COCO val2017
+## Performance · COCO val2017 / RTX5090
 
-Full 5,000-image validation, single-scale640, selected EMA. **M = million parameters; GFLOPs = billion operations; 1 MAC = 2 FLOPs.** Both full checkpoint and `deploy()` parameter counts are shown.
+Recommended mixed-storage downloads use **FP16 bulk weights + the original FP32 decoder**. Fresh full5,000-image COCO validation at640, selected EMA, no additional training. PyTorch and TensorRT AP are reported separately.
 
-| Model | Input | AP50:95 | Params M (full / deploy) | GFLOPs | Config | Download MB (lossless gzip) |
-|---|---:|---:|---:|---:|---|---|
-| Bear-T | 640 | 56.4597 | 52.05 / 51.10 | 132.18 | [T.yml](configs/T.yml) | [193.77](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
-| Bear-S | 640 | 57.8987 | 73.68 / 72.73 | 201.21 | [S.yml](configs/S.yml) | [274.17](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Bear-B | 640 | 59.0008 | 112.11 / 111.16 | 310.75 | [B.yml](configs/B.yml) | [416.91](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
-| Bear-L | 640 | 60.0728 | 221.40 / 220.45 | 622.32 | [L.yml](configs/L.yml) | [822.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+| Model | Input | AP50:95 (PT / TRT) | Params M (full / deploy) | GFLOPs | PyTorch AMP ms | TensorRT ms | Mixed MB |
+|---|---:|---:|---:|---:|---:|---:|---|
+| [Bear-T](configs/T.yml) | 640 | 56.4851 / 56.4449 | 52.05 / 51.10 | 132.18 | 12.84 | 2.75 | [115.08](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) |
+| [Bear-S](configs/S.yml) | 640 | 57.8864 / 57.8563 | 73.68 / 72.73 | 201.21 | 16.44 | 3.34 | [155.18](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) |
+| [Bear-B](configs/B.yml) | 640 | 59.0192 / 58.9243 | 112.11 / 111.16 | 310.75 | 15.69 | 3.82 | [226.34](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) |
+| [Bear-L](configs/L.yml) | 640 | 60.0748 / 60.0236 | 221.40 / 220.45 | 622.32 | 15.20 | 4.79 | [428.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) |
 
-FLOPs are CPU-counted on the exact640 deployed forward, including attention matrix products and bilinear sampling; activations, normalization, softmax, indexing/top-k and preprocessing are excluded. This is not a latency prediction. Final releases have no new matched PyTorch/TensorRT timings; historical Base timings are documented separately. [Measurement and reproduction](docs/benchmarks/COMPLEXITY.md) · [Weight-size audit](docs/models/WEIGHT_SIZE.md).
+Latency: one RTX5090 GPU7, batch1,100 warmups,3×300 CUDA-event iterations, no CUDA Graph; GPU inputs through top300, excluding preprocessing/host transfers. TRT includes device-input copies. Mining/training were stopped; all builds finished before timing. PyTorch uses FP16 bulk+entire FP32 decoder; TensorRT10.13.3.9 also protects decoder and sensitive normalization/reductions.
+
+PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend and batch-dependent numerics. Each acceptance gate permits at most0.1 AP-point loss. GFLOPs use the documented arithmetic scope,2 FLOPs/MAC, and do not predict latency. [Full results and reproduction](docs/benchmarks/DEPLOYMENT5090.md) · [FLOPs scope](docs/benchmarks/COMPLEXITY.md).
 
 <details>
 <summary>Comparison with other detectors (author-reported, not rerun)</summary>
@@ -44,16 +46,25 @@ Pretraining, parameter-count conventions and backends differ. Bear is heavier; o
 
 ## Models and downloads
 
-**M = one million parameters.** Every download uses original FP32 EMA tensors in lossless gzip. Decompress before loading; optimizer/scaler resume states are not included.
+Mixed storage is now the default for every size. Decompress, load into an FP32 model and use AMP with the entire decoder FP32. **Do not call `model.half()`**. Mixed checkpoints also support fine-tuning: preparation resets class heads and initializes FP32 parameters with a fresh optimizer.
 
-| Model | Parameters | AP50:95 | Best epoch | Download |
-|---|---:|---:|---:|---|
-| Tiny | 52.05M | 56.4597 | 58 | [EMA · 193.77 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
-| Small | 73.68M | 57.8987 | 57 | [EMA · 274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Base | 112.11M | 59.0008 | 42 | [EMA · 416.91 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
-| Large | 221.40M | 60.0728 | 24 | [EMA · 822.79 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+| Model | Parameters | Selected epoch | Default mixed package |
+|---|---:|---:|---|
+| Tiny | 52.05M | 58 | [115.08 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) |
+| Small | 73.68M | 57 | [155.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) |
+| Base | 112.11M | 42 | [226.34 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) |
+| Large | 221.40M | 24 | [428.79 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) |
 
-[SHA256 & usage](docs/models/WEIGHTS.md) · [Model zoo](docs/models/MODEL_ZOO.md) · [Epoch history](docs/benchmarks/TRAINING_HISTORY.md)
+<details>
+<summary>Original FP32 EMA archives (exact source / optional fine-tuning initialization)</summary>
+
+[Tiny · 193.77 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) · [Small · 274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) · [Base · 416.91 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) · [Large · 822.79 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz)
+
+Originals are retained because FP16 rounding is irreversible. These inference archives do not include optimizer/scaler resume state.
+
+</details>
+
+[SHA256 & usage](docs/models/WEIGHTS.md) · [Epoch history](docs/benchmarks/TRAINING_HISTORY.md)
 
 Detector supervision used COCO train2017; DINOv3 backbone pretraining used external LVD-1689M data. This is not all-data COCO-only training or zero-shot COCO detection.
 

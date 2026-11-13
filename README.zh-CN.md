@@ -10,18 +10,20 @@
 
 图片由AI生成；框与**0.9637置信度**来自真实**Base第41轮EMA**，PyTorch CPU FP32、640输入。[原始结果与权重哈希](assets/bear-inference.json)。这是展示图片，不是精度基准。
 
-## 性能 · COCO val2017
+## 性能 · COCO val2017 / RTX5090
 
-全量5,000张、单尺度640、最佳EMA。**M=百万参数，GFLOPs=十亿浮点运算，1 MAC=2 FLOPs。** 参数分别给出完整发布结构和`deploy()`后的数量。
+新发布混合包：**FP16主体存储 + 原始FP32解码器**。全量5,000张COCO验证，单尺度640、同一最佳EMA，无额外训练；PT与TRT的AP分别列出。
 
-| 模型 | 输入 | AP50:95 | 参数 M（完整 / 部署） | GFLOPs | 配置 | 下载 MB（无损gzip） |
-|---|---:|---:|---:|---:|---|---|
-| Bear-T | 640 | 56.4597 | 52.05 / 51.10 | 132.18 | [T.yml](configs/T.yml) | [193.77](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
-| Bear-S | 640 | 57.8987 | 73.68 / 72.73 | 201.21 | [S.yml](configs/S.yml) | [274.17](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Bear-B | 640 | 59.0008 | 112.11 / 111.16 | 310.75 | [B.yml](configs/B.yml) | [416.91](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
-| Bear-L | 640 | 60.0728 | 221.40 / 220.45 | 622.32 | [L.yml](configs/L.yml) | [822.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+| 模型 | 输入 | AP50:95（PT / TRT） | 参数 M（完整 / 部署） | GFLOPs | PyTorch AMP ms | TensorRT ms | 混合包 MB |
+|---|---:|---:|---:|---:|---:|---:|---|
+| [Bear-T](configs/T.yml) | 640 | 56.4851 / 56.4449 | 52.05 / 51.10 | 132.18 | 12.84 | 2.75 | [115.08](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) |
+| [Bear-S](configs/S.yml) | 640 | 57.8864 / 57.8563 | 73.68 / 72.73 | 201.21 | 16.44 | 3.34 | [155.18](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) |
+| [Bear-B](configs/B.yml) | 640 | 59.0192 / 58.9243 | 112.11 / 111.16 | 310.75 | 15.69 | 3.82 | [226.34](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) |
+| [Bear-L](configs/L.yml) | 640 | 60.0748 / 60.0236 | 221.40 / 220.45 | 622.32 | 15.20 | 4.79 | [428.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) |
 
-FLOPs在CPU上逐算子统计完整640部署前向，包括注意力矩阵乘法与双线性采样；不含激活、归一化、softmax、索引/top-k及预处理。不是延迟预测。所有最终权重尚未重新完成同条件PyTorch/TensorRT测速，不能把旧Base测速冒充最终模型结果。[测量与复现](docs/benchmarks/COMPLEXITY.zh-CN.md) · [权重大小解析](docs/models/WEIGHT_SIZE.zh-CN.md)。
+延迟为单张RTX5090 GPU7、batch1，100次预热、3×300次CUDA Event、无CUDA Graph，从GPU输入到top300后处理；不含预处理与主机传输，TRT包含设备输入拷贝。挖矿和训练均停止；引擎并行构建结束后才测速。PT使用FP16主体+完整FP32解码器，TRT10.13.3.9同样保护解码器及敏感归一化/归约。
+
+PT精度验证batch8，TRT固定batch1；因此AP差异同时包含后端及batch数值影响。两项门限均为最多下降0.1 AP点。FLOPs沿用明确范围的算术计数，1 MAC=2 FLOPs，不等同延迟。[完整结果与复现](docs/benchmarks/DEPLOYMENT5090.zh-CN.md) · [FLOPs口径](docs/benchmarks/COMPLEXITY.zh-CN.md)。
 
 <details>
 <summary>与其他检测器比较（作者发布结果，未复测）</summary>
@@ -44,16 +46,25 @@ FLOPs在CPU上逐算子统计完整640部署前向，包括注意力矩阵乘法
 
 ## 模型与下载
 
-**M表示百万参数。** 所有下载统一为原始FP32 EMA的无损gzip包；先解压再加载，不包含optimizer/scaler续训状态。
+混合包作为默认下载，所有尺寸采用同一策略；解压后加载到FP32模型，推理使用AMP并保留整个FP32解码器。**不要调用整个模型的`half()`**。混合包也可用于微调，准备脚本重置类别头并建立FP32参数与全新优化器。
 
-| 模型 | 参数量 | AP50:95 | 最佳轮次 | 下载 |
-|---|---:|---:|---:|---|
-| Tiny | 52.05M | 56.4597 | 58 | [EMA · 193.77 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
-| Small | 73.68M | 57.8987 | 57 | [EMA · 274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Base | 112.11M | 59.0008 | 42 | [EMA · 416.91 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
-| Large | 221.40M | 60.0728 | 24 | [EMA · 822.79 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+| 模型 | 参数 | 最佳轮次 | 默认混合包 |
+|---|---:|---:|---|
+| Tiny | 52.05M | 58 | [115.08 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) |
+| Small | 73.68M | 57 | [155.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) |
+| Base | 112.11M | 42 | [226.34 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) |
+| Large | 221.40M | 24 | [428.79 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) |
 
-[SHA256 & 使用方法](docs/models/WEIGHTS.zh-CN.md) · [Model zoo](docs/models/MODEL_ZOO.zh-CN.md) · [Epoch history](docs/benchmarks/TRAINING_HISTORY.md)
+<details>
+<summary>原始FP32 EMA归档（精确复现 / 可选微调起点）</summary>
+
+[Tiny · 193.77 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) · [Small · 274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) · [Base · 416.91 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) · [Large · 822.79 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz)
+
+保留原始权重用于精确复现；FP16存储舍入无法恢复。它们不包含optimizer/scaler续训状态。
+
+</details>
+
+[SHA256 & usage](docs/models/WEIGHTS.zh-CN.md) · [Epoch history](docs/benchmarks/TRAINING_HISTORY.md)
 
 检测监督仅使用COCO train2017，但DINOv3骨干使用外部LVD-1689M预训练，因此不是所有预训练数据都仅来自COCO，也不是COCO零样本检测。
 

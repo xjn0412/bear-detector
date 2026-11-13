@@ -34,3 +34,5 @@ python tools/compare_results.py --reference results/fp32.json --candidate result
 AMP结果也应与FP32比较。门限0.1是0.1个AP百分点，不是10%。检查点/标注哈希、输入与类别数不同会被拒绝。子集通过不代表全量或业务数据一致；关注逐类、小目标及真实场景表现。
 
 计时默认50次预热、200次CUDA-event测量，无CUDA Graph；包含top300，不含CPU预处理/主机传输；TRT额外含设备缓冲区拷贝，另报图像到CPU输出的端到端时间。GPU应无竞争计算。TensorRT10弱类型精度约束已验证，TensorRT11/强类型API尚未验证。详细协议见[基准说明](../benchmarks/BENCHMARKS.zh-CN.md)。
+
+最终发布模型的新全量COCO验证和独立测速见[部署基准](../benchmarks/DEPLOYMENT5090.zh-CN.md)。当前精度约束导出器实测版本为TensorRT10.13.3.9，遇到TensorRT11会明确拒绝，不会悄悄改变精度策略。

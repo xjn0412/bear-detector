@@ -24,9 +24,9 @@ docker run --rm --gpus all "$BEAR_IMAGE" python -c \
 ```bash
 export BEAR_WORK="$PWD/bear-work"  # 换成你的持久化绝对路径
 mkdir -p "$BEAR_WORK/data" "$BEAR_WORK/weights" "$BEAR_WORK/runs"
-curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz \
-  -o "$BEAR_WORK/weights/bear-s-coco-ema.pt.gz"
-gzip -dk "$BEAR_WORK/weights/bear-s-coco-ema.pt.gz"
+curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz \
+  -o "$BEAR_WORK/weights/bear-s-coco-mixed.pt.gz"
+gzip -dk "$BEAR_WORK/weights/bear-s-coco-mixed.pt.gz"
 ```
 
 按[权重页](../models/WEIGHTS.zh-CN.md)核对SHA256。Small权重必须配`configs/S.yml`，不能配T/B。Tiny、Base、Large最终权重也已发布，请使用匹配的配置。随机初始化只用于代码自检。
@@ -40,7 +40,7 @@ docker run --rm --shm-size=16g \
   -v "$BEAR_WORK/data:/data:ro" -v "$BEAR_WORK/weights:/weights:ro" \
   -v "$BEAR_WORK/runs:/runs" "$BEAR_IMAGE" \
   python tools/prepare_finetune.py --config configs/S.yml \
-  --checkpoint /weights/bear-s-coco-ema.pt --data /data/my_dataset/data.yaml \
+  --checkpoint /weights/bear-s-coco-mixed.pt --data /data/my_dataset/data.yaml \
   --output /runs/my_dataset --epochs 30 --batch 8 --lr 0.0001
 
 docker run --rm --gpus all --shm-size=16g \

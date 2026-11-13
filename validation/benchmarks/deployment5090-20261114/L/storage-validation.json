@@ -1,0 +1,10 @@
+{
+  "full_COCO_val2017": true,
+  "reference_AP": 60.07184565793452,
+  "mixed_AP": 60.07483728179199,
+  "delta_AP": 0.002991623857475645,
+  "max_allowed_drop": 0.1,
+  "passed": true,
+  "reference_sha256": "22c9167e544d7eb9f73bcba21ac319a12a70b6f1aa07efdb18cea6b449974afe",
+  "mixed_sha256": "e096089a14152fd17e610a2ad2f407db52eeea77d66375e02933c43fd720694b"
+}

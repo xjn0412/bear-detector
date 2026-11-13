@@ -16,4 +16,8 @@ RTX5090、batch1、默认stream、无CUDA Graph、50预热/200测量；包括top
 
 ## 当前结果补充（2026-11-14）
 
-全量验证最佳EMA：T56.4597、S57.8987、B59.0008、L60.0728。训练均已结束；旧Base41的子集测速仍是历史同权重后端对比，不能代表最终Base42。四个尺寸的完整/部署参数及FLOPs现已实测，见[计算量](COMPLEXITY.zh-CN.md)；未新增GPU测速。
+全量验证最佳EMA：T56.4597、S57.8987、B59.0008、L60.0728。训练均已结束；旧Base41的子集测速仍是历史同权重后端对比，不能代表最终Base42。四个尺寸的完整/部署参数及FLOPs现已实测，见[计算量](COMPLEXITY.zh-CN.md)；最新GPU测速另见下节。
+
+## Current final-model benchmark / 当前最终模型基准
+
+[Final T/S/B/L full-COCO deployment validation, isolated RTX5090 timings and mixed storage](DEPLOYMENT5090.md) · [中文](DEPLOYMENT5090.zh-CN.md). Historical Base41 subset results above are retained for provenance, not used as final-model timings.

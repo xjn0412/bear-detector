@@ -18,4 +18,8 @@ B41固定COCO子集的PyTorch/TensorRT精度速度证据保留在validation目�
 
 第57轮EMA、全量COCO val2017 5,000张、640、batch2、PyTorch2.14.1+cu130。原始与紧凑权重严格加载到FP32模型；AMP为FP16主体加FP32解码器。所有输出有限。压缩使FP32 AP下降0.005814点，AMP下降0.009586点，均通过预设0.1点阈值。[完整指标与评测文件哈希](../../validation/releases/small/S_compact_coco.json)。
 
-发布包仅重新打包元数据，逐张量核对键、dtype与数值完全相同；manifest保留评测文件与发布文件的哈希对应。gzip解压字节一致，上传后核对GitHub资产SHA256和大小。此次与Tiny训练并行，不用于测速。紧凑权重TensorRT和自定义数据精度需另行验证。当前所有尺寸统一使用FP32 EMA无损包。
+发布包仅重新打包元数据，逐张量核对键、dtype与数值完全相同；manifest保留评测文件与发布文件的哈希对应。gzip解压字节一致，上传后核对GitHub资产SHA256和大小。此次与Tiny训练并行，不用于测速。紧凑权重TensorRT和自定义数据精度需另行验证。上述记录为历史验证；当前所有尺寸统一使用已验证混合包作为默认，原始FP32包仍保留归档。
+
+## 最终模型部署验证（2026-11-14）
+
+T/S/B/L混合包均通过解码器原样保留、严格加载、gzip字节往返、全5,000张COCO输出有限值与0.1AP点门限验证。在停止挖矿/训练后实测了PyTorch AMP和全新TensorRT10.13.3.9的RTX5090延迟。[当前完整结果](DEPLOYMENT5090.zh-CN.md)。CPU单元测试19项通过。

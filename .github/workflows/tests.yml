@@ -14,4 +14,5 @@ jobs:
       - run: python tests/test_sampling.py
       - run: python tests/test_yolo.py
       - run: python tests/test_profile.py
+      - run: python tests/test_compact.py
       - run: python -m compileall -q backbone.py runtime.py compat.py tools

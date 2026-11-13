@@ -1,0 +1,17 @@
+{
+  "source_sha256": "22c9167e544d7eb9f73bcba21ac319a12a70b6f1aa07efdb18cea6b449974afe",
+  "format": "FP16 backbone/context/neck; original FP32 decoder",
+  "load_into": "FP32 parameters; never model.half()",
+  "accuracy_validated": false,
+  "elements": {
+    "fp16": 211532801,
+    "fp32": 9933984,
+    "other": 8488
+  },
+  "checkpoint_sha256": "e096089a14152fd17e610a2ad2f407db52eeea77d66375e02933c43fd720694b",
+  "archive_sha256": "643f39d452b85452a747362b2afe667fb03e531cace1584fefb0ea7cf0082320",
+  "checkpoint_bytes": 463184637,
+  "archive_bytes": 428792225,
+  "decoder_byte_values_preserved": true,
+  "gzip_roundtrip_identical": true
+}

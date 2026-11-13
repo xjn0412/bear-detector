@@ -1,0 +1,31 @@
+{
+  "backend": "torch-fp32",
+  "checkpoint_sha256": "885878e7c7d57aa22ae31beaedb0ffbecd5e3f651cf6a4933c73aa3fd0095572",
+  "image_sha256": "09e1d25c75f7879bdaa69c327fece5cabacd53939c8c2ef9e87f1c97a2e478c4",
+  "input": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "classes": 80,
+  "mean_ms": 19.1829239654541,
+  "median_ms": 19.16750431060791,
+  "p95_ms": 19.24412727355957,
+  "FPS": 52.12969627575375,
+  "round_mean_ms": [
+    19.176902491251628,
+    19.186658999125164,
+    19.185210405985515
+  ],
+  "round_mean_cv_pct": 0.022408987147413212,
+  "warmup": 100,
+  "iterations_per_round": 300,
+  "repeats": 3,
+  "torch_peak_allocated_GiB": 0.5852189064025879,
+  "process_gpu_memory_MiB": 1338,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.14.1+cu130",
+  "timing_scope": "Batch1 eager CUDA-event latency: GPU inputs through top300; no CUDA Graph.\n\nPreprocessing/host transfers excluded. TensorRT includes device-buffer copies.\nEach command must run alone on a GPU with no mining/training/build workload.\n",
+  "precision": "FP32"
+}

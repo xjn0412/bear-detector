@@ -1,0 +1,9 @@
+{
+  "full_COCO_val2017": true,
+  "torch_mixed_AP": 56.48514127798894,
+  "TensorRT_AP": 56.44489362471936,
+  "delta_AP": -0.04024765326957436,
+  "max_allowed_drop": 0.1,
+  "passed": true,
+  "checkpoint_sha256": "ac51e9e68bc141a9782005589d56df574ba285def88857ac2c4275413d782150"
+}

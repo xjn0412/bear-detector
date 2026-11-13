@@ -30,7 +30,7 @@ CPU自检可改装官方CPU版torch/torchvision。`constraints-tested.txt`记录
 ```bash
 python -m pip install -r requirements-export.txt
 # 按NVIDIA官方说明安装与你平台匹配的TensorRT；实测API版本：
-python -m pip install tensorrt-cu13==10.16.1.11
+python -m pip install tensorrt-cu13==10.13.3.9
 python tools/verify_cpu.py --onnx --output results/cpu-verification.json
 ```
 

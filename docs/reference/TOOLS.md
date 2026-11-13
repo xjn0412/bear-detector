@@ -25,3 +25,11 @@ Run commands from the repository root, or `/opt/bear-detector` inside the image.
 Use [FINETUNE.md](../guides/FINETUNE.md) / [中文微调](../guides/FINETUNE.zh-CN.md) for training. `source/train.py` is the retained upstream entry point; use `tools/train_custom.py` so Bear's numerical safety runtime is installed. / 不要跳过Bear运行时直接调用上游训练入口。
 
 CPU complexity profiling (no weights required): `python tools/profile_model.py --config configs/T.yml --output results/T-profile.json`. [Scope and reproduction](../benchmarks/COMPLEXITY.md).
+
+| Deployment tool | Purpose |
+|---|---|
+| [compact_weights.py](../../tools/compact_weights.py) | FP16 bulk storage, original FP32 decoder, hash/roundtrip checks |
+| [benchmark_latency.py](../../tools/benchmark_latency.py) | Isolated eager CUDA-event latency, fixed batch1x640 |
+| [validate_deployment.py](../../tools/validate_deployment.py) | Full COCO finite-output and AP validation |
+
+See [deployment methodology and commands](../benchmarks/DEPLOYMENT5090.md).

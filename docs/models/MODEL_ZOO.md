@@ -4,12 +4,13 @@
 
 Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch validation:
 
-| Model | Input | AP50:95 | Params M (full / deploy) | GFLOPs | Config | Download MB (lossless gzip) |
-|---|---:|---:|---:|---:|---|---|
-| Bear-T | 640 | 56.4597 | 52.05 / 51.10 | 132.18 | [T.yml](../../configs/T.yml) | [193.77](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
-| Bear-S | 640 | 57.8987 | 73.68 / 72.73 | 201.21 | [S.yml](../../configs/S.yml) | [274.17](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Bear-B | 640 | 59.0008 | 112.11 / 111.16 | 310.75 | [B.yml](../../configs/B.yml) | [416.91](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
-| Bear-L | 640 | 60.0728 | 221.40 / 220.45 | 622.32 | [L.yml](../../configs/L.yml) | [822.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+| Model | Input | AP50:95 (PT / TRT) | Params M (full / deploy) | GFLOPs | PyTorch AMP ms | TensorRT ms | Mixed MB |
+|---|---:|---:|---:|---:|---:|---:|---|
+| [Bear-T](../../configs/T.yml) | 640 | 56.4851 / 56.4449 | 52.05 / 51.10 | 132.18 | 12.84 | 2.75 | [115.08](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) |
+| [Bear-S](../../configs/S.yml) | 640 | 57.8864 / 57.8563 | 73.68 / 72.73 | 201.21 | 16.44 | 3.34 | [155.18](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) |
+| [Bear-B](../../configs/B.yml) | 640 | 59.0192 / 58.9243 | 112.11 / 111.16 | 310.75 | 15.69 | 3.82 | [226.34](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) |
+| [Bear-L](../../configs/L.yml) | 640 | 60.0748 / 60.0236 | 221.40 / 220.45 | 622.32 | 15.20 | 4.79 | [428.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) |
+
 
 
 Final snapshot: 2026-11-14. All selected T/S/B/L EMA checkpoints are published. Tiny, fresh Base and Large used the entire FP32 decoder from epoch1; Small was repaired and resumed after epoch30. Tiny/Base used patience10, Large ultimately used patience20; Small was manually stopped. These are not controlled backbone-only or FP16-versus-BF16 ablations. DINOv3 used external LVD-1689M backbone pretraining; detection supervision used COCO train2017.
@@ -22,7 +23,7 @@ Historical **Base epoch41 EMA** (not the final Base release) checkpoint, fixed 1
 | PyTorch FP16 bulk + FP32 decoder | 59.4149 | 19.1562 ms | 52.20 |
 | TensorRT FP16 bulk + FP32 decoder | 59.3778 | 4.0203 ms | 248.74 |
 
-Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image preprocessing/host transfers. TensorRT includes device-buffer copies. **Subset AP is not full COCO AP.** Full-set TensorRT parity and Small/Tiny inference speed have not been validated. [Benchmark protocol and evidence](../benchmarks/BENCHMARKS.md).
+Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image preprocessing/host transfers. TensorRT includes device-buffer copies. **Subset AP is not full COCO AP.** That historical subset did not validate final-model full-COCO parity or Tiny/Small speed; see the current deployment results below. [Benchmark protocol and evidence](../benchmarks/BENCHMARKS.md).
 
 ## Architecture choices
 
@@ -37,3 +38,7 @@ Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image prep
 See [weight downloads](WEIGHTS.md), [architecture](ARCHITECTURE.md) and [recorded evidence](../../validation/README.md).
 
 [Complexity and reproduction](../benchmarks/COMPLEXITY.md) · [Weight size versus parameters](WEIGHT_SIZE.md).
+
+## Current release deployment results
+
+The table above uses fresh mixed-checkpoint validation; original epoch AP histories are unchanged. [Current PyTorch/TRT latency and memory](../benchmarks/DEPLOYMENT5090.md) supersede historical Base41 timings for these final selected weights. Base41 subset results remain historical evidence.

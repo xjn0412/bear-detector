@@ -1,0 +1,10 @@
+{
+  "tag": "v0.3.0-large",
+  "url": "https://github.com/xjn0412/bear-detector/releases/tag/v0.3.0-large",
+  "default": "bear-l-coco-mixed.pt.gz",
+  "bytes": 428792225,
+  "sha256": "643f39d452b85452a747362b2afe667fb03e531cace1584fefb0ea7cf0082320",
+  "assets_verified": 13,
+  "public_HEAD": 200,
+  "original_FP32_preserved": true
+}

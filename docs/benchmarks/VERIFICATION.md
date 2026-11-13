@@ -28,7 +28,7 @@ A CPU smoke pass validates wiring, checkpoint compatibility and export construct
 
 ## Earlier measured GPU evidence retained with this code
 
-`validation/` contains the real-image1/3-class full-criterion backward/optimizer/checkpoint-reload test, Tiny3-class two-epoch full training CLI smoke (four actual optimizer and EMA updates, scaler saved), data-preparation checks, Base41 checkpoint provenance, fixed subset manifest, environment and same-checkpoint PyTorch/TensorRT accuracy/timing reports. Those GPU measurements were not rerun while preparing the repository, to avoid competing with the active COCO training. The model/export path is the same validated implementation.
+`validation/` contains the real-image1/3-class full-criterion backward/optimizer/checkpoint-reload test, Tiny3-class two-epoch full training CLI smoke (four actual optimizer and EMA updates, scaler saved), data-preparation checks, Base41 checkpoint provenance, fixed subset manifest, environment and same-checkpoint PyTorch/TensorRT accuracy/timing reports. Those historical measurements were retained during the initial repository preparation; the final-model deployment checks below were subsequently run after training finished and mining stopped. The model/export path is the same validated implementation.
 
 The end-to-end training smoke used toy boxes and proves execution only. Multi-GPU training has run on the operational COCO B/S jobs; the standalone arbitrary-class fine-tuning example was checked on oneGPU, not every topology/dataset. No independent real custom-dataset convergence result, full-COCO TensorRT parity result, or trainedTiny accuracy result is claimed.
 
@@ -45,3 +45,7 @@ Six YOLO tests cover class/coordinate conversion, directory/image/text-list path
 Full COCO val2017, 5,000 images, 640, batch2, PyTorch2.14.1+cu130, selected epoch57 EMA. Both reference and compact loaded strictly into FP32 models; AMP used FP16 bulk plus an FP32 decoder. All predictions were finite. Compact AP changed by -0.005814 points in FP32 and -0.009586 in AMP, passing the preset maximum0.1-point loss in each mode. [Full metrics and evaluated checkpoint hashes](../../validation/releases/small/S_compact_coco.json).
 
 The release repacks metadata only; tensor keys, dtypes and values were checked identical to the evaluated candidate. The release manifest links evaluated and released hashes. Gzip round trips were byte-exact, and GitHub asset SHA256 digests and sizes were checked after upload. This was an accuracy check alongside Tiny training, without speed claims. TensorRT compact accuracy and custom-dataset accuracy require separate validation; All current downloads use lossless FP32 EMA packaging.
+
+## Final-model mixed-storage and deployment checks (2026-11-14)
+
+All T/S/B/L mixed checkpoints passed exact decoder preservation, strict model loading, gzip roundtrip, finite full5000-image COCO evaluation and0.1AP-point deployment gates. PyTorch AMP and fresh TensorRT10.13.3.9 were timed on a clean RTX5090. [Current protocol and measured results](DEPLOYMENT5090.md). Original FP32 archives remain available. CPU unit tests:19 passed.

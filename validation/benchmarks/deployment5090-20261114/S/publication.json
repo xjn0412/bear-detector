@@ -1,0 +1,10 @@
+{
+  "tag": "v0.1.0-weights",
+  "url": "https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights",
+  "default": "bear-s-coco-mixed.pt.gz",
+  "bytes": 155175720,
+  "sha256": "dd0ad084051eef80d8cd84f916f19109839af1100bd5d15fb72487832cc070e7",
+  "assets_verified": 11,
+  "public_HEAD": 200,
+  "original_FP32_preserved": true
+}

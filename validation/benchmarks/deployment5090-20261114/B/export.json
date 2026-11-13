@@ -1,0 +1,20 @@
+{
+  "checkpoint_sha256": "c89b634cd61686a8df589df7d0c4bcccc6003ee18bf1304e00ca5622ccfd72c6",
+  "onnx_sha256": "e05117e5b40f3c2a8c39eace15ea423cb49dfcc5ef433ecfde585859c1f5de79",
+  "classes": 80,
+  "shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "size_order": "width,height",
+  "precision": "FP16 backbone/context/neck; FP32 decoder and sensitive reductions",
+  "accuracy_validated": false,
+  "sampling": "explicit bilinear GatherElements; no ONNX GridSample",
+  "engine_sha256": "b6981cc55744c71ac1bcbfecef4e36c74655ebc179ec920a79a942b626a41650",
+  "build_seconds": 317.5152518749237,
+  "tensorrt": "10.13.3.9",
+  "protected_layers": 2138,
+  "decoder_layers": 4423
+}

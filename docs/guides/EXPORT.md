@@ -12,7 +12,7 @@ python tools/export_engine.py --config runs/my_dataset/config.yml \
   --output exports/my_dataset --build
 ```
 
-Without `--build`, this exports/checks ONNX on CPU only. Default TensorRT precision is FP16 backbone/context/neck and FP32 decoder/sensitive reductions; master checkpoint staysFP32. `export.json` records checkpoint/graph/engine hashes and class count. It initially marks accuracy as unvalidated. Keep `classes.json` alongside the engine; it is copied from the prepared run automatically.
+Without `--build`, this exports/checks ONNX on CPU only. Default TensorRT precision is FP16 backbone/context/neck and FP32 decoder/sensitive reductions; training/master parameters remain FP32; input checkpoints may use mixed storage. `export.json` records checkpoint/graph/engine hashes and class count. It initially marks accuracy as unvalidated. Keep `classes.json` alongside the engine; it is copied from the prepared run automatically.
 
 The graph is fixed batch1×3×640×640 with `images` float32 and `orig_target_sizes` int64 shape[1,2] in **width,height** order. Outputs: `labels`, original-image pixel `boxes` inxyxy, and `scores`. New class count, weights, input shape or incompatible TensorRT/GPU requires a new engine. Preprocessing is identical to [INFERENCE.md](INFERENCE.md).
 
@@ -58,3 +58,5 @@ Use an otherwise idle GPU. The evaluator runs50 warm-ups/200 timed iterations wi
 - Large AP gap: verify checkpoint/engine hashes, sampling implementation, RGB/normalization, original size order and label mapping. Finite outputs are insufficient.
 - Out of memory: reduce training batch; keep inference batch1. Do not silently lower decoder precision.
 - TensorRT11/strongly-typed API changes: not verified; use the documented TensorRT10 environment.
+
+For the final released models, use [current full-COCO deployment tests and latency commands](../benchmarks/DEPLOYMENT5090.md). The tested precision-constrained builder is TensorRT10.13.3.9; TensorRT11 is rejected rather than silently changing precision.

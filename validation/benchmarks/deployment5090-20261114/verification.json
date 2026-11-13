@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-14",
+  "unit_tests_passed": 19,
+  "compileall": "passed",
+  "relative_markdown_links": "passed",
+  "git_diff_check": "passed",
+  "models": [
+    "T",
+    "S",
+    "B",
+    "L"
+  ],
+  "accuracy_cases_per_model": [
+    "original FP32 storage PyTorch AMP batch8",
+    "mixed storage PyTorch AMP batch8",
+    "mixed storage TensorRT batch1"
+  ],
+  "images_per_case": 5000,
+  "finite_outputs_all_cases": true,
+  "storage_max_allowed_AP_drop": 0.1,
+  "TensorRT_max_allowed_AP_drop": 0.1,
+  "all_accuracy_gates_passed": true,
+  "all_latency_round_mean_CV_below_pct": 1.0,
+  "GPU_latency_batch": 1,
+  "CUDA_Graph": false,
+  "original_FP32_archives_preserved": true,
+  "public_asset_checks": "all release assets verified SHA256+size and mixed archive public HEAD200"
+}

@@ -27,6 +27,8 @@ if classes_file.exists():
  (out/'classes.json').write_text(classes_file.read_text())
 if a.build:
  import tensorrt as trt
+ if int(trt.__version__.split('.')[0]) != 10:
+  raise RuntimeError('This precision-constrained exporter is validated with TensorRT10.13.3.9; TensorRT11 requires a strong-typing export path. Install tensorrt-cu13==10.13.3.9.')
  logger=trt.Logger(trt.Logger.WARNING);builder=trt.Builder(logger)
  network=builder.create_network(1<<int(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH));parser=trt.OnnxParser(network,logger)
  if not parser.parse_from_file(str(out/'model.onnx')):raise RuntimeError('\n'.join(str(parser.get_error(i)) for i in range(parser.num_errors)))

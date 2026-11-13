@@ -26,9 +26,9 @@ Choose a real persistent host directory; **do not keep your only checkpoints in 
 export BEAR_WORK="$PWD/bear-work"   # Replace with your persistent absolute directory.
 mkdir -p "$BEAR_WORK/data" "$BEAR_WORK/weights" "$BEAR_WORK/runs"
 # On the host, download the public Small release:
-curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz \
-  -o "$BEAR_WORK/weights/bear-s-coco-ema.pt.gz"
-gzip -dk "$BEAR_WORK/weights/bear-s-coco-ema.pt.gz"
+curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz \
+  -o "$BEAR_WORK/weights/bear-s-coco-mixed.pt.gz"
+gzip -dk "$BEAR_WORK/weights/bear-s-coco-mixed.pt.gz"
 ```
 
 Check the SHA256 against [WEIGHTS.md](../models/WEIGHTS.md). Use `configs/S.yml` with Small weights. Tiny/Base configs cannot load Small checkpoints. Final Tiny, Base and Large detector weights are also available; match each weight with its config. Random initialization is only for wiring tests.
@@ -44,7 +44,7 @@ docker run --rm --shm-size=16g \
   -v "$BEAR_WORK/data:/data:ro" -v "$BEAR_WORK/weights:/weights:ro" \
   -v "$BEAR_WORK/runs:/runs" "$BEAR_IMAGE" \
   python tools/prepare_finetune.py --config configs/S.yml \
-  --checkpoint /weights/bear-s-coco-ema.pt --data /data/my_dataset/data.yaml \
+  --checkpoint /weights/bear-s-coco-mixed.pt --data /data/my_dataset/data.yaml \
   --output /runs/my_dataset --epochs 30 --batch 8 --lr 0.0001
 
 docker run --rm --gpus all --shm-size=16g \

@@ -33,3 +33,5 @@ Layout follows task-oriented documentation and model-zoo conventions used by [Ul
 
 - [FLOPs methodology / 计算量口径](benchmarks/COMPLEXITY.md) · [中文](benchmarks/COMPLEXITY.zh-CN.md)
 - [Weight size audit / 权重大小审计](models/WEIGHT_SIZE.md) · [中文](models/WEIGHT_SIZE.zh-CN.md)
+
+- [Final RTX5090 latency, memory and deployment accuracy](benchmarks/DEPLOYMENT5090.md) · [最终部署验证与测速](benchmarks/DEPLOYMENT5090.zh-CN.md)

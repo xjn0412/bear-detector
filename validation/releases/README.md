@@ -1,3 +1,3 @@
 # Release evidence
 
-Current downloads use original FP32 EMA in lossless gzip for all sizes. Historical Small compact metrics/manifests are retained as recorded evidence only; their references do not advertise an available compact download. See [current downloads](../../docs/models/WEIGHTS.md).
+Historical release and Small-only compression evidence is preserved here. Current recommended downloads use uniform FP16 bulk / original FP32 decoder storage for all four sizes, with original FP32 archives retained. [Current deployment measurements](../benchmarks/deployment5090-20261114/README.md) · [Downloads](../../docs/models/WEIGHTS.md).
