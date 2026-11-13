@@ -34,7 +34,7 @@ Bear is substantially heavier. This table does **not** establish a better accura
 |---|---:|---|
 | Small | 73.68M | [Compact155.18MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-compact.pt.gz) · [Lossless274.17MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
 | Tiny | 52.05M | [EMA epoch 58, AP 56.4597](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
-| Base | 112.11M | Queued after Tiny; fresh backbone initialization; original detector checkpoint lost |
+| Base | 112.11M | [EMA epoch 42, AP 59.0008](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
 | Large | 221.40M | Queued after Base; no detection AP yet |
 
 Small compact weights passed full COCO val2017 at640: **57.8904AP** in FP32 versus **57.8962** for the reference rerun. Maximum compression loss across FP32/AMP was **0.0096AP point**. Decompress before loading; keep the decoder FP32. Compact TensorRT accuracy remains unvalidated. [Checksums and usage](docs/WEIGHTS.md) · [Detailed model results and speed](docs/MODEL_ZOO.md).
