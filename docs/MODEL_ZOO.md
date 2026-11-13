@@ -6,7 +6,7 @@ Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch val
 
 | Model | Total parameters (80 classes) | Backbone parameters | Selected epoch | mAP50:95 |
 |---|---:|---:|---:|---:|
-| Base | 112.11M | 87.56M | 41 | **58.9306** |
+| Base | 112.11M | 87.56M | 42 | **59.0008** |
 | Small | 73.68M | 49.45M | 57 | **57.8987** |
 | Tiny | 52.05M | 27.82M | 58 | **56.4597** |
 | Large | 221.40M | 196.23M | — | Queued; no AP yet |
