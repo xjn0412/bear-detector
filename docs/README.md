@@ -30,3 +30,6 @@ Shared references / 通用索引:
 All T/S/B/L selected EMA weights are published; no model remains in training. / T/S/B/L最佳EMA均已发布，训练已结束。
 
 Layout follows task-oriented documentation and model-zoo conventions used by [Ultralytics YOLO](https://github.com/ultralytics/ultralytics), [EdgeCrafter / ECDet](https://github.com/Intellindust-AI-Lab/EdgeCrafter) and [DEIMv2](https://github.com/Intellindust-AI-Lab/DEIMv2); this does not imply their code or licensing was copied.
+
+- [FLOPs methodology / 计算量口径](benchmarks/COMPLEXITY.md) · [中文](benchmarks/COMPLEXITY.zh-CN.md)
+- [Weight size audit / 权重大小审计](models/WEIGHT_SIZE.md) · [中文](models/WEIGHT_SIZE.zh-CN.md)

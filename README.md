@@ -10,9 +10,21 @@
 
 AI-generated image; the box and **0.9637 confidence** are actual **Base epoch41 EMA** predictions, PyTorch CPU FP32 at640. [Raw prediction and checkpoint hash](assets/bear-inference.json). An illustration, not a benchmark.
 
-## Model comparison at640
+## Performance · COCO val2017
 
-COCO val2017 box AP50:95. **Bear rows are our measurements; other rows are author-reported results, not rerun here.** Training/pretraining and parameter-count conventions differ.
+Full 5,000-image validation, single-scale640, selected EMA. **M = million parameters; GFLOPs = billion operations; 1 MAC = 2 FLOPs.** Both full checkpoint and `deploy()` parameter counts are shown.
+
+| Model | Input | AP50:95 | Params M (full / deploy) | GFLOPs | Config | Download MB (lossless gzip) |
+|---|---:|---:|---:|---:|---|---|
+| Bear-T | 640 | 56.4597 | 52.05 / 51.10 | 132.18 | [T.yml](configs/T.yml) | [193.77](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
+| Bear-S | 640 | 57.8987 | 73.68 / 72.73 | 201.21 | [S.yml](configs/S.yml) | [274.17](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
+| Bear-B | 640 | 59.0008 | 112.11 / 111.16 | 310.75 | [B.yml](configs/B.yml) | [416.91](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
+| Bear-L | 640 | 60.0728 | 221.40 / 220.45 | 622.32 | [L.yml](configs/L.yml) | [822.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+
+FLOPs are CPU-counted on the exact640 deployed forward, including attention matrix products and bilinear sampling; activations, normalization, softmax, indexing/top-k and preprocessing are excluded. This is not a latency prediction. Final releases have no new matched PyTorch/TensorRT timings; historical Base timings are documented separately. [Measurement and reproduction](docs/benchmarks/COMPLEXITY.md) · [Weight-size audit](docs/models/WEIGHT_SIZE.md).
+
+<details>
+<summary>Comparison with other detectors (author-reported, not rerun)</summary>
 
 | Model | Parameters | AP50:95 | Source / pretraining distinction |
 |---|---:|---:|---|
@@ -26,7 +38,9 @@ COCO val2017 box AP50:95. **Bear rows are our measurements; other rows are autho
 | [RT-DETRv2-X](https://github.com/lyuwenyu/RT-DETR) | 76M | 54.3 | Published COCO row |
 | [YOLO26-X](https://docs.ultralytics.com/models/yolo26/) | 55.7M | 57.5 | Default NMS head; Objects365 pretraining; fused/deployed parameters |
 
-Bear is substantially heavier. This table does **not** establish a better accuracy/latency tradeoff. Our RTX5090 timings are separate from authors’ T4 timings. [Full comparison and source notes](docs/benchmarks/COMPARISON.md).
+Pretraining, parameter-count conventions and backends differ. Bear is heavier; our RTX5090 timings cannot be divided by official T4 timings to claim speedups. [Comparison notes](docs/benchmarks/COMPARISON.md).
+
+</details>
 
 ## Models and downloads
 

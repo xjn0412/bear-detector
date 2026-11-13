@@ -35,3 +35,5 @@ YOLO26的无NMS检测头AP分别为L54.4、X56.9，官方速度对应无NMS路�
 - [RT-DETR官方结果](https://github.com/lyuwenyu/RT-DETR)
 - [YOLO26官方指标](https://docs.ultralytics.com/models/yolo26/)
 - [YOLO26训练配方](https://docs.ultralytics.com/guides/yolo26-training-recipe/)
+
+[Bear FLOPs / 计算量](COMPLEXITY.md) · [Checkpoint size audit / 权重大小审计](../models/WEIGHT_SIZE.md).

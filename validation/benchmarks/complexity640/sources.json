@@ -1,0 +1,21 @@
+{
+  "Bear_reference_commit": "ea9530086fc767e69469c4873cae4d56dc677d5a",
+  "Ultralytics_readme_commit": "29daa26e12f375857bbb0e1e1dc73baf19409bba",
+  "YOLO_performance": "https://docs.ultralytics.com/models/yolo26/#performance-metrics",
+  "YOLO_reference_readme": "https://github.com/ultralytics/ultralytics/blob/29daa26e12f375857bbb0e1e1dc73baf19409bba/README.md",
+  "YOLO_asset_metadata": "https://api.github.com/repos/ultralytics/assets/releases/tags/v8.4.0",
+  "YOLO_GFLOPs_published": {
+    "n": 5.5,
+    "s": 20.9,
+    "m": 68.4,
+    "l": 86.8,
+    "x": 194.4
+  },
+  "YOLO_deployed_parameters_M_published": {
+    "n": 2.4,
+    "s": 9.5,
+    "m": 20.4,
+    "l": 24.8,
+    "x": 55.7
+  }
+}

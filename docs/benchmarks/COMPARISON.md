@@ -26,7 +26,7 @@ YOLO26 official NMS-free AP is 54.4 for L and 56.9 for X; its published speed us
 
 ## Speed comparison policy
 
-Keep our measured RTX5090 result in [BENCHMARKS.md](BENCHMARKS.md) separate from other authors’ T4 timings. Do not divide those latencies to claim a speedup. A fair speed comparison needs the same GPU, software, 640 input, batch1, precision policy, warmup, synchronization, preprocessing and postprocessing boundaries, and accuracy-checked exported checkpoints. No new baseline GPU benchmarks were run for this table. Bear FLOPs are omitted until measured with attention and sampling accounted for, rather than inferred from parameter count.
+Keep our measured RTX5090 result in [BENCHMARKS.md](BENCHMARKS.md) separate from other authors’ T4 timings. Do not divide those latencies to claim a speedup. A fair speed comparison needs the same GPU, software, 640 input, batch1, precision policy, warmup, synchronization, preprocessing and postprocessing boundaries, and accuracy-checked exported checkpoints. No new baseline GPU benchmarks were run for this table. Bear FLOPs are now CPU-profiled including attention matrix products and bilinear sampling; see [counting scope](COMPLEXITY.md). External FLOPs use different profilers and are not matched speed measurements.
 
 ## Primary sources
 
@@ -35,3 +35,5 @@ Keep our measured RTX5090 result in [BENCHMARKS.md](BENCHMARKS.md) separate from
 - [RT-DETR official results](https://github.com/lyuwenyu/RT-DETR)
 - [YOLO26 official metrics](https://docs.ultralytics.com/models/yolo26/)
 - [YOLO26 training recipe](https://docs.ultralytics.com/guides/yolo26-training-recipe/)
+
+[Bear FLOPs / 计算量](COMPLEXITY.md) · [Checkpoint size audit / 权重大小审计](../models/WEIGHT_SIZE.md).

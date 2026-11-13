@@ -4,12 +4,13 @@
 
 **M 表示百万参数。** COCO val2017 全部5,000张，640、单尺度、EMA、PyTorch验证（Tiny主体FP16、解码器FP32）：
 
-| 版本 | 总参数 | 骨干参数 | 选定轮次 | mAP50:95 |
-|---|---:|---:|---:|---:|
-| Base | 112.11M | 87.56M | 42 | **59.0008** |
-| Small | 73.68M | 49.45M | 57 | 57.8987 |
-| Tiny | 52.05M | 27.82M | 58 | **56.4597** |
-| Large | 221.40M | 196.23M | 24 | **60.0728** |
+| 模型 | 输入 | AP50:95 | 参数 M（完整 / 部署） | GFLOPs | 配置 | 下载 MB（无损gzip） |
+|---|---:|---:|---:|---:|---|---|
+| Bear-T | 640 | 56.4597 | 52.05 / 51.10 | 132.18 | [T.yml](../../configs/T.yml) | [193.77](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
+| Bear-S | 640 | 57.8987 | 73.68 / 72.73 | 201.21 | [S.yml](../../configs/S.yml) | [274.17](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
+| Bear-B | 640 | 59.0008 | 112.11 / 111.16 | 310.75 | [B.yml](../../configs/B.yml) | [416.91](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
+| Bear-L | 640 | 60.0728 | 221.40 / 220.45 | 622.32 | [L.yml](../../configs/L.yml) | [822.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+
 
 2026-11-14：所有训练已结束，T/S/B/L最佳EMA均已发布。Tiny、全新Base和Large从匹配预训练骨干开始，均从第1轮使用完整FP32解码器；Small在第30轮后修复并恢复。Tiny/Base早停耐心为10，Large最终为20；Small手动停止。这不是骨干或训练精度的严格控制实验。DINOv3使用外部LVD-1689M预训练，检测监督为COCO train2017。
 
@@ -24,3 +25,5 @@
 子集AP不能当作全量COCO AP。计时无CUDA Graph，包含top300后处理，不含图像预处理与主机传输；TensorRT额外包含设备缓冲区拷贝。全量COCO TensorRT精度一致性、S/T部署速度尚未验证。[基准说明](../benchmarks/BENCHMARKS.zh-CN.md)。
 
 结构细节见[架构指南](ARCHITECTURE.zh-CN.md)，下载见[权重页](WEIGHTS.zh-CN.md)，原始记录见[验证资料索引](../../validation/README.md)。
+
+[计算量及复现](../benchmarks/COMPLEXITY.zh-CN.md) · [文件大小与参数关系](WEIGHT_SIZE.zh-CN.md)。

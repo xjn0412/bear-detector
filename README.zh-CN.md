@@ -10,9 +10,21 @@
 
 图片由AI生成；框与**0.9637置信度**来自真实**Base第41轮EMA**，PyTorch CPU FP32、640输入。[原始结果与权重哈希](assets/bear-inference.json)。这是展示图片，不是精度基准。
 
-## 640输入模型比较
+## 性能 · COCO val2017
 
-COCO val2017框AP50:95。**Bear为本项目实测，其他为作者发布结果，本仓库未复测。** 预训练数据、训练过程及参数统计口径不同。
+全量5,000张、单尺度640、最佳EMA。**M=百万参数，GFLOPs=十亿浮点运算，1 MAC=2 FLOPs。** 参数分别给出完整发布结构和`deploy()`后的数量。
+
+| 模型 | 输入 | AP50:95 | 参数 M（完整 / 部署） | GFLOPs | 配置 | 下载 MB（无损gzip） |
+|---|---:|---:|---:|---:|---|---|
+| Bear-T | 640 | 56.4597 | 52.05 / 51.10 | 132.18 | [T.yml](configs/T.yml) | [193.77](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
+| Bear-S | 640 | 57.8987 | 73.68 / 72.73 | 201.21 | [S.yml](configs/S.yml) | [274.17](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
+| Bear-B | 640 | 59.0008 | 112.11 / 111.16 | 310.75 | [B.yml](configs/B.yml) | [416.91](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
+| Bear-L | 640 | 60.0728 | 221.40 / 220.45 | 622.32 | [L.yml](configs/L.yml) | [822.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+
+FLOPs在CPU上逐算子统计完整640部署前向，包括注意力矩阵乘法与双线性采样；不含激活、归一化、softmax、索引/top-k及预处理。不是延迟预测。所有最终权重尚未重新完成同条件PyTorch/TensorRT测速，不能把旧Base测速冒充最终模型结果。[测量与复现](docs/benchmarks/COMPLEXITY.zh-CN.md) · [权重大小解析](docs/models/WEIGHT_SIZE.zh-CN.md)。
+
+<details>
+<summary>与其他检测器比较（作者发布结果，未复测）</summary>
 
 | 模型 | 参数量 | AP50:95 | 来源 / 预训练说明 |
 |---|---:|---:|---|
@@ -26,7 +38,9 @@ COCO val2017框AP50:95。**Bear为本项目实测，其他为作者发布结果�
 | [RT-DETRv2-X](https://github.com/lyuwenyu/RT-DETR) | 76M | 54.3 | 官方COCO结果 |
 | [YOLO26-X](https://docs.ultralytics.com/models/yolo26/) | 55.7M | 57.5 | 默认NMS检测头；Objects365预训练；融合部署参数量 |
 
-Bear模型明显更重，此表**不能证明精度与延迟权衡更好**。本项目RTX5090测速与官方T4测速分开列示。[完整比较与来源说明](docs/benchmarks/COMPARISON.zh-CN.md)。
+预训练数据、参数口径及测试后端不同，不构成严格对照实验。Bear更重；RTX5090测速不能直接与官方T4测速相除。[比较说明](docs/benchmarks/COMPARISON.zh-CN.md)。
+
+</details>
 
 ## 模型与下载
 

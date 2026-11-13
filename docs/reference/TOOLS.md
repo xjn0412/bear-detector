@@ -23,3 +23,5 @@ Run commands from the repository root, or `/opt/bear-detector` inside the image.
 [common.py](../../tools/common.py) and [portable_sampling.py](../../tools/portable_sampling.py) are implementation helpers, not separate user-facing workflows. / 两者是实现辅助模块。
 
 Use [FINETUNE.md](../guides/FINETUNE.md) / [中文微调](../guides/FINETUNE.zh-CN.md) for training. `source/train.py` is the retained upstream entry point; use `tools/train_custom.py` so Bear's numerical safety runtime is installed. / 不要跳过Bear运行时直接调用上游训练入口。
+
+CPU complexity profiling (no weights required): `python tools/profile_model.py --config configs/T.yml --output results/T-profile.json`. [Scope and reproduction](../benchmarks/COMPLEXITY.md).

@@ -1,0 +1,110 @@
+{
+  "T": {
+    "file": "bear-t-coco-ema.pt",
+    "uncompressed_file_bytes": 208855161,
+    "checkpoint_keys": [
+      "model",
+      "last_epoch",
+      "metadata"
+    ],
+    "optimizer_present": false,
+    "scaler_present": false,
+    "state_by_dtype": {
+      "torch.float32": {
+        "elements": 52117313,
+        "bytes": 208469252
+      },
+      "torch.int64": {
+        "elements": 88,
+        "bytes": 704
+      },
+      "torch.bool": {
+        "elements": 8400,
+        "bytes": 8400
+      }
+    },
+    "tensor_payload_bytes": 208478356,
+    "tensor_keys": 953
+  },
+  "S": {
+    "file": "bear-s-coco-ema.pt",
+    "uncompressed_file_bytes": 295460598,
+    "checkpoint_keys": [
+      "model",
+      "last_epoch",
+      "metadata"
+    ],
+    "optimizer_present": false,
+    "scaler_present": false,
+    "state_by_dtype": {
+      "torch.float32": {
+        "elements": 73751873,
+        "bytes": 295007492
+      },
+      "torch.int64": {
+        "elements": 88,
+        "bytes": 704
+      },
+      "torch.bool": {
+        "elements": 8400,
+        "bytes": 8400
+      }
+    },
+    "tensor_payload_bytes": 295016596,
+    "tensor_keys": 1115
+  },
+  "B": {
+    "file": "bear-b-coco-ema.pt",
+    "uncompressed_file_bytes": 449160246,
+    "checkpoint_keys": [
+      "model",
+      "last_epoch",
+      "metadata"
+    ],
+    "optimizer_present": false,
+    "scaler_present": false,
+    "state_by_dtype": {
+      "torch.float32": {
+        "elements": 112176737,
+        "bytes": 448706948
+      },
+      "torch.int64": {
+        "elements": 88,
+        "bytes": 704
+      },
+      "torch.bool": {
+        "elements": 8400,
+        "bytes": 8400
+      }
+    },
+    "tensor_payload_bytes": 448716052,
+    "tensor_keys": 1115
+  },
+  "L": {
+    "file": "bear-l-coco-ema.pt",
+    "uncompressed_file_bytes": 886320438,
+    "checkpoint_keys": [
+      "model",
+      "last_epoch",
+      "metadata"
+    ],
+    "optimizer_present": false,
+    "scaler_present": false,
+    "state_by_dtype": {
+      "torch.float32": {
+        "elements": 221466785,
+        "bytes": 885867140
+      },
+      "torch.int64": {
+        "elements": 88,
+        "bytes": 704
+      },
+      "torch.bool": {
+        "elements": 8400,
+        "bytes": 8400
+      }
+    },
+    "tensor_payload_bytes": 885876244,
+    "tensor_keys": 1115
+  }
+}

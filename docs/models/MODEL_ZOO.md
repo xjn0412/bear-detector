@@ -4,12 +4,13 @@
 
 Full COCO val2017, 5,000 images, 640×640, EMA weights, single-scale PyTorch validation:
 
-| Model | Total parameters (80 classes) | Backbone parameters | Selected epoch | mAP50:95 |
-|---|---:|---:|---:|---:|
-| Base | 112.11M | 87.56M | 42 | **59.0008** |
-| Small | 73.68M | 49.45M | 57 | **57.8987** |
-| Tiny | 52.05M | 27.82M | 58 | **56.4597** |
-| Large | 221.40M | 196.23M | 24 | **60.0728** |
+| Model | Input | AP50:95 | Params M (full / deploy) | GFLOPs | Config | Download MB (lossless gzip) |
+|---|---:|---:|---:|---:|---|---|
+| Bear-T | 640 | 56.4597 | 52.05 / 51.10 | 132.18 | [T.yml](../../configs/T.yml) | [193.77](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
+| Bear-S | 640 | 57.8987 | 73.68 / 72.73 | 201.21 | [S.yml](../../configs/S.yml) | [274.17](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
+| Bear-B | 640 | 59.0008 | 112.11 / 111.16 | 310.75 | [B.yml](../../configs/B.yml) | [416.91](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
+| Bear-L | 640 | 60.0728 | 221.40 / 220.45 | 622.32 | [L.yml](../../configs/L.yml) | [822.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+
 
 Final snapshot: 2026-11-14. All selected T/S/B/L EMA checkpoints are published. Tiny, fresh Base and Large used the entire FP32 decoder from epoch1; Small was repaired and resumed after epoch30. Tiny/Base used patience10, Large ultimately used patience20; Small was manually stopped. These are not controlled backbone-only or FP16-versus-BF16 ablations. DINOv3 used external LVD-1689M backbone pretraining; detection supervision used COCO train2017.
 
@@ -34,3 +35,5 @@ Batch1, 640, no CUDA Graph; includes top-300 postprocessing, excludes image prep
 - TensorRT export uses explicit bilinear GatherElements sampling instead of native ONNX GridSample, which failed our TensorRT accuracy checks.
 
 See [weight downloads](WEIGHTS.md), [architecture](ARCHITECTURE.md) and [recorded evidence](../../validation/README.md).
+
+[Complexity and reproduction](../benchmarks/COMPLEXITY.md) · [Weight size versus parameters](WEIGHT_SIZE.md).
