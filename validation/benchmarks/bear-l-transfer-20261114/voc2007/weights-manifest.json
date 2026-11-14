@@ -1,0 +1,22 @@
+{
+  "model": "Bear-L",
+  "dataset": "voc2007",
+  "parameters": 221274997,
+  "selected_epoch": 6,
+  "ema_tensors_bitwise_exact": true,
+  "strict_load": true,
+  "files": {
+    "bear-l-voc2007-ema.pt": {
+      "bytes": 885837011,
+      "sha256": "7e6ff88dbf2cc58394b089d67ad21fba3da0e3f8699cbcabcb36543c01346cfb"
+    },
+    "classes.json": {
+      "bytes": 1617,
+      "sha256": "d617b7b2b6aa240dff0a527fe64b4fe4f402f6cd88b19cf470b3c55e7c82003a"
+    },
+    "bear-l-voc2007.yml": {
+      "bytes": 4123,
+      "sha256": "7a279f7caaaf6ae05942533f7fe63d80ecf978c16af5f2ecea33266922f0462c"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "Bear-L",
+  "dataset": "voc2007",
+  "seed": 42,
+  "epochs": 50,
+  "batch": 16,
+  "gpus": "4,5,6,7",
+  "baseline": "/work/voc2007/baseline",
+  "baseline_config_sha256": "62e47b61d190043a9a7cc4e504cc299bc71d02044265634c563f896f956f7ad8",
+  "initialization_sha256": "22c9167e544d7eb9f73bcba21ac319a12a70b6f1aa07efdb18cea6b449974afe",
+  "class_heads_reset": true,
+  "recipe": "Exact baseline Bear-B configuration except L backbone and output paths",
+  "input": "RGB, direct bilinear 640, ImageNet normalization",
+  "annotations": {
+    "train": "90c541162f1483dec379afd7f1313a0580099770574b5e7e3a6043f62b57913a",
+    "val": "e0884da892472804ea933ad11994f39be7186cd074aa1bcda3dbdf892d4809e5",
+    "test": "915972d76d50af1e69a936d041bc0bedacf63e11f364f58c2c604f56b1bcc5b0"
+  }
+}

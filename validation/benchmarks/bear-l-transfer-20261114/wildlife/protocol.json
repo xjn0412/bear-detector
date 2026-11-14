@@ -1,0 +1,19 @@
+{
+  "model": "Bear-L",
+  "dataset": "wildlife",
+  "seed": 42,
+  "epochs": 50,
+  "batch": 32,
+  "gpus": "0,1,2,3",
+  "baseline": "/work/wildlife/baseline",
+  "baseline_config_sha256": "7f765dbd0603235056724247f56ec2206bf325aa1ce695efa8e62d14ab720d04",
+  "initialization_sha256": "22c9167e544d7eb9f73bcba21ac319a12a70b6f1aa07efdb18cea6b449974afe",
+  "class_heads_reset": true,
+  "recipe": "Exact baseline Bear-B configuration except L backbone and output paths",
+  "input": "RGB, direct bilinear 640, ImageNet normalization",
+  "annotations": {
+    "train": "40b1a08d7d7fc715f9fe361d0c3dd433dd4fb8f10de69369f250782f5fc85e3b",
+    "val": "b62f7bd22a2dda65c5e919145d4ed2ec138a0ea4c4348583df451fef1e71578a",
+    "test": "d83ee6fe1755a9c7e5c49cccbb1d47c55408bb389a9dfe6ba1f8594d0a830f10"
+  }
+}

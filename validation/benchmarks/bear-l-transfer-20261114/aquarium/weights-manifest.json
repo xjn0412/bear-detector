@@ -1,0 +1,22 @@
+{
+  "model": "Bear-L",
+  "dataset": "aquarium",
+  "parameters": 221248282,
+  "selected_epoch": 14,
+  "ema_tensors_bitwise_exact": true,
+  "strict_load": true,
+  "files": {
+    "bear-l-aquarium-ema.pt": {
+      "bytes": 885731186,
+      "sha256": "174e83287cec02ee233eea1c07cd6f28fbc78af35441d655de2d4854e0379874"
+    },
+    "classes.json": {
+      "bytes": 592,
+      "sha256": "5c1e2a070acd8c566169ff79fc9a5ab31e83d6c1e58d6f3683247e27eb96d494"
+    },
+    "bear-l-aquarium.yml": {
+      "bytes": 4126,
+      "sha256": "d4c85182211743024b81c4b31798c6302f065dc51b28e55931af28e06a86322a"
+    }
+  }
+}

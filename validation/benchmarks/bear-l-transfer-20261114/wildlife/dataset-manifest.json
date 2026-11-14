@@ -1,0 +1,220 @@
+{
+  "dataset": "African Wildlife",
+  "source": "https://github.com/ultralytics/assets/releases/download/v0.0.0/african-wildlife.zip",
+  "archive_sha256": "6b97a768bd8c89a4ac6f1fd72549a5af805f68568d8846fd0fe68e30c0040061",
+  "counts": {
+    "test": {
+      "raw_images": 227,
+      "images": 224,
+      "boxes": 371,
+      "per_class": [
+        66,
+        99,
+        73,
+        133
+      ]
+    },
+    "val": {
+      "raw_images": 225,
+      "images": 222,
+      "boxes": 376,
+      "per_class": [
+        88,
+        91,
+        83,
+        114
+      ]
+    },
+    "train": {
+      "raw_images": 1052,
+      "images": 1017,
+      "boxes": 1873,
+      "per_class": [
+        387,
+        551,
+        382,
+        553
+      ]
+    }
+  },
+  "duplicates_removed": [
+    {
+      "removed": "test/3 (354).jpg",
+      "kept": "test/3 (129).jpg"
+    },
+    {
+      "removed": "test/3 (7).jpg",
+      "kept": "test/3 (287).jpg"
+    },
+    {
+      "removed": "test/4 (366).jpg",
+      "kept": "test/4 (226).jpg"
+    },
+    {
+      "removed": "val/1 (327).jpg",
+      "kept": "val/1 (15).jpg"
+    },
+    {
+      "removed": "val/3 (269).jpg",
+      "kept": "test/3 (83).jpg"
+    },
+    {
+      "removed": "val/3 (318).jpg",
+      "kept": "test/3 (83).jpg"
+    },
+    {
+      "removed": "train/1 (124).jpg",
+      "kept": "val/1 (122).jpg"
+    },
+    {
+      "removed": "train/1 (151).jpg",
+      "kept": "test/1 (103).jpg"
+    },
+    {
+      "removed": "train/1 (229).jpg",
+      "kept": "val/1 (223).jpg"
+    },
+    {
+      "removed": "train/1 (322).jpg",
+      "kept": "test/1 (128).jpg"
+    },
+    {
+      "removed": "train/1 (339).jpg",
+      "kept": "train/1 (33).jpg"
+    },
+    {
+      "removed": "train/1 (371).jpg",
+      "kept": "test/1 (171).jpg"
+    },
+    {
+      "removed": "train/1 (67).jpg",
+      "kept": "train/1 (316).jpg"
+    },
+    {
+      "removed": "train/1 (84).jpg",
+      "kept": "train/1 (354).jpg"
+    },
+    {
+      "removed": "train/1 (98).jpg",
+      "kept": "val/1 (334).jpg"
+    },
+    {
+      "removed": "train/2 (237).jpg",
+      "kept": "val/2 (355).jpg"
+    },
+    {
+      "removed": "train/2 (242).jpg",
+      "kept": "test/2 (270).jpg"
+    },
+    {
+      "removed": "train/2 (373).jpg",
+      "kept": "test/2 (269).jpg"
+    },
+    {
+      "removed": "train/3 (216).jpg",
+      "kept": "train/3 (175).jpg"
+    },
+    {
+      "removed": "train/3 (230).jpg",
+      "kept": "val/3 (226).jpg"
+    },
+    {
+      "removed": "train/3 (235).jpg",
+      "kept": "val/3 (326).jpg"
+    },
+    {
+      "removed": "train/3 (288).jpg",
+      "kept": "train/3 (195).jpg"
+    },
+    {
+      "removed": "train/3 (289).jpg",
+      "kept": "train/3 (1).jpg"
+    },
+    {
+      "removed": "train/3 (316).jpg",
+      "kept": "train/3 (118).jpg"
+    },
+    {
+      "removed": "train/3 (321).jpg",
+      "kept": "test/3 (139).jpg"
+    },
+    {
+      "removed": "train/3 (332).jpg",
+      "kept": "train/3 (124).jpg"
+    },
+    {
+      "removed": "train/3 (333).jpg",
+      "kept": "train/3 (191).jpg"
+    },
+    {
+      "removed": "train/3 (342).jpg",
+      "kept": "test/3 (59).jpg"
+    },
+    {
+      "removed": "train/3 (360).jpg",
+      "kept": "test/3 (213).jpg"
+    },
+    {
+      "removed": "train/3 (365).jpg",
+      "kept": "train/3 (190).jpg"
+    },
+    {
+      "removed": "train/4 (236).jpg",
+      "kept": "test/4 (213).jpg"
+    },
+    {
+      "removed": "train/4 (242).jpg",
+      "kept": "train/4 (215).jpg"
+    },
+    {
+      "removed": "train/4 (253).jpg",
+      "kept": "val/4 (318).jpg"
+    },
+    {
+      "removed": "train/4 (286).jpg",
+      "kept": "train/4 (282).jpg"
+    },
+    {
+      "removed": "train/4 (287).jpg",
+      "kept": "train/4 (258).jpg"
+    },
+    {
+      "removed": "train/4 (319).jpg",
+      "kept": "train/4 (255).jpg"
+    },
+    {
+      "removed": "train/4 (320).jpg",
+      "kept": "test/4 (266).jpg"
+    },
+    {
+      "removed": "train/4 (342).jpg",
+      "kept": "test/4 (374).jpg"
+    },
+    {
+      "removed": "train/4 (356).jpg",
+      "kept": "train/4 (216).jpg"
+    },
+    {
+      "removed": "train/4 (364).jpg",
+      "kept": "test/4 (222).jpg"
+    },
+    {
+      "removed": "train/4 (365).jpg",
+      "kept": "train/4 (363).jpg"
+    }
+  ],
+  "dedup": "Exact RGB pixels; priority test > val > train",
+  "preprocessing": "PIL bilinear direct resize to 640 square; PNG lossless output",
+  "classes": [
+    "buffalo",
+    "elephant",
+    "rhino",
+    "zebra"
+  ],
+  "seed": 42,
+  "epochs": 50,
+  "total_batch": 32,
+  "augmentation": "Horizontal flip p=0.5 only",
+  "optimizer": "AdamW lr=1e-4 weight_decay=1e-4",
+  "selection": "Validation only; held-out test common COCO bbox AP"
+}

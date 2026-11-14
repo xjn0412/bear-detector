@@ -1,0 +1,860 @@
+{
+  "Bear-L": [
+    {
+      "epoch": 1,
+      "native_val_AP": 5.4556871150409805,
+      "native_val_AP50": 6.202729516479546
+    },
+    {
+      "epoch": 2,
+      "native_val_AP": 59.07954080513462,
+      "native_val_AP50": 70.56044765898788
+    },
+    {
+      "epoch": 3,
+      "native_val_AP": 74.93874376545236,
+      "native_val_AP50": 91.78587139841716
+    },
+    {
+      "epoch": 4,
+      "native_val_AP": 76.22576041565962,
+      "native_val_AP50": 93.19190688744067
+    },
+    {
+      "epoch": 5,
+      "native_val_AP": 76.35678701810822,
+      "native_val_AP50": 93.10284592897412
+    },
+    {
+      "epoch": 6,
+      "native_val_AP": 76.81764521833927,
+      "native_val_AP50": 93.50766900551788
+    },
+    {
+      "epoch": 7,
+      "native_val_AP": 76.76126738109944,
+      "native_val_AP50": 93.74116518525912
+    },
+    {
+      "epoch": 8,
+      "native_val_AP": 76.34712579435714,
+      "native_val_AP50": 93.28817405207809
+    },
+    {
+      "epoch": 9,
+      "native_val_AP": 76.39718950153717,
+      "native_val_AP50": 93.42557309492169
+    },
+    {
+      "epoch": 10,
+      "native_val_AP": 76.08736849776722,
+      "native_val_AP50": 93.313062203542
+    },
+    {
+      "epoch": 11,
+      "native_val_AP": 75.57984662271376,
+      "native_val_AP50": 92.90975571388948
+    },
+    {
+      "epoch": 12,
+      "native_val_AP": 75.6471217027315,
+      "native_val_AP50": 93.04855636062824
+    },
+    {
+      "epoch": 13,
+      "native_val_AP": 75.70776603916214,
+      "native_val_AP50": 92.90236444476473
+    },
+    {
+      "epoch": 14,
+      "native_val_AP": 75.43116110303735,
+      "native_val_AP50": 92.94904157633272
+    },
+    {
+      "epoch": 15,
+      "native_val_AP": 75.55993472345268,
+      "native_val_AP50": 92.9715408879106
+    },
+    {
+      "epoch": 16,
+      "native_val_AP": 75.63083633144788,
+      "native_val_AP50": 93.04612524852408
+    },
+    {
+      "epoch": 17,
+      "native_val_AP": 75.43225997951778,
+      "native_val_AP50": 92.84313140522498
+    },
+    {
+      "epoch": 18,
+      "native_val_AP": 75.14234054061556,
+      "native_val_AP50": 92.66092740602485
+    },
+    {
+      "epoch": 19,
+      "native_val_AP": 75.29253713350374,
+      "native_val_AP50": 92.63742761393755
+    },
+    {
+      "epoch": 20,
+      "native_val_AP": 74.95172128883233,
+      "native_val_AP50": 92.37368361389476
+    },
+    {
+      "epoch": 21,
+      "native_val_AP": 74.86085080219001,
+      "native_val_AP50": 92.31614550589457
+    },
+    {
+      "epoch": 22,
+      "native_val_AP": 75.00669992179385,
+      "native_val_AP50": 92.49250323871408
+    },
+    {
+      "epoch": 23,
+      "native_val_AP": 75.01891982781636,
+      "native_val_AP50": 92.34948294455337
+    },
+    {
+      "epoch": 24,
+      "native_val_AP": 74.95350123841446,
+      "native_val_AP50": 92.4175300544539
+    },
+    {
+      "epoch": 25,
+      "native_val_AP": 75.0472116724789,
+      "native_val_AP50": 92.60328318178098
+    },
+    {
+      "epoch": 26,
+      "native_val_AP": 75.0939428769758,
+      "native_val_AP50": 92.4743816041455
+    },
+    {
+      "epoch": 27,
+      "native_val_AP": 75.07030270148483,
+      "native_val_AP50": 92.64508341368565
+    },
+    {
+      "epoch": 28,
+      "native_val_AP": 74.9621790745427,
+      "native_val_AP50": 92.55434604029419
+    },
+    {
+      "epoch": 29,
+      "native_val_AP": 74.91014907207519,
+      "native_val_AP50": 92.51420503439533
+    },
+    {
+      "epoch": 30,
+      "native_val_AP": 74.87392002460687,
+      "native_val_AP50": 92.2928976171252
+    },
+    {
+      "epoch": 31,
+      "native_val_AP": 74.83714162132775,
+      "native_val_AP50": 92.29237137037165
+    },
+    {
+      "epoch": 32,
+      "native_val_AP": 74.7535509915807,
+      "native_val_AP50": 92.23518711031062
+    },
+    {
+      "epoch": 33,
+      "native_val_AP": 74.83919001966458,
+      "native_val_AP50": 92.26465175208803
+    },
+    {
+      "epoch": 34,
+      "native_val_AP": 74.9225684985547,
+      "native_val_AP50": 92.40652812626082
+    },
+    {
+      "epoch": 35,
+      "native_val_AP": 74.87481046710832,
+      "native_val_AP50": 92.31179886891606
+    },
+    {
+      "epoch": 36,
+      "native_val_AP": 74.91382567589267,
+      "native_val_AP50": 92.315943643201
+    },
+    {
+      "epoch": 37,
+      "native_val_AP": 74.86948750877308,
+      "native_val_AP50": 92.27337887351294
+    },
+    {
+      "epoch": 38,
+      "native_val_AP": 74.86179466110796,
+      "native_val_AP50": 92.2777401249166
+    },
+    {
+      "epoch": 39,
+      "native_val_AP": 74.81608820834258,
+      "native_val_AP50": 92.1895294784334
+    },
+    {
+      "epoch": 40,
+      "native_val_AP": 74.82845041705475,
+      "native_val_AP50": 92.21821839689831
+    },
+    {
+      "epoch": 41,
+      "native_val_AP": 74.81149580851155,
+      "native_val_AP50": 92.1804238995111
+    },
+    {
+      "epoch": 42,
+      "native_val_AP": 74.78927388202216,
+      "native_val_AP50": 92.18454453983337
+    },
+    {
+      "epoch": 43,
+      "native_val_AP": 74.77627165495181,
+      "native_val_AP50": 92.16773270611324
+    },
+    {
+      "epoch": 44,
+      "native_val_AP": 74.7610886577474,
+      "native_val_AP50": 92.14414368537315
+    },
+    {
+      "epoch": 45,
+      "native_val_AP": 74.76169784439821,
+      "native_val_AP50": 92.1203167752969
+    },
+    {
+      "epoch": 46,
+      "native_val_AP": 74.782164904381,
+      "native_val_AP50": 92.14329294834126
+    },
+    {
+      "epoch": 47,
+      "native_val_AP": 74.78280073251608,
+      "native_val_AP50": 92.1607272794259
+    },
+    {
+      "epoch": 48,
+      "native_val_AP": 74.7616409012265,
+      "native_val_AP50": 92.17930516812218
+    },
+    {
+      "epoch": 49,
+      "native_val_AP": 74.79295033749877,
+      "native_val_AP50": 92.18376470568514
+    },
+    {
+      "epoch": 50,
+      "native_val_AP": 74.78406140284794,
+      "native_val_AP50": 92.17550260127267
+    }
+  ],
+  "Bear-B": [
+    {
+      "epoch": 1,
+      "native_val_AP": 0.8060530194363865
+    },
+    {
+      "epoch": 2,
+      "native_val_AP": 22.12815812570587
+    },
+    {
+      "epoch": 3,
+      "native_val_AP": 71.4890275248824
+    },
+    {
+      "epoch": 4,
+      "native_val_AP": 74.64635760897845
+    },
+    {
+      "epoch": 5,
+      "native_val_AP": 75.76860658863134
+    },
+    {
+      "epoch": 6,
+      "native_val_AP": 75.8936822273027
+    },
+    {
+      "epoch": 7,
+      "native_val_AP": 75.84134404220846
+    },
+    {
+      "epoch": 8,
+      "native_val_AP": 75.73116957322628
+    },
+    {
+      "epoch": 9,
+      "native_val_AP": 76.02269887927368
+    },
+    {
+      "epoch": 10,
+      "native_val_AP": 75.62088491257698
+    },
+    {
+      "epoch": 11,
+      "native_val_AP": 75.37743966543331
+    },
+    {
+      "epoch": 12,
+      "native_val_AP": 75.26291926073272
+    },
+    {
+      "epoch": 13,
+      "native_val_AP": 75.12374705223557
+    },
+    {
+      "epoch": 14,
+      "native_val_AP": 74.7738029421974
+    },
+    {
+      "epoch": 15,
+      "native_val_AP": 74.59849624032327
+    },
+    {
+      "epoch": 16,
+      "native_val_AP": 74.3686972177869
+    },
+    {
+      "epoch": 17,
+      "native_val_AP": 74.38019058368825
+    },
+    {
+      "epoch": 18,
+      "native_val_AP": 74.41797523167291
+    },
+    {
+      "epoch": 19,
+      "native_val_AP": 74.12744846378753
+    },
+    {
+      "epoch": 20,
+      "native_val_AP": 73.97761389305386
+    },
+    {
+      "epoch": 21,
+      "native_val_AP": 74.14864224425214
+    },
+    {
+      "epoch": 22,
+      "native_val_AP": 73.8554421835401
+    },
+    {
+      "epoch": 23,
+      "native_val_AP": 73.78362580957838
+    },
+    {
+      "epoch": 24,
+      "native_val_AP": 73.49548176706358
+    },
+    {
+      "epoch": 25,
+      "native_val_AP": 73.76890116927815
+    },
+    {
+      "epoch": 26,
+      "native_val_AP": 73.60129739691308
+    },
+    {
+      "epoch": 27,
+      "native_val_AP": 73.71872265085936
+    },
+    {
+      "epoch": 28,
+      "native_val_AP": 73.38568270395902
+    },
+    {
+      "epoch": 29,
+      "native_val_AP": 73.3948218734479
+    },
+    {
+      "epoch": 30,
+      "native_val_AP": 73.18411704716478
+    },
+    {
+      "epoch": 31,
+      "native_val_AP": 73.27114012078083
+    },
+    {
+      "epoch": 32,
+      "native_val_AP": 73.20113326551197
+    },
+    {
+      "epoch": 33,
+      "native_val_AP": 73.21835087855328
+    },
+    {
+      "epoch": 34,
+      "native_val_AP": 73.22469060435692
+    },
+    {
+      "epoch": 35,
+      "native_val_AP": 73.13285755481068
+    },
+    {
+      "epoch": 36,
+      "native_val_AP": 73.15331930371704
+    },
+    {
+      "epoch": 37,
+      "native_val_AP": 73.10327407513023
+    },
+    {
+      "epoch": 38,
+      "native_val_AP": 73.0587965541758
+    },
+    {
+      "epoch": 39,
+      "native_val_AP": 73.07939975137006
+    },
+    {
+      "epoch": 40,
+      "native_val_AP": 73.07718525381688
+    },
+    {
+      "epoch": 41,
+      "native_val_AP": 73.06043189896108
+    },
+    {
+      "epoch": 42,
+      "native_val_AP": 73.05868130817028
+    },
+    {
+      "epoch": 43,
+      "native_val_AP": 73.06846916131998
+    },
+    {
+      "epoch": 44,
+      "native_val_AP": 73.08943644484694
+    },
+    {
+      "epoch": 45,
+      "native_val_AP": 73.09758206442126
+    },
+    {
+      "epoch": 46,
+      "native_val_AP": 73.08013095216509
+    },
+    {
+      "epoch": 47,
+      "native_val_AP": 73.04179738427247
+    },
+    {
+      "epoch": 48,
+      "native_val_AP": 73.06072337193228
+    },
+    {
+      "epoch": 49,
+      "native_val_AP": 73.00322494584246
+    },
+    {
+      "epoch": 50,
+      "native_val_AP": 73.00891477067562
+    }
+  ],
+  "YOLO26-x shared": [
+    {
+      "epoch": 1,
+      "native_val_AP": 68.375
+    },
+    {
+      "epoch": 2,
+      "native_val_AP": 61.41799999999999
+    },
+    {
+      "epoch": 3,
+      "native_val_AP": 54.437000000000005
+    },
+    {
+      "epoch": 4,
+      "native_val_AP": 49.832
+    },
+    {
+      "epoch": 5,
+      "native_val_AP": 51.35999999999999
+    },
+    {
+      "epoch": 6,
+      "native_val_AP": 51.364
+    },
+    {
+      "epoch": 7,
+      "native_val_AP": 52.989
+    },
+    {
+      "epoch": 8,
+      "native_val_AP": 53.669999999999995
+    },
+    {
+      "epoch": 9,
+      "native_val_AP": 52.068000000000005
+    },
+    {
+      "epoch": 10,
+      "native_val_AP": 51.583999999999996
+    },
+    {
+      "epoch": 11,
+      "native_val_AP": 53.042
+    },
+    {
+      "epoch": 12,
+      "native_val_AP": 54.26299999999999
+    },
+    {
+      "epoch": 13,
+      "native_val_AP": 53.242999999999995
+    },
+    {
+      "epoch": 14,
+      "native_val_AP": 54.879999999999995
+    },
+    {
+      "epoch": 15,
+      "native_val_AP": 53.677
+    },
+    {
+      "epoch": 16,
+      "native_val_AP": 54.017
+    },
+    {
+      "epoch": 17,
+      "native_val_AP": 54.964999999999996
+    },
+    {
+      "epoch": 18,
+      "native_val_AP": 54.74
+    },
+    {
+      "epoch": 19,
+      "native_val_AP": 55.681000000000004
+    },
+    {
+      "epoch": 20,
+      "native_val_AP": 55.81700000000001
+    },
+    {
+      "epoch": 21,
+      "native_val_AP": 56.438
+    },
+    {
+      "epoch": 22,
+      "native_val_AP": 56.657999999999994
+    },
+    {
+      "epoch": 23,
+      "native_val_AP": 58.056
+    },
+    {
+      "epoch": 24,
+      "native_val_AP": 57.355000000000004
+    },
+    {
+      "epoch": 25,
+      "native_val_AP": 57.589999999999996
+    },
+    {
+      "epoch": 26,
+      "native_val_AP": 58.254
+    },
+    {
+      "epoch": 27,
+      "native_val_AP": 57.828
+    },
+    {
+      "epoch": 28,
+      "native_val_AP": 57.694
+    },
+    {
+      "epoch": 29,
+      "native_val_AP": 58.394999999999996
+    },
+    {
+      "epoch": 30,
+      "native_val_AP": 58.74700000000001
+    },
+    {
+      "epoch": 31,
+      "native_val_AP": 58.73500000000001
+    },
+    {
+      "epoch": 32,
+      "native_val_AP": 59.09100000000001
+    },
+    {
+      "epoch": 33,
+      "native_val_AP": 58.829
+    },
+    {
+      "epoch": 34,
+      "native_val_AP": 58.849
+    },
+    {
+      "epoch": 35,
+      "native_val_AP": 58.948
+    },
+    {
+      "epoch": 36,
+      "native_val_AP": 59.21300000000001
+    },
+    {
+      "epoch": 37,
+      "native_val_AP": 58.86900000000001
+    },
+    {
+      "epoch": 38,
+      "native_val_AP": 59.53699999999999
+    },
+    {
+      "epoch": 39,
+      "native_val_AP": 59.304
+    },
+    {
+      "epoch": 40,
+      "native_val_AP": 59.580999999999996
+    },
+    {
+      "epoch": 41,
+      "native_val_AP": 59.429
+    },
+    {
+      "epoch": 42,
+      "native_val_AP": 59.355000000000004
+    },
+    {
+      "epoch": 43,
+      "native_val_AP": 59.270999999999994
+    },
+    {
+      "epoch": 44,
+      "native_val_AP": 59.211000000000006
+    },
+    {
+      "epoch": 45,
+      "native_val_AP": 59.275
+    },
+    {
+      "epoch": 46,
+      "native_val_AP": 59.167
+    },
+    {
+      "epoch": 47,
+      "native_val_AP": 59.187999999999995
+    },
+    {
+      "epoch": 48,
+      "native_val_AP": 59.099999999999994
+    },
+    {
+      "epoch": 49,
+      "native_val_AP": 59.33500000000001
+    },
+    {
+      "epoch": 50,
+      "native_val_AP": 59.433
+    }
+  ],
+  "YOLO26-x native": [
+    {
+      "epoch": 1,
+      "native_val_AP": 59.07599999999999
+    },
+    {
+      "epoch": 2,
+      "native_val_AP": 45.066
+    },
+    {
+      "epoch": 3,
+      "native_val_AP": 31.591
+    },
+    {
+      "epoch": 4,
+      "native_val_AP": 38.296
+    },
+    {
+      "epoch": 5,
+      "native_val_AP": 38.866
+    },
+    {
+      "epoch": 6,
+      "native_val_AP": 41.65
+    },
+    {
+      "epoch": 7,
+      "native_val_AP": 41.957
+    },
+    {
+      "epoch": 8,
+      "native_val_AP": 43.538
+    },
+    {
+      "epoch": 9,
+      "native_val_AP": 44.314
+    },
+    {
+      "epoch": 10,
+      "native_val_AP": 45.671
+    },
+    {
+      "epoch": 11,
+      "native_val_AP": 46.578
+    },
+    {
+      "epoch": 12,
+      "native_val_AP": 48.213
+    },
+    {
+      "epoch": 13,
+      "native_val_AP": 48.809999999999995
+    },
+    {
+      "epoch": 14,
+      "native_val_AP": 49.331
+    },
+    {
+      "epoch": 15,
+      "native_val_AP": 50.507000000000005
+    },
+    {
+      "epoch": 16,
+      "native_val_AP": 50.009
+    },
+    {
+      "epoch": 17,
+      "native_val_AP": 52.004
+    },
+    {
+      "epoch": 18,
+      "native_val_AP": 50.559
+    },
+    {
+      "epoch": 19,
+      "native_val_AP": 52.354
+    },
+    {
+      "epoch": 20,
+      "native_val_AP": 53.32599999999999
+    },
+    {
+      "epoch": 21,
+      "native_val_AP": 52.327
+    },
+    {
+      "epoch": 22,
+      "native_val_AP": 53.696
+    },
+    {
+      "epoch": 23,
+      "native_val_AP": 54.313
+    },
+    {
+      "epoch": 24,
+      "native_val_AP": 55.979
+    },
+    {
+      "epoch": 25,
+      "native_val_AP": 56.206999999999994
+    },
+    {
+      "epoch": 26,
+      "native_val_AP": 56.44
+    },
+    {
+      "epoch": 27,
+      "native_val_AP": 56.031
+    },
+    {
+      "epoch": 28,
+      "native_val_AP": 57.177
+    },
+    {
+      "epoch": 29,
+      "native_val_AP": 57.532000000000004
+    },
+    {
+      "epoch": 30,
+      "native_val_AP": 56.56099999999999
+    },
+    {
+      "epoch": 31,
+      "native_val_AP": 57.158
+    },
+    {
+      "epoch": 32,
+      "native_val_AP": 56.83200000000001
+    },
+    {
+      "epoch": 33,
+      "native_val_AP": 57.89
+    },
+    {
+      "epoch": 34,
+      "native_val_AP": 58.69
+    },
+    {
+      "epoch": 35,
+      "native_val_AP": 59.036
+    },
+    {
+      "epoch": 36,
+      "native_val_AP": 59.197
+    },
+    {
+      "epoch": 37,
+      "native_val_AP": 59.12500000000001
+    },
+    {
+      "epoch": 38,
+      "native_val_AP": 59.730000000000004
+    },
+    {
+      "epoch": 39,
+      "native_val_AP": 59.119
+    },
+    {
+      "epoch": 40,
+      "native_val_AP": 60.002
+    },
+    {
+      "epoch": 41,
+      "native_val_AP": 59.443999999999996
+    },
+    {
+      "epoch": 42,
+      "native_val_AP": 59.434
+    },
+    {
+      "epoch": 43,
+      "native_val_AP": 59.697
+    },
+    {
+      "epoch": 44,
+      "native_val_AP": 60.166
+    },
+    {
+      "epoch": 45,
+      "native_val_AP": 60.199999999999996
+    },
+    {
+      "epoch": 46,
+      "native_val_AP": 60.324999999999996
+    },
+    {
+      "epoch": 47,
+      "native_val_AP": 60.81100000000001
+    },
+    {
+      "epoch": 48,
+      "native_val_AP": 60.867000000000004
+    },
+    {
+      "epoch": 49,
+      "native_val_AP": 60.975
+    },
+    {
+      "epoch": 50,
+      "native_val_AP": 61.06
+    }
+  ]
+}
