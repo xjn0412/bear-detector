@@ -31,9 +31,13 @@ PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend 
 
 **Detection supervision: COCO train2017 only, at640, with no Objects365 detection-pretraining stage.** Backbone representation pretraining is disclosed separately: Bear uses DINOv3 ConvNeXt; DEIMv2 also uses DINOv3 features. These are published-system comparisons, not identical augmentation/loss/compute-budget ablations.
 
-Bear-B/L reach59.02/60.07AP, versus D-FINE-X's **COCO-trained55.8**, RT-DETRv2-X54.3, and DEIMv2-X57.8. Bear-S is close to DEIMv2-X in AP but larger; parameter efficiency still needs work. The previous mixed-data overview has been replaced.
+Bear-B/L reach59.02/60.07AP, versus D-FINE-X's **COCO-trained55.8**, RT-DETRv4-X57.0, and DEIMv2-X57.8. Bear-S is close to DEIMv2-X in AP but larger; parameter efficiency still needs work. The previous mixed-data overview has been replaced.
 
-[COCO-only tables, training-regime audit and analysis](docs/benchmarks/COMPARISON.md) · [Extra-data/leaderboard context, separately labeled](docs/benchmarks/COMPARISON_EXTRA_DATA.md). YOLO26, Objects365 variants, and unverified previews are excluded from the primary graph. Presentation references[Ultralytics](https://github.com/ultralytics/ultralytics).
+![Bear, YOLO26 and current RT-DETRv4](assets/benchmarks/comparison-latest-baselines.png)
+
+**Requested baselines are included:** latest RT-DETRv4-X reports57.0AP; YOLO26-x reports57.5AP with Objects365→COCO training (dashed curve). RT-DETRv4 uses a training-only DINOv3 teacher. YOLO26's extra-data result remains separate from the COCO-only primary graph.
+
+[COCO-only tables, training-regime audit and analysis](docs/benchmarks/COMPARISON.md) · [Extra-data/leaderboard context, separately labeled](docs/benchmarks/COMPARISON_EXTRA_DATA.md). YOLO26 is visible in the requested-baseline graph with its extra-data label; Objects365 variants and unverified previews stay outside the COCO-only cohort. Presentation references[Ultralytics](https://github.com/ultralytics/ultralytics).
 
 ## Models and downloads
 

@@ -24,12 +24,38 @@
 | D-FINE-M | 52.30 | 19.00 | 57.00 | [Source](https://github.com/Peterande/D-FINE#model-zoo) |
 | D-FINE-L | 54.00 | 31.00 | 91.00 | [Source](https://github.com/Peterande/D-FINE#model-zoo) |
 | D-FINE-X | 55.80 | 62.00 | 202.00 | [Source](https://github.com/Peterande/D-FINE#model-zoo) |
-| RT-DETRv2-S | 48.10 | 20.00 | 60.00 | [Source](https://github.com/lyuwenyu/RT-DETR#implementations) |
-| RT-DETRv2-M | 51.90 | 36.00 | 100.00 | [Source](https://github.com/lyuwenyu/RT-DETR#implementations) |
-| RT-DETRv2-L | 53.40 | 42.00 | 136.00 | [Source](https://github.com/lyuwenyu/RT-DETR#implementations) |
-| RT-DETRv2-X | 54.30 | 76.00 | 259.00 | [Source](https://github.com/lyuwenyu/RT-DETR#implementations) |
+| RT-DETRv4-S | 49.80 | 10.00 | 25.00 | [Source](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) |
+| RT-DETRv4-M | 53.70 | 19.00 | 57.00 | [Source](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) |
+| RT-DETRv4-L | 55.40 | 31.00 | 91.00 | [Source](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) |
+| RT-DETRv4-X | 57.00 | 62.00 | 202.00 | [Source](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) |
 
 ¹ Bear deployment counts; full checkpoint counts T/S/B/L are52.05/73.68/112.11/221.40M. External counts retain author conventions. ² FLOPs profilers differ; Bear includes attention products and bilinear sampling. Neither axis establishes same-hardware speed. Bear AP is the current mixed-checkpoint PyTorch AMP result; [historical training AP](TRAINING_HISTORY.md) remains unchanged.
+
+## Requested current baselines: YOLO26 and RT-DETRv4
+
+![YOLO26, latest RT-DETRv4 and Bear, with detector data labeled](../../assets/benchmarks/comparison-latest-baselines.png)
+
+RT-DETRv4 is the newest release linked by the[official RT-DETR project](https://github.com/lyuwenyu/RT-DETR#-updates); the canonical repository now redirects to[AIMIA-PKU/RT-DETRv4](https://github.com/AIMIA-PKU/RT-DETRv4). The current paper/repository report49.8/53.7/55.4/57.0AP for S/M/L/X. We use these revised values, not older49.7/53.5 figures. Parameter/FLOP counts come from[paper Table1](https://arxiv.org/html/2510.25257v2#S4.T1), excluding the training-only teacher. v2 rows are retained only as historical data, not the current plotted baseline.
+
+YOLO26 is explicitly included here and on the front page. Its released checkpoint's default NMS-head AP is shown; the[official training recipe](https://docs.ultralytics.com/guides/yolo26-training-recipe/) includes150epochs of Objects365 before COCO. No verified official COCO-from-scratch result is substituted or invented. The dashed series is a requested reference, excluded from the COCO-only primary cohort.
+
+| Model | AP50:95 | Params M | GFLOPs | Detector training |
+|---|---:|---:|---:|---|
+| Bear-T | 56.49 | 51.10 | 132.18 | COCO only |
+| Bear-S | 57.89 | 72.73 | 201.21 | COCO only |
+| Bear-B | 59.02 | 111.16 | 310.75 | COCO only |
+| Bear-L | 60.07 | 220.45 | 622.32 | COCO only |
+| YOLO26-n | 40.90 | 2.40 | 5.50 | Objects365 → COCO |
+| YOLO26-s | 48.60 | 9.50 | 20.90 | Objects365 → COCO |
+| YOLO26-m | 53.10 | 20.40 | 68.40 | Objects365 → COCO |
+| YOLO26-l | 55.00 | 24.80 | 86.80 | Objects365 → COCO |
+| YOLO26-x | 57.50 | 55.70 | 194.40 | Objects365 → COCO |
+| RT-DETRv4-S | 49.80 | 10.00 | 25.00 | COCO only |
+| RT-DETRv4-M | 53.70 | 19.00 | 57.00 | COCO only |
+| RT-DETRv4-L | 55.40 | 31.00 | 91.00 | COCO only |
+| RT-DETRv4-X | 57.00 | 62.00 | 202.00 | COCO only |
+
+Bear-B/L are2.02/3.07AP above current RT-DETRv4-X, at about1.79×/3.56× its reported parameters. Versus YOLO26-x57.5, Bear-B/L are1.52/2.57AP higher, but that comparison includes different detection data. RT-DETRv4's DINOv3 teacher is a training technique, not an Objects365 detector-pretraining stage. Training budgets and feature-transfer methods still differ. External T4 speeds are not compared to our5090 timings.
 
 ## Training-regime audit
 
@@ -38,19 +64,19 @@
 | Bear | COCO train2017 only | DINOv3 ConvNeXt representation pretraining on LVD-1689M; Mosaic/MixUp/Copy-Blend and EMA in released config |
 | DEIMv2 COCO rows | COCO only | DINOv3 ViT pretrained/distilled features; own augmentation/loss/schedule |
 | D-FINE COCO rows | COCO only | Author backbone initialization and recipe; no Objects365 detector stage in selected rows |
-| RT-DETRv2 COCO rows | COCO only | Author backbone initialization and recipe; no Objects365 detector stage in selected rows |
+| RT-DETRv4 COCO rows | COCO only | DINOv3 ViT-B/16 teacher distillation (DSI/GAM); teacher is absent at inference |
 | YOLO26 / D-FINE O365 | Objects365 → COCO | Supplemental only; excluded from primary graph |
 | YOLO27 preview / unverified rows | Not established here | Excluded from primary until detector-training provenance is verified |
 
-Sources: [DEIMv2 COCO model zoo](https://github.com/Intellindust-AI-Lab/DEIMv2#1-model-zoo) and [training paper](https://arxiv.org/abs/2509.20787), [D-FINE's separate COCO / Objects365 tables](https://github.com/Peterande/D-FINE#model-zoo), [RT-DETRv2 COCO rows](https://github.com/lyuwenyu/RT-DETR#implementations), [YOLO26 pretraining recipe](https://docs.ultralytics.com/guides/yolo26-training-recipe/), and our [configs](../../configs/B.yml).
+Sources: [DEIMv2 COCO model zoo](https://github.com/Intellindust-AI-Lab/DEIMv2#1-model-zoo) and [training paper](https://arxiv.org/abs/2509.20787), [D-FINE's separate COCO / Objects365 tables](https://github.com/Peterande/D-FINE#model-zoo), [Latest RT-DETRv4 results](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) and [paper Table1](https://arxiv.org/html/2510.25257v2#S4.T1), [YOLO26 pretraining recipe](https://docs.ultralytics.com/guides/yolo26-training-recipe/), and our [configs](../../configs/B.yml).
 
 The earlier overview mixed COCO-only detector training with extra detection data. That was unsuitable as the primary comparison. D-FINE-X's correct primary result is**55.8**, not its Objects365-pretrained59.3. YOLO26's released57.5 AP checkpoint also uses Objects365, so it is excluded. YOLO11 is retained only in supplemental context because its complete detector-pretraining provenance was not verified in this audit; this does not assert that it used Objects365.
 
-Dataset matching does not make training techniques identical. Our own configuration already uses augmentation, EMA and DEIM-family training methods. DEIMv2 additionally documents its own feature distillation/Copy-Blend/loss/schedule, and RT-DETRv2 uses its own training recipe. We retain these methods as part of each published system, disclose the differences, and do not attribute the AP difference solely to architecture. A technique-matched comparison would require controlled reruns with equal backbone initialization, schedule, augmentation, loss, seeds and compute budget; those results are not available.
+Dataset matching does not make training techniques identical. Our own configuration already uses augmentation, EMA and DEIM-family training methods. DEIMv2 additionally documents its own feature distillation/Copy-Blend/loss/schedule, and RT-DETRv4 uses DINOv3-teacher distillation. We retain these methods as part of each published system, disclose the differences, and do not attribute the AP difference solely to architecture. A technique-matched comparison would require controlled reruns with equal backbone initialization, schedule, augmentation, loss, seeds and compute budget; those results are not available.
 
 ## Corrected performance analysis
 
-**Bear has strong absolute AP among these COCO-only detector-training baselines.** Bear-T56.49 exceeds D-FINE-X55.8 by0.69AP, with51.10M versus62M reported parameters and132.18 versus202GFLOPs. Bear-B59.02 exceeds D-FINE-X by3.22AP and RT-DETRv2-X54.3 by4.72AP. Bear-L60.07 exceeds them by4.27 and5.77AP respectively. The stronger DINOv3 backbone pretraining is a possible contributor; these are whole-system comparisons, not proof of a better decoder or training algorithm.
+**Bear has strong absolute AP among these COCO-only detector-training baselines.** Bear-T56.49 exceeds D-FINE-X55.8 by0.69AP, with51.10M versus62M reported parameters and132.18 versus202GFLOPs. Bear-B59.02 exceeds D-FINE-X by3.22AP and current RT-DETRv4-X57.0 by2.02AP. Bear-L60.07 exceeds them by4.27 and3.07AP respectively. RT-DETRv4-X reports62M deployment parameters; Bear-B/L use about1.79×/3.56× as many. The stronger DINOv3 backbone pretraining is a possible contributor; these are whole-system comparisons, not proof of a better decoder or training algorithm.
 
 **DEIMv2 is the more demanding close reference.** Both systems use COCO detector supervision and DINOv3 features. DEIMv2-X reports57.8AP at50.3M. Bear-T is1.31AP lower at similar parameter count. Bear-S is0.09AP higher with about45% more parameters. Bear-B/L improve by1.22/2.27AP with about2.21×/4.38× parameters. Thus the parameter-efficiency concern remains even after removing Objects365 baselines, but it must be based on this appropriate cohort, not on extra-data models. Different ViT/ConvNeXt backbones and recipes still prevent an architecture-only conclusion.
 

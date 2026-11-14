@@ -11,7 +11,7 @@ DATA = ROOT / 'validation/benchmarks/comparison-20261114/comparison.json'
 OUT = ROOT / 'assets/benchmarks'
 COLORS = {'Bear': '#d34b37', 'YOLO26': '#4f60b5', 'YOLO11': '#a3a7bd',
           'DEIMv2': '#008c83', 'D-FINE': '#c6a467', 'D-FINE O365': '#9b6bb3',
-          'RT-DETRv2': '#608aa5', 'YOLO27 preview': '#26374b'}
+          'RT-DETRv4': '#608aa5', 'YOLO27 preview': '#26374b'}
 
 
 def style(ax):
@@ -77,15 +77,51 @@ def main():
                ncol=4, frameon=False, fontsize=9, columnspacing=1.0)
     fig.text(.065, .085, 'Parameter conventions and FLOPs profilers differ; these curves are descriptive, not controlled architecture ablations.',
              color='#526176', fontsize=9)
-    fig.text(.065, .047, 'Bear / DEIMv2 use DINOv3 features. Other initialization, augmentation, distillation and schedules differ; no matched-recipe claim.',
+    fig.text(.065, .047, 'DINOv3: backbone features in Bear / DEIMv2; training-only teacher in RT-DETRv4. Recipes and budgets differ.',
              color='#526176', fontsize=9)
     save(fig, 'comparison-efficiency')
+
+    # Explicit requested baselines: keep YOLO26's extra detection data visible.
+    fig, axes = plt.subplots(1, 2, figsize=(13.2, 6.6))
+    fig.subplots_adjust(left=.065, right=.97, top=.79, bottom=.20, wspace=.22)
+    for ax, field, xlabel in zip(axes, ['params_m', 'gflops'],
+                                ['Parameters (millions; log scale)', 'Compute (GFLOPs; log scale)']):
+        style(ax)
+        for family in ['Bear', 'RT-DETRv4', 'YOLO26']:
+            points = sorted([r for r in data['models'] if r['family'] == family], key=lambda r: r[field])
+            color = COLORS[family]
+            label = family + (' (Objects365 + COCO)' if family == 'YOLO26' else ' (COCO detector training)')
+            ax.plot([r[field] for r in points], [r['AP'] for r in points], color=color,
+                    marker='*' if family == 'Bear' else 'o', markersize=11 if family == 'Bear' else 6,
+                    linewidth=2, linestyle='--' if family == 'YOLO26' else '-',
+                    markerfacecolor='white' if family == 'YOLO26' else color, label=label)
+            for r in points:
+                if family == 'Bear':
+                    ax.annotate(r['model'] if family != 'Bear' else r['model'][-1],
+                                (r[field], r['AP']), xytext=(4, 7), textcoords='offset points',
+                                color=color, fontsize=9, weight='bold' if family == 'Bear' else 'normal')
+        ax.set_xscale('log'); ax.xaxis.set_major_formatter(ScalarFormatter())
+        ax.set_xlabel(xlabel); ax.set_ylabel('COCO val2017 box AP50:95'); ax.set_ylim(39, 62)
+    axes[0].set_xlim(2, 280); axes[0].set_xticks([3, 10, 30, 100, 250])
+    axes[1].set_xlim(5, 800); axes[1].set_xticks([5, 20, 100, 300, 700])
+    fig.suptitle('Requested baselines | YOLO26 and latest RT-DETRv4', x=.065, ha='left',
+                 y=.965, fontsize=20, weight='bold', color='#172b43')
+    fig.text(.065, .906, '640 input, published accuracy / cost • Different detection data are explicitly labeled',
+             color='#526176', fontsize=11)
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc='upper center', bbox_to_anchor=(.52, .875), ncol=3,
+               frameon=False, fontsize=9)
+    fig.text(.065, .085, 'Solid curves: COCO detector training. Dashed YOLO26: extra Objects365 detection pretraining; not a matched-data result.',
+             color='#526176', fontsize=9)
+    fig.text(.065, .047, 'RT-DETRv4 uses training-only DINOv3 teacher distillation; Bear uses DINOv3 backbone weights. No cross-hardware speed claim.',
+             color='#526176', fontsize=9)
+    save(fig, 'comparison-latest-baselines')
 
     entries = [dict(model=r['model'], AP=r['AP'], own=True) for r in bears]
     entries += [dict(model=r['model'], AP=r['AP'], own=False) for r in data['coco_only_references']]
     entries += [dict(model='DEIMv2-X (640)', AP=57.8, own=False),
                 dict(model='D-FINE-X (640, COCO)', AP=55.8, own=False),
-                dict(model='RT-DETRv2-X (640, COCO)', AP=54.3, own=False)]
+                dict(model='RT-DETRv4-X (640, COCO + VFM KD)', AP=57.0, own=False)]
     entries.sort(key=lambda r: r['AP'])
     fig, ax = plt.subplots(figsize=(12, 7.0))
     fig.subplots_adjust(left=.30, right=.93, top=.80, bottom=.19)

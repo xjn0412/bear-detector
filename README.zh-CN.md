@@ -31,9 +31,13 @@ PT精度验证batch8，TRT固定batch1；因此AP差异同时包含后端及batc
 
 **检测监督限定COCO train2017、640输入，不含Objects365检测预训练阶段。** 骨干表征预训练单独披露：Bear为DINOv3 ConvNeXt，DEIMv2也使用DINOv3特征。这里比较作者发布的整套系统，增强、损失和计算预算没有完全统一。
 
-Bear-B/L达到59.02/60.07AP；对应参照是D-FINE-X的**仅COCO55.8**、RT-DETRv2-X54.3及DEIMv2-X57.8。Bear-S与DEIMv2-X精度接近但参数更多，参数效率仍需改进。原先混合训练数据的总览已替换。
+Bear-B/L达到59.02/60.07AP；对应参照是D-FINE-X的**仅COCO55.8**、RT-DETRv4-X57.0及DEIMv2-X57.8。Bear-S与DEIMv2-X精度接近但参数更多，参数效率仍需改进。原先混合训练数据的总览已替换。
 
-[仅COCO表格、训练条件审计与分析](docs/benchmarks/COMPARISON.zh-CN.md) · [单独标注的额外数据/排行榜背景](docs/benchmarks/COMPARISON_EXTRA_DATA.zh-CN.md)。YOLO26、Objects365版本及未核验预览均移出主图。组织方式参考[Ultralytics](https://github.com/ultralytics/ultralytics)。
+![Bear、YOLO26及当前RT-DETRv4比较](assets/benchmarks/comparison-latest-baselines.png)
+
+**已加入指定基线：** 最新RT-DETRv4-X为57.0AP；YOLO26-x为57.5AP，采用Objects365→COCO训练（虚线）。RT-DETRv4使用仅训练时的DINOv3教师；YOLO26额外数据结果与仅COCO主图保持区分。
+
+[仅COCO表格、训练条件审计与分析](docs/benchmarks/COMPARISON.zh-CN.md) · [单独标注的额外数据/排行榜背景](docs/benchmarks/COMPARISON_EXTRA_DATA.zh-CN.md)。YOLO26已在指定基线图中展示并标注额外数据；Objects365版本和未核验预览仍不进入仅COCO主分组。组织方式参考[Ultralytics](https://github.com/ultralytics/ultralytics)。
 
 ## 模型与下载
 

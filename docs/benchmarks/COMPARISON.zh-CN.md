@@ -24,12 +24,38 @@
 | D-FINE-M | 52.30 | 19.00 | 57.00 | [Source](https://github.com/Peterande/D-FINE#model-zoo) |
 | D-FINE-L | 54.00 | 31.00 | 91.00 | [Source](https://github.com/Peterande/D-FINE#model-zoo) |
 | D-FINE-X | 55.80 | 62.00 | 202.00 | [Source](https://github.com/Peterande/D-FINE#model-zoo) |
-| RT-DETRv2-S | 48.10 | 20.00 | 60.00 | [Source](https://github.com/lyuwenyu/RT-DETR#implementations) |
-| RT-DETRv2-M | 51.90 | 36.00 | 100.00 | [Source](https://github.com/lyuwenyu/RT-DETR#implementations) |
-| RT-DETRv2-L | 53.40 | 42.00 | 136.00 | [Source](https://github.com/lyuwenyu/RT-DETR#implementations) |
-| RT-DETRv2-X | 54.30 | 76.00 | 259.00 | [Source](https://github.com/lyuwenyu/RT-DETR#implementations) |
+| RT-DETRv4-S | 49.80 | 10.00 | 25.00 | [Source](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) |
+| RT-DETRv4-M | 53.70 | 19.00 | 57.00 | [Source](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) |
+| RT-DETRv4-L | 55.40 | 31.00 | 91.00 | [Source](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) |
+| RT-DETRv4-X | 57.00 | 62.00 | 202.00 | [Source](https://github.com/AIMIA-PKU/RT-DETRv4#-performance) |
 
 ¹ Bear为部署参数，T/S/B/L完整参数52.05/73.68/112.11/221.40M；外部沿用作者口径。² FLOPs工具不同，Bear计入注意力矩阵乘法和双线性采样；参数及FLOPs不能替代统一硬件实测。Bear为当前混合权重PyTorch AMP结果，[历史训练AP](TRAINING_HISTORY.md)不变。
+
+## 指定当前基线：YOLO26与RT-DETRv4
+
+![明确标注检测训练数据的YOLO26、最新RT-DETRv4及Bear](../../assets/benchmarks/comparison-latest-baselines.png)
+
+[RT-DETR官方项目](https://github.com/lyuwenyu/RT-DETR#-updates)将v4列为最新公开版本，原地址重定向至[AIMIA-PKU/RT-DETRv4](https://github.com/AIMIA-PKU/RT-DETRv4)。最新论文及仓库的S/M/L/X为49.8/53.7/55.4/57.0AP，使用修订值而不是旧49.7/53.5。参数与FLOPs来自[论文表1](https://arxiv.org/html/2510.25257v2#S4.T1)，不包含仅训练时使用的教师。v2只保留历史数据，不作为当前曲线基线。
+
+YOLO26明确加入此表和首页图。这里采用公开检查点的默认NMS检测头AP；[官方配方](https://docs.ultralytics.com/guides/yolo26-training-recipe/)先做150轮Objects365，再微调COCO。没有伪造或替换成未经验证的COCO从头训练分数。虚线是用户指定的背景参照，仍不纳入仅COCO主分组。
+
+| Model | AP50:95 | Params M | GFLOPs | Detector training |
+|---|---:|---:|---:|---|
+| Bear-T | 56.49 | 51.10 | 132.18 | COCO only |
+| Bear-S | 57.89 | 72.73 | 201.21 | COCO only |
+| Bear-B | 59.02 | 111.16 | 310.75 | COCO only |
+| Bear-L | 60.07 | 220.45 | 622.32 | COCO only |
+| YOLO26-n | 40.90 | 2.40 | 5.50 | Objects365 → COCO |
+| YOLO26-s | 48.60 | 9.50 | 20.90 | Objects365 → COCO |
+| YOLO26-m | 53.10 | 20.40 | 68.40 | Objects365 → COCO |
+| YOLO26-l | 55.00 | 24.80 | 86.80 | Objects365 → COCO |
+| YOLO26-x | 57.50 | 55.70 | 194.40 | Objects365 → COCO |
+| RT-DETRv4-S | 49.80 | 10.00 | 25.00 | COCO only |
+| RT-DETRv4-M | 53.70 | 19.00 | 57.00 | COCO only |
+| RT-DETRv4-L | 55.40 | 31.00 | 91.00 | COCO only |
+| RT-DETRv4-X | 57.00 | 62.00 | 202.00 | COCO only |
+
+Bear-B/L比当前RT-DETRv4-X高2.02/3.07AP，报告参数约1.79/3.56倍；比YOLO26-x57.5高1.52/2.57AP，但检测训练数据不同。RT-DETRv4的DINOv3教师蒸馏属于训练技巧，不等于使用Objects365检测预训练。训练预算和特征迁移方式仍不同，不把外部T4测速与我们的5090直接比较。
 
 ## 训练条件审计
 
@@ -38,19 +64,19 @@
 | Bear | COCO train2017 only | DINOv3 ConvNeXt representation pretraining on LVD-1689M; Mosaic/MixUp/Copy-Blend and EMA in released config |
 | DEIMv2 COCO rows | COCO only | DINOv3 ViT pretrained/distilled features; own augmentation/loss/schedule |
 | D-FINE COCO rows | COCO only | Author backbone initialization and recipe; no Objects365 detector stage in selected rows |
-| RT-DETRv2 COCO rows | COCO only | Author backbone initialization and recipe; no Objects365 detector stage in selected rows |
+| RT-DETRv4 COCO rows | COCO only | DINOv3 ViT-B/16 teacher distillation (DSI/GAM); teacher is absent at inference |
 | YOLO26 / D-FINE O365 | Objects365 → COCO | Supplemental only; excluded from primary graph |
 | YOLO27 preview / unverified rows | Not established here | Excluded from primary until detector-training provenance is verified |
 
-来源：[DEIMv2 COCO模型库](https://github.com/Intellindust-AI-Lab/DEIMv2#1-model-zoo)与[训练论文](https://arxiv.org/abs/2509.20787)、[D-FINE明确分开的COCO/Objects365表](https://github.com/Peterande/D-FINE#model-zoo)、[RT-DETRv2 COCO行](https://github.com/lyuwenyu/RT-DETR#implementations)、[YOLO26预训练配方](https://docs.ultralytics.com/guides/yolo26-training-recipe/)及本项目[配置](../../configs/B.yml)。
+来源：[DEIMv2 COCO模型库](https://github.com/Intellindust-AI-Lab/DEIMv2#1-model-zoo)与[训练论文](https://arxiv.org/abs/2509.20787)、[D-FINE明确分开的COCO/Objects365表](https://github.com/Peterande/D-FINE#model-zoo)、[RT-DETRv4最新结果](https://github.com/AIMIA-PKU/RT-DETRv4#-performance)及[论文表1](https://arxiv.org/html/2510.25257v2#S4.T1)、[YOLO26预训练配方](https://docs.ultralytics.com/guides/yolo26-training-recipe/)及本项目[配置](../../configs/B.yml)。
 
 此前总览把仅COCO检测训练和额外检测数据混在一起，不适合作为主要比较。D-FINE-X应比较**55.8AP**，而非Objects365预训练后的59.3；YOLO26的57.5也来自Objects365预训练，因此移出主图。YOLO11因本次未完整核验检测预训练来源，仅保留补充背景；不表示认定其使用了Objects365。
 
-数据相同不等于训练技巧相同。我们自己配置也使用Mosaic、MixUp、Copy-Blend、EMA及DEIM家族训练方法；DEIMv2有各自特征蒸馏、增强、损失和周期，RT-DETRv2也有其训练配方。这里比较作者发布的整套系统，明确记录差异，不把AP差异全部归于架构。若要统一技巧，需要相同初始化、增强、损失、周期、随机种子和计算预算重跑，目前没有这样的对照结果。
+数据相同不等于训练技巧相同。我们自己配置也使用Mosaic、MixUp、Copy-Blend、EMA及DEIM家族训练方法；DEIMv2有各自特征蒸馏、增强、损失和周期，RT-DETRv4使用DINOv3教师蒸馏。这里比较作者发布的整套系统，明确记录差异，不把AP差异全部归于架构。若要统一技巧，需要相同初始化、增强、损失、周期、随机种子和计算预算重跑，目前没有这样的对照结果。
 
 ## 修正后的性能解读
 
-**在仅COCO检测训练组内，Bear的绝对AP有竞争力。** Bear-T56.49比D-FINE-X55.8高0.69AP，参数51.10M/62M、FLOPs132.18/202；Bear-B59.02比D-FINE-X和RT-DETRv2-X54.3分别高3.22/4.72AP，Bear-L60.07分别高4.27/5.77AP。DINOv3更强的骨干预训练可能贡献了差距，因此不能将其视为解码器或训练算法单独领先的证据。
+**在仅COCO检测训练组内，Bear的绝对AP有竞争力。** Bear-T56.49比D-FINE-X55.8高0.69AP，参数51.10M/62M、FLOPs132.18/202；Bear-B59.02比D-FINE-X和最新RT-DETRv4-X57.0分别高3.22/2.02AP，Bear-L60.07分别高4.27/3.07AP。RT-DETRv4-X为62M部署参数，Bear-B/L约为其1.79/3.56倍。DINOv3更强的骨干预训练可能贡献了差距，因此不能将其视为解码器或训练算法单独领先的证据。
 
 **DEIMv2是更严格且接近的参照。** 二者都只用COCO检测监督，并使用DINOv3特征。DEIMv2-X为57.8AP/50.3M；Bear-T参数接近但低1.31AP；Bear-S高0.09AP但参数多约45%；Bear-B/L高1.22/2.27AP，参数约2.21/4.38倍。因此移除Objects365后，参数效率仍有改进空间，但应基于这一合适分组，而非额外数据模型。ViT/ConvNeXt骨干及配方仍不同，不能推断纯架构因果。
 
