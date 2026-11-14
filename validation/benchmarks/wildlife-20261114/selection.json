@@ -1,0 +1,27 @@
+{
+  "Bear-B": {
+    "epoch": 11,
+    "native_val_AP": 90.83093592311945,
+    "criterion": "native validation COCO AP, EMA"
+  },
+  "YOLO26-x": {
+    "epoch": 24,
+    "native_val_AP": 83.528,
+    "criterion": "native validation mAP50:95 fitness, EMA; epoch derived from rounded CSV"
+  },
+  "YOLO11-x": {
+    "epoch": 42,
+    "native_val_AP": 78.943,
+    "criterion": "native validation mAP50:95 fitness, EMA; epoch derived from rounded CSV"
+  },
+  "YOLO26-x native": {
+    "epoch": 47,
+    "native_val_AP": 81.25099999999999,
+    "criterion": "native validation mAP50:95 fitness, EMA; epoch derived from rounded CSV"
+  },
+  "YOLO11-x native": {
+    "epoch": 50,
+    "native_val_AP": 76.12100000000001,
+    "criterion": "native validation mAP50:95 fitness, EMA; epoch derived from rounded CSV"
+  }
+}

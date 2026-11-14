@@ -1,0 +1,33 @@
+{
+  "checkpoint": "/work/wildlife/runs/yolo11x_native/weights/best.pt",
+  "checkpoint_sha256": "afad883509b30e3474c4565ca3e2e8b10ddeb3fbdb5d315d4aeb345028e9169a",
+  "annotations_sha256": "d83ee6fe1755a9c7e5c49cccbb1d47c55408bb389a9dfe6ba1f8594d0a830f10",
+  "AP": 77.49528330819058,
+  "AP50": 91.96830033222103,
+  "AP75": 86.67554607353574,
+  "AP_small": -100.0,
+  "AP_medium": 32.20050623617692,
+  "AP_large": 79.81509441764267,
+  "per_class_AP": {
+    "buffalo": 78.0722625682931,
+    "elephant": 72.62786479612076,
+    "rhino": 85.20970662592879,
+    "zebra": 74.07129924241968
+  },
+  "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
+  "num_images": 224,
+  "num_predictions": 53980,
+  "parameters_before_fusion": 56878396,
+  "settings": {
+    "imgsz": 640,
+    "conf": 1e-05,
+    "iou": 0.7,
+    "max_det": 300,
+    "half": false,
+    "augment": false,
+    "nms": null,
+    "end2end": false
+  },
+  "ultralytics_version": "8.4.212",
+  "torch_version": "2.14.1+cu130"
+}

@@ -39,6 +39,22 @@ Bear-B/L达到59.02/60.07AP；对应参照是D-FINE-X的**仅COCO55.8**、RT-DET
 
 [仅COCO表格、训练条件审计与分析](docs/benchmarks/COMPARISON.zh-CN.md) · [单独标注的额外数据/排行榜背景](docs/benchmarks/COMPARISON_EXTRA_DATA.zh-CN.md)。YOLO26已在指定基线图中展示并标注额外数据；Objects365版本和未核验预览仍不进入仅COCO主分组。组织方式参考[Ultralytics](https://github.com/ultralytics/ultralytics)。
 
+## 小数据集微调比较
+
+Bear-B、YOLO26-x、YOLO11-x 在 African Wildlife 上各微调50轮：去重后1,017张训练、222张验证、224张独立测试图片，固定640输入。最终分数使用同一COCO评估器。
+
+![African Wildlife测试AP、分类AP与学习曲线](assets/benchmarks/wildlife-transfer.svg)
+
+| 模型 | 共同配方测试mAP50:95 | 测试mAP50 |
+|---|---:|---:|
+| Bear-B | **91.35** | **99.51** |
+| YOLO26-x | 83.87 | 96.61 |
+| YOLO11-x | 83.86 | 97.01 |
+
+本实验Bear-B领先7.48/7.49个AP点。训练模型参数为111.95M，对比两种YOLO的58.82M/56.88M；预训练与原生优化也有差异。另运行两次YOLO标准配方，结果、置信区间和限制见[完整迁移报告](docs/benchmarks/WILDLIFE_TRANSFER.zh-CN.md)。
+
+[下载Bear-B wildlife FP32 .pt](https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/bear-b-wildlife-ema.pt) · [全部五个权重与评估证据](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)。这是独立的四类动物权重，下面仍为COCO模型。
+
 ## 模型与下载
 
 混合包作为默认下载，所有尺寸采用同一策略；直接加载到FP32模型，推理使用AMP并保留整个FP32解码器。**不要调用整个模型的`half()`**。混合包也可用于微调，准备脚本重置类别头并建立FP32参数与全新优化器。

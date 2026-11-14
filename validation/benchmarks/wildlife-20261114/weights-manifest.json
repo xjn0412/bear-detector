@@ -1,0 +1,34 @@
+{
+  "files": {
+    "bear-b-wildlife-ema.pt": {
+      "bytes": 448545906,
+      "sha256": "52f6d1d50ef99178f19618f0b89c6f821fc06ce9d59e206aa764f5b6aa1c00c7"
+    },
+    "yolo26x-wildlife.pt": {
+      "bytes": 118327077,
+      "sha256": "44f076a7493f52a342aaf6bf3c261ca70a73d95115b7acd250a9798fc9416aaa"
+    },
+    "yolo11x-wildlife.pt": {
+      "bytes": 114393689,
+      "sha256": "bf423acfd0e27b73bdd67c071edd38bab72d682a124178403987a83f459d76d8"
+    },
+    "yolo26x-native-wildlife.pt": {
+      "bytes": 118327141,
+      "sha256": "a987d321dabbf21332052accf60abe64f34525ec29e1d75366c95f89f2d06c1a"
+    },
+    "yolo11x-native-wildlife.pt": {
+      "bytes": 114394841,
+      "sha256": "afad883509b30e3474c4565ca3e2e8b10ddeb3fbdb5d315d4aeb345028e9169a"
+    },
+    "bear-b-wildlife.yml": {
+      "bytes": 4195,
+      "sha256": "ec25803d905b76dcf736fc449b9b16a46ba180d80aae9e4059ad768bf86414ac"
+    },
+    "classes.json": {
+      "bytes": 354,
+      "sha256": "5d2607a95396063a32c01ecd42db4157223a57a7fc441b0224e472bd50d50a21"
+    }
+  },
+  "bear_best_epoch": 11,
+  "bear_ema_tensors_exact": true
+}

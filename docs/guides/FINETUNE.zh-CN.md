@@ -70,3 +70,7 @@ python tools/train_custom.py --run runs/my_dataset --resume runs/my_dataset/trai
 准备过程生成 `config.yml`、归一化 `train.json` / `val.json`、`classes.json`、`initial.pth`。评估使用准备后的验证JSON；模型输出0开始的类别索引，通过classes.json映射回原始ID/名称。
 
 完整训练检查点保存原始权重、EMA、优化器、调度器、scaler与轮次；推理/导出明确选择EMA。独立训练可能保存 `best_stg1.pth` / `best_stg2.pth`，应比较两个阶段的验证AP后选全局最好者；不要默认第二阶段更好。微调默认关闭继承的mosaic/mixup/copyblend，以动态scale1.0起步，保留FP32解码器和有限性保护。30轮与1e-4仅是起点，不是所有数据集的最优配方。
+
+## 已完成的小数据集示例
+
+[African Wildlife迁移实验](../benchmarks/WILDLIFE_TRANSFER.zh-CN.md)提供Bear-B实际微调、YOLO对照、去重划分、50轮记录与可下载四类权重。

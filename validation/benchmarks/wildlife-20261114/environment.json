@@ -1,0 +1,32 @@
+{
+  "bear_parameters_before_fusion": 111952069,
+  "torch": "2.14.1+cu130",
+  "ultralytics": "8.4.212",
+  "train_gpus": {
+    "Bear-B": 4,
+    "each_YOLO_run": 2
+  },
+  "gpu": "RTX 5090 32GB",
+  "initial_weights": {
+    "yolo26x": {
+      "sha256": "9fdd44a31c504547ffb81d2c6d9e6dac3493c8eaa8b0398d3f43bae6c7003e92",
+      "bytes": 118667365
+    },
+    "yolo11x": {
+      "sha256": "7bc158aa95c0ebfdd87f70f01653c1131b93e92522dbe15c228bcd742e773a24",
+      "bytes": 114636239
+    }
+  },
+  "bear_release_strict_load": true,
+  "test_object_sizes": {
+    "small": 0,
+    "medium": 27,
+    "large": 344
+  },
+  "training_source_git_commit": "e5d4f09ed0e80b4e73567c6b83a6475112042344",
+  "data_sha256": {
+    "train": "40b1a08d7d7fc715f9fe361d0c3dd433dd4fb8f10de69369f250782f5fc85e3b",
+    "val": "b62f7bd22a2dda65c5e919145d4ed2ec138a0ea4c4348583df451fef1e71578a",
+    "test": "d83ee6fe1755a9c7e5c49cccbb1d47c55408bb389a9dfe6ba1f8594d0a830f10"
+  }
+}

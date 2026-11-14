@@ -104,3 +104,7 @@ python tools/yolo_to_coco.py --data data/my_dataset/data.yaml --output data/conv
 ```
 
 Read `data/converted/dataset.json` for generated JSON/image roots. No Ultralytics dependency or automatic download scripts are executed. [YOLO detection format reference](https://docs.ultralytics.com/datasets/detect/).
+
+## Recorded small-dataset example
+
+See the [African Wildlife transfer experiment](../benchmarks/WILDLIFE_TRANSFER.md) for a completed Bear-B fine-tune and YOLO comparison, with audited splits, 50-epoch histories and downloadable four-class weights.

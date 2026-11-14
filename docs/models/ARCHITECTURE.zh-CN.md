@@ -25,4 +25,4 @@ ConvNeXt是CNN骨干，不是ViT；最深层上下文模块和检测解码器使
 
 FP16 autocast只用于骨干/上下文/颈部，**整个解码器、浮点预测、匹配与损失FP32**；主参数和优化器FP32，动态GradScaler。EMA只在实际优化器更新后推进，整轮零更新抛错，非有限损失不能静默置零。先前门控FFN溢出促使采用统一FP32解码器；FP16训练本身不保证FP16部署一致性。
 
-`backbone.py`实现上下文/细节支路；`source/engine/deim`保留上游颈部、解码器与准则；`runtime.py`安装数值保护；`tools/common.py`定义类别与推理契约；`portable_sampling.py`只在导出时替换采样实现。相比常见YOLO密集头，该模型使用查询解码器迭代细化和top-k输出；没有进行匹配YOLO对照，不能宣称更快或更准。
+`backbone.py`实现上下文/细节支路；`source/engine/deim`保留上游颈部、解码器与准则；`runtime.py`安装数值保护；`tools/common.py`定义类别与推理契约；`portable_sampling.py`只在导出时替换采样实现。相比常见YOLO密集头，该模型使用查询解码器迭代细化和top-k输出；已另行记录固定预算的[African Wildlife迁移对照](../benchmarks/WILDLIFE_TRANSFER.zh-CN.md)；参数量、预训练和原生优化存在差异，不能据此推断广泛的架构或速度优势。

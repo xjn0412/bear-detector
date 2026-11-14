@@ -1,0 +1,48 @@
+{
+  "source_checkpoint": "/work/weights/bear-b-coco-ema.pt",
+  "source_sha256": "885878e7c7d57aa22ae31beaedb0ffbecd5e3f651cf6a4933c73aa3fd0095572",
+  "reset_parameters": [
+    "decoder.denoising_class_embed.weight",
+    "decoder.enc_score_head.weight",
+    "decoder.enc_score_head.bias",
+    "decoder.dec_score_head.0.weight",
+    "decoder.dec_score_head.0.bias",
+    "decoder.dec_score_head.1.weight",
+    "decoder.dec_score_head.1.bias",
+    "decoder.dec_score_head.2.weight",
+    "decoder.dec_score_head.2.bias",
+    "decoder.dec_score_head.3.weight",
+    "decoder.dec_score_head.3.bias",
+    "decoder.dec_score_head.4.weight",
+    "decoder.dec_score_head.4.bias",
+    "decoder.dec_score_head.5.weight",
+    "decoder.dec_score_head.5.bias"
+  ],
+  "optimizer_ema_scaler_reset": true,
+  "classes": {
+    "num_classes": 4,
+    "classes": [
+      {
+        "index": 0,
+        "category_id": 0,
+        "name": "buffalo"
+      },
+      {
+        "index": 1,
+        "category_id": 1,
+        "name": "elephant"
+      },
+      {
+        "index": 2,
+        "category_id": 2,
+        "name": "rhino"
+      },
+      {
+        "index": 3,
+        "category_id": 3,
+        "name": "zebra"
+      }
+    ]
+  },
+  "seed": 42
+}

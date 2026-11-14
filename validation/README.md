@@ -20,3 +20,7 @@ Full COCO AP, subset AP, synthetic-data smoke checks and latency measurements ha
 ## Final deployment measurements
 
 [Full T/S/B/L mixed-storage and TensorRT validation plus isolated RTX5090 timings](benchmarks/deployment5090-20261114/README.md). All5,000 COCO val2017 images;19CPU tests passed. Original weight archives and previous evidence remain unchanged.
+
+## African Wildlife transfer experiment
+
+[Audited split, all five 50-epoch histories, configs, checkpoint hashes and common test metrics](benchmarks/wildlife-20261114/README.md). Bear-B plus YOLO26-x/YOLO11-x, shared and standard recipes; 224 held-out test images. / 四类动物小数据集迁移实验，与COCO基准分开。

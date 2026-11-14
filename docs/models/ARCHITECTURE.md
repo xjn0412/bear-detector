@@ -54,4 +54,4 @@ Earlier experiments overflowed inside decoder gated FFNs and suffered accuracy d
 
 ## Relationship to other detectors
 
-This is a DEIMv2-family hybrid CNN/query detector. Unlike a typical dense YOLO head, final predictions are refined by six query decoder layers and ranked by top-k, without a new NMS stage. Its convolutional multiscale fusion shares broad ideas with FPN/PAN detectors; this does not establish an accuracy or speed advantage over YOLO. No matched YOLO benchmark has been run here.
+This is a DEIMv2-family hybrid CNN/query detector. Unlike a typical dense YOLO head, final predictions are refined by six query decoder layers and ranked by top-k, without a new NMS stage. Its convolutional multiscale fusion shares broad ideas with FPN/PAN detectors; this does not establish an accuracy or speed advantage over YOLO. A fixed-budget [African Wildlife transfer comparison](../benchmarks/WILDLIFE_TRANSFER.md) is recorded separately; model sizes, pretraining and native optimization differ.

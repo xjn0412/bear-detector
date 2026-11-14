@@ -1,0 +1,83 @@
+{
+  "release_url": "https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114",
+  "verification": "Each asset byte size and GitHub SHA256 digest matched the local artifact before publication.",
+  "assets": [
+    {
+      "name": "bear-b-wildlife-ema.pt",
+      "bytes": 448545906,
+      "sha256": "52f6d1d50ef99178f19618f0b89c6f821fc06ce9d59e206aa764f5b6aa1c00c7",
+      "github_digest": "sha256:52f6d1d50ef99178f19618f0b89c6f821fc06ce9d59e206aa764f5b6aa1c00c7",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/bear-b-wildlife-ema.pt"
+    },
+    {
+      "name": "yolo26x-wildlife.pt",
+      "bytes": 118327077,
+      "sha256": "44f076a7493f52a342aaf6bf3c261ca70a73d95115b7acd250a9798fc9416aaa",
+      "github_digest": "sha256:44f076a7493f52a342aaf6bf3c261ca70a73d95115b7acd250a9798fc9416aaa",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/yolo26x-wildlife.pt"
+    },
+    {
+      "name": "yolo11x-wildlife.pt",
+      "bytes": 114393689,
+      "sha256": "bf423acfd0e27b73bdd67c071edd38bab72d682a124178403987a83f459d76d8",
+      "github_digest": "sha256:bf423acfd0e27b73bdd67c071edd38bab72d682a124178403987a83f459d76d8",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/yolo11x-wildlife.pt"
+    },
+    {
+      "name": "yolo26x-native-wildlife.pt",
+      "bytes": 118327141,
+      "sha256": "a987d321dabbf21332052accf60abe64f34525ec29e1d75366c95f89f2d06c1a",
+      "github_digest": "sha256:a987d321dabbf21332052accf60abe64f34525ec29e1d75366c95f89f2d06c1a",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/yolo26x-native-wildlife.pt"
+    },
+    {
+      "name": "yolo11x-native-wildlife.pt",
+      "bytes": 114394841,
+      "sha256": "afad883509b30e3474c4565ca3e2e8b10ddeb3fbdb5d315d4aeb345028e9169a",
+      "github_digest": "sha256:afad883509b30e3474c4565ca3e2e8b10ddeb3fbdb5d315d4aeb345028e9169a",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/yolo11x-native-wildlife.pt"
+    },
+    {
+      "name": "bear-b-wildlife.yml",
+      "bytes": 4195,
+      "sha256": "ec25803d905b76dcf736fc449b9b16a46ba180d80aae9e4059ad768bf86414ac",
+      "github_digest": "sha256:ec25803d905b76dcf736fc449b9b16a46ba180d80aae9e4059ad768bf86414ac",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/bear-b-wildlife.yml"
+    },
+    {
+      "name": "classes.json",
+      "bytes": 354,
+      "sha256": "5d2607a95396063a32c01ecd42db4157223a57a7fc441b0224e472bd50d50a21",
+      "github_digest": "sha256:5d2607a95396063a32c01ecd42db4157223a57a7fc441b0224e472bd50d50a21",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/classes.json"
+    },
+    {
+      "name": "weights-manifest.json",
+      "bytes": 1092,
+      "sha256": "926faf765552d6766feac59472d60e76c60be39efdd88a216ca9e2147d34944b",
+      "github_digest": "sha256:926faf765552d6766feac59472d60e76c60be39efdd88a216ca9e2147d34944b",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/weights-manifest.json"
+    },
+    {
+      "name": "SHA256SUMS",
+      "bytes": 878,
+      "sha256": "0280a2d521d0d5208d2c77632f207c58fa7010d01188548e2025de0edfa44011",
+      "github_digest": "sha256:0280a2d521d0d5208d2c77632f207c58fa7010d01188548e2025de0edfa44011",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/SHA256SUMS"
+    },
+    {
+      "name": "wildlife-evaluation-evidence.zip",
+      "bytes": 11009703,
+      "sha256": "b6e48cc8b3ab7ddaa3c4192d9546a2286b36bb3cd9d3e2728913283f8ef053e0",
+      "github_digest": "sha256:b6e48cc8b3ab7ddaa3c4192d9546a2286b36bb3cd9d3e2728913283f8ef053e0",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/wildlife-evaluation-evidence.zip"
+    },
+    {
+      "name": "summary.json",
+      "bytes": 3373,
+      "sha256": "bd6ca33bc09cf40737add8afc121f18e636848fd5cb60fb0b90af35a3276b5cb",
+      "github_digest": "sha256:bd6ca33bc09cf40737add8afc121f18e636848fd5cb60fb0b90af35a3276b5cb",
+      "url": "https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/summary.json"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "metric": "COCO bbox AP50:95, 101 recall points, maxDets100; all values in percentage points",
+  "split": "held-out test",
+  "images": 224,
+  "models": {
+    "Bear-B": {
+      "AP": 91.3519245544762,
+      "AP50": 99.51159291877624,
+      "AP75": 95.71324983523758,
+      "AP_small": null,
+      "AP_medium": 78.49837642195573,
+      "AP_large": 92.12174062734714,
+      "per_class_AP": {
+        "buffalo": 92.0280119628036,
+        "elephant": 89.41983604043605,
+        "rhino": 95.94831298777588,
+        "zebra": 88.0115372268893
+      }
+    },
+    "YOLO26-x": {
+      "AP": 83.87405457908741,
+      "AP50": 96.61182055734021,
+      "AP75": 91.99640995749996,
+      "AP_small": null,
+      "AP_medium": 52.28037453470622,
+      "AP_large": 85.26729485301915,
+      "per_class_AP": {
+        "buffalo": 83.26930121021002,
+        "elephant": 80.46864865682551,
+        "rhino": 90.8077523433196,
+        "zebra": 80.95051610599452
+      }
+    },
+    "YOLO11-x": {
+      "AP": 83.86179244845742,
+      "AP50": 97.0088561182224,
+      "AP75": 89.98301161935392,
+      "AP_small": null,
+      "AP_medium": 51.39526383292362,
+      "AP_large": 85.17038628853672,
+      "per_class_AP": {
+        "buffalo": 86.73875714163832,
+        "elephant": 78.14185986800203,
+        "rhino": 92.72823580875409,
+        "zebra": 77.83831697543526
+      }
+    },
+    "YOLO26-x native": {
+      "AP": 83.24861761256331,
+      "AP50": 95.84496485407537,
+      "AP75": 92.38073682071834,
+      "AP_small": null,
+      "AP_medium": 42.71902473476922,
+      "AP_large": 85.20357338970199,
+      "per_class_AP": {
+        "buffalo": 88.17177677735563,
+        "elephant": 76.1657807333162,
+        "rhino": 90.44933708074217,
+        "zebra": 78.20757585883922
+      }
+    },
+    "YOLO11-x native": {
+      "AP": 77.49528330819058,
+      "AP50": 91.96830033222103,
+      "AP75": 86.67554607353574,
+      "AP_small": null,
+      "AP_medium": 32.20050623617692,
+      "AP_large": 79.81509441764267,
+      "per_class_AP": {
+        "buffalo": 78.0722625682931,
+        "elephant": 72.62786479612076,
+        "rhino": 85.20970662592879,
+        "zebra": 74.07129924241968
+      }
+    }
+  },
+  "bootstrap": {
+    "replicates": 200,
+    "seed": 42,
+    "method": "Paired image resampling with replacement; percentile 95% CI. Conditional on these trained checkpoints, not training-seed variability.",
+    "AP_95CI": {
+      "Bear-B": [
+        89.73431278517235,
+        93.34635330908935
+      ],
+      "YOLO26-x": [
+        81.31709125815725,
+        86.81661329234268
+      ],
+      "YOLO11-x": [
+        81.81786183532272,
+        86.78366175850596
+      ],
+      "YOLO26-x native": [
+        81.05928061864927,
+        86.37837620545842
+      ],
+      "YOLO11-x native": [
+        74.71181088321671,
+        81.56822108753126
+      ]
+    },
+    "Bear_minus_YOLO_95CI": {
+      "YOLO26-x": [
+        5.393881509988938,
+        9.685713581964642
+      ],
+      "YOLO11-x": [
+        5.357123739858899,
+        9.373152952295968
+      ],
+      "YOLO26-x native": [
+        5.5876498601611,
+        9.974230969654013
+      ],
+      "YOLO11-x native": [
+        10.617305835429203,
+        16.33295237859342
+      ]
+    }
+  },
+  "undefined_metric_note": "Null means undefined: the audited 640 test set has zero COCO-small objects. Raw evaluator reports retain the scaled -1 sentinel as -100."
+}
