@@ -2,11 +2,15 @@
 
 [English](ARCHITECTURE.md) | [简体中文](ARCHITECTURE.zh-CN.md)
 
-The model combines a pretrained convolutional feature pyramid with a query-based transformer detector. ConvNeXt is a CNN; the two deep context blocks and detection decoder use attention. It is not a ViT backbone. The shared head stays the same for Tiny/Small/Base, so backbone changes are interpretable.
+![Bear Detector architecture and Base tensor shapes](../../assets/architecture/bear-detector.svg)
+
+[Editable diagram source](../../assets/architecture/bear-detector.dot) · [SVG](../../assets/architecture/bear-detector.svg)
+
+The model combines a pretrained convolutional feature pyramid with a query-based transformer detector. ConvNeXt is a CNN; the two deep context blocks and detection decoder use attention. It is not a ViT backbone. The shared head stays the same for Tiny/Small/Base/Large, so backbone changes are interpretable.
 
 ```mermaid
 flowchart TD
-  A["RGB 640×640"] --> B["ConvNeXt T / S / B"]
+  A["RGB 640×640"] --> B["ConvNeXt T / S / B / L"]
   B --> C["C2 detail: stride4 → stride8"]
   B --> D["C3 / C4: stride8 / 16"]
   B --> E["C5: stride32 + two context blocks"]
@@ -21,9 +25,10 @@ flowchart TD
 | Component | Settings |
 |---|---|
 | ConvNeXt T stage depths | 3,3,9,3 |
-| ConvNeXt S/B stage depths | 3,3,27,3 |
+| ConvNeXt S/B/L stage depths | 3,3,27,3 |
 | T/S stage channels | 96,192,384,768 |
 | B stage channels | 128,256,512,1024 |
+| L stage channels | 192,384,768,1536 |
 | Context | two blocks, dimension384, 6 heads, 400 tokens, depthwise positional convolution, LayerNorm, SDPA, gated FFN |
 | Context insertion | residual scale initialized0.1; only C5 |
 | Detail | 64-channel projection, depthwise stride2 convolution, projection256; learnable scale0.1 into P3 |
@@ -35,7 +40,7 @@ flowchart TD
 ## Source map
 
 - `backbone.py`: custom context blocks, detail path and DINOv3 ConvNeXt integration.
-- `configs/T.yml`, `S.yml`, `B.yml`: shared detector configuration and variant selection.
+- `configs/T.yml`, `S.yml`, `B.yml`, `L.yml`: shared detector configuration and variant selection.
 - `source/engine/deim/`: vendored decoder, neck, criterion and postprocessor.
 - `runtime.py`: FP32 decoder/criterion, finite-loss guards, dynamic-scaler checks and optimizer/EMA bookkeeping.
 - `tools/common.py`: class schema, strict checkpoint transfer and inference precision wrapper.

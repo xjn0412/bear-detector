@@ -84,6 +84,8 @@ The image passed build, dependency and CPU pipeline checks; GPU container backwa
 
 ## Architecture
 
+![Bear Detector architecture](assets/architecture/bear-detector.svg)
+
 DINOv3-pretrained **ConvNeXt CNN** → two stride32 context-attention blocks → convolutional multiscale neck with cheap P2→P3 detail → six-layer, three-level DEIMv2 query decoder,300 queries, fixed640 input. FP16 bulk forward; **entire decoder, predictions, matching and criterion FP32**. No ViT backbone in these configurations. [Architecture](docs/models/ARCHITECTURE.md).
 
 This is a research integration derived from DEIMv2 / DEIM / D-FINE / RT-DETR, not an independently invented decoder. [Training history](docs/benchmarks/TRAINING_HISTORY.md) · [Benchmark methodology](docs/benchmarks/BENCHMARKS.md) · [Evidence index](validation/README.md).

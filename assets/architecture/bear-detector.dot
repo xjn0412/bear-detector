@@ -1,0 +1,35 @@
+digraph BearDetector {
+ graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.35", ranksep="0.5", fontname="DejaVu Sans", label="Bear Detector | CNN pyramid + deep context + query decoder\nBase tensor shapes shown at fixed 640 input", labelloc=t, fontsize=22, fontcolor="#172b43", splines=polyline];
+ node [shape=box, style="rounded,filled", fillcolor="#eef3f9", color="#9dafc4", penwidth=1.2, fontname="DejaVu Sans", fontsize=11, margin="0.16,0.12"];
+ edge [color="#60758f", penwidth=1.5, arrowsize=0.75, fontname="DejaVu Sans", fontsize=9];
+ input [label="RGB input\n3 × 640 × 640\nDirect resize + ImageNet normalization", fillcolor="#e8f0fa"];
+ subgraph cluster_cnn {
+  label="DINOv3-pretrained ConvNeXt CNN | T / S / B / L";color="#b9c7d7";style="rounded";fontname="DejaVu Sans";fontsize=13;
+  c2 [label="C2 · stride 4\nB: 128 × 160 × 160"];
+  c3 [label="C3 · stride 8\nB: 256 × 80 × 80"];
+  c4 [label="C4 · stride 16\nB: 512 × 40 × 40"];
+  c5 [label="C5 · stride 32\nB: 1024 × 20 × 20"];
+  {rank=same;c2;c3;c4;c5;}
+  c2 -> c3 -> c4 -> c5;
+ }
+ input -> c2;
+ detail [label="Cheap detail path\n1×1 → 64 channels\nDepthwise 3×3, stride 2\n1×1 → 256 channels",fillcolor="#e4f4ee",color="#55a58b"];
+ proj3 [label="1×1 projection\n256 × 80 × 80"];
+ proj4 [label="1×1 projection\n256 × 40 × 40"];
+ context [label="C5 residual context\n1024 → 384 → 1024 channels\n2 attention blocks; 6 heads\n20×20 = 400 tokens only\nLearned residual scale (init 0.1)",fillcolor="#fff0df",color="#ca9c5c"];
+ proj5 [label="1×1 projection\n256 × 20 × 20"];
+ c2 -> detail;
+ c3 -> proj3;
+ c4 -> proj4;
+ c5 -> context -> proj5;
+ add [label="P3 detail addition\nP3 + α · detail(C2)\nLearned α (init 0.1)",fillcolor="#e4f4ee",color="#55a58b"];
+ proj3 -> add;detail -> add;
+ neck [label="HybridEncoder · convolutional FPN / PAN\nP3 80×80 · P4 40×40 · P5 20×20, all 256 channels\nCSP2 blocks; sum fusion; no extra encoder attention",fillcolor="#e7eefb",color="#708fb6"];
+ add -> neck;proj4 -> neck;proj5 -> neck;
+ decoder [label="DEIMv2 query decoder · 6 layers\nHidden 256 · 300 queries · 3 feature levels\nDeformable samples: 3 / 6 / 3\nDistribution refinement (reg_max 32)\nEntire decoder stays FP32",fillcolor="#fae7e3",color="#cd7d6c"];
+ neck -> decoder;
+ output [label="Class scores + bounding boxes\nTop-300 predictions · no added NMS\nClass count is reset for a new dataset",fillcolor="#fae7e3",color="#cd7d6c"];
+ decoder -> output;
+ precision [shape=note,label="Precision policy\nBackbone / context / neck: FP16 autocast\nDecoder / matching / losses: FP32\nMaster training parameters + optimizer: FP32\nNo stride-4 decoder level; no ViT backbone",fillcolor="#f5f6f8",color="#b4bdc8"];
+ {rank=same;output;precision;}
+}

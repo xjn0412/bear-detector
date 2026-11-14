@@ -84,6 +84,8 @@ docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
 
 ## 架构
 
+![Bear Detector architecture](assets/architecture/bear-detector.svg)
+
 DINOv3预训练**ConvNeXt CNN** → 两个stride32上下文注意力模块 → 卷积多尺度颈部及轻量P2→P3细节分支 → 六层、三尺度DEIMv2查询解码器，300查询，固定640输入。主体FP16；**整个解码器、预测、匹配和损失FP32**。这些配置不使用ViT。[架构指南](docs/models/ARCHITECTURE.zh-CN.md)。
 
 这是基于DEIMv2 / DEIM / D-FINE / RT-DETR的研究集成，不把上游解码器宣称为原创。[训练记录](docs/benchmarks/TRAINING_HISTORY.md) · [基准方法](docs/benchmarks/BENCHMARKS.zh-CN.md) · [验证资料索引](validation/README.md)。

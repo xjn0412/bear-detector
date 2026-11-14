@@ -2,14 +2,19 @@
 
 [English](ARCHITECTURE.md) | [简体中文](ARCHITECTURE.zh-CN.md)
 
-ConvNeXt是CNN骨干，不是ViT；最深层上下文模块和检测解码器使用注意力。T/S/B共用检测头。
+![Bear Detector architecture and Base tensor shapes](../../assets/architecture/bear-detector.svg)
+
+[Editable diagram source](../../assets/architecture/bear-detector.dot) · [SVG](../../assets/architecture/bear-detector.svg)
+
+ConvNeXt是CNN骨干，不是ViT；最深层上下文模块和检测解码器使用注意力。T/S/B/L共用检测头。
 
 | 模块 | 设置 |
 |---|---|
 | ConvNeXt-T 深度 | 3/3/9/3 |
-| ConvNeXt-S/B 深度 | 3/3/27/3 |
+| ConvNeXt-S/B/L 深度 | 3/3/27/3 |
 | T/S 通道 | 96/192/384/768 |
 | B 通道 | 128/256/512/1024 |
+| L 通道 | 192/384/768/1536 |
 | 上下文注意力 | stride32，20×20=400tokens，两块，384维、6头、SDPA、门控FFN、残差初始scale0.1 |
 | P2细节支路 | 64通道与depthwise stride2卷积，下采样后注入256通道P3 |
 | 颈部 | 三尺度256通道FPN/PAN式HybridEncoder，depth_mult1.37、expansion1.25、CSP2、sum融合 |
