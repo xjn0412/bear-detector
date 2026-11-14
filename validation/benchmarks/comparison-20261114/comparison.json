@@ -1,7 +1,7 @@
 {
   "snapshot": "2026-11-14",
   "metric": "COCO val2017 bounding-box AP50:95 in points (0\u2013100)",
-  "scope": "Published cross-recipe context, not matched training/hardware or official leaderboard submission/rank",
+  "scope": "Primary: COCO-only detection supervision at640; external representation pretraining disclosed. Extra detection data/unverified regimes are supplemental.",
   "presentation_reference": "https://github.com/ultralytics/ultralytics",
   "leaderboard_url": "https://www.sota2.com/research/sota/object-detection-on-coco-2017-val",
   "external_latency_plotted": false,
@@ -25,7 +25,10 @@
       "params_convention": "deploy; full checkpoint count also recorded",
       "recipe": "DINOv3 LVD-1689M backbone; COCO detection supervision",
       "latency_torch_ms": 12.841214541329277,
-      "latency_trt_ms": 2.75131118244595
+      "latency_trt_ms": 2.75131118244595,
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "DINOv3 ConvNeXt, LVD-1689M external representation pretraining"
     },
     {
       "model": "Bear-S",
@@ -44,7 +47,10 @@
       "params_convention": "deploy; full checkpoint count also recorded",
       "recipe": "DINOv3 LVD-1689M backbone; COCO detection supervision",
       "latency_torch_ms": 16.443782764010958,
-      "latency_trt_ms": 3.337609062194824
+      "latency_trt_ms": 3.337609062194824,
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "DINOv3 ConvNeXt, LVD-1689M external representation pretraining"
     },
     {
       "model": "Bear-B",
@@ -63,7 +69,10 @@
       "params_convention": "deploy; full checkpoint count also recorded",
       "recipe": "DINOv3 LVD-1689M backbone; COCO detection supervision",
       "latency_torch_ms": 15.686341435114542,
-      "latency_trt_ms": 3.8241548079914516
+      "latency_trt_ms": 3.8241548079914516,
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "DINOv3 ConvNeXt, LVD-1689M external representation pretraining"
     },
     {
       "model": "Bear-L",
@@ -82,7 +91,10 @@
       "params_convention": "deploy; full checkpoint count also recorded",
       "recipe": "DINOv3 LVD-1689M backbone; COCO detection supervision",
       "latency_torch_ms": 15.20120795779758,
-      "latency_trt_ms": 4.7892077445983885
+      "latency_trt_ms": 4.7892077445983885,
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "DINOv3 ConvNeXt, LVD-1689M external representation pretraining"
     },
     {
       "model": "YOLO26-n",
@@ -95,7 +107,10 @@
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
       "recipe": "Published default NMS head; official recipe includes Objects365",
-      "AP_e2e": 40.1
+      "AP_e2e": 40.1,
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO26-s",
@@ -108,7 +123,10 @@
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
       "recipe": "Published default NMS head; official recipe includes Objects365",
-      "AP_e2e": 47.8
+      "AP_e2e": 47.8,
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO26-m",
@@ -121,7 +139,10 @@
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
       "recipe": "Published default NMS head; official recipe includes Objects365",
-      "AP_e2e": 52.5
+      "AP_e2e": 52.5,
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO26-l",
@@ -134,7 +155,10 @@
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
       "recipe": "Published default NMS head; official recipe includes Objects365",
-      "AP_e2e": 54.4
+      "AP_e2e": 54.4,
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO26-x",
@@ -147,7 +171,10 @@
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
       "recipe": "Published default NMS head; official recipe includes Objects365",
-      "AP_e2e": 56.9
+      "AP_e2e": 56.9,
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO11-n",
@@ -159,7 +186,10 @@
       "source": "https://docs.ultralytics.com/models/yolo11/",
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "Official COCO detection table"
+      "recipe": "Official COCO detection table",
+      "primary_coco_only": false,
+      "detection_training_data": "Not established by sources in this audit; supplemental only",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO11-s",
@@ -171,7 +201,10 @@
       "source": "https://docs.ultralytics.com/models/yolo11/",
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "Official COCO detection table"
+      "recipe": "Official COCO detection table",
+      "primary_coco_only": false,
+      "detection_training_data": "Not established by sources in this audit; supplemental only",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO11-m",
@@ -183,7 +216,10 @@
       "source": "https://docs.ultralytics.com/models/yolo11/",
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "Official COCO detection table"
+      "recipe": "Official COCO detection table",
+      "primary_coco_only": false,
+      "detection_training_data": "Not established by sources in this audit; supplemental only",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO11-l",
@@ -195,7 +231,10 @@
       "source": "https://docs.ultralytics.com/models/yolo11/",
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "Official COCO detection table"
+      "recipe": "Official COCO detection table",
+      "primary_coco_only": false,
+      "detection_training_data": "Not established by sources in this audit; supplemental only",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "YOLO11-x",
@@ -207,7 +246,10 @@
       "source": "https://docs.ultralytics.com/models/yolo11/",
       "source_kind": "published; not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "Official COCO detection table"
+      "recipe": "Official COCO detection table",
+      "primary_coco_only": false,
+      "detection_training_data": "Not established by sources in this audit; supplemental only",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "DEIMv2-S",
@@ -219,7 +261,10 @@
       "source": "https://github.com/Intellindust-AI-Lab/DEIMv2#1-model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "DINOv3 pretrained/distilled backbone; COCO detector"
+      "recipe": "DINOv3 pretrained/distilled backbone; COCO detector",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "DINOv3 ViT representation pretraining; S/M use distilled backbones"
     },
     {
       "model": "DEIMv2-M",
@@ -231,7 +276,10 @@
       "source": "https://github.com/Intellindust-AI-Lab/DEIMv2#1-model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "DINOv3 pretrained/distilled backbone; COCO detector"
+      "recipe": "DINOv3 pretrained/distilled backbone; COCO detector",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "DINOv3 ViT representation pretraining; S/M use distilled backbones"
     },
     {
       "model": "DEIMv2-L",
@@ -243,7 +291,10 @@
       "source": "https://github.com/Intellindust-AI-Lab/DEIMv2#1-model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "DINOv3 pretrained/distilled backbone; COCO detector"
+      "recipe": "DINOv3 pretrained/distilled backbone; COCO detector",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "DINOv3 ViT representation pretraining; S/M use distilled backbones"
     },
     {
       "model": "DEIMv2-X",
@@ -255,7 +306,10 @@
       "source": "https://github.com/Intellindust-AI-Lab/DEIMv2#1-model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "DINOv3 pretrained/distilled backbone; COCO detector"
+      "recipe": "DINOv3 pretrained/distilled backbone; COCO detector",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "DINOv3 ViT representation pretraining; S/M use distilled backbones"
     },
     {
       "model": "D-FINE-S",
@@ -267,7 +321,10 @@
       "source": "https://github.com/Peterande/D-FINE#model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Official COCO row"
+      "recipe": "Official COCO row",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "D-FINE-M",
@@ -279,7 +336,10 @@
       "source": "https://github.com/Peterande/D-FINE#model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Official COCO row"
+      "recipe": "Official COCO row",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "D-FINE-L",
@@ -291,7 +351,10 @@
       "source": "https://github.com/Peterande/D-FINE#model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Official COCO row"
+      "recipe": "Official COCO row",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "D-FINE-X",
@@ -303,7 +366,10 @@
       "source": "https://github.com/Peterande/D-FINE#model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Official COCO row"
+      "recipe": "Official COCO row",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "D-FINE-S O365",
@@ -315,7 +381,10 @@
       "source": "https://github.com/Peterande/D-FINE#model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Objects365 detection pretraining then COCO"
+      "recipe": "Objects365 detection pretraining then COCO",
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "D-FINE-M O365",
@@ -327,7 +396,10 @@
       "source": "https://github.com/Peterande/D-FINE#model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Objects365 detection pretraining then COCO"
+      "recipe": "Objects365 detection pretraining then COCO",
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "D-FINE-L O365",
@@ -339,7 +411,10 @@
       "source": "https://github.com/Peterande/D-FINE#model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Objects365 detection pretraining then COCO"
+      "recipe": "Objects365 detection pretraining then COCO",
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "D-FINE-X O365",
@@ -351,7 +426,10 @@
       "source": "https://github.com/Peterande/D-FINE#model-zoo",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Objects365 detection pretraining then COCO"
+      "recipe": "Objects365 detection pretraining then COCO",
+      "primary_coco_only": false,
+      "detection_training_data": "Objects365 then COCO",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "RT-DETRv2-S",
@@ -363,7 +441,10 @@
       "source": "https://github.com/lyuwenyu/RT-DETR#implementations",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Official COCO row"
+      "recipe": "Official COCO row",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "RT-DETRv2-M",
@@ -375,7 +456,10 @@
       "source": "https://github.com/lyuwenyu/RT-DETR#implementations",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Official COCO row"
+      "recipe": "Official COCO row",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "RT-DETRv2-L",
@@ -387,7 +471,10 @@
       "source": "https://github.com/lyuwenyu/RT-DETR#implementations",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Official COCO row"
+      "recipe": "Official COCO row",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     },
     {
       "model": "RT-DETRv2-X",
@@ -399,7 +486,10 @@
       "source": "https://github.com/lyuwenyu/RT-DETR#implementations",
       "source_kind": "published; not rerun",
       "params_convention": "author reported",
-      "recipe": "Official COCO row"
+      "recipe": "Official COCO row",
+      "primary_coco_only": true,
+      "detection_training_data": "COCO train2017 only (author COCO regime)",
+      "backbone_pretraining": "Author initialization recipe; not harmonized with DINOv3"
     }
   ],
   "leaderboard_selection": [
@@ -462,7 +552,9 @@
       "source": "https://docs.ultralytics.com/models/yolo27/",
       "source_kind": "official preliminary; unreleased, not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "NMS-free head; training data not established here"
+      "recipe": "NMS-free head; training data not established here",
+      "primary_coco_only": false,
+      "detection_training_data": "Unverified in this audit; unreleased preview"
     },
     {
       "model": "YOLO27-s (preview)",
@@ -474,7 +566,9 @@
       "source": "https://docs.ultralytics.com/models/yolo27/",
       "source_kind": "official preliminary; unreleased, not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "NMS-free head; training data not established here"
+      "recipe": "NMS-free head; training data not established here",
+      "primary_coco_only": false,
+      "detection_training_data": "Unverified in this audit; unreleased preview"
     },
     {
       "model": "YOLO27-m (preview)",
@@ -486,7 +580,9 @@
       "source": "https://docs.ultralytics.com/models/yolo27/",
       "source_kind": "official preliminary; unreleased, not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "NMS-free head; training data not established here"
+      "recipe": "NMS-free head; training data not established here",
+      "primary_coco_only": false,
+      "detection_training_data": "Unverified in this audit; unreleased preview"
     },
     {
       "model": "YOLO27-l (preview)",
@@ -498,7 +594,33 @@
       "source": "https://docs.ultralytics.com/models/yolo27/",
       "source_kind": "official preliminary; unreleased, not rerun",
       "params_convention": "fused/deploy",
-      "recipe": "NMS-free head; training data not established here"
+      "recipe": "NMS-free head; training data not established here",
+      "primary_coco_only": false,
+      "detection_training_data": "Unverified in this audit; unreleased preview"
+    }
+  ],
+  "primary_cohort_policy": {
+    "required_detection_data": "COCO train2017 only; no Objects365/OpenImages/grounding detection stage",
+    "input": 640,
+    "TTA": false,
+    "backbone_pretraining": "Allowed but explicitly disclosed, not identical across methods",
+    "unknown_data_policy": "exclude from primary",
+    "training_recipe_policy": "Augmentation, distillation, loss, schedule, initialization and budgets remain different; no architecture-only causal claim"
+  },
+  "coco_only_references": [
+    {
+      "model": "DINO Swin-L 5scale (36ep)",
+      "AP": 58.5,
+      "detection_training_data": "COCO only; no Objects365 stage",
+      "recipe": "External pretrained backbone; different input recipe; no multi-scale test",
+      "source": "https://github.com/IDEA-Research/DINO"
+    },
+    {
+      "model": "Co-DINO Swin-L (36ep LSJ)",
+      "AP": 60.7,
+      "detection_training_data": "COCO-only model-zoo section, not Objects365-pretrained section",
+      "recipe": "External pretrained backbone; LSJ; different input recipe",
+      "source": "https://github.com/Sense-X/Co-DETR#co-detr-with-swin-l"
     }
   ]
 }

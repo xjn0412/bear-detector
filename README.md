@@ -25,18 +25,15 @@ Latency: one RTX5090 GPU7, batch1,100 warmups,3×300 CUDA-event iterations, no C
 
 PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend and batch-dependent numerics. Each acceptance gate permits at most0.1 AP-point loss. GFLOPs use the documented arithmetic scope,2 FLOPs/MAC, and do not predict latency. [Full results and reproduction](docs/benchmarks/DEPLOYMENT5090.md) · [FLOPs scope](docs/benchmarks/COMPLEXITY.md).
 
-## Comparison graphs and analysis
+## COCO-only detection-training comparison
 
-![Accuracy versus parameters and FLOPs](assets/benchmarks/comparison-efficiency.png)
+![COCO-only detector training: accuracy versus parameters and FLOPs](assets/benchmarks/comparison-efficiency.png)
 
-![Selected leaderboard results](assets/benchmarks/comparison-leaderboard.png)
+**Detection supervision: COCO train2017 only, at640, with no Objects365 detection-pretraining stage.** Backbone representation pretraining is disclosed separately: Bear uses DINOv3 ConvNeXt; DEIMv2 also uses DINOv3 features. These are published-system comparisons, not identical augmentation/loss/compute-budget ablations.
 
-**Bear-L reaches60.07 AP at640; Bear-B reaches59.02.** Higher accuracy comes with substantial model cost: Base uses about2× YOLO26-x's published deployment parameters for +1.52AP. Bear-S is close to DEIMv2-X in AP but larger. The linked SOTA2 page's leading displayed result is64.6; Bear-L is4.53AP behind, under a different resolution/pretraining recipe. External results are author-reported; these figures establish no official rank or same-hardware speed advantage.
+Bear-B/L reach59.02/60.07AP, versus D-FINE-X's **COCO-trained55.8**, RT-DETRv2-X54.3, and DEIMv2-X57.8. Bear-S is close to DEIMv2-X in AP but larger; parameter efficiency still needs work. The previous mixed-data overview has been replaced.
 
-The dashed YOLO27 curve is an **unreleased official preview**, not a reproduced benchmark.
-
-[Full tables, source links, object-size analysis and measured Bear latency](docs/benchmarks/COMPARISON.md) · [SOTA2 leaderboard](https://www.sota2.com/research/sota/object-detection-on-coco-2017-val). Presentation inspired by [Ultralytics](https://github.com/ultralytics/ultralytics).
-
+[COCO-only tables, training-regime audit and analysis](docs/benchmarks/COMPARISON.md) · [Extra-data/leaderboard context, separately labeled](docs/benchmarks/COMPARISON_EXTRA_DATA.md). YOLO26, Objects365 variants, and unverified previews are excluded from the primary graph. Presentation references[Ultralytics](https://github.com/ultralytics/ultralytics).
 
 ## Models and downloads
 

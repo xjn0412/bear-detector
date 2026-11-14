@@ -25,18 +25,15 @@
 
 PT精度验证batch8，TRT固定batch1；因此AP差异同时包含后端及batch数值影响。两项门限均为最多下降0.1 AP点。FLOPs沿用明确范围的算术计数，1 MAC=2 FLOPs，不等同延迟。[完整结果与复现](docs/benchmarks/DEPLOYMENT5090.zh-CN.md) · [FLOPs口径](docs/benchmarks/COMPLEXITY.zh-CN.md)。
 
-## 比较图与性能分析
+## 仅COCO检测训练的比较
 
-![精度、参数及计算量比较](assets/benchmarks/comparison-efficiency.png)
+![仅COCO检测训练的精度、参数与计算量](assets/benchmarks/comparison-efficiency.png)
 
-![排行榜选定结果](assets/benchmarks/comparison-leaderboard.png)
+**检测监督限定COCO train2017、640输入，不含Objects365检测预训练阶段。** 骨干表征预训练单独披露：Bear为DINOv3 ConvNeXt，DEIMv2也使用DINOv3特征。这里比较作者发布的整套系统，增强、损失和计算预算没有完全统一。
 
-**Bear-L在640输入达到60.07AP，Bear-B达到59.02。** 更高精度付出了较大的模型成本：Base约为YOLO26-x报告部署参数的2倍，AP高1.52；Bear-S与DEIMv2-X精度接近，但参数更多。指定SOTA2页面显示的最高值为64.6，Bear-L仍差4.53AP，分辨率及预训练配方不同。外部结果均为作者发布值，不能据此宣称官方名次或相同硬件下速度领先。
+Bear-B/L达到59.02/60.07AP；对应参照是D-FINE-X的**仅COCO55.8**、RT-DETRv2-X54.3及DEIMv2-X57.8。Bear-S与DEIMv2-X精度接近但参数更多，参数效率仍需改进。原先混合训练数据的总览已替换。
 
-YOLO27虚线为**官方未发布预览**，不是本项目复测结果。
-
-[完整表格、来源、目标大小分析及Bear延迟](docs/benchmarks/COMPARISON.zh-CN.md) · [SOTA2排行榜](https://www.sota2.com/research/sota/object-detection-on-coco-2017-val)。图表组织参考[Ultralytics](https://github.com/ultralytics/ultralytics)。
-
+[仅COCO表格、训练条件审计与分析](docs/benchmarks/COMPARISON.zh-CN.md) · [单独标注的额外数据/排行榜背景](docs/benchmarks/COMPARISON_EXTRA_DATA.zh-CN.md)。YOLO26、Objects365版本及未核验预览均移出主图。组织方式参考[Ultralytics](https://github.com/ultralytics/ultralytics)。
 
 ## 模型与下载
 

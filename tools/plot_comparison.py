@@ -28,13 +28,15 @@ def style(ax):
 def save(fig, name):
     OUT.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT / (name + '.png'), dpi=180, facecolor='white')
-    fig.savefig(OUT / (name + '.svg'), facecolor='white')
+    svg = OUT / (name + '.svg')
+    fig.savefig(svg, facecolor='white', metadata={'Date': None})
+    svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines()) + '\n')
     plt.close(fig)
 
 
 def main():
     data = json.loads(DATA.read_text())
-    rows = data['models'] + data.get('preview_models', [])
+    rows = [r for r in data['models'] if r.get('primary_coco_only', False)]
     bears = [r for r in rows if r['family'] == 'Bear']
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 10,
                          'axes.labelsize': 11, 'svg.fonttype': 'none'})
@@ -45,6 +47,8 @@ def main():
         style(ax)
         for family, color in COLORS.items():
             points = [r for r in rows if r['family'] == family]
+            if not points:
+                continue
             points.sort(key=lambda r: r[field])
             ax.plot([r[field] for r in points], [r['AP'] for r in points],
                     color=color, marker='*' if family == 'Bear' else 'o',
@@ -64,23 +68,24 @@ def main():
         ax.set_ylim(38, 62)
     axes[0].set_xlim(2, 280); axes[0].set_xticks([3, 10, 30, 100, 250])
     axes[1].set_xlim(5, 800); axes[1].set_xticks([5, 20, 100, 300, 700])
-    fig.suptitle('Bear Detector | Accuracy and model cost', x=.065, ha='left',
+    fig.suptitle('Bear Detector | COCO-only detection training', x=.065, ha='left',
                  y=.965, fontsize=21, weight='bold', color='#172b43')
-    fig.text(.065, .906, '640 input • Bear measured; other families author-reported • Snapshot 2026-11-14',
+    fig.text(.065, .906, '640 input • No Objects365 detection pretraining • External backbone pretraining disclosed',
              color='#526176', fontsize=11)
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc='upper center', bbox_to_anchor=(.52, .875),
                ncol=4, frameon=False, fontsize=9, columnspacing=1.0)
     fig.text(.065, .085, 'Parameter conventions and FLOPs profilers differ; these curves are descriptive, not controlled architecture ablations.',
              color='#526176', fontsize=9)
-    fig.text(.065, .047, 'YOLO26: NMS-head AP. O365: extra detection pretraining. YOLO27: unreleased preliminary figures. No external speed comparison.',
+    fig.text(.065, .047, 'Bear / DEIMv2 use DINOv3 features. Other initialization, augmentation, distillation and schedules differ; no matched-recipe claim.',
              color='#526176', fontsize=9)
     save(fig, 'comparison-efficiency')
 
     entries = [dict(model=r['model'], AP=r['AP'], own=True) for r in bears]
-    entries += [dict(model=r['model'], AP=r['AP'], own=False) for r in data['leaderboard_selection'] if r['leaderboard']]
+    entries += [dict(model=r['model'], AP=r['AP'], own=False) for r in data['coco_only_references']]
     entries += [dict(model='DEIMv2-X (640)', AP=57.8, own=False),
-                dict(model='YOLO26-x (640, NMS)', AP=57.5, own=False)]
+                dict(model='D-FINE-X (640, COCO)', AP=55.8, own=False),
+                dict(model='RT-DETRv2-X (640, COCO)', AP=54.3, own=False)]
     entries.sort(key=lambda r: r['AP'])
     fig, ax = plt.subplots(figsize=(12, 7.0))
     fig.subplots_adjust(left=.30, right=.93, top=.80, bottom=.19)
@@ -92,13 +97,13 @@ def main():
     ax.set_xlabel('COCO val2017 box AP50:95 (0–100 points)')
     for i, r in enumerate(entries):
         ax.text(r['AP']+.5, i, f"{r['AP']:.2f}", va='center', fontsize=10, weight='bold')
-    fig.suptitle('Where Bear sits among published results', x=.055, ha='left', y=.96,
+    fig.suptitle('COCO-only detector training | Accuracy context', x=.055, ha='left', y=.96,
                  fontsize=21, weight='bold', color='#172b43')
-    fig.text(.055, .905, 'Selected SOTA2 entries verified against papers + 640 deployment baselines; no official Bear rank.',
+    fig.text(.055, .905, 'No extra detection-pretraining datasets. DINO / Co-DINO use different input recipes; no official rank.',
              fontsize=10, color='#526176')
-    fig.text(.055, .085, 'Red: our 640 single-scale measurements. Gray: published results; pretraining, resolution and TTA differ.',
+    fig.text(.055, .085, 'Red: our 640 measurements. Gray: published COCO-only detector training; external backbone initialization remains different.',
              color='#526176', fontsize=9)
-    fig.text(.055, .047, 'Focal-Stable-DINO: no TTA; DINO: TTA; Grounding DINO: enlarged input, COCO fine-tuned. Snapshot 2026-11-14.',
+    fig.text(.055, .047, 'No TTA results selected. DINO / Co-DINO context is not a matched640 experiment. Extra-data leaderboard results are separate.',
              color='#526176', fontsize=9)
     save(fig, 'comparison-leaderboard')
 
