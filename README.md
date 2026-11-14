@@ -25,24 +25,18 @@ Latency: one RTX5090 GPU7, batch1,100 warmups,3×300 CUDA-event iterations, no C
 
 PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend and batch-dependent numerics. Each acceptance gate permits at most0.1 AP-point loss. GFLOPs use the documented arithmetic scope,2 FLOPs/MAC, and do not predict latency. [Full results and reproduction](docs/benchmarks/DEPLOYMENT5090.md) · [FLOPs scope](docs/benchmarks/COMPLEXITY.md).
 
-<details>
-<summary>Comparison with other detectors (author-reported, not rerun)</summary>
+## Comparison graphs and analysis
 
-| Model | Parameters | AP50:95 | Source / pretraining distinction |
-|---|---:|---:|---|
-| Bear-T | 52.05M | **56.4597** | Our full validation; EMA epoch 58 |
-| Bear-S | 73.68M | **57.8987** | Our full validation; EMA epoch 57 |
-| Bear-B | 112.11M | **59.0008** | Our full validation; EMA epoch 42 |
-| Bear-L | 221.40M | **60.0728** | Our full validation; EMA epoch 24 |
-| [DEIMv2-X](https://github.com/Intellindust-AI-Lab/DEIMv2) | 50.3M | 57.8 | Published DINOv3-based detector |
-| [D-FINE-X](https://github.com/Peterande/D-FINE) | 62M | 55.8 | Published COCO row |
-| D-FINE-X, Objects365→COCO | 62M | 59.3 | Additional detection pretraining |
-| [RT-DETRv2-X](https://github.com/lyuwenyu/RT-DETR) | 76M | 54.3 | Published COCO row |
-| [YOLO26-X](https://docs.ultralytics.com/models/yolo26/) | 55.7M | 57.5 | Default NMS head; Objects365 pretraining; fused/deployed parameters |
+![Accuracy versus parameters and FLOPs](assets/benchmarks/comparison-efficiency.png)
 
-Pretraining, parameter-count conventions and backends differ. Bear is heavier; our RTX5090 timings cannot be divided by official T4 timings to claim speedups. [Comparison notes](docs/benchmarks/COMPARISON.md).
+![Selected leaderboard results](assets/benchmarks/comparison-leaderboard.png)
 
-</details>
+**Bear-L reaches60.07 AP at640; Bear-B reaches59.02.** Higher accuracy comes with substantial model cost: Base uses about2× YOLO26-x's published deployment parameters for +1.52AP. Bear-S is close to DEIMv2-X in AP but larger. The linked SOTA2 page's leading displayed result is64.6; Bear-L is4.53AP behind, under a different resolution/pretraining recipe. External results are author-reported; these figures establish no official rank or same-hardware speed advantage.
+
+The dashed YOLO27 curve is an **unreleased official preview**, not a reproduced benchmark.
+
+[Full tables, source links, object-size analysis and measured Bear latency](docs/benchmarks/COMPARISON.md) · [SOTA2 leaderboard](https://www.sota2.com/research/sota/object-detection-on-coco-2017-val). Presentation inspired by [Ultralytics](https://github.com/ultralytics/ultralytics).
+
 
 ## Models and downloads
 

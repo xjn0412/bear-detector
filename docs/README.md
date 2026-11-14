@@ -15,7 +15,7 @@ Start with Docker for a ready-made NVIDIA environment, or installation for a sou
 | ONNX / TensorRT export / 导出 | [Export](guides/EXPORT.md) | [导出](guides/EXPORT.zh-CN.md) |
 | Architecture and precision / 架构与精度策略 | [Architecture](models/ARCHITECTURE.md) | [架构](models/ARCHITECTURE.zh-CN.md) |
 | Benchmark protocol / 基准方法 | [Benchmarks](benchmarks/BENCHMARKS.md) | [基准](benchmarks/BENCHMARKS.zh-CN.md) |
-| Other detector comparisons / 同类模型比较 | [Comparison](benchmarks/COMPARISON.md) | [比较](benchmarks/COMPARISON.zh-CN.md) |
+| Comparison graphs, leaderboard and analysis / 比较图、排行榜与分析 | [Comparison](benchmarks/COMPARISON.md) | [比较](benchmarks/COMPARISON.zh-CN.md) |
 | Verified behavior and limits / 验证范围 | [Verification](benchmarks/VERIFICATION.md) | [验证](benchmarks/VERIFICATION.zh-CN.md) |
 
 Shared references / 通用索引:

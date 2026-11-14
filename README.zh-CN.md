@@ -25,24 +25,18 @@
 
 PT精度验证batch8，TRT固定batch1；因此AP差异同时包含后端及batch数值影响。两项门限均为最多下降0.1 AP点。FLOPs沿用明确范围的算术计数，1 MAC=2 FLOPs，不等同延迟。[完整结果与复现](docs/benchmarks/DEPLOYMENT5090.zh-CN.md) · [FLOPs口径](docs/benchmarks/COMPLEXITY.zh-CN.md)。
 
-<details>
-<summary>与其他检测器比较（作者发布结果，未复测）</summary>
+## 比较图与性能分析
 
-| 模型 | 参数量 | AP50:95 | 来源 / 预训练说明 |
-|---|---:|---:|---|
-| Bear-T | 52.05M | **56.4597** | 本项目全量验证；EMA第58轮 |
-| Bear-S | 73.68M | **57.8987** | 本项目全量验证；EMA第57轮 |
-| Bear-B | 112.11M | **59.0008** | 本项目全量验证；EMA第42轮 |
-| Bear-L | 221.40M | **60.0728** | 本项目全量验证；EMA第24轮 |
-| [DEIMv2-X](https://github.com/Intellindust-AI-Lab/DEIMv2) | 50.3M | 57.8 | 官方DINOv3检测器 |
-| [D-FINE-X](https://github.com/Peterande/D-FINE) | 62M | 55.8 | 官方COCO结果 |
-| D-FINE-X，Objects365→COCO | 62M | 59.3 | 额外检测预训练 |
-| [RT-DETRv2-X](https://github.com/lyuwenyu/RT-DETR) | 76M | 54.3 | 官方COCO结果 |
-| [YOLO26-X](https://docs.ultralytics.com/models/yolo26/) | 55.7M | 57.5 | 默认NMS检测头；Objects365预训练；融合部署参数量 |
+![精度、参数及计算量比较](assets/benchmarks/comparison-efficiency.png)
 
-预训练数据、参数口径及测试后端不同，不构成严格对照实验。Bear更重；RTX5090测速不能直接与官方T4测速相除。[比较说明](docs/benchmarks/COMPARISON.zh-CN.md)。
+![排行榜选定结果](assets/benchmarks/comparison-leaderboard.png)
 
-</details>
+**Bear-L在640输入达到60.07AP，Bear-B达到59.02。** 更高精度付出了较大的模型成本：Base约为YOLO26-x报告部署参数的2倍，AP高1.52；Bear-S与DEIMv2-X精度接近，但参数更多。指定SOTA2页面显示的最高值为64.6，Bear-L仍差4.53AP，分辨率及预训练配方不同。外部结果均为作者发布值，不能据此宣称官方名次或相同硬件下速度领先。
+
+YOLO27虚线为**官方未发布预览**，不是本项目复测结果。
+
+[完整表格、来源、目标大小分析及Bear延迟](docs/benchmarks/COMPARISON.zh-CN.md) · [SOTA2排行榜](https://www.sota2.com/research/sota/object-detection-on-coco-2017-val)。图表组织参考[Ultralytics](https://github.com/ultralytics/ultralytics)。
+
 
 ## 模型与下载
 

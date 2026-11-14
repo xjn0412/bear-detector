@@ -1,0 +1,30 @@
+{
+  "url": "https://www.sota2.com/research/sota/object-detection-on-coco-2017-val",
+  "retrieved": "2026-11-14",
+  "html_sha256": "2a80d6927fa0f4b6e194e6b348dc3f0ad6ca46a43aa55f55f74eb7345c7f0401",
+  "rendered_rows": 100,
+  "selected": [
+    {
+      "model": "Focal-Stable-DINO",
+      "AP": 64.6,
+      "TTA": false,
+      "params_m": 689,
+      "paper": "https://arxiv.org/abs/2304.13027"
+    },
+    {
+      "model": "DINO Swin-L",
+      "AP": 63.2,
+      "TTA": true,
+      "params_m": 218,
+      "paper": "https://arxiv.org/abs/2203.03605"
+    },
+    {
+      "model": "Grounding DINO-L",
+      "AP": 63.0,
+      "COCO_finetuned": true,
+      "enlarged_input": 2000,
+      "paper": "https://arxiv.org/abs/2303.05499"
+    }
+  ],
+  "selection_note": "Selected numeric facts paraphrased from the first rendered page; primary sources checked independently; not a complete ranking."
+}
