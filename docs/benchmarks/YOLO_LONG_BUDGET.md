@@ -1,6 +1,6 @@
 # YOLO default-augmentation runs with a longer budget
 
-Status: fresh longer-budget runs are being prepared/trained; results are pending.
+Status: all four longer-budget runs and common held-out test evaluations completed.
 
 Four default-augmentation runs are rerun with an epoch limit of100 and early
 stopping after20 epochs without validation improvement: YOLO26-x on African
@@ -41,3 +41,27 @@ could not be restored; its selected epoch47 checkpoint and original held-out
 test reports are intact. VOC's selected/final epoch50 model was restored.
 New runs have an explicit output directory and a trainer guard that rejects
 paths outside the new experiment root before initializing training.
+
+
+## Measured results
+
+![Validation learning curves](../../assets/benchmarks/yolo-long-budget.svg)
+
+| Dataset / model | Original50 AP | Max100 AP | Actual epochs | Selected epoch | AP difference |
+|---|---:|---:|---:|---:|---:|
+| wildlife / yolo26x | 83.25 | 82.09 | 100 | 96 | -1.15 |
+| wildlife / yolo11x | 77.50 | 79.66 | 100 | 98 | +2.17 |
+| aquarium / yolo26x | 53.34 | 54.63 | 100 | 91 | +1.29 |
+| voc2007 / yolo26x | 59.41 | 57.27 | 21 | 1 | -2.14 |
+
+AP values are test percentages; differences are AP points. Actual completed epochs are reported explicitly, including early-stopped runs. The100-epoch schedule and late mosaic-closing point differ from the original50-epoch schedule.
+
+| Dataset | Bear-B50 | Bear-L50 | YOLO26x default50 | YOLO26x max100 |
+|---|---:|---:|---:|---:|
+| wildlife | 91.35 | 91.54 | 83.25 | 82.09 |
+| aquarium | 55.49 | 58.44 | 53.34 | 54.63 |
+| voc2007 | 75.46 | 76.30 | 59.41 | 57.27 |
+
+This is a longer-budget comparison with Bear fixed at50 epochs. One seed, unequal model sizes and pretraining remain limitations. No test labels selected an epoch or optimizer. VOC difficult boxes are ordinary positives and use COCO AP rather than official VOC AP.
+
+[Full per-class/size metrics, epoch histories, resolved settings and hashes](../../validation/benchmarks/yolo-long-budget-20261114/).

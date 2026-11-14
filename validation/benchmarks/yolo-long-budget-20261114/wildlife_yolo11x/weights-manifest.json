@@ -1,0 +1,9 @@
+{
+  "file": "yolo11x-wildlife-native100.pt",
+  "bytes": 114402457,
+  "sha256": "2c7aa1859536ba8d2f3805e79f7bd3a0b13fcebd84c15c73ce65318efbf4c14b",
+  "epoch_limit": 100,
+  "patience": 20,
+  "completed_epochs": 100,
+  "selected_epoch": 98
+}

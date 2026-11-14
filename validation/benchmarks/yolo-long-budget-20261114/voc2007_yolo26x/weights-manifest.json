@@ -1,0 +1,9 @@
+{
+  "file": "yolo26x-voc2007-native100.pt",
+  "bytes": 118397413,
+  "sha256": "19747f641e46f978b35c1e19494b65263e7409147a8a6b9eb2e556e35d995cae",
+  "epoch_limit": 100,
+  "patience": 20,
+  "completed_epochs": 21,
+  "selected_epoch": 1
+}

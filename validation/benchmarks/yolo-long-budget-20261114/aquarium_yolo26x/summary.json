@@ -1,0 +1,72 @@
+{
+  "dataset": "aquarium",
+  "model": "yolo26x",
+  "original50": {
+    "AP": 53.337598380958454,
+    "AP50": 85.38240896961878,
+    "AP75": 58.34464459603043,
+    "AP_small": 35.548698007075345,
+    "AP_medium": 49.17747664866394,
+    "AP_large": 68.64424006196973,
+    "per_class_AP": {
+      "fish": 53.56695863559906,
+      "jellyfish": 57.426133008232384,
+      "penguin": 38.659957154114586,
+      "puffin": 32.06305425791086,
+      "shark": 64.22853360527583,
+      "starfish": 60.66466646664666,
+      "stingray": 66.75388553892984
+    },
+    "selected_epoch": 46,
+    "completed_epochs": 50
+  },
+  "max100": {
+    "AP": 54.63168534081409,
+    "AP50": 85.49606274830052,
+    "AP75": 59.11895320405277,
+    "AP_small": 32.1661175608937,
+    "AP_medium": 51.174117271404896,
+    "AP_large": 71.78454413425442,
+    "per_class_AP": {
+      "fish": 51.26235024394278,
+      "jellyfish": 58.08576997129696,
+      "penguin": 35.10521165689625,
+      "puffin": 33.184962688698434,
+      "shark": 67.58504659601422,
+      "starfish": 65.20191221779986,
+      "stingray": 71.9965440110501
+    },
+    "selected_epoch": 91,
+    "completed_epochs": 100,
+    "limit": 100,
+    "patience": 20
+  },
+  "Bear_B50": {
+    "AP": 55.49063908361735,
+    "AP50": 84.34329277314907,
+    "AP75": 63.10239762989218,
+    "AP_small": 30.356346443386585,
+    "AP_medium": 48.95781161285278,
+    "AP_large": 75.6682302919239
+  },
+  "Bear_L50": {
+    "AP": 58.44173602503721,
+    "AP50": 91.09908362862615,
+    "AP75": 63.42922789580713,
+    "AP_small": 30.659104134828823,
+    "AP_medium": 51.50696746957516,
+    "AP_large": 76.90430176563784
+  },
+  "max100_minus_original50_AP": 1.2940869598556333,
+  "annotations_sha256": "d74415c3df6fc342fe85e4cea8f4f086cd0a275772af86cabe82ac36fbf6523c",
+  "outcome": {
+    "completed_epochs": 100,
+    "epoch_limit": 100,
+    "patience": 20,
+    "best_epoch": 91,
+    "best_fitness": 0.54509,
+    "ended_before_limit": false,
+    "optimizer": "AdamW",
+    "full_resume_checkpoints_preserved": true
+  }
+}
