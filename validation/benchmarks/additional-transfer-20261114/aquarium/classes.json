@@ -1,0 +1,40 @@
+{
+  "num_classes": 7,
+  "classes": [
+    {
+      "index": 0,
+      "category_id": 0,
+      "name": "fish"
+    },
+    {
+      "index": 1,
+      "category_id": 1,
+      "name": "jellyfish"
+    },
+    {
+      "index": 2,
+      "category_id": 2,
+      "name": "penguin"
+    },
+    {
+      "index": 3,
+      "category_id": 3,
+      "name": "puffin"
+    },
+    {
+      "index": 4,
+      "category_id": 4,
+      "name": "shark"
+    },
+    {
+      "index": 5,
+      "category_id": 5,
+      "name": "starfish"
+    },
+    {
+      "index": 6,
+      "category_id": 6,
+      "name": "stingray"
+    }
+  ]
+}

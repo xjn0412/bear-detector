@@ -1,0 +1,20 @@
+{
+  "backend": "torch-amp",
+  "images": 4952,
+  "full_coco_val2017": false,
+  "checkpoint_sha256": "87477137080d1b0e908250cb1ac00cb4fd80522c8eeff42cb87ac56e163b37c9",
+  "annotations_sha256": "915972d76d50af1e69a936d041bc0bedacf63e11f364f58c2c604f56b1bcc5b0",
+  "predictions_sha256": "fe68ab161444662228d7267a80b89b5c867d34eaf9faa5ea7b449c16277e352a",
+  "batch_size": 8,
+  "input": 640,
+  "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+  "finite_outputs": true,
+  "elapsed_seconds": 53.66679668426514,
+  "AP": 75.46143941758025,
+  "AP50": 92.08519392015458,
+  "AP75": 82.13381167055293,
+  "AP_small": 24.571689053831875,
+  "AP_medium": 53.8147459309088,
+  "AP_large": 82.07302448392565,
+  "precision": "FP16 bulk + FP32 decoder"
+}

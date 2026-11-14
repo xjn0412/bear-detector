@@ -117,3 +117,6 @@ DINOv3预训练**ConvNeXt CNN** → 两个stride32上下文注意力模块 → �
 上游DEIMv2代码仅限**非商业用途**，DINOv3权重另有条款；本仓库不授予商业部署权利。[LICENSE.md](LICENSE.md) · [THIRD_PARTY.md](THIRD_PARTY.md) · [贡献指南](CONTRIBUTING.md)。
 
 感谢DEIMv2、DEIM、D-FINE、RT-DETR、DINOv3和timm；原始声明保留在`source/`和`licenses/`中。
+
+
+新增 Aquarium 和 VOC2007 微调对比：[实测结果、学习曲线与实验协议](docs/benchmarks/MULTIDATA_TRANSFER.zh-CN.md)。

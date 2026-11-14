@@ -1,6 +1,6 @@
 # Aquarium and VOC2007 transfer comparison
 
-Status: training in progress. Final held-out test scores have not been published yet.
+Status: all six 50-epoch runs, held-out evaluations and strict checkpoint export completed.
 
 This experiment fine-tunes the original Bear-B COCO FP32 EMA and official
 Ultralytics YOLO26-x COCO checkpoint on two more datasets. Neither starts from
@@ -59,3 +59,43 @@ Reproduction tools are `prepare_transfer_data.py`, `train_transfer_yolo.py`,
 under `tools/benchmarks`. Training manifests retain archive SHA256 values,
 removed annotations and duplicates; evaluation retains raw predictions and
 per-epoch histories. Final weights use plain `.pt` files.
+
+
+## Measured held-out test results
+
+![Common test accuracy and validation learning curves](../../assets/benchmarks/additional-transfer.svg)
+
+| Dataset | Bear-B | Validation-selected YOLO26-x | Bear minus YOLO |
+|---|---:|---:|---:|
+| Aquarium | 55.49 | 53.34 (native) | +2.15 |
+| VOC2007 · all boxes | 75.46 | 66.25 (shared) | +9.21 |
+
+All values are percentages; differences are AP points. The YOLO recipe in this summary is selected on validation, before comparing test scores.
+
+| Dataset | Model / recipe | Selected epoch | Test AP50:95 | Test AP50 | Test AP75 |
+|---|---|---:|---:|---:|---:|
+| Aquarium | Bear-B | 18 | 55.49 | 84.34 | 63.10 |
+| Aquarium | YOLO26-x shared | 21 | 52.53 | 82.57 | 59.08 |
+| Aquarium | YOLO26-x native | 46 | 53.34 | 85.38 | 58.34 |
+| VOC2007 · all boxes | Bear-B | 9 | 75.46 | 92.09 | 82.13 |
+| VOC2007 · all boxes | YOLO26-x shared | 1 | 66.25 | 84.30 | 73.54 |
+| VOC2007 · all boxes | YOLO26-x native | 50 | 59.41 | 78.92 | 65.10 |
+
+Aquarium: validation selects **YOLO26-x native** among the two YOLO recipes. Bear-B scores **55.49**, versus **53.34** test AP50:95 (+2.15 points).
+
+The paired Aquarium image-bootstrap 95% interval for this difference is **-0.85 to +5.75 AP points**. It reflects this small test set conditional on the trained checkpoints.
+
+VOC2007 · all boxes: validation selects **YOLO26-x shared** among the two YOLO recipes. Bear-B scores **75.46**, versus **66.25** test AP50:95 (+9.21 points).
+
+| Dataset | Model / recipe | Small AP | Medium AP | Large AP |
+|---|---|---:|---:|---:|
+| Aquarium | Bear-B | 30.36 | 48.96 | 75.67 |
+| Aquarium | YOLO26-x shared | 31.84 | 48.13 | 68.98 |
+| Aquarium | YOLO26-x native | 35.55 | 49.18 | 68.64 |
+| VOC2007 · all boxes | Bear-B | 24.57 | 53.81 | 82.07 |
+| VOC2007 · all boxes | YOLO26-x shared | 18.15 | 42.76 | 72.62 |
+| VOC2007 · all boxes | YOLO26-x native | 12.51 | 34.15 | 66.16 |
+
+These results compare the released checkpoints and these recipes. They do not isolate architecture quality, fully tuned optima, compute efficiency or training-seed variability. No GPU latency advantage is claimed. Inspect convergence at the 50-epoch boundary in the curves.
+
+[Full recorded evidence](../../validation/benchmarks/additional-transfer-20261114/) includes native training configurations, initialization hashes, per-epoch validation histories, common evaluator reports, per-class AP, archive hashes and checkpoint hashes. Raw test predictions and full optimizer checkpoints are retained on the training machine.

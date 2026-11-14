@@ -1,0 +1,95 @@
+{
+  "dataset": "aquarium",
+  "metric": "Held-out COCO bbox AP50:95; 101 recall points; maxDets100; top300 predictions",
+  "images": 63,
+  "boxes": 582,
+  "models": {
+    "Bear-B": {
+      "AP": 55.49063908361735,
+      "AP50": 84.34329277314907,
+      "AP75": 63.10239762989218,
+      "AP_small": 30.356346443386585,
+      "AP_medium": 48.95781161285278,
+      "AP_large": 75.6682302919239,
+      "per_class_AP": {
+        "fish": 53.00651922695526,
+        "jellyfish": 59.956701519314116,
+        "penguin": 32.20180805300553,
+        "puffin": 48.577539428609875,
+        "shark": 64.67269431715373,
+        "starfish": 65.31247939399549,
+        "stingray": 64.70673164628754
+      },
+      "selected_epoch": 18,
+      "best_native_val_AP": 57.584784879458404
+    },
+    "YOLO26-x shared": {
+      "AP": 52.53363671653389,
+      "AP50": 82.568747786305,
+      "AP75": 59.08036167849161,
+      "AP_small": 31.839183746377824,
+      "AP_medium": 48.12524408276246,
+      "AP_large": 68.97956419341205,
+      "per_class_AP": {
+        "fish": 48.70943903473054,
+        "jellyfish": 56.49574767387936,
+        "penguin": 34.449761097222485,
+        "puffin": 41.726739472146996,
+        "shark": 66.82508317580424,
+        "starfish": 59.45443373377151,
+        "stingray": 60.07425282818212
+      },
+      "selected_epoch": 21,
+      "best_native_val_AP": 51.683
+    },
+    "YOLO26-x native": {
+      "AP": 53.337598380958454,
+      "AP50": 85.38240896961878,
+      "AP75": 58.34464459603043,
+      "AP_small": 35.548698007075345,
+      "AP_medium": 49.17747664866394,
+      "AP_large": 68.64424006196973,
+      "per_class_AP": {
+        "fish": 53.56695863559906,
+        "jellyfish": 57.426133008232384,
+        "penguin": 38.659957154114586,
+        "puffin": 32.06305425791086,
+        "shark": 64.22853360527583,
+        "starfish": 60.66466646664666,
+        "stingray": 66.75388553892984
+      },
+      "selected_epoch": 46,
+      "best_native_val_AP": 53.299
+    }
+  },
+  "yolo_recipe_selected_on_validation": "YOLO26-x native",
+  "bootstrap": {
+    "replicates": 200,
+    "seed": 42,
+    "method": "Paired image percentile 95% CI conditional on checkpoints, not seed variability",
+    "AP_95CI": {
+      "Bear-B": [
+        52.37294739446626,
+        63.120191186000895
+      ],
+      "YOLO26-x shared": [
+        48.071505684281334,
+        61.704528960384195
+      ],
+      "YOLO26-x native": [
+        49.382724943921524,
+        62.44163425491014
+      ]
+    },
+    "Bear_minus_YOLO_95CI": {
+      "YOLO26-x shared": [
+        -0.8953535773211857,
+        8.10633931378932
+      ],
+      "YOLO26-x native": [
+        -0.8480636948890606,
+        5.7515125198564085
+      ]
+    }
+  }
+}

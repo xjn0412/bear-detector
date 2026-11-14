@@ -55,6 +55,8 @@ Bear-B leads by7.48/7.49 AP points in this experiment. Its training model has111
 
 [Download Bear-B wildlife FP32 .pt](https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/bear-b-wildlife-ema.pt) · [All five checkpoints and evaluation evidence](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114). These are four-class wildlife weights, separate from the COCO models below.
 
+Additional Aquarium and VOC2007 fine-tuning comparisons: [measured results, learning curves and protocol](docs/benchmarks/MULTIDATA_TRANSFER.md).
+
 ## Models and downloads
 
 Mixed storage is now the default for every size. Download the .pt file, load into an FP32 model and use AMP with the entire decoder FP32. **Do not call `model.half()`**. Mixed checkpoints also support fine-tuning: preparation resets class heads and initializes FP32 parameters with a fresh optimizer.
