@@ -1,0 +1,112 @@
+{
+  "dataset": "wildlife",
+  "images": 224,
+  "boxes": 371,
+  "metric": "Common held-out COCO bbox AP50:95; 101 recall points; maxDets100; top300",
+  "models": {
+    "Bear-L": {
+      "AP": 91.54189603859628,
+      "AP50": 99.56494780800263,
+      "AP75": 96.5072072392342,
+      "AP_small": null,
+      "AP_medium": 78.91306729294627,
+      "AP_large": 92.51560049174282,
+      "per_class_AP": {
+        "buffalo": 93.36212136553718,
+        "elephant": 88.904897543784,
+        "rhino": 96.5002026494317,
+        "zebra": 87.40036259563219
+      },
+      "selected_epoch": 11,
+      "best_native_val_AP": 91.19055795579301
+    },
+    "Bear-B": {
+      "AP": 91.3519245544762,
+      "AP50": 99.51159291877624,
+      "AP75": 95.71324983523758,
+      "AP_small": null,
+      "AP_medium": 78.49837642195573,
+      "AP_large": 92.12174062734714,
+      "per_class_AP": {
+        "buffalo": 92.0280119628036,
+        "elephant": 89.41983604043605,
+        "rhino": 95.94831298777588,
+        "zebra": 88.0115372268893
+      },
+      "selected_epoch": 11,
+      "best_native_val_AP": 90.83093592311945
+    },
+    "YOLO26-x shared": {
+      "AP": 83.87405457908741,
+      "AP50": 96.61182055734021,
+      "AP75": 91.99640995749996,
+      "AP_small": null,
+      "AP_medium": 52.28037453470622,
+      "AP_large": 85.26729485301915,
+      "per_class_AP": {
+        "buffalo": 83.26930121021002,
+        "elephant": 80.46864865682551,
+        "rhino": 90.8077523433196,
+        "zebra": 80.95051610599452
+      },
+      "selected_epoch": 24,
+      "best_native_val_AP": 83.528
+    },
+    "YOLO26-x native": {
+      "AP": 83.24861761256331,
+      "AP50": 95.84496485407537,
+      "AP75": 92.38073682071834,
+      "AP_small": null,
+      "AP_medium": 42.71902473476922,
+      "AP_large": 85.20357338970199,
+      "per_class_AP": {
+        "buffalo": 88.17177677735563,
+        "elephant": 76.1657807333162,
+        "rhino": 90.44933708074217,
+        "zebra": 78.20757585883922
+      },
+      "selected_epoch": 47,
+      "best_native_val_AP": 81.25099999999999
+    }
+  },
+  "yolo_recipe_selected_on_validation": "YOLO26-x shared",
+  "L_minus_B_AP": 0.18997148412007903,
+  "L_minus_selected_YOLO_AP": 7.667841459508864,
+  "bootstrap": {
+    "replicates": 200,
+    "seed": 42,
+    "AP_95CI": {
+      "Bear-L": [
+        90.0946129687356,
+        93.54499855807202
+      ],
+      "Bear-B": [
+        89.73431278517235,
+        93.34635330908935
+      ],
+      "YOLO26-x shared": [
+        81.31709125815725,
+        86.81661329234268
+      ],
+      "YOLO26-x native": [
+        81.05928061864927,
+        86.37837620545842
+      ]
+    },
+    "L_minus_baseline_95CI": {
+      "Bear-B": [
+        -0.6206124831890353,
+        0.8879879776211557
+      ],
+      "YOLO26-x shared": [
+        5.6348854129588455,
+        10.105704987859504
+      ],
+      "YOLO26-x native": [
+        6.051191438578953,
+        10.147707049336246
+      ]
+    },
+    "scope": "Paired image sampling, conditional on checkpoints, not seed variability"
+  }
+}

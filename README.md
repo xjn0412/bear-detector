@@ -39,21 +39,19 @@ Bear-B/L reach59.02/60.07AP, versus D-FINE-X's **COCO-trained55.8**, RT-DETRv4-X
 
 [COCO-only tables, training-regime audit and analysis](docs/benchmarks/COMPARISON.md) · [Extra-data/leaderboard context, separately labeled](docs/benchmarks/COMPARISON_EXTRA_DATA.md). YOLO26 is visible in the requested-baseline graph with its extra-data label; Objects365 variants and unverified previews stay outside the COCO-only cohort. Presentation references[Ultralytics](https://github.com/ultralytics/ultralytics).
 
-## Small-dataset fine-tuning comparison
+## Fine-tuning comparison
 
-Bear-B, YOLO26-x and YOLO11-x were fine-tuned for 50 epochs on African Wildlife: 1,017 audited training images, 222 validation images and 224 held-out test images, at640. Final scores use the same COCO evaluator.
+Held-out test **COCO AP50:95 (%)**, fixed640 input; validation selects each checkpoint.
 
-![African Wildlife test AP, per-class AP and learning curves](assets/benchmarks/wildlife-transfer.svg)
+| Dataset | Bear-B · 50ep | Bear-L · 50ep | YOLO26x shared · 50ep | YOLO26x default · ≤100ep |
+|---|---:|---:|---:|---:|
+| African Wildlife | 91.35 | **91.54** | 83.87 | 82.09 |
+| Aquarium | 55.49 | **58.44** | 52.53 | 54.63 |
+| VOC2007 · all boxes | 75.46 | **76.30** | 66.25 | 57.27† |
 
-| Model | Shared-recipe test mAP50:95 | Test mAP50 |
-|---|---:|---:|
-| Bear-B | **91.35** | **99.51** |
-| YOLO26-x | 83.87 | 96.61 |
-| YOLO11-x | 83.86 | 97.01 |
+† VOC's default run early-stopped at21 epochs (patience20). One seed; model sizes, pretraining and native optimization differ. VOC uses all-box COCO AP, not official VOC AP.
 
-Bear-B leads by7.48/7.49 AP points in this experiment. Its training model has111.95M parameters versus58.82M/56.88M for these YOLO variants; pretraining and native optimization also differ. Two additional standard-recipe YOLO runs, uncertainty intervals and limits are included in the [full transfer report](docs/benchmarks/WILDLIFE_TRANSFER.md).
-
-[Download Bear-B wildlife FP32 .pt](https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/bear-b-wildlife-ema.pt) · [All five checkpoints and evaluation evidence](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114). These are four-class wildlife weights, separate from the COCO models below.
+[Bear-B/L results](docs/benchmarks/BEAR_L_TRANSFER.md) · [YOLO50/100 results and curves](docs/benchmarks/YOLO_LONG_BUDGET.md) · [Data and recipes](docs/benchmarks/MULTIDATA_TRANSFER.md) · [Wildlife weights](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)
 
 ## Models and downloads
 

@@ -1,0 +1,22 @@
+{
+  "model": "Bear-L",
+  "dataset": "wildlife",
+  "parameters": 221242117,
+  "selected_epoch": 11,
+  "ema_tensors_bitwise_exact": true,
+  "strict_load": true,
+  "files": {
+    "bear-l-wildlife-ema.pt": {
+      "bytes": 885706738,
+      "sha256": "8518de9fe6aee9f32f6a7a3d78c343950e31a5810e4db42ce9d9a3bf46aae682"
+    },
+    "classes.json": {
+      "bytes": 354,
+      "sha256": "5d2607a95396063a32c01ecd42db4157223a57a7fc441b0224e472bd50d50a21"
+    },
+    "bear-l-wildlife.yml": {
+      "bytes": 4238,
+      "sha256": "65defb73da5b0dd0208b494821a3967a3d7177642e8a466a41590b2ae2ef2a7f"
+    }
+  }
+}

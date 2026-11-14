@@ -1,0 +1,36 @@
+{
+  "checkpoint": "/work/yolo-long-budget/aquarium_yolo26x/runs/native100/weights/best.pt",
+  "checkpoint_sha256": "58b4ac3836d8505da56444a6487cd690ce72da9e39cccd8f3284c041d9ba7dfa",
+  "annotations_sha256": "d74415c3df6fc342fe85e4cea8f4f086cd0a275772af86cabe82ac36fbf6523c",
+  "AP": 54.63168534081409,
+  "AP50": 85.49606274830052,
+  "AP75": 59.11895320405277,
+  "AP_small": 32.1661175608937,
+  "AP_medium": 51.174117271404896,
+  "AP_large": 71.78454413425442,
+  "per_class_AP": {
+    "fish": 51.26235024394278,
+    "jellyfish": 58.08576997129696,
+    "penguin": 35.10521165689625,
+    "puffin": 33.184962688698434,
+    "shark": 67.58504659601422,
+    "starfish": 65.20191221779986,
+    "stingray": 71.9965440110501
+  },
+  "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
+  "num_images": 63,
+  "num_predictions": 18900,
+  "parameters_before_fusion": 58824738,
+  "settings": {
+    "imgsz": 640,
+    "conf": 1e-05,
+    "iou": 0.7,
+    "max_det": 300,
+    "half": false,
+    "augment": false,
+    "nms": null,
+    "end2end": false
+  },
+  "ultralytics_version": "8.4.212",
+  "torch_version": "2.14.1+cu130"
+}

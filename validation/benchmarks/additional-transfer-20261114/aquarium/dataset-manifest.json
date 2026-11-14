@@ -1,0 +1,97 @@
+{
+  "dataset": "aquarium",
+  "classes": [
+    "fish",
+    "jellyfish",
+    "penguin",
+    "puffin",
+    "shark",
+    "starfish",
+    "stingray"
+  ],
+  "counts": {
+    "test": {
+      "raw_images": 63,
+      "images": 63,
+      "boxes": 582,
+      "per_class": [
+        249,
+        154,
+        82,
+        35,
+        36,
+        11,
+        15
+      ],
+      "difficult_boxes_included": 0
+    },
+    "val": {
+      "raw_images": 127,
+      "images": 127,
+      "boxes": 909,
+      "per_class": [
+        459,
+        155,
+        104,
+        74,
+        57,
+        27,
+        33
+      ],
+      "difficult_boxes_included": 0
+    },
+    "train": {
+      "raw_images": 448,
+      "images": 448,
+      "boxes": 3324,
+      "per_class": [
+        1961,
+        385,
+        330,
+        175,
+        259,
+        78,
+        136
+      ],
+      "difficult_boxes_included": 0
+    }
+  },
+  "duplicates_removed": [],
+  "invalid_boxes_removed": [
+    {
+      "source": "test/IMG_2423_jpeg_jpg.rf.1c0901882e71d5ebd26f036f4e22da65.jpg",
+      "category": 4,
+      "bbox": [
+        447,
+        303,
+        0,
+        0
+      ],
+      "reason": "Nonpositive area after clipping"
+    },
+    {
+      "source": "test/IMG_2570_jpeg_jpg.rf.ed40900b657a5b23d92cb2d296ad2dbc.jpg",
+      "category": 4,
+      "bbox": [
+        46,
+        886,
+        0,
+        0
+      ],
+      "reason": "Nonpositive area after clipping"
+    }
+  ],
+  "archives": {
+    "Aquarium.zip": {
+      "bytes": 70037905,
+      "sha256": "4affbfd66ef640b6154c694da3f2e730a97fe0fb0f8a22aa7ec8d32c2f04a536"
+    }
+  },
+  "dedup": "Exact RGB pixels; test > val > train; all original splits otherwise retained",
+  "preprocessing": "PIL bilinear direct resize to 640 square, lossless PNG, shared boxes",
+  "voc_policy": "All difficult boxes included as ordinary positives; not official VOC AP",
+  "seed": 42,
+  "epochs": 50,
+  "total_batch": 16,
+  "selection": "Best native validation AP only; common held-out test COCO AP"
+}

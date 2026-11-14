@@ -1,0 +1,10 @@
+{
+  "completed_epochs": 21,
+  "epoch_limit": 100,
+  "patience": 20,
+  "best_epoch": 1,
+  "best_fitness": 0.59076,
+  "ended_before_limit": true,
+  "optimizer": "AdamW",
+  "full_resume_checkpoints_preserved": true
+}

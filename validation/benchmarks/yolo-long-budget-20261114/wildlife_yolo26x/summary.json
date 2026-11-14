@@ -1,0 +1,66 @@
+{
+  "dataset": "wildlife",
+  "model": "yolo26x",
+  "original50": {
+    "AP": 83.24861761256331,
+    "AP50": 95.84496485407537,
+    "AP75": 92.38073682071834,
+    "AP_small": -100.0,
+    "AP_medium": 42.71902473476922,
+    "AP_large": 85.20357338970199,
+    "per_class_AP": {
+      "buffalo": 88.17177677735563,
+      "elephant": 76.1657807333162,
+      "rhino": 90.44933708074217,
+      "zebra": 78.20757585883922
+    },
+    "selected_epoch": 47,
+    "completed_epochs": 50
+  },
+  "max100": {
+    "AP": 82.09470069438709,
+    "AP50": 95.10118827464926,
+    "AP75": 89.2430329735893,
+    "AP_small": -100.0,
+    "AP_medium": 41.440120573767885,
+    "AP_large": 84.33660039319294,
+    "per_class_AP": {
+      "buffalo": 85.8579552835711,
+      "elephant": 76.56491618958142,
+      "rhino": 87.62705148518381,
+      "zebra": 78.32887981921199
+    },
+    "selected_epoch": 96,
+    "completed_epochs": 100,
+    "limit": 100,
+    "patience": 20
+  },
+  "Bear_B50": {
+    "AP": 91.3519245544762,
+    "AP50": 99.51159291877624,
+    "AP75": 95.71324983523758,
+    "AP_small": -100.0,
+    "AP_medium": 78.49837642195573,
+    "AP_large": 92.12174062734714
+  },
+  "Bear_L50": {
+    "AP": 91.54189603859628,
+    "AP50": 99.56494780800263,
+    "AP75": 96.5072072392342,
+    "AP_small": -100.0,
+    "AP_medium": 78.91306729294627,
+    "AP_large": 92.51560049174282
+  },
+  "max100_minus_original50_AP": -1.1539169181762219,
+  "annotations_sha256": "d83ee6fe1755a9c7e5c49cccbb1d47c55408bb389a9dfe6ba1f8594d0a830f10",
+  "outcome": {
+    "completed_epochs": 100,
+    "epoch_limit": 100,
+    "patience": 20,
+    "best_epoch": 96,
+    "best_fitness": 0.82035,
+    "ended_before_limit": false,
+    "optimizer": "AdamW",
+    "full_resume_checkpoints_preserved": true
+  }
+}

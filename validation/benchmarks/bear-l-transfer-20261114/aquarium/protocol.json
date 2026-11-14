@@ -1,0 +1,19 @@
+{
+  "model": "Bear-L",
+  "dataset": "aquarium",
+  "seed": 42,
+  "epochs": 50,
+  "batch": 16,
+  "gpus": "0,1,2,3",
+  "baseline": "/work/aquarium/baseline",
+  "baseline_config_sha256": "8a3c3d9bec3bdd43672324982f297ba1e4e5ac026e2f72693bd02ff4b414df5c",
+  "initialization_sha256": "22c9167e544d7eb9f73bcba21ac319a12a70b6f1aa07efdb18cea6b449974afe",
+  "class_heads_reset": true,
+  "recipe": "Exact baseline Bear-B configuration except L backbone and output paths",
+  "input": "RGB, direct bilinear 640, ImageNet normalization",
+  "annotations": {
+    "train": "4d1b45926064baaf48af44a91ce332de4d25f84533eba922b20b18cba4cba506",
+    "val": "099f0a565e53e10f1ac7e1c04e1d1d927491743cfbf0dddcd27402ece7f0fbe4",
+    "test": "d74415c3df6fc342fe85e4cea8f4f086cd0a275772af86cabe82ac36fbf6523c"
+  }
+}

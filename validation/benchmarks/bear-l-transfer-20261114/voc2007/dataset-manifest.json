@@ -1,0 +1,143 @@
+{
+  "dataset": "voc2007",
+  "classes": [
+    "aeroplane",
+    "bicycle",
+    "bird",
+    "boat",
+    "bottle",
+    "bus",
+    "car",
+    "cat",
+    "chair",
+    "cow",
+    "diningtable",
+    "dog",
+    "horse",
+    "motorbike",
+    "person",
+    "pottedplant",
+    "sheep",
+    "sofa",
+    "train",
+    "tvmonitor"
+  ],
+  "counts": {
+    "test": {
+      "raw_images": 4952,
+      "images": 4952,
+      "boxes": 14976,
+      "per_class": [
+        311,
+        389,
+        576,
+        393,
+        657,
+        254,
+        1541,
+        370,
+        1374,
+        329,
+        299,
+        530,
+        395,
+        369,
+        5227,
+        592,
+        311,
+        396,
+        302,
+        361
+      ],
+      "difficult_boxes_included": 2944
+    },
+    "val": {
+      "raw_images": 2510,
+      "images": 2508,
+      "boxes": 7812,
+      "per_class": [
+        175,
+        214,
+        305,
+        190,
+        296,
+        141,
+        817,
+        198,
+        706,
+        171,
+        162,
+        267,
+        199,
+        197,
+        2739,
+        320,
+        162,
+        207,
+        170,
+        176
+      ],
+      "difficult_boxes_included": 1511
+    },
+    "train": {
+      "raw_images": 2501,
+      "images": 2500,
+      "boxes": 7843,
+      "per_class": [
+        156,
+        202,
+        294,
+        208,
+        338,
+        131,
+        825,
+        191,
+        726,
+        185,
+        148,
+        271,
+        207,
+        193,
+        2705,
+        305,
+        191,
+        218,
+        158,
+        191
+      ],
+      "difficult_boxes_included": 1543
+    }
+  },
+  "duplicates_removed": [
+    {
+      "removed": "val/005042.jpg",
+      "kept": "val/000949.jpg"
+    },
+    {
+      "removed": "val/007284.jpg",
+      "kept": "val/000338.jpg"
+    },
+    {
+      "removed": "train/009623.jpg",
+      "kept": "train/008037.jpg"
+    }
+  ],
+  "invalid_boxes_removed": [],
+  "archives": {
+    "VOCtrainval_06-Nov-2007.tar": {
+      "bytes": 460032000,
+      "sha256": "7d8cd951101b0957ddfd7a530bdc8a94f06121cfc1e511bb5937e973020c7508"
+    },
+    "VOCtest_06-Nov-2007.tar": {
+      "bytes": 451020800,
+      "sha256": "6836888e2e01dca84577a849d339fa4f73e1e4f135d312430c4856b5609b4892"
+    }
+  },
+  "dedup": "Exact RGB pixels; test > val > train; all original splits otherwise retained",
+  "preprocessing": "PIL bilinear direct resize to 640 square, lossless PNG, shared boxes",
+  "voc_policy": "All difficult boxes included as ordinary positives; not official VOC AP",
+  "seed": 42,
+  "epochs": 50,
+  "total_batch": 16,
+  "selection": "Best native validation AP only; common held-out test COCO AP"
+}

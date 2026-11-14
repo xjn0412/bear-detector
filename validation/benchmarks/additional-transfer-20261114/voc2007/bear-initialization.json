@@ -1,0 +1,128 @@
+{
+  "source_checkpoint": "/var/lib/sentinelx/bear-final-deploy-20261114/plain-pt/B/bear-b-coco-ema.pt",
+  "source_sha256": "885878e7c7d57aa22ae31beaedb0ffbecd5e3f651cf6a4933c73aa3fd0095572",
+  "reset_parameters": [
+    "decoder.denoising_class_embed.weight",
+    "decoder.enc_score_head.weight",
+    "decoder.enc_score_head.bias",
+    "decoder.dec_score_head.0.weight",
+    "decoder.dec_score_head.0.bias",
+    "decoder.dec_score_head.1.weight",
+    "decoder.dec_score_head.1.bias",
+    "decoder.dec_score_head.2.weight",
+    "decoder.dec_score_head.2.bias",
+    "decoder.dec_score_head.3.weight",
+    "decoder.dec_score_head.3.bias",
+    "decoder.dec_score_head.4.weight",
+    "decoder.dec_score_head.4.bias",
+    "decoder.dec_score_head.5.weight",
+    "decoder.dec_score_head.5.bias"
+  ],
+  "optimizer_ema_scaler_reset": true,
+  "classes": {
+    "num_classes": 20,
+    "classes": [
+      {
+        "index": 0,
+        "category_id": 0,
+        "name": "aeroplane"
+      },
+      {
+        "index": 1,
+        "category_id": 1,
+        "name": "bicycle"
+      },
+      {
+        "index": 2,
+        "category_id": 2,
+        "name": "bird"
+      },
+      {
+        "index": 3,
+        "category_id": 3,
+        "name": "boat"
+      },
+      {
+        "index": 4,
+        "category_id": 4,
+        "name": "bottle"
+      },
+      {
+        "index": 5,
+        "category_id": 5,
+        "name": "bus"
+      },
+      {
+        "index": 6,
+        "category_id": 6,
+        "name": "car"
+      },
+      {
+        "index": 7,
+        "category_id": 7,
+        "name": "cat"
+      },
+      {
+        "index": 8,
+        "category_id": 8,
+        "name": "chair"
+      },
+      {
+        "index": 9,
+        "category_id": 9,
+        "name": "cow"
+      },
+      {
+        "index": 10,
+        "category_id": 10,
+        "name": "diningtable"
+      },
+      {
+        "index": 11,
+        "category_id": 11,
+        "name": "dog"
+      },
+      {
+        "index": 12,
+        "category_id": 12,
+        "name": "horse"
+      },
+      {
+        "index": 13,
+        "category_id": 13,
+        "name": "motorbike"
+      },
+      {
+        "index": 14,
+        "category_id": 14,
+        "name": "person"
+      },
+      {
+        "index": 15,
+        "category_id": 15,
+        "name": "pottedplant"
+      },
+      {
+        "index": 16,
+        "category_id": 16,
+        "name": "sheep"
+      },
+      {
+        "index": 17,
+        "category_id": 17,
+        "name": "sofa"
+      },
+      {
+        "index": 18,
+        "category_id": 18,
+        "name": "train"
+      },
+      {
+        "index": 19,
+        "category_id": 19,
+        "name": "tvmonitor"
+      }
+    ]
+  },
+  "seed": 42
+}

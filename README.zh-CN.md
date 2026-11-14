@@ -39,21 +39,19 @@ Bear-B/L达到59.02/60.07AP；对应参照是D-FINE-X的**仅COCO55.8**、RT-DET
 
 [仅COCO表格、训练条件审计与分析](docs/benchmarks/COMPARISON.zh-CN.md) · [单独标注的额外数据/排行榜背景](docs/benchmarks/COMPARISON_EXTRA_DATA.zh-CN.md)。YOLO26已在指定基线图中展示并标注额外数据；Objects365版本和未核验预览仍不进入仅COCO主分组。组织方式参考[Ultralytics](https://github.com/ultralytics/ultralytics)。
 
-## 小数据集微调比较
+## 微调比较
 
-Bear-B、YOLO26-x、YOLO11-x 在 African Wildlife 上各微调50轮：去重后1,017张训练、222张验证、224张独立测试图片，固定640输入。最终分数使用同一COCO评估器。
+独立测试集 **COCO AP50:95（%）**，固定640输入；仅按验证集选择权重。
 
-![African Wildlife测试AP、分类AP与学习曲线](assets/benchmarks/wildlife-transfer.svg)
+| 数据集 | Bear-B · 50轮 | Bear-L · 50轮 | YOLO26x共享配方 · 50轮 | YOLO26x默认配方 · ≤100轮 |
+|---|---:|---:|---:|---:|
+| African Wildlife | 91.35 | **91.54** | 83.87 | 82.09 |
+| Aquarium | 55.49 | **58.44** | 52.53 | 54.63 |
+| VOC2007 · 全标注 | 75.46 | **76.30** | 66.25 | 57.27† |
 
-| 模型 | 共同配方测试mAP50:95 | 测试mAP50 |
-|---|---:|---:|
-| Bear-B | **91.35** | **99.51** |
-| YOLO26-x | 83.87 | 96.61 |
-| YOLO11-x | 83.86 | 97.01 |
+† VOC默认配方按patience20在第21轮提前停止。只使用一个种子，模型大小、预训练和优化实现不同；VOC采用全标注COCO AP，不是官方VOC AP。
 
-本实验Bear-B领先7.48/7.49个AP点。训练模型参数为111.95M，对比两种YOLO的58.82M/56.88M；预训练与原生优化也有差异。另运行两次YOLO标准配方，结果、置信区间和限制见[完整迁移报告](docs/benchmarks/WILDLIFE_TRANSFER.zh-CN.md)。
-
-[下载Bear-B wildlife FP32 .pt](https://github.com/xjn0412/bear-detector/releases/download/wildlife-transfer-20261114/bear-b-wildlife-ema.pt) · [全部五个权重与评估证据](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)。这是独立的四类动物权重，下面仍为COCO模型。
+[Bear-B/L结果](docs/benchmarks/BEAR_L_TRANSFER.zh-CN.md) · [YOLO50/100轮结果与曲线](docs/benchmarks/YOLO_LONG_BUDGET.zh-CN.md) · [数据与训练配方](docs/benchmarks/MULTIDATA_TRANSFER.zh-CN.md) · [Wildlife权重](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)
 
 ## 模型与下载
 

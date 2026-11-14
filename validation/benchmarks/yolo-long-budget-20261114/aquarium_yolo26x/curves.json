@@ -1,0 +1,706 @@
+{
+  "original50": [
+    {
+      "epoch": 1,
+      "native_val_AP": 11.681999999999999
+    },
+    {
+      "epoch": 2,
+      "native_val_AP": 17.695
+    },
+    {
+      "epoch": 3,
+      "native_val_AP": 21.798000000000002
+    },
+    {
+      "epoch": 4,
+      "native_val_AP": 22.421
+    },
+    {
+      "epoch": 5,
+      "native_val_AP": 24.143
+    },
+    {
+      "epoch": 6,
+      "native_val_AP": 27.537
+    },
+    {
+      "epoch": 7,
+      "native_val_AP": 26.561
+    },
+    {
+      "epoch": 8,
+      "native_val_AP": 32.635
+    },
+    {
+      "epoch": 9,
+      "native_val_AP": 34.436
+    },
+    {
+      "epoch": 10,
+      "native_val_AP": 35.246
+    },
+    {
+      "epoch": 11,
+      "native_val_AP": 37.274
+    },
+    {
+      "epoch": 12,
+      "native_val_AP": 35.782000000000004
+    },
+    {
+      "epoch": 13,
+      "native_val_AP": 37.635999999999996
+    },
+    {
+      "epoch": 14,
+      "native_val_AP": 43.839
+    },
+    {
+      "epoch": 15,
+      "native_val_AP": 41.5
+    },
+    {
+      "epoch": 16,
+      "native_val_AP": 40.764
+    },
+    {
+      "epoch": 17,
+      "native_val_AP": 42.824
+    },
+    {
+      "epoch": 18,
+      "native_val_AP": 42.867
+    },
+    {
+      "epoch": 19,
+      "native_val_AP": 46.563
+    },
+    {
+      "epoch": 20,
+      "native_val_AP": 45.167
+    },
+    {
+      "epoch": 21,
+      "native_val_AP": 42.827
+    },
+    {
+      "epoch": 22,
+      "native_val_AP": 44.98
+    },
+    {
+      "epoch": 23,
+      "native_val_AP": 46.977999999999994
+    },
+    {
+      "epoch": 24,
+      "native_val_AP": 46.62
+    },
+    {
+      "epoch": 25,
+      "native_val_AP": 48.143
+    },
+    {
+      "epoch": 26,
+      "native_val_AP": 47.886
+    },
+    {
+      "epoch": 27,
+      "native_val_AP": 48.264
+    },
+    {
+      "epoch": 28,
+      "native_val_AP": 50.42100000000001
+    },
+    {
+      "epoch": 29,
+      "native_val_AP": 49.834
+    },
+    {
+      "epoch": 30,
+      "native_val_AP": 50.773999999999994
+    },
+    {
+      "epoch": 31,
+      "native_val_AP": 48.881
+    },
+    {
+      "epoch": 32,
+      "native_val_AP": 49.486000000000004
+    },
+    {
+      "epoch": 33,
+      "native_val_AP": 49.945
+    },
+    {
+      "epoch": 34,
+      "native_val_AP": 51.50900000000001
+    },
+    {
+      "epoch": 35,
+      "native_val_AP": 50.897000000000006
+    },
+    {
+      "epoch": 36,
+      "native_val_AP": 50.727
+    },
+    {
+      "epoch": 37,
+      "native_val_AP": 51.049
+    },
+    {
+      "epoch": 38,
+      "native_val_AP": 51.257
+    },
+    {
+      "epoch": 39,
+      "native_val_AP": 51.969
+    },
+    {
+      "epoch": 40,
+      "native_val_AP": 51.441
+    },
+    {
+      "epoch": 41,
+      "native_val_AP": 51.809000000000005
+    },
+    {
+      "epoch": 42,
+      "native_val_AP": 52.09
+    },
+    {
+      "epoch": 43,
+      "native_val_AP": 52.567
+    },
+    {
+      "epoch": 44,
+      "native_val_AP": 52.611
+    },
+    {
+      "epoch": 45,
+      "native_val_AP": 52.937
+    },
+    {
+      "epoch": 46,
+      "native_val_AP": 53.299
+    },
+    {
+      "epoch": 47,
+      "native_val_AP": 53.038
+    },
+    {
+      "epoch": 48,
+      "native_val_AP": 52.727000000000004
+    },
+    {
+      "epoch": 49,
+      "native_val_AP": 52.957
+    },
+    {
+      "epoch": 50,
+      "native_val_AP": 53.185
+    }
+  ],
+  "max100": [
+    {
+      "epoch": 1,
+      "native_val_AP": 11.681999999999999,
+      "native_val_AP50": 22.029
+    },
+    {
+      "epoch": 2,
+      "native_val_AP": 21.496000000000002,
+      "native_val_AP50": 40.588
+    },
+    {
+      "epoch": 3,
+      "native_val_AP": 17.448,
+      "native_val_AP50": 32.873000000000005
+    },
+    {
+      "epoch": 4,
+      "native_val_AP": 19.677,
+      "native_val_AP50": 37.211
+    },
+    {
+      "epoch": 5,
+      "native_val_AP": 21.44,
+      "native_val_AP50": 44.181
+    },
+    {
+      "epoch": 6,
+      "native_val_AP": 19.872999999999998,
+      "native_val_AP50": 40.11
+    },
+    {
+      "epoch": 7,
+      "native_val_AP": 24.701,
+      "native_val_AP50": 49.156
+    },
+    {
+      "epoch": 8,
+      "native_val_AP": 24.865000000000002,
+      "native_val_AP50": 48.492000000000004
+    },
+    {
+      "epoch": 9,
+      "native_val_AP": 32.592999999999996,
+      "native_val_AP50": 59.628
+    },
+    {
+      "epoch": 10,
+      "native_val_AP": 35.480000000000004,
+      "native_val_AP50": 66.169
+    },
+    {
+      "epoch": 11,
+      "native_val_AP": 33.236,
+      "native_val_AP50": 60.270999999999994
+    },
+    {
+      "epoch": 12,
+      "native_val_AP": 33.373999999999995,
+      "native_val_AP50": 60.755
+    },
+    {
+      "epoch": 13,
+      "native_val_AP": 35.167,
+      "native_val_AP50": 63.848000000000006
+    },
+    {
+      "epoch": 14,
+      "native_val_AP": 36.693999999999996,
+      "native_val_AP50": 66.223
+    },
+    {
+      "epoch": 15,
+      "native_val_AP": 38.417,
+      "native_val_AP50": 68.144
+    },
+    {
+      "epoch": 16,
+      "native_val_AP": 39.141999999999996,
+      "native_val_AP50": 68.22399999999999
+    },
+    {
+      "epoch": 17,
+      "native_val_AP": 39.979,
+      "native_val_AP50": 69.913
+    },
+    {
+      "epoch": 18,
+      "native_val_AP": 39.378,
+      "native_val_AP50": 70.527
+    },
+    {
+      "epoch": 19,
+      "native_val_AP": 40.691,
+      "native_val_AP50": 70.313
+    },
+    {
+      "epoch": 20,
+      "native_val_AP": 41.48,
+      "native_val_AP50": 72.089
+    },
+    {
+      "epoch": 21,
+      "native_val_AP": 42.25,
+      "native_val_AP50": 72.81
+    },
+    {
+      "epoch": 22,
+      "native_val_AP": 41.192,
+      "native_val_AP50": 72.851
+    },
+    {
+      "epoch": 23,
+      "native_val_AP": 43.498,
+      "native_val_AP50": 73.868
+    },
+    {
+      "epoch": 24,
+      "native_val_AP": 40.315,
+      "native_val_AP50": 71.827
+    },
+    {
+      "epoch": 25,
+      "native_val_AP": 43.589,
+      "native_val_AP50": 74.551
+    },
+    {
+      "epoch": 26,
+      "native_val_AP": 44.535000000000004,
+      "native_val_AP50": 74.37
+    },
+    {
+      "epoch": 27,
+      "native_val_AP": 46.422999999999995,
+      "native_val_AP50": 78.048
+    },
+    {
+      "epoch": 28,
+      "native_val_AP": 45.401,
+      "native_val_AP50": 75.62100000000001
+    },
+    {
+      "epoch": 29,
+      "native_val_AP": 45.916000000000004,
+      "native_val_AP50": 77.237
+    },
+    {
+      "epoch": 30,
+      "native_val_AP": 46.150999999999996,
+      "native_val_AP50": 76.74600000000001
+    },
+    {
+      "epoch": 31,
+      "native_val_AP": 46.863,
+      "native_val_AP50": 76.715
+    },
+    {
+      "epoch": 32,
+      "native_val_AP": 45.33,
+      "native_val_AP50": 77.022
+    },
+    {
+      "epoch": 33,
+      "native_val_AP": 45.202,
+      "native_val_AP50": 77.237
+    },
+    {
+      "epoch": 34,
+      "native_val_AP": 48.992000000000004,
+      "native_val_AP50": 80.255
+    },
+    {
+      "epoch": 35,
+      "native_val_AP": 47.733,
+      "native_val_AP50": 79.19
+    },
+    {
+      "epoch": 36,
+      "native_val_AP": 46.011,
+      "native_val_AP50": 77.619
+    },
+    {
+      "epoch": 37,
+      "native_val_AP": 46.025,
+      "native_val_AP50": 74.939
+    },
+    {
+      "epoch": 38,
+      "native_val_AP": 45.806000000000004,
+      "native_val_AP50": 77.239
+    },
+    {
+      "epoch": 39,
+      "native_val_AP": 47.665,
+      "native_val_AP50": 77.798
+    },
+    {
+      "epoch": 40,
+      "native_val_AP": 48.026,
+      "native_val_AP50": 78.245
+    },
+    {
+      "epoch": 41,
+      "native_val_AP": 47.315000000000005,
+      "native_val_AP50": 79.023
+    },
+    {
+      "epoch": 42,
+      "native_val_AP": 48.010000000000005,
+      "native_val_AP50": 77.931
+    },
+    {
+      "epoch": 43,
+      "native_val_AP": 49.171,
+      "native_val_AP50": 80.841
+    },
+    {
+      "epoch": 44,
+      "native_val_AP": 49.159000000000006,
+      "native_val_AP50": 79.908
+    },
+    {
+      "epoch": 45,
+      "native_val_AP": 49.641999999999996,
+      "native_val_AP50": 80.365
+    },
+    {
+      "epoch": 46,
+      "native_val_AP": 47.542,
+      "native_val_AP50": 80.541
+    },
+    {
+      "epoch": 47,
+      "native_val_AP": 49.473,
+      "native_val_AP50": 79.741
+    },
+    {
+      "epoch": 48,
+      "native_val_AP": 49.683,
+      "native_val_AP50": 78.774
+    },
+    {
+      "epoch": 49,
+      "native_val_AP": 50.361999999999995,
+      "native_val_AP50": 80.76
+    },
+    {
+      "epoch": 50,
+      "native_val_AP": 50.88,
+      "native_val_AP50": 81.57600000000001
+    },
+    {
+      "epoch": 51,
+      "native_val_AP": 50.498,
+      "native_val_AP50": 81.083
+    },
+    {
+      "epoch": 52,
+      "native_val_AP": 48.022999999999996,
+      "native_val_AP50": 80.23400000000001
+    },
+    {
+      "epoch": 53,
+      "native_val_AP": 49.830000000000005,
+      "native_val_AP50": 79.92899999999999
+    },
+    {
+      "epoch": 54,
+      "native_val_AP": 50.800999999999995,
+      "native_val_AP50": 82.028
+    },
+    {
+      "epoch": 55,
+      "native_val_AP": 51.144,
+      "native_val_AP50": 80.842
+    },
+    {
+      "epoch": 56,
+      "native_val_AP": 50.629999999999995,
+      "native_val_AP50": 78.996
+    },
+    {
+      "epoch": 57,
+      "native_val_AP": 50.832,
+      "native_val_AP50": 80.316
+    },
+    {
+      "epoch": 58,
+      "native_val_AP": 50.273999999999994,
+      "native_val_AP50": 80.671
+    },
+    {
+      "epoch": 59,
+      "native_val_AP": 51.664,
+      "native_val_AP50": 80.81
+    },
+    {
+      "epoch": 60,
+      "native_val_AP": 51.932,
+      "native_val_AP50": 81.014
+    },
+    {
+      "epoch": 61,
+      "native_val_AP": 51.827999999999996,
+      "native_val_AP50": 80.61399999999999
+    },
+    {
+      "epoch": 62,
+      "native_val_AP": 50.961999999999996,
+      "native_val_AP50": 80.496
+    },
+    {
+      "epoch": 63,
+      "native_val_AP": 52.154999999999994,
+      "native_val_AP50": 80.01899999999999
+    },
+    {
+      "epoch": 64,
+      "native_val_AP": 51.297000000000004,
+      "native_val_AP50": 79.994
+    },
+    {
+      "epoch": 65,
+      "native_val_AP": 52.372,
+      "native_val_AP50": 81.46600000000001
+    },
+    {
+      "epoch": 66,
+      "native_val_AP": 52.861999999999995,
+      "native_val_AP50": 81.777
+    },
+    {
+      "epoch": 67,
+      "native_val_AP": 52.811,
+      "native_val_AP50": 82.703
+    },
+    {
+      "epoch": 68,
+      "native_val_AP": 52.395,
+      "native_val_AP50": 82.094
+    },
+    {
+      "epoch": 69,
+      "native_val_AP": 52.098,
+      "native_val_AP50": 81.731
+    },
+    {
+      "epoch": 70,
+      "native_val_AP": 51.396,
+      "native_val_AP50": 81.289
+    },
+    {
+      "epoch": 71,
+      "native_val_AP": 51.897999999999996,
+      "native_val_AP50": 81.804
+    },
+    {
+      "epoch": 72,
+      "native_val_AP": 52.790000000000006,
+      "native_val_AP50": 82.428
+    },
+    {
+      "epoch": 73,
+      "native_val_AP": 52.989,
+      "native_val_AP50": 82.36
+    },
+    {
+      "epoch": 74,
+      "native_val_AP": 52.385000000000005,
+      "native_val_AP50": 82.186
+    },
+    {
+      "epoch": 75,
+      "native_val_AP": 52.637,
+      "native_val_AP50": 82.119
+    },
+    {
+      "epoch": 76,
+      "native_val_AP": 52.805,
+      "native_val_AP50": 81.838
+    },
+    {
+      "epoch": 77,
+      "native_val_AP": 53.327999999999996,
+      "native_val_AP50": 82.717
+    },
+    {
+      "epoch": 78,
+      "native_val_AP": 53.364,
+      "native_val_AP50": 82.966
+    },
+    {
+      "epoch": 79,
+      "native_val_AP": 53.555,
+      "native_val_AP50": 82.831
+    },
+    {
+      "epoch": 80,
+      "native_val_AP": 52.846000000000004,
+      "native_val_AP50": 82.26299999999999
+    },
+    {
+      "epoch": 81,
+      "native_val_AP": 52.622,
+      "native_val_AP50": 81.947
+    },
+    {
+      "epoch": 82,
+      "native_val_AP": 52.833,
+      "native_val_AP50": 82.14
+    },
+    {
+      "epoch": 83,
+      "native_val_AP": 53.047999999999995,
+      "native_val_AP50": 82.841
+    },
+    {
+      "epoch": 84,
+      "native_val_AP": 52.933,
+      "native_val_AP50": 82.461
+    },
+    {
+      "epoch": 85,
+      "native_val_AP": 53.400999999999996,
+      "native_val_AP50": 82.938
+    },
+    {
+      "epoch": 86,
+      "native_val_AP": 53.437999999999995,
+      "native_val_AP50": 82.988
+    },
+    {
+      "epoch": 87,
+      "native_val_AP": 53.81,
+      "native_val_AP50": 82.64
+    },
+    {
+      "epoch": 88,
+      "native_val_AP": 54.174,
+      "native_val_AP50": 83.50800000000001
+    },
+    {
+      "epoch": 89,
+      "native_val_AP": 54.151,
+      "native_val_AP50": 82.833
+    },
+    {
+      "epoch": 90,
+      "native_val_AP": 53.871,
+      "native_val_AP50": 82.526
+    },
+    {
+      "epoch": 91,
+      "native_val_AP": 54.50899999999999,
+      "native_val_AP50": 82.639
+    },
+    {
+      "epoch": 92,
+      "native_val_AP": 54.49699999999999,
+      "native_val_AP50": 83.44200000000001
+    },
+    {
+      "epoch": 93,
+      "native_val_AP": 54.372,
+      "native_val_AP50": 83.544
+    },
+    {
+      "epoch": 94,
+      "native_val_AP": 54.135999999999996,
+      "native_val_AP50": 83.269
+    },
+    {
+      "epoch": 95,
+      "native_val_AP": 53.969,
+      "native_val_AP50": 82.967
+    },
+    {
+      "epoch": 96,
+      "native_val_AP": 53.955,
+      "native_val_AP50": 82.88799999999999
+    },
+    {
+      "epoch": 97,
+      "native_val_AP": 53.7,
+      "native_val_AP50": 82.846
+    },
+    {
+      "epoch": 98,
+      "native_val_AP": 53.696999999999996,
+      "native_val_AP50": 82.988
+    },
+    {
+      "epoch": 99,
+      "native_val_AP": 53.408,
+      "native_val_AP50": 82.78
+    },
+    {
+      "epoch": 100,
+      "native_val_AP": 53.598,
+      "native_val_AP50": 82.761
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "source_checkpoint": "/var/lib/sentinelx/bear-final-deploy-20261114/plain-pt/L/bear-l-coco-ema.pt",
+  "source_sha256": "22c9167e544d7eb9f73bcba21ac319a12a70b6f1aa07efdb18cea6b449974afe",
+  "reset_parameters": [
+    "decoder.denoising_class_embed.weight",
+    "decoder.enc_score_head.weight",
+    "decoder.enc_score_head.bias",
+    "decoder.dec_score_head.0.weight",
+    "decoder.dec_score_head.0.bias",
+    "decoder.dec_score_head.1.weight",
+    "decoder.dec_score_head.1.bias",
+    "decoder.dec_score_head.2.weight",
+    "decoder.dec_score_head.2.bias",
+    "decoder.dec_score_head.3.weight",
+    "decoder.dec_score_head.3.bias",
+    "decoder.dec_score_head.4.weight",
+    "decoder.dec_score_head.4.bias",
+    "decoder.dec_score_head.5.weight",
+    "decoder.dec_score_head.5.bias"
+  ],
+  "optimizer_ema_scaler_reset": true,
+  "classes": {
+    "num_classes": 7,
+    "classes": [
+      {
+        "index": 0,
+        "category_id": 0,
+        "name": "fish"
+      },
+      {
+        "index": 1,
+        "category_id": 1,
+        "name": "jellyfish"
+      },
+      {
+        "index": 2,
+        "category_id": 2,
+        "name": "penguin"
+      },
+      {
+        "index": 3,
+        "category_id": 3,
+        "name": "puffin"
+      },
+      {
+        "index": 4,
+        "category_id": 4,
+        "name": "shark"
+      },
+      {
+        "index": 5,
+        "category_id": 5,
+        "name": "starfish"
+      },
+      {
+        "index": 6,
+        "category_id": 6,
+        "name": "stingray"
+      }
+    ]
+  },
+  "seed": 42
+}

@@ -1,0 +1,9 @@
+{
+  "file": "yolo26x-aquarium-native100.pt",
+  "bytes": 118347429,
+  "sha256": "58b4ac3836d8505da56444a6487cd690ce72da9e39cccd8f3284c041d9ba7dfa",
+  "epoch_limit": 100,
+  "patience": 20,
+  "completed_epochs": 100,
+  "selected_epoch": 91
+}
