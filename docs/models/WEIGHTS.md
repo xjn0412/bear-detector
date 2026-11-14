@@ -4,22 +4,23 @@
 
 **Default: FP16 backbone/context/neck storage with the entire original FP32 decoder.** All T/S/B/L mixed packages passed paired full-COCO and TRT checks. Original FP32 EMA archives remain available. The retired Small-only compact filename remains retired; all sizes now use uniform mixed filenames.
 
-| Model | Selected epoch | Mixed gzip MB | Original FP32 gzip MB |
+| Model | Selected epoch | Mixed .pt MB | Original FP32 .pt MB |
 |---|---:|---|---|
-| Tiny | 58 | [115.08](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) | [193.77](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) |
-| Small | 57 | [155.18](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) | [274.17](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) |
-| Base | 42 | [226.34](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) | [416.91](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) |
-| Large | 24 | [428.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) | [822.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz) |
+| Tiny | 58 | [124.43](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt) | [208.86](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt) |
+| Small | 57 | [167.75](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt) | [295.46](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt) |
+| Base | 42 | [244.60](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt) | [449.16](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt) |
+| Large | 24 | [463.18](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt) | [886.32](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt) |
 
-Architecture and parameter counts are unchanged. Gzip itself is lossless, but FP16 conversion rounds bulk weights; decoder tensor dtypes/values are preserved exactly. Packages omit optimizer/scaler resume states. Mixed packages load into FP32 models for inference or fresh fine-tuning; originals preserve unrounded initialization values for exact reproduction.
+Architecture and parameter counts are unchanged. Downloads are plain .pt checkpoints and need no decompression. FP16 conversion rounds bulk weights; decoder tensor dtypes/values are preserved exactly. Packages omit optimizer/scaler resume states. Mixed packages load into FP32 models for inference or fresh fine-tuning; originals preserve unrounded initialization values for exact reproduction.
+
+Direct `.pt` files load without an extraction step. / `.pt`文件可直接加载，无需解压。
 
 ## Download and verify / 下载与校验
 
 ```bash
 mkdir -p weights
-curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz -o weights/bear-t-coco-mixed.pt.gz
-echo "ec8ea1d16b446a48fb0831fa298e8ce2022fca357cbec4a6c569c20c4d04d17c  weights/bear-t-coco-mixed.pt.gz" | sha256sum -c -
-gzip -dk weights/bear-t-coco-mixed.pt.gz
+curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt -o weights/bear-t-coco-mixed.pt
+echo "ac51e9e68bc141a9782005589d56df574ba285def88857ac2c4275413d782150  weights/bear-t-coco-mixed.pt" | sha256sum -c -
 python tools/predict.py --config configs/T.yml --checkpoint weights/bear-t-coco-mixed.pt \
   --classes configs/coco-classes.json --image assets/bear-input.jpg \
   --device cuda --amp --output results/bear.json
@@ -30,10 +31,10 @@ For S/B/L, change the download, hash, config and checkpoint together. CPU: `--de
 ## Mixed-package SHA256
 
 ```text
-ec8ea1d16b446a48fb0831fa298e8ce2022fca357cbec4a6c569c20c4d04d17c  bear-t-coco-mixed.pt.gz
-dd0ad084051eef80d8cd84f916f19109839af1100bd5d15fb72487832cc070e7  bear-s-coco-mixed.pt.gz
-4f1a6bdd96930fa331a1f87af6867c039ddd9fce00b42146540b7e4c616ac1e0  bear-b-coco-mixed.pt.gz
-643f39d452b85452a747362b2afe667fb03e531cace1584fefb0ea7cf0082320  bear-l-coco-mixed.pt.gz
+ac51e9e68bc141a9782005589d56df574ba285def88857ac2c4275413d782150  bear-t-coco-mixed.pt
+afc119b4b8a4aa4c0d82dbf9f7a4d929c007b7f161a404c9a19f354568e8bf28  bear-s-coco-mixed.pt
+c89b634cd61686a8df589df7d0c4bcccc6003ee18bf1304e00ca5622ccfd72c6  bear-b-coco-mixed.pt
+e096089a14152fd17e610a2ad2f407db52eeea77d66375e02933c43fd720694b  bear-l-coco-mixed.pt
 ```
 
 Each release SHA256SUMS also covers original archives, configs and validation reports. The mixed checkpoint records its conversion-time pending-validation flag; the final measured results are in deployment-validation.json for the exact same SHA. We did not repack metadata to change the tested checkpoint bytes. Paired full-COCO storage AP changes were approximately0.003–0.011 points; this is not a custom-task accuracy guarantee. [Full results](../benchmarks/DEPLOYMENT5090.md).

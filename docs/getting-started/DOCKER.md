@@ -26,9 +26,8 @@ Choose a real persistent host directory; **do not keep your only checkpoints in 
 export BEAR_WORK="$PWD/bear-work"   # Replace with your persistent absolute directory.
 mkdir -p "$BEAR_WORK/data" "$BEAR_WORK/weights" "$BEAR_WORK/runs"
 # On the host, download the public Small release:
-curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz \
-  -o "$BEAR_WORK/weights/bear-s-coco-mixed.pt.gz"
-gzip -dk "$BEAR_WORK/weights/bear-s-coco-mixed.pt.gz"
+curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt \
+  -o "$BEAR_WORK/weights/bear-s-coco-mixed.pt"
 ```
 
 Check the SHA256 against [WEIGHTS.md](../models/WEIGHTS.md). Use `configs/S.yml` with Small weights. Tiny/Base configs cannot load Small checkpoints. Final Tiny, Base and Large detector weights are also available; match each weight with its config. Random initialization is only for wiring tests.

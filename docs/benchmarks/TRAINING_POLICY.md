@@ -13,6 +13,6 @@ A strictly higher global-best full COCO val2017 box AP resets patience; ties cou
 
 Fixed input640, seed42, dynamic GradScaler, FP32 parameters/optimizer, FP16 backbone/context/neck and entire FP32 decoder/matching/criterion. Tiny/Base global batch64 LR0.0005; Large batch32 LR0.00025. Each fresh stage passed actual-batch finite criterion/backward preflight before DDP. Base/Large start from corresponding DINOv3 backbones plus fresh detector, not Tiny weights.
 
-Selected exact full best checkpoints retain model/EMA/optimizer/scaler on the server. Public releases contain selected original FP32 EMA in lossless gzip, config, checksums and epoch histories. Packaging strict-loading/finite real-image CPU/gzip checks do not constitute a new full COCO or TensorRT validation.
+Selected exact full best checkpoints retain model/EMA/optimizer/scaler on the server. Public releases contain selected original FP32 EMA as plain .pt files, config, checksums and epoch histories. Packaging strict-loading/finite real-image CPU/gzip checks do not constitute a new full COCO or TensorRT validation.
 
 This records the completed research queue, not an automatic multi-model feature of the fine-tuning CLI. Detector supervision is COCO train2017; DINOv3 pretraining used external data. [Epoch history](TRAINING_HISTORY.md) · [Model zoo](../models/MODEL_ZOO.md).

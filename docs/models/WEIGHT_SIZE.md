@@ -6,18 +6,18 @@
 
 **Bear files are not unexpectedly bloated; the architecture is genuinely heavy.** Original Bear archives retain full FP32 EMA tensors at approximately4 bytes per parameter. YOLO26 public checkpoints store FP16 parameters at approximately2 bytes each. YOLO performance tables also report fused/deployed counts, while downloads retain a larger training architecture.
 
-MB=1,000,000 bytes; M=1,000,000 parameters. Gzip bytes are download/storage size, not GPU memory. AMP training dtype does not determine checkpoint storage dtype.
+MB=1,000,000 bytes; M=1,000,000 parameters. Download bytes are file size, not GPU memory. AMP training dtype does not determine checkpoint storage dtype.
 
 ## Bear releases
 
-| Model | Full params M | Parameter bytes FP32 MB | Actual .pt MB | Gzip download MB | Excess over parameter bytes |
+| Model | Full params M | Parameter bytes FP32 MB | Actual .pt MB | Historical gzip MB | Excess over parameter bytes |
 |---|---:|---:|---:|---:|---:|
 | Bear-T | 52.04883 | 208.20 | 208.86 | 193.77 | 0.317% |
 | Bear-S | 73.68339 | 294.73 | 295.46 | 274.17 | 0.247% |
 | Bear-B | 112.10825 | 448.43 | 449.16 | 416.91 | 0.162% |
 | Bear-L | 221.39830 | 885.59 | 886.32 | 822.79 | 0.082% |
 
-Audit: every floating state tensor is FP32. Packages contain model, last_epoch and metadata, with no duplicate EMA copy, optimizer or GradScaler. The extra0.08–0.32% is buffers (anchors/normalization statistics), metadata and serialization overhead. Gzip is lossless; decompression changes no tensors. The originals remain archival; separately validated mixed packages are now the defaults.
+Audit: every floating state tensor is FP32. Packages contain model, last_epoch and metadata, with no duplicate EMA copy, optimizer or GradScaler. The extra0.08–0.32% is buffers (anchors/normalization statistics), metadata and serialization overhead. Current releases provide the exact decompressed .pt bytes directly; the gzip column is historical. The originals remain archival; separately validated mixed packages are now the defaults.
 
 ## YOLO26 public checkpoints
 
@@ -33,7 +33,7 @@ File sizes come from the official `ultralytics/assets` `v8.4.0` release API. Ful
 
 ## Is Bear larger than expected?
 
-YOLO26-X stores58.99M checkpoint parameters in a118.67MB FP16 file. Bear-B has112.11M parameters and a449.16MB FP32 file: approximately1.90× as many parameters and2× the bytes per parameter, explaining roughly3.8× the file size. Comparing Bear gzip with an uncompressed YOLO .pt would mix packaging conventions.
+YOLO26-X stores58.99M checkpoint parameters in a118.67MB FP16 file. Bear-B has112.11M parameters and a449.16MB FP32 file: approximately1.90× as many parameters and2× the bytes per parameter, explaining roughly3.8× the file size. The comparison above uses plain .pt sizes for both models.
 
 However, Bear-Tiny is not an edge-small detector:52.05M full/51.10M deployed parameters are already close to YOLO26-X's55.7M deployed model. Tiny's pretrained CNN is27.82M; Bear adds24.23M parameters, including a10.40M neck and9.90M decoder. Size names are relative within the Bear family. Future architectural slimming should test a narrower/shallower neck and smaller decoder, with retraining and accuracy evaluation, rather than just compress files.
 
@@ -43,9 +43,11 @@ FP16 storage could theoretically halve floating bytes but rounds weights and nee
 
 ## Current mixed-storage downloads
 
-| Model | Original gzip MB | Mixed gzip MB | Reduction |
+Plain `.pt` files, ready to load; no extraction required. / 直接加载.pt文件，无需解压。
+
+| Model | Original .pt MB | Mixed .pt MB | Reduction |
 |---|---:|---:|---:|
-| Bear-T | 193.77 | 115.08 | 40.6% |
-| Bear-S | 274.17 | 155.18 | 43.4% |
-| Bear-B | 416.91 | 226.34 | 45.7% |
-| Bear-L | 822.79 | 428.79 | 47.9% |
+| Bear-T | 208.86 | 124.43 | 40.4% |
+| Bear-S | 295.46 | 167.75 | 43.2% |
+| Bear-B | 449.16 | 244.60 | 45.5% |
+| Bear-L | 886.32 | 463.18 | 47.7% |

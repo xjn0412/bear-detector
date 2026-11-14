@@ -4,12 +4,12 @@
 
 2026-11-14：对最终T/S/B/L最佳EMA进行全量COCO与实际GPU测试，无新增训练。推荐混合存储、完整FP32解码器；原始FP32版本仍作归档。
 
-| 模型 | 输入 | AP50:95（PT / TRT） | 参数 M（完整 / 部署） | GFLOPs | PyTorch AMP ms | TensorRT ms | 混合包 MB |
+| 模型 | 输入 | AP50:95（PT / TRT） | 参数 M（完整 / 部署） | GFLOPs | PyTorch AMP ms | TensorRT ms | 混合.pt MB |
 |---|---:|---:|---:|---:|---:|---:|---|
-| [Bear-T](../../configs/T.yml) | 640 | 56.4851 / 56.4449 | 52.05 / 51.10 | 132.18 | 12.84 | 2.75 | [115.08](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) |
-| [Bear-S](../../configs/S.yml) | 640 | 57.8864 / 57.8563 | 73.68 / 72.73 | 201.21 | 16.44 | 3.34 | [155.18](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) |
-| [Bear-B](../../configs/B.yml) | 640 | 59.0192 / 58.9243 | 112.11 / 111.16 | 310.75 | 15.69 | 3.82 | [226.34](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) |
-| [Bear-L](../../configs/L.yml) | 640 | 60.0748 / 60.0236 | 221.40 / 220.45 | 622.32 | 15.20 | 4.79 | [428.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) |
+| [Bear-T](../../configs/T.yml) | 640 | 56.4851 / 56.4449 | 52.05 / 51.10 | 132.18 | 12.84 | 2.75 | [124.43](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt) |
+| [Bear-S](../../configs/S.yml) | 640 | 57.8864 / 57.8563 | 73.68 / 72.73 | 201.21 | 16.44 | 3.34 | [167.75](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt) |
+| [Bear-B](../../configs/B.yml) | 640 | 59.0192 / 58.9243 | 112.11 / 111.16 | 310.75 | 15.69 | 3.82 | [244.60](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt) |
+| [Bear-L](../../configs/L.yml) | 640 | 60.0748 / 60.0236 | 221.40 / 220.45 | 622.32 | 15.20 | 4.79 | [463.18](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt) |
 
 ## Latency and resident memory / 延迟与驻留显存
 
@@ -47,7 +47,7 @@
 
 ## Reproduce / 复现
 
-Use the [tested installation](../getting-started/INSTALL.md), matching config/classes and decompressed [weights](../models/WEIGHTS.md). Commands run from the repository root on an otherwise idle GPU:
+Use the [tested installation](../getting-started/INSTALL.md), matching config/classes and [weights](../models/WEIGHTS.md). Commands run from the repository root on an otherwise idle GPU:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python tools/export_engine.py --config configs/T.yml \

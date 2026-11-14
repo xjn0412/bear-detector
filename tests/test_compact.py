@@ -30,7 +30,8 @@ class Compact(unittest.TestCase):
             for key in ['decoder.weight', 'decoder.anchors', 'decoder.valid_mask']:
                 self.assertTrue(torch.equal(got[key], state[key]))
             report = json.loads(out.with_suffix('.storage.json').read_text())
-            self.assertTrue(report['gzip_roundtrip_identical'])
+            self.assertFalse(Path(str(out) + '.gz').exists())
+            self.assertEqual(report['checkpoint_bytes'], out.stat().st_size)
             self.assertTrue(report['decoder_byte_values_preserved'])
             self.assertFalse(report['accuracy_validated'])
 

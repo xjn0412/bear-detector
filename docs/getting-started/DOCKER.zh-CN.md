@@ -24,9 +24,8 @@ docker run --rm --gpus all "$BEAR_IMAGE" python -c \
 ```bash
 export BEAR_WORK="$PWD/bear-work"  # 换成你的持久化绝对路径
 mkdir -p "$BEAR_WORK/data" "$BEAR_WORK/weights" "$BEAR_WORK/runs"
-curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz \
-  -o "$BEAR_WORK/weights/bear-s-coco-mixed.pt.gz"
-gzip -dk "$BEAR_WORK/weights/bear-s-coco-mixed.pt.gz"
+curl -fL https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt \
+  -o "$BEAR_WORK/weights/bear-s-coco-mixed.pt"
 ```
 
 按[权重页](../models/WEIGHTS.zh-CN.md)核对SHA256。Small权重必须配`configs/S.yml`，不能配T/B。Tiny、Base、Large最终权重也已发布，请使用匹配的配置。随机初始化只用于代码自检。

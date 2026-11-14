@@ -1,10 +1,38 @@
 {
   "tag": "v0.2.1-base",
   "url": "https://github.com/xjn0412/bear-detector/releases/tag/v0.2.1-base",
-  "default": "bear-b-coco-mixed.pt.gz",
-  "bytes": 226343347,
-  "sha256": "4f1a6bdd96930fa331a1f87af6867c039ddd9fce00b42146540b7e4c616ac1e0",
+  "default": "bear-b-coco-mixed.pt",
+  "bytes": 244604541,
+  "sha256": "c89b634cd61686a8df589df7d0c4bcccc6003ee18bf1304e00ca5622ccfd72c6",
   "assets_verified": 13,
   "public_HEAD": 200,
-  "original_FP32_preserved": true
+  "original_FP32_preserved": true,
+  "previous_gzip_publication": {
+    "tag": "v0.2.1-base",
+    "url": "https://github.com/xjn0412/bear-detector/releases/tag/v0.2.1-base",
+    "default": "bear-b-coco-mixed.pt.gz",
+    "bytes": 226343347,
+    "sha256": "4f1a6bdd96930fa331a1f87af6867c039ddd9fce00b42146540b7e4c616ac1e0",
+    "assets_verified": 13,
+    "public_HEAD": 200,
+    "original_FP32_preserved": true
+  },
+  "distribution": "Direct .pt; same checkpoint bytes as decompressed validated archive.",
+  "assets": [
+    {
+      "file": "bear-b-coco-mixed.pt",
+      "bytes": 244604541,
+      "sha256": "c89b634cd61686a8df589df7d0c4bcccc6003ee18bf1304e00ca5622ccfd72c6",
+      "storage": "FP16 backbone/context/neck, original FP32 decoder",
+      "AP50_95_PyTorch_AMP": 59.01918744057192,
+      "AP50_95_TensorRT": 58.9243290260906
+    },
+    {
+      "file": "bear-b-coco-ema.pt",
+      "bytes": 449160246,
+      "sha256": "885878e7c7d57aa22ae31beaedb0ffbecd5e3f651cf6a4933c73aa3fd0095572",
+      "storage": "Original FP32 EMA lossless archival source",
+      "training_AP50_95": 59.000843293502705
+    }
+  ]
 }

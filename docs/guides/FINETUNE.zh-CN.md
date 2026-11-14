@@ -6,7 +6,7 @@
 
 ## 初始化
 
-可使用匹配T/S/B/L结构的已训练完整检测器检查点。Small预训练检测权重已在[Releases](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights)提供，先解压再准备微调。Tiny、Base、Large最终权重也均已发布；也可从公开DINOv3骨干开始：
+可使用匹配T/S/B/L结构的已训练完整检测器检查点。Small预训练检测权重已在[Releases](https://github.com/xjn0412/bear-detector/releases/tag/v0.1.0-weights)提供，直接下载.pt文件后准备微调。Tiny、Base、Large最终权重也均已发布；也可从公开DINOv3骨干开始：
 
 ```bash
 python tools/initialize.py --config configs/T.yml --pretrained --output weights/t_initial.pt

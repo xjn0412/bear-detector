@@ -14,12 +14,12 @@
 
 新发布混合包：**FP16主体存储 + 原始FP32解码器**。全量5,000张COCO验证，单尺度640、同一最佳EMA，无额外训练；PT与TRT的AP分别列出。
 
-| 模型 | 输入 | AP50:95（PT / TRT） | 参数 M（完整 / 部署） | GFLOPs | PyTorch AMP ms | TensorRT ms | 混合包 MB |
+| 模型 | 输入 | AP50:95（PT / TRT） | 参数 M（完整 / 部署） | GFLOPs | PyTorch AMP ms | TensorRT ms | 混合.pt MB |
 |---|---:|---:|---:|---:|---:|---:|---|
-| [Bear-T](configs/T.yml) | 640 | 56.4851 / 56.4449 | 52.05 / 51.10 | 132.18 | 12.84 | 2.75 | [115.08](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) |
-| [Bear-S](configs/S.yml) | 640 | 57.8864 / 57.8563 | 73.68 / 72.73 | 201.21 | 16.44 | 3.34 | [155.18](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) |
-| [Bear-B](configs/B.yml) | 640 | 59.0192 / 58.9243 | 112.11 / 111.16 | 310.75 | 15.69 | 3.82 | [226.34](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) |
-| [Bear-L](configs/L.yml) | 640 | 60.0748 / 60.0236 | 221.40 / 220.45 | 622.32 | 15.20 | 4.79 | [428.79](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) |
+| [Bear-T](configs/T.yml) | 640 | 56.4851 / 56.4449 | 52.05 / 51.10 | 132.18 | 12.84 | 2.75 | [124.43](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt) |
+| [Bear-S](configs/S.yml) | 640 | 57.8864 / 57.8563 | 73.68 / 72.73 | 201.21 | 16.44 | 3.34 | [167.75](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt) |
+| [Bear-B](configs/B.yml) | 640 | 59.0192 / 58.9243 | 112.11 / 111.16 | 310.75 | 15.69 | 3.82 | [244.60](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt) |
+| [Bear-L](configs/L.yml) | 640 | 60.0748 / 60.0236 | 221.40 / 220.45 | 622.32 | 15.20 | 4.79 | [463.18](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt) |
 
 延迟为单张RTX5090 GPU7、batch1，100次预热、3×300次CUDA Event、无CUDA Graph，从GPU输入到top300后处理；不含预处理与主机传输，TRT包含设备输入拷贝。挖矿和训练均停止；引擎并行构建结束后才测速。PT使用FP16主体+完整FP32解码器，TRT10.13.3.9同样保护解码器及敏感归一化/归约。
 
@@ -46,19 +46,19 @@ PT精度验证batch8，TRT固定batch1；因此AP差异同时包含后端及batc
 
 ## 模型与下载
 
-混合包作为默认下载，所有尺寸采用同一策略；解压后加载到FP32模型，推理使用AMP并保留整个FP32解码器。**不要调用整个模型的`half()`**。混合包也可用于微调，准备脚本重置类别头并建立FP32参数与全新优化器。
+混合包作为默认下载，所有尺寸采用同一策略；直接加载到FP32模型，推理使用AMP并保留整个FP32解码器。**不要调用整个模型的`half()`**。混合包也可用于微调，准备脚本重置类别头并建立FP32参数与全新优化器。
 
 | 模型 | 参数 | 最佳轮次 | 默认混合包 |
 |---|---:|---:|---|
-| Tiny | 52.05M | 58 | [115.08 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt.gz) |
-| Small | 73.68M | 57 | [155.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt.gz) |
-| Base | 112.11M | 42 | [226.34 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt.gz) |
-| Large | 221.40M | 24 | [428.79 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt.gz) |
+| Tiny | 52.05M | 58 | [124.43 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt) |
+| Small | 73.68M | 57 | [167.75 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt) |
+| Base | 112.11M | 42 | [244.60 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt) |
+| Large | 221.40M | 24 | [463.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt) |
 
 <details>
 <summary>原始FP32 EMA归档（精确复现 / 可选微调起点）</summary>
 
-[Tiny · 193.77 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt.gz) · [Small · 274.17 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt.gz) · [Base · 416.91 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt.gz) · [Large · 822.79 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt.gz)
+[Tiny · 208.86 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt) · [Small · 295.46 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt) · [Base · 449.16 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt) · [Large · 886.32 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt)
 
 保留原始权重用于精确复现；FP16存储舍入无法恢复。它们不包含optimizer/scaler续训状态。
 
