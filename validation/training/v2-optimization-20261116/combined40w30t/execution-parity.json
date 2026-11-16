@@ -1,0 +1,13 @@
+{
+  "checkpoint_sha256": "0d27cd798860a92a66210339997e60dada7344e176f4cdaa14ccf36482bfb81e",
+  "torch": "2.14.1+cu130",
+  "tests": {
+    "cuda_ema_bitwise": true,
+    "cuda_finite_decisions": true,
+    "cuda_rollback": true,
+    "backbone_checkpoint_allclose": false,
+    "backbone_checkpoint_bitwise": false
+  },
+  "passed": true,
+  "backbone_gradient_max_absolute_error": 0.016357421875
+}

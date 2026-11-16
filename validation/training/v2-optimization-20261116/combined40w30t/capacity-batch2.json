@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "config": "/var/lib/sentinelx/bear-v2-coco/optimization/capacity-batch2.yml",
+  "config_sha256": "273c986d39e7f733f2e48b9c68ab33f8bec91ccdd812e95ab48c35d9f484b173",
+  "checkpoint_sha256": "0d27cd798860a92a66210339997e60dada7344e176f4cdaa14ccf36482bfb81e",
+  "gpus": 4,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.14.1+cu130",
+  "micro_batch_per_gpu": 2,
+  "effective_global_batch": 8,
+  "accumulation": 1,
+  "warmup_windows": 20,
+  "measured_windows": 20,
+  "stats": {
+    "loss": 43.64259668588638,
+    "optimizer_updates": 40,
+    "skipped_updates": 0,
+    "micro_batches": 40,
+    "seconds": 44.4542091190815,
+    "final_loss_scale": 16.0,
+    "timed_seconds": 7.672300325008109,
+    "measured_windows": 20,
+    "timed_successful": 20,
+    "timed_skipped": 0,
+    "accumulation": 1,
+    "peak_memory_bytes": 31361544192
+  },
+  "seconds_per_optimizer_window": 0.38361501625040545,
+  "images_per_second": 20.854240999726624,
+  "estimated_training_seconds_per_epoch": 5672.131630278495,
+  "measured_validation_images": 512,
+  "measured_validation_seconds": 7.848301902413368e-05,
+  "estimated_full_val_seconds": 0.0007664357326575555,
+  "estimated_epoch_seconds_excluding_checkpoint": 5672.132396714228,
+  "peak_memory_bytes_max_rank": 31361545216,
+  "selected_precision": {
+    "version": 1,
+    "requested": "auto",
+    "amp_enabled": true,
+    "checked": true,
+    "events": [
+      {
+        "event": "amp_check_passed",
+        "failed_layers": [],
+        "failed_layer_count": 0,
+        "selected": "fp16_amp"
+      },
+      {
+        "event": "amp_check_passed",
+        "failed_layers": [],
+        "failed_layer_count": 0,
+        "selected": "fp16_amp"
+      }
+    ]
+  },
+  "execution_environment": {
+    "BEAR_FAST_RUNTIME": "0",
+    "BEAR_BACKBONE_CHECKPOINT": "1",
+    "BEAR_COMPILE_NECK": "0"
+  },
+  "validation_performed": false,
+  "accuracy_claim": false,
+  "scope": "COCO timing subset with real augmentation/forward/backward/AdamW/EMA; extrapolate118287 train and5000 val images; checkpoint time excluded"
+}

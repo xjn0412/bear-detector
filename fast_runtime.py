@@ -1,6 +1,7 @@
 """Math-preserving launch-overhead optimizations; no model/state-dict changes."""
 from collections import Counter, defaultdict
 import math
+import os
 import torch
 
 
@@ -108,7 +109,8 @@ def install():
     import precision
     import runtime
     from engine.optim.ema import ModelEMA
-    precision.invalid_outputs = invalid_outputs
-    precision.ForwardSnapshot = ForwardSnapshot
-    runtime.scaler_guard = scaler_guard
-    ModelEMA.update = ema_update
+    components=set(os.getenv('BEAR_FAST_COMPONENTS','ema,scaler').split(','))
+    if 'finite' in components:precision.invalid_outputs = invalid_outputs
+    if 'snapshot' in components:precision.ForwardSnapshot = ForwardSnapshot
+    if 'scaler' in components:runtime.scaler_guard = scaler_guard
+    if 'ema' in components:ModelEMA.update = ema_update

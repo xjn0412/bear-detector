@@ -1,0 +1,16 @@
+{
+  "environment": {
+    "BEAR_FAST_RUNTIME": "1",
+    "BEAR_BACKBONE_CHECKPOINT": "1",
+    "BEAR_COMPILE_NECK": "0",
+    "BEAR_FAST_COMPONENTS": "ema,scaler"
+  },
+  "selected": "fast",
+  "baseline_seconds_per_window": 0.34041700813831993,
+  "selected_seconds_per_window": 0.3137712617244688,
+  "speedup": 1.0849209270071696,
+  "preserved_epoch": 1,
+  "global_batch": 8,
+  "micro_batch_per_gpu": 1,
+  "note": "Same architecture/recipe/batch. GPU math gate plus measured throughput; no final AP claim."
+}

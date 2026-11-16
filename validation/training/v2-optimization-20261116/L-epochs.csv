@@ -1,0 +1,2 @@
+epoch,map50_95,map50,best_map50_95,best_epoch,patience_used,training_seconds,training_loss,loss_scale,gpus,effective_global_batch,validation_seconds,optimizer_updates,skipped_updates,elapsed_before_checkpoint_seconds
+1,49.321867047265364,66.12904545384411,49.321867047265364,1,0,5337.001217777957,46.03925229071912,16.0,8,8,62.758217373047955,14773,13,5399.834976724

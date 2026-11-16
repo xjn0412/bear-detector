@@ -1,6 +1,6 @@
 # V2 COCO training and GPU scaling
 
-[Execution optimization status and acceptance gates](V2_TRAINING_OPTIMIZATION.md): CPU checks passed; automatic GPU testing is staged after L's first complete epoch checkpoint. No optimization speedup is claimed yet.
+[Execution optimization results and acceptance gates](V2_TRAINING_OPTIMIZATION.md): selected runtime profile measured +8.49% throughput over80 timed windows; full-epoch speed and subsequent AP remain pending. L epoch1 EMA AP50:95=49.32%, AP50=66.13%.
 
 COCO training launched2026-11-16 in the requested **L → B → S → T** sequence. Each selected run uses8 RTX5090 GPUs, input640, micro-batch1/GPU and effective global batch8. Each model has an independent fresh detector initialized with its corresponding DINOv3 ConvNeXt backbone. Timing updates are discarded before formal training.
 

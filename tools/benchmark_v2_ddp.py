@@ -92,7 +92,7 @@ def main():
                       estimated_epoch_seconds_excluding_checkpoint=epoch_train_seconds+estimated_full_val_seconds,
                       peak_memory_bytes_max_rank=int(local[2]),
                       selected_precision=cfg.model._bear_precision.state_dict(),
-                      execution_environment={k:os.getenv(k,'') for k in ['BEAR_FAST_RUNTIME','BEAR_BACKBONE_CHECKPOINT','BEAR_COMPILE_NECK']},
+                      execution_environment={k:os.getenv(k,'') for k in ['BEAR_FAST_RUNTIME','BEAR_BACKBONE_CHECKPOINT','BEAR_COMPILE_NECK','BEAR_FAST_COMPONENTS']},
                       validation_performed=not a.skip_validation, accuracy_claim=False, scope='COCO timing subset with real augmentation/forward/backward/AdamW/EMA; extrapolate118287 train and5000 val images; checkpoint time excluded')
         if stats['timed_skipped']:
             report['passed'] = False

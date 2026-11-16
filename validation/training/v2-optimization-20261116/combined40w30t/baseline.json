@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "config": "/var/lib/sentinelx/bear-v2-coco/configs/L-g8.yml",
+  "config_sha256": "34ebadb54c6773bf05e3cdf4350206ce5aaf39cfe13c8cbb6a137c8a0f656632",
+  "checkpoint_sha256": "0d27cd798860a92a66210339997e60dada7344e176f4cdaa14ccf36482bfb81e",
+  "gpus": 8,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.14.1+cu130",
+  "micro_batch_per_gpu": 1,
+  "effective_global_batch": 8,
+  "accumulation": 1,
+  "warmup_windows": 40,
+  "measured_windows": 30,
+  "stats": {
+    "loss": 40.10385680124163,
+    "optimizer_updates": 70,
+    "skipped_updates": 0,
+    "micro_batches": 70,
+    "seconds": 41.7029906490352,
+    "final_loss_scale": 16.0,
+    "timed_seconds": 8.500768993981183,
+    "measured_windows": 30,
+    "timed_successful": 30,
+    "timed_skipped": 0,
+    "accumulation": 1,
+    "peak_memory_bytes": 32369704960
+  },
+  "seconds_per_optimizer_window": 0.28336276923073456,
+  "images_per_second": 28.23236101806239,
+  "estimated_training_seconds_per_epoch": 4189.801905845641,
+  "measured_validation_images": 512,
+  "measured_validation_seconds": 0.00012761796824634075,
+  "estimated_full_val_seconds": 0.0012462692211556714,
+  "estimated_epoch_seconds_excluding_checkpoint": 4189.803152114862,
+  "peak_memory_bytes_max_rank": 32369708032,
+  "selected_precision": {
+    "version": 1,
+    "requested": "auto",
+    "amp_enabled": true,
+    "checked": true,
+    "events": [
+      {
+        "event": "amp_check_passed",
+        "failed_layers": [],
+        "failed_layer_count": 0,
+        "selected": "fp16_amp"
+      },
+      {
+        "event": "amp_check_passed",
+        "failed_layers": [],
+        "failed_layer_count": 0,
+        "selected": "fp16_amp"
+      }
+    ]
+  },
+  "execution_environment": {
+    "BEAR_FAST_RUNTIME": "0",
+    "BEAR_BACKBONE_CHECKPOINT": "1",
+    "BEAR_COMPILE_NECK": "0"
+  },
+  "validation_performed": false,
+  "accuracy_claim": false,
+  "scope": "COCO timing subset with real augmentation/forward/backward/AdamW/EMA; extrapolate118287 train and5000 val images; checkpoint time excluded"
+}

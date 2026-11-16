@@ -33,7 +33,14 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--workdir',required=True)
     p.add_argument('--target-epoch',type=int,default=1)
+    p.add_argument('--resume-experiment',action='store_true',help='Continue from a preserved checkpoint only when the old queue and experiment have exited')
+    p.add_argument('--test-compile',action='store_true',help='Run experimental compilation parity; not eligible for deployment')
+    p.add_argument('--warmup',type=int,default=40)
+    p.add_argument('--steps',type=int,default=30)
+    p.add_argument('--fast-components',default='ema,scaler')
+    p.add_argument('--skip-capacity',action='store_true')
     a=p.parse_args()
+    os.environ['BEAR_FAST_COMPONENTS']=a.fast_components
     root=Path(__file__).resolve().parents[1];work=Path(a.workdir).resolve()
     output=work/'optimization';output.mkdir(exist_ok=True)
     def status(phase,**details):
@@ -85,16 +92,25 @@ def main():
     preserved_epoch=metadata['last_epoch']+1
     del metadata
     supervisor=int((work/'sequence.pid').read_text())
-    owner=psutil.Process(supervisor)
-    if owner.uids().real!=os.getuid() or 'run_v2_coco_sequence.py' not in ' '.join(owner.cmdline()) or os.getpgid(supervisor)!=supervisor:
-        raise RuntimeError('Supervisor identity/group validation failed; no process stopped')
+    if a.resume_experiment:
+        previous=[supervisor]
+        active=output/'active-experiment.pid'
+        if active.exists():previous.append(int(active.read_text()))
+        for pid in previous:
+            if psutil.pid_exists(pid) and wait_until_exited([psutil.Process(pid)],0):
+                raise RuntimeError('Previous queue/experiment is active; refusing concurrent GPU work')
+        jobs=[]
+    else:
+        owner=psutil.Process(supervisor)
+        if owner.uids().real!=os.getuid() or 'run_v2_coco_sequence.py' not in ' '.join(owner.cmdline()) or os.getpgid(supervisor)!=supervisor:
+            raise RuntimeError('Supervisor identity/group validation failed; no process stopped')
+        jobs=[owner,*owner.children(recursive=True)]
     status('checkpoint_preserved',epoch=preserved_epoch,checkpoint=str(checkpoint))
-    jobs=[owner,*owner.children(recursive=True)]
     resumed=False
     try:
         # Recovery covers termination and waiting too, not only experiments.
         # Poll status because pidfd_open can fail with EINVAL in containers.
-        os.killpg(supervisor,signal.SIGTERM)
+        if jobs:os.killpg(supervisor,signal.SIGTERM)
         alive=wait_until_exited(jobs,20)
         for process in alive:
             try:
@@ -105,9 +121,10 @@ def main():
         env=dict(os.environ,CUDA_VISIBLE_DEVICES='0',OMP_NUM_THREADS='4',
                  TORCHINDUCTOR_COMPILE_THREADS='1',BEAR_FAST_RUNTIME='0',BEAR_COMPILE_NECK='0')
         parity_path=output/'execution-parity.json'
+        parity_path.unlink(missing_ok=True)
         status('validating_gpu_math',epoch=preserved_epoch)
         run([sys.executable,str(root/'tools/verify_execution_parity.py'),'--config',str(work/'configs/L-g8-full.yml'),
-             '--checkpoint',str(checkpoint),'--output',str(parity_path),'--compile'],'parity',env,600)
+             '--checkpoint',str(checkpoint),'--output',str(parity_path)]+(['--compile'] if a.test_compile else []),'parity',env,600)
         parity=json.loads(parity_path.read_text()) if parity_path.exists() else {}
         eligible=parity.get('passed',False)
         modes=[('baseline',{'BEAR_FAST_RUNTIME':'0','BEAR_BACKBONE_CHECKPOINT':'1','BEAR_COMPILE_NECK':'0'})]
@@ -117,6 +134,8 @@ def main():
                 modes.append(('fast_no_recompute',{'BEAR_FAST_RUNTIME':'1','BEAR_BACKBONE_CHECKPOINT':'0','BEAR_COMPILE_NECK':'0'}))
             if parity.get('compile_deployable'):
                 modes.append(('fast_compiled',{'BEAR_FAST_RUNTIME':'1','BEAR_BACKBONE_CHECKPOINT':'1','BEAR_COMPILE_NECK':'1'}))
+        for label,settings in modes:
+            if settings['BEAR_FAST_RUNTIME']=='1':settings['BEAR_FAST_COMPONENTS']=a.fast_components
         results=[]
         for label,settings in modes:
             status('benchmarking_execution',candidate=label,epoch=preserved_epoch)
@@ -125,7 +144,7 @@ def main():
             command=[sys.executable,'-m','torch.distributed.run','--standalone','--nproc_per_node=8',
                 str(root/'tools/benchmark_v2_ddp.py'),'--config',str(work/'configs/L-g8.yml'),
                 '--checkpoint',str(checkpoint),'--output',str(report_path),'--accumulate','1',
-                '--warmup','40','--steps','30','--restore-training-state','--skip-validation']
+                '--warmup',str(a.warmup),'--steps',str(a.steps),'--restore-training-state','--skip-validation']
             succeeded=run(command,label,process_env,600)
             if succeeded and report_path.exists():
                 result=json.loads(report_path.read_text())
@@ -145,16 +164,17 @@ def main():
         (work/'execution-profile.json').write_text(json.dumps(profile,indent=2))
         # A capacity test is recorded separately; changing micro-batch changes
         # BatchNorm behavior and is deliberately ineligible for automatic use.
-        capacity=yaml.safe_load((work/'configs/L-g4.yml').read_text())
-        capacity['train_dataloader']['total_batch_size']=8
-        capacity_path=output/'capacity-batch2.yml'
-        capacity_path.write_text(yaml.safe_dump(capacity,sort_keys=False))
-        status('measuring_capacity_only',selected=best[1])
-        run([sys.executable,'-m','torch.distributed.run','--standalone','--nproc_per_node=4',
-             str(root/'tools/benchmark_v2_ddp.py'),'--config',str(capacity_path),
-             '--checkpoint',str(checkpoint),'--output',str(output/'capacity-batch2.json'),
-             '--accumulate','1','--warmup','20','--steps','20','--restore-training-state','--skip-validation'],
-             'capacity-batch2',dict(env,CUDA_VISIBLE_DEVICES='0,1,2,3',**best[2]),300)
+        if not a.skip_capacity:
+            capacity=yaml.safe_load((work/'configs/L-g4.yml').read_text())
+            capacity['train_dataloader']['total_batch_size']=8
+            capacity_path=output/'capacity-batch2.yml'
+            capacity_path.write_text(yaml.safe_dump(capacity,sort_keys=False))
+            status('measuring_capacity_only',selected=best[1])
+            run([sys.executable,'-m','torch.distributed.run','--standalone','--nproc_per_node=4',
+                 str(root/'tools/benchmark_v2_ddp.py'),'--config',str(capacity_path),
+                 '--checkpoint',str(checkpoint),'--output',str(output/'capacity-batch2.json'),
+                 '--accumulate','1','--warmup','20','--steps','20','--restore-training-state','--skip-validation'],
+                 'capacity-batch2',dict(env,CUDA_VISIBLE_DEVICES='0,1,2,3',**best[2]),300)
         pid=launch_queue();resumed=True
         status('resumed_optimized_training',supervisor_pid=pid,profile=profile)
     finally:
