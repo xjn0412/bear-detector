@@ -1,6 +1,6 @@
 # 🐻 Bear Detector · 熊熊检测器
 
-[English](README.md) | [简体中文](README.zh-CN.md) · [文档](docs/README.md) · [权重](https://github.com/xjn0412/bear-detector/releases) · [Docker](docs/getting-started/DOCKER.zh-CN.md)
+[English](README.md) | [简体中文](README.zh-CN.md) · [文档](docs/README.md) · [权重](https://github.com/xjn0412/bear-detector/releases) · [Docker](docs/getting-started/DOCKER.zh-CN.md) · [微调](#微调)
 
 **有一点重，就像熊一样。** 作者喜欢熊，而检测器也确实有点“大块头”，于是有了这个名字。它是通用多类别检测器，并不只检测熊。
 
@@ -25,9 +25,13 @@
 
 PT精度验证batch8，TRT固定batch1；因此AP差异同时包含后端及batch数值影响。两项门限均为最多下降0.1 AP点。FLOPs沿用明确范围的算术计数，1 MAC=2 FLOPs，不等同延迟。[完整结果与复现](docs/benchmarks/DEPLOYMENT5090.zh-CN.md) · [FLOPs口径](docs/benchmarks/COMPLEXITY.zh-CN.md)。
 
-## 工业缺陷微调基准
+## 微调
 
-**验证与独立测试集 AP50:95（%）· 640输入 · 八组训练全部完成。**
+使用[微调指南](docs/guides/FINETUNE.zh-CN.md)或[Docker快速开始](docs/getting-started/DOCKER.zh-CN.md)，将Bear预训练权重适配到自己的数据集。
+
+**640输入，AP50:95（%）。** 验证集选择权重，测试分数来自独立测试集。
+
+### 工业缺陷微调基准
 
 | 数据集 | Bear-L 验证 | YOLO26x 验证 | Bear-L 测试 | YOLO26x 测试 |
 |---|---:|---:|---:|---:|
@@ -36,11 +40,36 @@ PT精度验证batch8，TRT固定batch1；因此AP差异同时包含后端及batc
 | NEU-DET | **51.09** | 49.53 | **49.65** | 45.91 |
 | KSDD2 · 掩码转检测框 | **39.20** | 26.82 | **36.69** | 11.07 |
 
-**验证：** 记录中最高的原生验证mAP。**测试：** 对应最佳验证权重在独立测试集上的mAP。共享图像与划分；seed42、batch8、最多100轮、patience20。模型大小、预训练与配方不同。
+验证 = 记录中最高的原生验证mAP；测试 = 对应权重的独立测试结果。**历史Bear验证存在标注ID0局限，统一修正后的FP32测试分数更适合直接比较。**
 
-验证采用各框架原生评估器，历史Bear验证及权重选择保留标注ID0的已知局限；测试采用统一修正后的FP32 COCO评估器，测试列更适合直接比较。CR7/GC10/NEU使用内部划分；KSDD2为掩码转检测框任务。
+[完整报告](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [每轮mAP](validation/benchmarks/industrial-20261116/epoch-progress.md) · [下载CSV](validation/benchmarks/industrial-20261116/all-epochs.csv)
 
-[方法、最佳轮次与结果](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [每轮mAP](validation/benchmarks/industrial-20261116/epoch-progress.md) · [AP50/AP50:95 CSV](validation/benchmarks/industrial-20261116/all-epochs.csv) · [核验说明](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT实测](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
+### 通用数据集微调
+
+以下为独立测试结果，各列标明训练预算。
+
+| 数据集 | Bear-B · 50轮 | Bear-L · 50轮 | YOLO26x共享配方 · 50轮 | YOLO26x默认配方 · ≤100轮 |
+|---|---:|---:|---:|---:|
+| African Wildlife | 91.35 | **91.54** | 83.87 | 82.09 |
+| Aquarium | 55.49 | **58.44** | 52.53 | 54.63 |
+| VOC2007 · 全标注 | 75.46 | **76.30** | 66.25 | 57.27† |
+
+† VOC采用全标注COCO AP，不是官方VOC AP；默认YOLO按patience20在第21轮停止。
+
+[Bear-B/L报告](docs/benchmarks/BEAR_L_TRANSFER.zh-CN.md) · [YOLO报告与曲线](docs/benchmarks/YOLO_LONG_BUDGET.zh-CN.md)
+
+<details>
+<summary>训练条件、结果局限与原始资料</summary>
+
+**工业数据集：** 八组训练全部完成；共享图像与划分，seed42、batch8、最多100轮、patience20。模型大小、预训练与配方不同。CR7/GC10/NEU使用内部划分；KSDD2由分割掩码生成检测框。验证使用不同的原生评估器；历史Bear验证及权重选择保留标注ID0局限。最终测试统一使用修正后的FP32 COCO评估器。
+
+[工业方法与最佳轮次](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [发布数据审计](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT复验](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
+
+**通用数据集：** 只使用一个种子，模型大小、预训练和原生优化不同。Bear-B/L和共享配方YOLO训练50轮；默认配方YOLO最多100轮。这是整套迁移系统的比较，并非仅替换网络结构的消融实验。
+
+[数据与配方](docs/benchmarks/MULTIDATA_TRANSFER.zh-CN.md) · [Wildlife详情](docs/benchmarks/WILDLIFE_TRANSFER.zh-CN.md) · [Wildlife权重](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)
+
+</details>
 
 ## 仅COCO检测训练的比较
 
@@ -55,20 +84,6 @@ Bear-B/L达到59.02/60.07AP；对应参照是D-FINE-X的**仅COCO55.8**、RT-DET
 **已加入指定基线：** 最新RT-DETRv4-X为57.0AP；YOLO26-x为57.5AP，采用Objects365→COCO训练（虚线）。RT-DETRv4使用仅训练时的DINOv3教师；YOLO26额外数据结果与仅COCO主图保持区分。
 
 [仅COCO表格、训练条件审计与分析](docs/benchmarks/COMPARISON.zh-CN.md) · [单独标注的额外数据/排行榜背景](docs/benchmarks/COMPARISON_EXTRA_DATA.zh-CN.md)。YOLO26已在指定基线图中展示并标注额外数据；Objects365版本和未核验预览仍不进入仅COCO主分组。组织方式参考[Ultralytics](https://github.com/ultralytics/ultralytics)。
-
-## 微调比较
-
-独立测试集 **COCO AP50:95（%）**，固定640输入；仅按验证集选择权重。
-
-| 数据集 | Bear-B · 50轮 | Bear-L · 50轮 | YOLO26x共享配方 · 50轮 | YOLO26x默认配方 · ≤100轮 |
-|---|---:|---:|---:|---:|
-| African Wildlife | 91.35 | **91.54** | 83.87 | 82.09 |
-| Aquarium | 55.49 | **58.44** | 52.53 | 54.63 |
-| VOC2007 · 全标注 | 75.46 | **76.30** | 66.25 | 57.27† |
-
-† VOC默认配方按patience20在第21轮提前停止。只使用一个种子，模型大小、预训练和优化实现不同；VOC采用全标注COCO AP，不是官方VOC AP。
-
-[Bear-B/L结果](docs/benchmarks/BEAR_L_TRANSFER.zh-CN.md) · [YOLO50/100轮结果与曲线](docs/benchmarks/YOLO_LONG_BUDGET.zh-CN.md) · [数据与训练配方](docs/benchmarks/MULTIDATA_TRANSFER.zh-CN.md) · [Wildlife权重](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)
 
 ## 模型与下载
 

@@ -1,6 +1,6 @@
 # 🐻 Bear Detector
 
-[English](README.md) | [简体中文](README.zh-CN.md) · [Documentation](docs/README.md) · [Weights](https://github.com/xjn0412/bear-detector/releases) · [Docker](docs/getting-started/DOCKER.md)
+[English](README.md) | [简体中文](README.zh-CN.md) · [Documentation](docs/README.md) · [Weights](https://github.com/xjn0412/bear-detector/releases) · [Docker](docs/getting-started/DOCKER.md) · [Fine-tuning](#fine-tuning)
 
 **A little heavy, just like a bear.** A general object detector named for the author’s love of bears and the model’s substantial size.
 
@@ -25,9 +25,13 @@ Latency: one RTX5090 GPU7, batch1,100 warmups,3×300 CUDA-event iterations, no C
 
 PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend and batch-dependent numerics. Each acceptance gate permits at most0.1 AP-point loss. GFLOPs use the documented arithmetic scope,2 FLOPs/MAC, and do not predict latency. [Full results and reproduction](docs/benchmarks/DEPLOYMENT5090.md) · [FLOPs scope](docs/benchmarks/COMPLEXITY.md).
 
-## Industrial defect fine-tuning
+## Fine-tuning
 
-**Validation and held-out test AP50:95 (%) · 640 input · all eight runs complete.**
+Adapt pretrained Bear weights to your dataset with the [fine-tuning guide](docs/guides/FINETUNE.md) or [Docker quick start](docs/getting-started/DOCKER.md).
+
+**AP50:95 (%) at640.** Validation selects the checkpoint; test scores use held-out images.
+
+### Industrial defect fine-tuning
 
 | Dataset | Bear-L val | YOLO26x val | Bear-L test | YOLO26x test |
 |---|---:|---:|---:|---:|
@@ -36,11 +40,36 @@ PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend 
 | NEU-DET | **51.09** | 49.53 | **49.65** | 45.91 |
 | KSDD2 · derived boxes | **39.20** | 26.82 | **36.69** | 11.07 |
 
-**Val:** highest recorded native validation mAP. **Test:** held-out test mAP from that selected checkpoint. Shared images/splits; seed42, batch8, up to100 epochs, patience20. Model sizes, pretraining and recipes differ.
+Val = best recorded native validation mAP; test = the selected checkpoint’s held-out score. **Historical Bear validation has an annotation-ID0 limitation; corrected shared FP32 test scores are the stronger direct comparison.**
 
-Validation uses each framework’s native evaluator; historical Bear validation and checkpoint selection retain the annotation-ID0 limitation. Test scores use the shared, corrected FP32 COCO evaluator and provide the stronger direct comparison. CR7/GC10/NEU use internal splits; KSDD2 is a derived detection task.
+[Full report](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [Every epoch](validation/benchmarks/industrial-20261116/epoch-progress.md) · [Download CSV](validation/benchmarks/industrial-20261116/all-epochs.csv)
 
-[Protocol, selected epochs & results](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [Every epoch](validation/benchmarks/industrial-20261116/epoch-progress.md) · [AP50/AP50:95 CSV](validation/benchmarks/industrial-20261116/all-epochs.csv) · [Verification](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT validation](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
+### General dataset fine-tuning
+
+Held-out test results; column headings specify each training budget.
+
+| Dataset | Bear-B · 50ep | Bear-L · 50ep | YOLO26x shared · 50ep | YOLO26x default · ≤100ep |
+|---|---:|---:|---:|---:|
+| African Wildlife | 91.35 | **91.54** | 83.87 | 82.09 |
+| Aquarium | 55.49 | **58.44** | 52.53 | 54.63 |
+| VOC2007 · all boxes | 75.46 | **76.30** | 66.25 | 57.27† |
+
+† VOC uses all-box COCO AP, not official VOC AP. Its default YOLO run stopped at21 epochs (patience20).
+
+[Bear-B/L report](docs/benchmarks/BEAR_L_TRANSFER.md) · [YOLO reports & curves](docs/benchmarks/YOLO_LONG_BUDGET.md)
+
+<details>
+<summary>Protocols, limitations and supporting data</summary>
+
+**Industrial:** all eight runs complete; shared images/splits, seed42, batch8, up to100 epochs and patience20. Model sizes, pretraining and recipes differ. CR7/GC10/NEU use internal splits; KSDD2 boxes are derived from segmentation masks. Native validation evaluators differ; historical Bear validation and checkpoint selection retain the annotation-ID0 limitation. Final test scores use the shared, corrected FP32 COCO evaluator.
+
+[Industrial protocol & selected epochs](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [Publication audit](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT revalidation](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
+
+**General datasets:** one seed; model sizes, pretraining and native optimization differ. Bear-B/L and shared-recipe YOLO use50 epochs; default-recipe YOLO uses up to100 epochs. These are transfer-system comparisons, not architecture-only ablations.
+
+[Data & recipes](docs/benchmarks/MULTIDATA_TRANSFER.md) · [Wildlife details](docs/benchmarks/WILDLIFE_TRANSFER.md) · [Wildlife weights](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)
+
+</details>
 
 ## COCO-only detection-training comparison
 
@@ -55,20 +84,6 @@ Bear-B/L reach59.02/60.07AP, versus D-FINE-X's **COCO-trained55.8**, RT-DETRv4-X
 **Requested baselines are included:** latest RT-DETRv4-X reports57.0AP; YOLO26-x reports57.5AP with Objects365→COCO training (dashed curve). RT-DETRv4 uses a training-only DINOv3 teacher. YOLO26's extra-data result remains separate from the COCO-only primary graph.
 
 [COCO-only tables, training-regime audit and analysis](docs/benchmarks/COMPARISON.md) · [Extra-data/leaderboard context, separately labeled](docs/benchmarks/COMPARISON_EXTRA_DATA.md). YOLO26 is visible in the requested-baseline graph with its extra-data label; Objects365 variants and unverified previews stay outside the COCO-only cohort. Presentation references[Ultralytics](https://github.com/ultralytics/ultralytics).
-
-## Fine-tuning comparison
-
-Held-out test **COCO AP50:95 (%)**, fixed640 input; validation selects each checkpoint.
-
-| Dataset | Bear-B · 50ep | Bear-L · 50ep | YOLO26x shared · 50ep | YOLO26x default · ≤100ep |
-|---|---:|---:|---:|---:|
-| African Wildlife | 91.35 | **91.54** | 83.87 | 82.09 |
-| Aquarium | 55.49 | **58.44** | 52.53 | 54.63 |
-| VOC2007 · all boxes | 75.46 | **76.30** | 66.25 | 57.27† |
-
-† VOC's default run early-stopped at21 epochs (patience20). One seed; model sizes, pretraining and native optimization differ. VOC uses all-box COCO AP, not official VOC AP.
-
-[Bear-B/L results](docs/benchmarks/BEAR_L_TRANSFER.md) · [YOLO50/100 results and curves](docs/benchmarks/YOLO_LONG_BUDGET.md) · [Data and recipes](docs/benchmarks/MULTIDATA_TRANSFER.md) · [Wildlife weights](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)
 
 ## Models and downloads
 
