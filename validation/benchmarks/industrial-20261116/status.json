@@ -1,10 +1,10 @@
 {
-  "updated": 1794814578.3317535,
+  "updated": 1794818326.0486267,
   "jobs": {
     "cr7/bear_l": {
       "pid": 2938,
       "gpu": 0,
-      "status": "running",
+      "status": "complete",
       "started": 1794812341.114664,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -15,12 +15,14 @@
         "cr7",
         "--model",
         "bear_l"
-      ]
+      ],
+      "returncode": 0,
+      "finished": 1794816184.8763516
     },
     "cr7/yolo26x": {
       "pid": 2939,
       "gpu": 1,
-      "status": "running",
+      "status": "complete",
       "started": 1794812341.1158385,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -31,7 +33,9 @@
         "cr7",
         "--model",
         "yolo26x"
-      ]
+      ],
+      "returncode": 0,
+      "finished": 1794815764.615757
     },
     "neu-det/bear_l": {
       "pid": 2940,
@@ -70,9 +74,9 @@
       "finished": 1794814141.9690664
     },
     "ksdd2/bear_l": {
-      "pid": 35233,
+      "pid": 248974,
       "gpu": 6,
-      "status": "failed",
+      "status": "running",
       "started": 1794812911.3747172,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -82,15 +86,15 @@
         "--dataset",
         "ksdd2",
         "--model",
-        "bear_l"
+        "bear_l",
+        "--resume"
       ],
-      "returncode": 1,
-      "finished": 1794814292.055556
+      "recovered": 1794816854.929076
     },
     "ksdd2/yolo26x": {
       "pid": 35234,
       "gpu": 7,
-      "status": "running",
+      "status": "complete",
       "started": 1794812911.3764384,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -101,12 +105,14 @@
         "ksdd2",
         "--model",
         "yolo26x"
-      ]
+      ],
+      "returncode": 0,
+      "finished": 1794815568.8941038
     },
     "gc10/bear_l": {
       "pid": 142272,
       "gpu": 2,
-      "status": "running",
+      "status": "complete",
       "started": 1794814398.2271564,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -117,12 +123,14 @@
         "gc10",
         "--model",
         "bear_l"
-      ]
+      ],
+      "returncode": 0,
+      "finished": 1794816695.1799014
     },
     "gc10/yolo26x": {
       "pid": 142273,
       "gpu": 3,
-      "status": "running",
+      "status": "complete",
       "started": 1794814398.228477,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -133,32 +141,173 @@
         "gc10",
         "--model",
         "yolo26x"
-      ]
+      ],
+      "returncode": 0,
+      "finished": 1794816334.9507036
     }
   },
   "results": {
     "cr7": {
       "bear_l": {
-        "status": "running",
-        "completed_epochs": 15,
-        "best_val_AP": 59.56057734868444
+        "status": "complete",
+        "completed_epochs": 26,
+        "best_val_AP": 59.56057734868444,
+        "dataset": "cr7",
+        "model": "bear_l",
+        "selected_epoch": 6,
+        "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/cr7/bear_l/prepared/training/best_stg1.pth",
+        "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+        "finished": 1794816163.858246,
+        "report": {
+          "backend": "torch-fp32",
+          "images": 410,
+          "full_coco_val2017": false,
+          "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+          "annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82",
+          "predictions_sha256": "f1e5adb55aa08eb83648c9b3796c57015e004df430774468d1640d61a46ea9a8",
+          "batch_size": 4,
+          "input": 640,
+          "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+          "finite_outputs": true,
+          "elapsed_seconds": 22.4790997505188,
+          "AP": 58.31814454949426,
+          "AP50": 88.74565476416677,
+          "AP75": 59.941077476083215,
+          "AP_small": 35.78609733050039,
+          "AP_medium": 58.97452032837456,
+          "AP_large": 62.62163038130715,
+          "precision": "FP32"
+        }
       },
       "yolo26x": {
-        "status": "running",
-        "completed_epochs": 54,
-        "best_val_AP": 54.324
+        "status": "complete",
+        "completed_epochs": 83,
+        "best_val_AP": 54.996,
+        "dataset": "cr7",
+        "model": "yolo26x",
+        "selected_epoch": 63,
+        "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/cr7/yolo26x/training/weights/best.pt",
+        "checkpoint_sha256": "36ec831570d3a852fedbd67073b077bf01aa6a0b9d2bd57c870d9a8b2d874bdd",
+        "finished": 1794815745.1138942,
+        "report": {
+          "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/cr7/yolo26x/training/weights/best.pt",
+          "checkpoint_sha256": "36ec831570d3a852fedbd67073b077bf01aa6a0b9d2bd57c870d9a8b2d874bdd",
+          "annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82",
+          "AP": 51.58664175438534,
+          "AP50": 83.67684069314495,
+          "AP75": 50.84829341633643,
+          "AP_small": 32.40638447057051,
+          "AP_medium": 50.77224826891113,
+          "AP_large": 51.763445939812335,
+          "per_class_AP": {
+            "inclusion": 38.37992028758608,
+            "dents": 73.6938419822176,
+            "oil_spots": 56.20916952130436,
+            "pits": 26.08462424642696,
+            "punching": 81.85882073169563,
+            "linear": 33.03158820053093,
+            "macular": 51.8485273109358
+          },
+          "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
+          "num_images": 410,
+          "num_predictions": 107055,
+          "parameters_before_fusion": 58824738,
+          "settings": {
+            "imgsz": 640,
+            "conf": 1e-05,
+            "iou": 0.7,
+            "max_det": 300,
+            "half": false,
+            "augment": false,
+            "nms": null,
+            "end2end": false
+          },
+          "ultralytics_version": "8.4.215",
+          "torch_version": "2.14.1+cu130"
+        }
       }
     },
     "gc10": {
       "bear_l": {
-        "status": "running",
-        "completed_epochs": 1,
-        "best_val_AP": 0.5607644737374342
+        "status": "complete",
+        "completed_epochs": 26,
+        "best_val_AP": 38.67026696154478,
+        "dataset": "gc10",
+        "model": "bear_l",
+        "selected_epoch": 6,
+        "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/gc10/bear_l/prepared/training/best_stg1.pth",
+        "checkpoint_sha256": "b6fb2344692292a2b72a8a8ae2bcc5a627c87186cf16d4bbe2ebf52510841e19",
+        "finished": 1794816674.1681988,
+        "report": {
+          "backend": "torch-fp32",
+          "images": 230,
+          "full_coco_val2017": false,
+          "checkpoint_sha256": "b6fb2344692292a2b72a8a8ae2bcc5a627c87186cf16d4bbe2ebf52510841e19",
+          "annotations_sha256": "e2a0d1104112872d05a3bd9d900b6004f4a92d78d7aafa4715ec41fc41e1b360",
+          "predictions_sha256": "82ab562a82e0fa06bd1b23e19d36caa5fda8a270bb62d99078426ea9d7c1ef54",
+          "batch_size": 4,
+          "input": 640,
+          "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+          "finite_outputs": true,
+          "elapsed_seconds": 12.763694763183594,
+          "AP": 41.63846578088103,
+          "AP50": 72.97584840330823,
+          "AP75": 43.78021706869595,
+          "AP_small": 19.689692279885836,
+          "AP_medium": 39.73555142564884,
+          "AP_large": 47.371596807849,
+          "precision": "FP32"
+        }
       },
       "yolo26x": {
-        "status": "running",
-        "completed_epochs": 6,
-        "best_val_AP": 14.41
+        "status": "complete",
+        "completed_epochs": 85,
+        "best_val_AP": 31.439,
+        "dataset": "gc10",
+        "model": "yolo26x",
+        "selected_epoch": 65,
+        "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/gc10/yolo26x/training/weights/best.pt",
+        "checkpoint_sha256": "51b76023f261e62ba909353b5c56e8eff79448d0d0b090438f69856b500500e3",
+        "finished": 1794816322.48497,
+        "report": {
+          "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/gc10/yolo26x/training/weights/best.pt",
+          "checkpoint_sha256": "51b76023f261e62ba909353b5c56e8eff79448d0d0b090438f69856b500500e3",
+          "annotations_sha256": "e2a0d1104112872d05a3bd9d900b6004f4a92d78d7aafa4715ec41fc41e1b360",
+          "AP": 30.967125227318785,
+          "AP50": 64.74899514478545,
+          "AP75": 25.591244566634114,
+          "AP_small": 15.368510254899956,
+          "AP_medium": 32.48972054413433,
+          "AP_large": 33.42577625637592,
+          "per_class_AP": {
+            "10_yaozhe": 24.786670417188127,
+            "1_chongkong": 57.92521699806138,
+            "2_hanfeng": 31.80228770854443,
+            "3_yueyawan": 50.66727741261413,
+            "4_shuiban": 41.036624106613864,
+            "5_youban": 35.149119123793035,
+            "6_siban": 20.313105155435036,
+            "7_yiwu": 8.624716761356222,
+            "8_yahen": 21.25616760401764,
+            "9_zhehen": 18.110066985563964
+          },
+          "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
+          "num_images": 230,
+          "num_predictions": 66244,
+          "parameters_before_fusion": 58831668,
+          "settings": {
+            "imgsz": 640,
+            "conf": 1e-05,
+            "iou": 0.7,
+            "max_det": 300,
+            "half": false,
+            "augment": false,
+            "nms": null,
+            "end2end": false
+          },
+          "ultralytics_version": "8.4.215",
+          "torch_version": "2.14.1+cu130"
+        }
       }
     },
     "neu-det": {
@@ -242,14 +391,50 @@
     },
     "ksdd2": {
       "bear_l": {
-        "status": "failed",
-        "completed_epochs": 14,
-        "best_val_AP": 33.50530332249787
+        "status": "running",
+        "completed_epochs": 26,
+        "best_val_AP": 39.200894256286
       },
       "yolo26x": {
-        "status": "running",
-        "completed_epochs": 63,
-        "best_val_AP": 24.483
+        "status": "complete",
+        "completed_epochs": 100,
+        "best_val_AP": 26.815,
+        "dataset": "ksdd2",
+        "model": "yolo26x",
+        "selected_epoch": 84,
+        "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/ksdd2/yolo26x/training/weights/best.pt",
+        "checkpoint_sha256": "29ba3fbc0440ed367273982451f19e59be79a7042cb8f6ff6904e462f8c9cbff",
+        "finished": 1794815546.1775117,
+        "report": {
+          "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/ksdd2/yolo26x/training/weights/best.pt",
+          "checkpoint_sha256": "29ba3fbc0440ed367273982451f19e59be79a7042cb8f6ff6904e462f8c9cbff",
+          "annotations_sha256": "6aa4e56c2fa7c29cfb831d604a9f770c590596da32ebc73ec1c479df2018f688",
+          "AP": 10.983664175489109,
+          "AP50": 30.377369942255516,
+          "AP75": 5.615416986956595,
+          "AP_small": 0.6280930808793482,
+          "AP_medium": 13.096365558897578,
+          "AP_large": 11.06316048307411,
+          "per_class_AP": {
+            "defect": 10.983664175489109
+          },
+          "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
+          "num_images": 1004,
+          "num_predictions": 154329,
+          "parameters_before_fusion": 58810878,
+          "settings": {
+            "imgsz": 640,
+            "conf": 1e-05,
+            "iou": 0.7,
+            "max_det": 300,
+            "half": false,
+            "augment": false,
+            "nms": null,
+            "end2end": false
+          },
+          "ultralytics_version": "8.4.215",
+          "torch_version": "2.14.1+cu130"
+        }
       }
     }
   }

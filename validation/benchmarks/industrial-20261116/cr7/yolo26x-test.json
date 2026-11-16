@@ -1,0 +1,36 @@
+{
+  "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/cr7/yolo26x/training/weights/best.pt",
+  "checkpoint_sha256": "36ec831570d3a852fedbd67073b077bf01aa6a0b9d2bd57c870d9a8b2d874bdd",
+  "annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82",
+  "AP": 51.58664175438534,
+  "AP50": 83.67684069314495,
+  "AP75": 50.84829341633643,
+  "AP_small": 32.40638447057051,
+  "AP_medium": 50.77224826891113,
+  "AP_large": 51.763445939812335,
+  "per_class_AP": {
+    "inclusion": 38.37992028758608,
+    "dents": 73.6938419822176,
+    "oil_spots": 56.20916952130436,
+    "pits": 26.08462424642696,
+    "punching": 81.85882073169563,
+    "linear": 33.03158820053093,
+    "macular": 51.8485273109358
+  },
+  "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
+  "num_images": 410,
+  "num_predictions": 107055,
+  "parameters_before_fusion": 58824738,
+  "settings": {
+    "imgsz": 640,
+    "conf": 1e-05,
+    "iou": 0.7,
+    "max_det": 300,
+    "half": false,
+    "augment": false,
+    "nms": null,
+    "end2end": false
+  },
+  "ultralytics_version": "8.4.215",
+  "torch_version": "2.14.1+cu130"
+}

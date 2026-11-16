@@ -19,11 +19,5 @@
       "event": "fp32_activation_checkpointing",
       "backbone": "ConvNeXt"
     }
-  ],
-  "observed_fallback_epoch": 20,
-  "observed_step_interval": [
-    201,
-    220
-  ],
-  "observation": "Real production overflow retried successfully; continued finite losses after fallback"
+  ]
 }

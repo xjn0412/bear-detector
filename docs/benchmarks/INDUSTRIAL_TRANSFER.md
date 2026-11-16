@@ -1,6 +1,22 @@
 # Industrial defect transfer benchmark
 
-Status: running.
+Status: **7/8 runs complete**, checked 2026-11-16T08:38:51+00:00. Bear-L KSDD2 is still training (latest completed epoch26); its best validation AP is39.20% at epoch17. Recent validation AP has fallen despite finite FP32 outputs; the best checkpoint remains preserved. No final KSDD2 Bear test score is claimed.
+
+## Completed held-out test results
+
+All values below are **test AP50:95 in percent**, shared COCO evaluator/maxDets100 and FP32 inference. These are internal split results, not official dataset leaderboards.
+
+| Dataset | Bear-L | YOLO26x | Difference (points) | Completed epochs Bear / YOLO | Selected epoch Bear / YOLO |
+|---|---:|---:|---:|---|---|
+| CR7-DET |58.32|51.59|+6.73|26 /83|6 /63|
+| GC10-DET (corrected10 classes) |41.64|30.97|+10.67|26 /85|6 /65|
+| NEU-DET |49.46|45.86|+3.60|31 /100|11 /100|
+| KSDD2 derived boxes |Pending|10.98|Pending|Running /100|Pending /84|
+
+Per-epoch validation curves and final test reports are in the linked evidence directory below. Validation AP and test AP are distinct. Different pretraining/recipes and one seed limit the comparison.
+
+TensorRT rebuild/validation is in progress on the selected CR7 Bear-L checkpoint; engine precision will be checked on validation before evaluating held-out test. No TensorRT accuracy result is claimed yet.
+
 
 **GC10 correction:** Initial GC10 runs used12 raw XML label strings and are invalid. The corrected benchmark merges `10_yaozhed` into `10_yaozhe` and excludes the entire image `img_02_425616500_00770.jpg` because one box is labeled only `d`. Both models restart from their original COCO checkpoints. Archived initial runs are diagnostics only and must not appear as valid GC10 results. A schema assertion now requires exactly7/10/6/1 classes for CR7/GC10/NEU/KSDD2.
  No final test results are claimed until the corresponding run has a completed test report.

@@ -19,6 +19,28 @@
   "started": 1794812911.415021,
   "initialization_sha256": "e096089a14152fd17e610a2ad2f407db52eeea77d66375e02933c43fd720694b",
   "initialization": "Released Bear-L COCO mixed checkpoint; FP32 parameters and decoder; fresh class heads/optimizer/EMA",
+  "recovery": [
+    {
+      "time": 1794815614.9932973,
+      "from_epoch": 14,
+      "reason": "Reproduced FP16 overflow in P5 projection convolution before GroupNorm",
+      "precision": "P5 projection FP32; remaining backbone/neck FP16 AMP; decoder/loss FP32",
+      "preserves": "Full model/optimizer/scaler/EMA, validation history and patience"
+    },
+    {
+      "time": 1794816855.5820127,
+      "from_epoch": 17,
+      "reason": "Forward overflow; resume with checked AMP and persistent same-batch FP32 fallback",
+      "precision": "Checked FP16 AMP with FP32 projection/decoder/loss; automatic persistent FP32 fallback and activation checkpointing",
+      "preserves": "Full model/optimizer/scaler/EMA, validation history and patience"
+    }
+  ],
+  "precision_strategy": {
+    "requested": "auto",
+    "preflight": "FP32 versus AMP per-layer and complete forward; actual first training batch",
+    "fallback": "Same batch FP32 retry after RNG/buffer rollback, persistent and checkpointed",
+    "gradient_scaling": "Dynamic GradScaler; EMA only after successful update"
+  },
   "settings": {
     "task": "detection",
     "evaluator": {
