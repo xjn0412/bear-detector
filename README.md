@@ -27,20 +27,20 @@ PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend 
 
 ## Industrial defect fine-tuning
 
-**Held-out test AP50:95 (%) · 640 input · all eight runs complete.**
+**Validation and held-out test AP50:95 (%) · 640 input · all eight runs complete.**
 
-| Dataset | Bear-L | YOLO26x | Δ AP points |
-|---|---:|---:|---:|
-| CR7-DET | **58.52** | 51.80 | +6.72 |
-| GC10-DET | **41.87** | 31.14 | +10.73 |
-| NEU-DET | **49.65** | 45.91 | +3.74 |
-| KSDD2 · derived boxes | **36.69** | 11.07 | +25.62 |
+| Dataset | Bear-L val | YOLO26x val | Bear-L test | YOLO26x test |
+|---|---:|---:|---:|---:|
+| CR7-DET | **59.56** | 55.00 | **58.52** | 51.80 |
+| GC10-DET | **38.67** | 31.44 | **41.87** | 31.14 |
+| NEU-DET | **51.09** | 49.53 | **49.65** | 45.91 |
+| KSDD2 · derived boxes | **39.20** | 26.82 | **36.69** | 11.07 |
 
-Shared images/splits and FP32 COCO evaluation; seed42, batch8, up to100 epochs, patience20. Model sizes, pretraining and recipes differ. CR7/GC10/NEU use internal splits; KSDD2 is a derived bounding-box task, not its official segmentation benchmark.
+**Val:** highest recorded native validation mAP. **Test:** held-out test mAP from that selected checkpoint. Shared images/splits; seed42, batch8, up to100 epochs, patience20. Model sizes, pretraining and recipes differ.
 
-Final test scores use corrected annotation IDs. Historical Bear validation curves and checkpoint selection retain an earlier evaluator limitation; see the audit before interpreting convergence.
+Validation uses each framework’s native evaluator; historical Bear validation and checkpoint selection retain the annotation-ID0 limitation. Test scores use the shared, corrected FP32 COCO evaluator and provide the stronger direct comparison. CR7/GC10/NEU use internal splits; KSDD2 is a derived detection task.
 
-[Protocol & results](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [Every epoch](validation/benchmarks/industrial-20261116/epoch-progress.md) · [AP50/AP50:95 CSV](validation/benchmarks/industrial-20261116/all-epochs.csv) · [Verification](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT validation](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
+[Protocol, selected epochs & results](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [Every epoch](validation/benchmarks/industrial-20261116/epoch-progress.md) · [AP50/AP50:95 CSV](validation/benchmarks/industrial-20261116/all-epochs.csv) · [Verification](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT validation](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
 
 ## COCO-only detection-training comparison
 

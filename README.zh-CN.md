@@ -27,20 +27,20 @@ PT精度验证batch8，TRT固定batch1；因此AP差异同时包含后端及batc
 
 ## 工业缺陷微调基准
 
-**独立测试集 AP50:95（%）· 640输入 · 八组训练全部完成。**
+**验证与独立测试集 AP50:95（%）· 640输入 · 八组训练全部完成。**
 
-| 数据集 | Bear-L | YOLO26x | 提升（AP点） |
-|---|---:|---:|---:|
-| CR7-DET | **58.52** | 51.80 | +6.72 |
-| GC10-DET | **41.87** | 31.14 | +10.73 |
-| NEU-DET | **49.65** | 45.91 | +3.74 |
-| KSDD2 · 掩码转检测框 | **36.69** | 11.07 | +25.62 |
+| 数据集 | Bear-L 验证 | YOLO26x 验证 | Bear-L 测试 | YOLO26x 测试 |
+|---|---:|---:|---:|---:|
+| CR7-DET | **59.56** | 55.00 | **58.52** | 51.80 |
+| GC10-DET | **38.67** | 31.44 | **41.87** | 31.14 |
+| NEU-DET | **51.09** | 49.53 | **49.65** | 45.91 |
+| KSDD2 · 掩码转检测框 | **39.20** | 26.82 | **36.69** | 11.07 |
 
-共享图像和划分，采用FP32 COCO评估；seed42、batch8、最多100轮、patience20。模型大小、预训练与配方不同。CR7/GC10/NEU使用内部划分；KSDD2由掩码生成检测框，不是其官方分割基准。
+**验证：** 记录中最高的原生验证mAP。**测试：** 对应最佳验证权重在独立测试集上的mAP。共享图像与划分；seed42、batch8、最多100轮、patience20。模型大小、预训练与配方不同。
 
-最终测试分数已修正标注ID；历史Bear验证曲线及权重选择保留原评估器的已知局限，解读收敛情况前请查看审计说明。
+验证采用各框架原生评估器，历史Bear验证及权重选择保留标注ID0的已知局限；测试采用统一修正后的FP32 COCO评估器，测试列更适合直接比较。CR7/GC10/NEU使用内部划分；KSDD2为掩码转检测框任务。
 
-[方法与结果](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [每轮mAP](validation/benchmarks/industrial-20261116/epoch-progress.md) · [AP50/AP50:95 CSV](validation/benchmarks/industrial-20261116/all-epochs.csv) · [核验说明](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT实测](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
+[方法、最佳轮次与结果](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [每轮mAP](validation/benchmarks/industrial-20261116/epoch-progress.md) · [AP50/AP50:95 CSV](validation/benchmarks/industrial-20261116/all-epochs.csv) · [核验说明](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT实测](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
 
 ## 仅COCO检测训练的比较
 

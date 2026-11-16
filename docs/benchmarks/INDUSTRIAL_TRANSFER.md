@@ -2,18 +2,29 @@
 
 Status: **8/8 runs complete**, checked 2026-11-16T09:10:34+00:00. KSDD2 Bear-L stopped at epoch37 after20 epochs without a validation improvement and selected epoch17. The preserved best checkpoint scored test AP36.6906%. Late training accuracy collapsed despite finite FP32 outputs; best-checkpoint protection prevented that trajectory from replacing the selected model.
 
-## Completed held-out test results
+## Best validation and held-out test results
 
-All values below are **test AP50:95 in percent**, shared COCO evaluator/maxDets100 and FP32 inference. These are internal split results, not official dataset leaderboards.
+All values are **AP50:95 in percent**. Validation is each run’s best recorded native validation mAP; test evaluates that selected checkpoint on held-out images using the shared, corrected FP32 COCO evaluator (maxDets100).
 
-| Dataset | Bear-L | YOLO26x | Difference (points) | Completed epochs Bear / YOLO | Selected epoch Bear / YOLO |
-|---|---:|---:|---:|---|---|
-| CR7-DET |58.52|51.80|+6.72|26 /83|6 /63|
-| GC10-DET (corrected10 classes) |41.87|31.14|+10.73|26 /85|6 /65|
-| NEU-DET |49.65|45.91|+3.74|31 /100|11 /100|
-| KSDD2 derived boxes |36.69|11.07|+25.62|37 /100|17 /84|
+| Dataset | Bear-L val | YOLO26x val | Bear-L test | YOLO26x test |
+|---|---:|---:|---:|---:|
+| CR7-DET | **59.56** | 55.00 | **58.52** | 51.80 |
+| GC10-DET | **38.67** | 31.44 | **41.87** | 31.14 |
+| NEU-DET | **51.09** | 49.53 | **49.65** | 45.91 |
+| KSDD2 · derived boxes | **39.20** | 26.82 | **36.69** | 11.07 |
 
-Per-epoch validation curves and final test reports are in the linked evidence directory below. Validation AP and test AP are distinct. Different pretraining/recipes and one seed limit the comparison.
+Validation uses different native evaluators. Historical Bear validation and checkpoint selection retain the annotation-ID0 evaluator limitation; the validation values above are faithful historical records, not corrected COCO validation AP. The corrected test columns provide the stronger direct comparison. These are internal split results, not official dataset leaderboards.
+
+### Training budget and checkpoint selection
+
+| Dataset | Bear-L completed / selected epoch | YOLO26x completed / selected epoch |
+|---|---:|---:|
+| CR7-DET | 26 / 6 | 83 / 63 |
+| GC10-DET | 26 / 6 | 85 / 65 |
+| NEU-DET | 31 / 11 | 100 / 100 |
+| KSDD2 · derived boxes | 37 / 17 | 100 / 84 |
+
+Per-epoch validation AP50/AP50:95 is available in the [full table](../../validation/benchmarks/industrial-20261116/epoch-progress.md) and [combined CSV](../../validation/benchmarks/industrial-20261116/all-epochs.csv). Both models use their best validation checkpoint. One seed, different pretraining/recipes and internal splits limit interpretation.
 
 TensorRT rebuild and validation are complete for the selected CR7 Bear-L checkpoint: mixed208FPS/AP58.2883, or conservative FP32-backbone75.4FPS/AP58.3454, versus FP32 AP58.5209. See [precision revalidation](TENSORRT_REVALIDATION_20261116.md) for full reports, scope and the0.20-point acceptance target.
 
