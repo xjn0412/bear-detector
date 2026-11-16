@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "config": "configs/V2-T.yml",
+  "config_sha256": "e17c42dafd81b03174a0c2b944629011e2b378e90dd107d7200f665865568a18",
+  "checkpoint_sha256": "67ae2e4659a52b1a031ac6a0af7dbf4fb4b3481a58bab7fa5e32836ef71597f4",
+  "onnx_sha256": "4e87b268eb22c3230a1a8b66ef5e7a0bdb1ff6ac52f8f83b357dc274c3e04e93",
+  "onnxruntime": "1.23.2",
+  "records": [
+    {
+      "input": "zeros",
+      "box_max_absolute_error": 7.62939453125e-05,
+      "score_max_absolute_error": 1.2665987014770508e-07
+    },
+    {
+      "input": "normal",
+      "box_max_absolute_error": 6.103515625e-05,
+      "score_max_absolute_error": 1.2665987014770508e-07
+    }
+  ],
+  "scope": "Two FP32 CPU inputs, random v2-T checkpoint; no AP or TensorRT claim"
+}

@@ -108,8 +108,10 @@ class PrecisionPolicy:
             def hook(layer, inputs, reference):
                 with torch.autocast(device_type='cuda', dtype=torch.float16):
                     candidate = layer.forward(inputs[0])
-                delta = (reference.float() - candidate.float()).norm()
-                limit = 0.05 * reference.float().norm() + 1e-6
+                delta = (reference.double() - candidate.double()).norm()
+                # A fixed 1e-6 floor can silently accept total loss of a
+                # small signal. FP64 norms also avoid FP32 norm overflow.
+                limit = 0.05 * reference.double().norm() + 1e-12
                 if not bool(torch.isfinite(delta) & (delta <= limit)):
                     failed.append(name)
             return hook

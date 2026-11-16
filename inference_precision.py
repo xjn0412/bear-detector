@@ -1,5 +1,6 @@
 """Eager PyTorch inference guards; exported engines require separate validation."""
 import warnings
+import math
 
 import torch
 from precision import invalid_outputs
@@ -12,6 +13,7 @@ class CheckedInference(torch.nn.Module):
         self.post = post.deploy()
         self.checked = checked
         self.amp_enabled = bool(amp)
+        self._amp_validated = False
         self.precision_report = dict(requested='fp16_amp' if amp else 'fp32',
                                      selected='fp16_amp' if amp else 'fp32',
                                      fallback_count=0, checked=checked)
@@ -23,6 +25,21 @@ class CheckedInference(torch.nn.Module):
             features = self.core.encoder(self.core.backbone(images))
         if self.checked and invalid_outputs(features):
             raise FloatingPointError('Nonfinite inference features')
+        if self.checked and amp and not self._amp_validated:
+            # Finite values can still have lost small signals. Compare before
+            # top-k makes query order discontinuous, once for this model.
+            with torch.autocast(device_type=images.device.type, enabled=False):
+                reference = self.core.encoder(self.core.backbone(images.float()))
+            if invalid_outputs(reference):
+                raise FloatingPointError('Nonfinite FP32 inference reference features')
+            errors = []
+            for actual, expected in zip(features, reference):
+                delta = (actual.double() - expected.double()).norm()
+                errors.append(float(delta / expected.double().norm().clamp_min(1e-30)))
+            self.precision_report['feature_relative_l2_errors'] = errors
+            if any(not math.isfinite(error) or error > .05 for error in errors):
+                raise FloatingPointError('AMP/FP32 inference feature error exceeds 5%')
+            self._amp_validated = True
         with torch.autocast(device_type=images.device.type, enabled=False):
             outputs = self.core.decoder([f.float() for f in features])
             if self.checked and invalid_outputs(outputs):
@@ -45,6 +62,8 @@ class CheckedInference(torch.nn.Module):
             raise ValueError('AMP inference requires CUDA; use amp=False on CPU')
         if invalid_outputs((images, orig_target_sizes)):
             raise FloatingPointError('Nonfinite inference inputs')
+        if (orig_target_sizes <= 0).any():
+            raise ValueError('Image dimensions must be positive')
         try:
             return self._once(images.float(), orig_target_sizes, self.amp_enabled)
         except FloatingPointError as error:
@@ -55,6 +74,6 @@ class CheckedInference(torch.nn.Module):
             self.amp_enabled = False
             self.precision_report.update(selected='fp32', fallback_count=1,
                                          fallback_reason=str(error))
-            warnings.warn('Inference AMP produced nonfinite values; retrying the same input in FP32',
+            warnings.warn('Inference AMP numerical check failed; retrying the same input in FP32',
                           RuntimeWarning, stacklevel=2)
             return self._once(images.float(), orig_target_sizes, False)

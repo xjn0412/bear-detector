@@ -1,0 +1,18 @@
+{
+  "checkpoint_sha256": "67ae2e4659a52b1a031ac6a0af7dbf4fb4b3481a58bab7fa5e32836ef71597f4",
+  "onnx_sha256": "4e87b268eb22c3230a1a8b66ef5e7a0bdb1ff6ac52f8f83b357dc274c3e04e93",
+  "architecture": "v2",
+  "classes": 80,
+  "shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "size_order": "width,height",
+  "precision": "FP32 ONNX graph; v2 context/projections/decoder protected in mixed TensorRT",
+  "accuracy_validated": false,
+  "runtime_fallback_exported": false,
+  "rebuild_required_for_p5_fp32": true,
+  "sampling": "explicit bilinear GatherElements; no ONNX GridSample"
+}

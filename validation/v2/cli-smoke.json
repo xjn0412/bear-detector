@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "scope": "V2-T supported train_v2.py CLI, 2 synthetic epochs, not an accuracy benchmark",
+  "last_epoch": 1,
+  "ema_updates": 6,
+  "scaler": {
+    "scale": 256,
+    "growth_factor": 2,
+    "backoff_factor": 0.5,
+    "growth_interval": 2000,
+    "_growth_tracker": 3
+  },
+  "precision_policy": {
+    "version": 1,
+    "requested": "auto",
+    "amp_enabled": true,
+    "checked": true,
+    "events": [
+      {
+        "event": "amp_check_passed",
+        "failed_layers": [],
+        "failed_layer_count": 0,
+        "selected": "fp16_amp"
+      }
+    ]
+  },
+  "checkpoint_keys": [
+    "date",
+    "last_epoch",
+    "model",
+    "criterion",
+    "postprocessor",
+    "ema",
+    "scaler",
+    "optimizer",
+    "lr_warmup_scheduler",
+    "precision_policy"
+  ]
+}

@@ -106,3 +106,7 @@ class DeepStageHybrid(nn.Module):
         p3,p4,p5=[proj(f) for proj,f in zip(self.projections,[c3,c4,c5])]
         p3=p3+self.detail_scale*self.detail(c2)
         return p3,p4,p5
+
+
+# Register v2 without changing the v1 model/state-dict layout.
+import backbone_v2  # noqa: E402,F401

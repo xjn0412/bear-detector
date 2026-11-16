@@ -1,149 +1,24 @@
-# 🐻 Bear Detector
+# 🐻 Bear Detector v2
 
-[English](README.md) | [简体中文](README.zh-CN.md) · [Documentation](docs/README.md) · [Weights](https://github.com/xjn0412/bear-detector/releases) · [Docker](docs/getting-started/DOCKER.md) · [Fine-tuning](#fine-tuning)
+[English](README.md) | [简体中文](README.zh-CN.md) · [Stable v1](https://github.com/xjn0412/bear-detector/tree/main) · [Architecture and training](docs/models/ARCHITECTURE_V2.md)
 
-**A little heavy, just like a bear.** A general object detector named for the author’s love of bears and the model’s substantial size.
+**Full P2–P5 FPN/PAN, pooled four-scale context attention, and a four-scale query decoder.**
 
-**Training complete (2026-11-14):** selected EMA weights for Tiny, Small, Base and Large are available. Tiny / Base / Large finished at 68 / 52 / 44 epochs; Small was manually stopped at 68. [Training policy](docs/benchmarks/TRAINING_POLICY.md).
+V2 is an experimental development branch. Implementation and numerical smoke checks are available; trained v2 weights and COCO AP are not available yet. Published v1 results and weights belong to [v1](https://github.com/xjn0412/bear-detector/tree/main).
 
-![Bear Detector detects its mascot](assets/bear-detected.jpg)
-
-AI-generated image; the box and **0.9637 confidence** are actual **Base epoch41 EMA** predictions, PyTorch CPU FP32 at640. [Raw prediction and checkpoint hash](assets/bear-inference.json). An illustration, not a benchmark.
-
-## Performance · COCO val2017 / RTX5090
-
-Recommended mixed-storage downloads use **FP16 bulk weights + the original FP32 decoder**. Fresh full5,000-image COCO validation at640, selected EMA, no additional training. PyTorch and TensorRT AP are reported separately.
-
-| Model | Input | AP50:95 (PT / TRT) | Params M (full / deploy) | GFLOPs | PyTorch AMP ms | TensorRT ms | Mixed .pt MB |
-|---|---:|---:|---:|---:|---:|---:|---|
-| [Bear-T](configs/T.yml) | 640 | 56.4851 / 56.4449 | 52.05 / 51.10 | 132.18 | 12.84 | 2.75 | [124.43](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt) |
-| [Bear-S](configs/S.yml) | 640 | 57.8864 / 57.8563 | 73.68 / 72.73 | 201.21 | 16.44 | 3.34 | [167.75](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt) |
-| [Bear-B](configs/B.yml) | 640 | 59.0192 / 58.9243 | 112.11 / 111.16 | 310.75 | 15.69 | 3.82 | [244.60](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt) |
-| [Bear-L](configs/L.yml) | 640 | 60.0748 / 60.0236 | 221.40 / 220.45 | 622.32 | 15.20 | 4.79 | [463.18](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt) |
-
-Latency: one RTX5090 GPU7, batch1,100 warmups,3×300 CUDA-event iterations, no CUDA Graph; GPU inputs through top300, excluding preprocessing/host transfers. TRT includes device-input copies. Mining/training were stopped; all builds finished before timing. PyTorch uses FP16 bulk+entire FP32 decoder; TensorRT10.13.3.9 also protects decoder and sensitive normalization/reductions.
-
-PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend and batch-dependent numerics. Each acceptance gate permits at most0.1 AP-point loss. GFLOPs use the documented arithmetic scope,2 FLOPs/MAC, and do not predict latency. [Full results and reproduction](docs/benchmarks/DEPLOYMENT5090.md) · [FLOPs scope](docs/benchmarks/COMPLEXITY.md).
-
-## Fine-tuning
-
-Adapt pretrained Bear weights to your dataset with the [fine-tuning guide](docs/guides/FINETUNE.md) or [Docker quick start](docs/getting-started/DOCKER.md).
-
-**AP50:95 (%) at640.** Validation selects the checkpoint; test scores use held-out images.
-
-### Industrial defect fine-tuning
-
-| Dataset | Bear-L val | YOLO26x val | Bear-L test | YOLO26x test |
-|---|---:|---:|---:|---:|
-| CR7-DET | **59.56** | 55.00 | **58.52** | 51.80 |
-| GC10-DET | **38.67** | 31.44 | **41.87** | 31.14 |
-| NEU-DET | **51.09** | 49.53 | **49.65** | 45.91 |
-| KSDD2 · derived boxes | **39.20** | 26.82 | **36.69** | 11.07 |
-
-Val = best recorded native validation mAP; test = the selected checkpoint’s held-out score. **Historical Bear validation has an annotation-ID0 limitation; corrected shared FP32 test scores are the stronger direct comparison.**
-
-[Full report](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [Every epoch](validation/benchmarks/industrial-20261116/epoch-progress.md) · [Download CSV](validation/benchmarks/industrial-20261116/all-epochs.csv)
-
-### General dataset fine-tuning
-
-Held-out test results; column headings specify each training budget.
-
-| Dataset | Bear-B · 50ep | Bear-L · 50ep | YOLO26x shared · 50ep | YOLO26x default · ≤100ep |
-|---|---:|---:|---:|---:|
-| African Wildlife | 91.35 | **91.54** | 83.87 | 82.09 |
-| Aquarium | 55.49 | **58.44** | 52.53 | 54.63 |
-| VOC2007 · all boxes | 75.46 | **76.30** | 66.25 | 57.27† |
-
-† VOC uses all-box COCO AP, not official VOC AP. Its default YOLO run stopped at21 epochs (patience20).
-
-[Bear-B/L report](docs/benchmarks/BEAR_L_TRANSFER.md) · [YOLO reports & curves](docs/benchmarks/YOLO_LONG_BUDGET.md)
-
-<details>
-<summary>Protocols, limitations and supporting data</summary>
-
-**Industrial:** all eight runs complete; shared images/splits, seed42, batch8, up to100 epochs and patience20. Model sizes, pretraining and recipes differ. CR7/GC10/NEU use internal splits; KSDD2 boxes are derived from segmentation masks. Native validation evaluators differ; historical Bear validation and checkpoint selection retain the annotation-ID0 limitation. Final test scores use the shared, corrected FP32 COCO evaluator.
-
-[Industrial protocol & selected epochs](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [Publication audit](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT revalidation](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
-
-**General datasets:** one seed; model sizes, pretraining and native optimization differ. Bear-B/L and shared-recipe YOLO use50 epochs; default-recipe YOLO uses up to100 epochs. These are transfer-system comparisons, not architecture-only ablations.
-
-[Data & recipes](docs/benchmarks/MULTIDATA_TRANSFER.md) · [Wildlife details](docs/benchmarks/WILDLIFE_TRANSFER.md) · [Wildlife weights](https://github.com/xjn0412/bear-detector/releases/tag/wildlife-transfer-20261114)
-
-</details>
-
-## COCO-only detection-training comparison
-
-![COCO-only detector training: accuracy versus parameters and FLOPs](assets/benchmarks/comparison-efficiency.png)
-
-**Detection supervision: COCO train2017 only, at640, with no Objects365 detection-pretraining stage.** Backbone representation pretraining is disclosed separately: Bear uses DINOv3 ConvNeXt; DEIMv2 also uses DINOv3 features. These are published-system comparisons, not identical augmentation/loss/compute-budget ablations.
-
-Bear-B/L reach59.02/60.07AP, versus D-FINE-X's **COCO-trained55.8**, RT-DETRv4-X57.0, and DEIMv2-X57.8. Bear-S is close to DEIMv2-X in AP but larger; parameter efficiency still needs work. The previous mixed-data overview has been replaced.
-
-![Bear, YOLO26 and current RT-DETRv4](assets/benchmarks/comparison-latest-baselines.png)
-
-**Requested baselines are included:** latest RT-DETRv4-X reports57.0AP; YOLO26-x reports57.5AP with Objects365→COCO training (dashed curve). RT-DETRv4 uses a training-only DINOv3 teacher. YOLO26's extra-data result remains separate from the COCO-only primary graph.
-
-[COCO-only tables, training-regime audit and analysis](docs/benchmarks/COMPARISON.md) · [Extra-data/leaderboard context, separately labeled](docs/benchmarks/COMPARISON_EXTRA_DATA.md). YOLO26 is visible in the requested-baseline graph with its extra-data label; Objects365 variants and unverified previews stay outside the COCO-only cohort. Presentation references[Ultralytics](https://github.com/ultralytics/ultralytics).
-
-## Models and downloads
-
-Mixed storage is now the default for every size. Download the .pt file, load into an FP32 model and use AMP with the entire decoder FP32. **Do not call `model.half()`**. Mixed checkpoints also support fine-tuning: preparation resets class heads and initializes FP32 parameters with a fresh optimizer.
-
-| Model | Parameters | Selected epoch | Default mixed package |
-|---|---:|---:|---|
-| Tiny | 52.05M | 58 | [124.43 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-mixed.pt) |
-| Small | 73.68M | 57 | [167.75 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-mixed.pt) |
-| Base | 112.11M | 42 | [244.60 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-mixed.pt) |
-| Large | 221.40M | 24 | [463.18 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt) |
-
-<details>
-<summary>Original FP32 EMA archives (exact source / optional fine-tuning initialization)</summary>
-
-[Tiny · 208.86 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.0-tiny/bear-t-coco-ema.pt) · [Small · 295.46 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.1.0-weights/bear-s-coco-ema.pt) · [Base · 449.16 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.2.1-base/bear-b-coco-ema.pt) · [Large · 886.32 MB](https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-ema.pt)
-
-Originals are retained because FP16 rounding is irreversible. These inference archives do not include optimizer/scaler resume state.
-
-</details>
-
-[SHA256 & usage](docs/models/WEIGHTS.md) · [Epoch history](docs/benchmarks/TRAINING_HISTORY.md)
-
-Detector supervision used COCO train2017; DINOv3 backbone pretraining used external LVD-1689M data. This is not all-data COCO-only training or zero-shot COCO detection.
-
-## Get started
-
-The public NVIDIA fine-tuning image needs no registry login:
-
-```bash
-docker pull ghcr.io/xjn0412/bear-detector:finetune-cu130
-```
-
-| Task | Guide |
+| Component | V2 |
 |---|---|
-| Fine-tune with Docker, persistent mounts and Small weights | [Docker guide](docs/getting-started/DOCKER.md) |
-| Install from source and run offline checks | [Installation](docs/getting-started/INSTALL.md) |
-| Fine-tune any positive class count with COCO JSON or YOLO labels | [Fine-tuning](docs/guides/FINETUNE.md) |
-| Predict and evaluate in PyTorch | [Inference](docs/guides/INFERENCE.md) |
-| Export ONNX/TensorRT and check accuracy | [Export](docs/guides/EXPORT.md) |
-| Inspect every command and the project layout | [CLI reference](docs/reference/TOOLS.md) · [Repository map](docs/reference/REPOSITORY.md) |
+| Backbone | DINOv3-pretrained ConvNeXt T/S/B/L; four spatial scales |
+| Context | Pool each scale to20×20;1600 tokens; two width256/8-head attention blocks |
+| Neck | Full P2–P5 top-down FPN and bottom-up PAN, width256 |
+| Decoder | Six layers,300 queries; four scales, sampling4/4/2/2 |
+| Numerical protection | FP32 projections/context/decoder/losses; checked FP16 CNN/neck; dynamic scaling and persistent FP32 fallback |
+| V2-L at640 | **783.99 GFLOPs/image;224.53M full /223.16M deployed parameters** |
 
-The image passed build, dependency and CPU pipeline checks; GPU container backward/DDP still needs host-side verification. Weights and datasets are mounted separately. [All documentation](docs/README.md) · [Verification scope](docs/benchmarks/VERIFICATION.md).
+The full-resolution detection maps remain160²/80²/40²/20²; only the context branch is pooled. FP32 is entered before sensitive operations. First-input inference comparison also checks finite AMP drift, since underflow can yield finite zeros. No universal overflow/underflow or accuracy-parity guarantee is claimed.
 
-## Architecture
+Start with [architecture, precision policy, initialization and training commands](docs/models/ARCHITECTURE_V2.md). Configurations: [Tiny](configs/V2-T.yml), [Small](configs/V2-S.yml), [Base](configs/V2-B.yml), [Large](configs/V2-L.yml). The default total training batch is8 with backbone gradient checkpointing. V1 detector checkpoints and existing published Docker images do not contain the new architecture.
 
-![Bear Detector architecture](assets/architecture/bear-detector.svg)
+[Verification evidence](validation/v2/README.md) · [Original documentation](docs/README.md) · [License](LICENSE.md) · [Upstream notices](THIRD_PARTY.md)
 
-DINOv3-pretrained **ConvNeXt CNN** → two stride32 context-attention blocks → convolutional multiscale neck with cheap P2→P3 detail → six-layer, three-level DEIMv2 query decoder,300 queries, fixed640 input. FP16 bulk forward; **entire decoder, predictions, matching and criterion FP32**. No ViT backbone in these configurations. [Architecture](docs/models/ARCHITECTURE.md).
-
-This is a research integration derived from DEIMv2 / DEIM / D-FINE / RT-DETR, not an independently invented decoder. [Training history](docs/benchmarks/TRAINING_HISTORY.md) · [Benchmark methodology](docs/benchmarks/BENCHMARKS.md) · [Evidence index](validation/README.md).
-
-## A personal note
-
-This personal repository is also a keepsake of my seven years in computer vision. I can’t say I worked especially hard, but they were seven years of my life. I hope that, in time, I will find a goal in life.
-
-— xjn0412
-
-## License and acknowledgments
-
-Upstream DEIMv2 code is **non-commercial**; DINOv3 weights have separate terms. This repository grants no commercial deployment rights. [LICENSE.md](LICENSE.md) · [THIRD_PARTY.md](THIRD_PARTY.md) · [Contribution guide](CONTRIBUTING.md).
-
-Thanks to [DEIMv2](https://github.com/Intellindust-AI-Lab/DEIMv2), [DEIM](https://github.com/Intellindust-AI-Lab/DEIM), [D-FINE](https://github.com/Peterande/D-FINE), [RT-DETR](https://github.com/lyuwenyu/RT-DETR), [DINOv3](https://github.com/facebookresearch/dinov3) and [timm](https://github.com/huggingface/pytorch-image-models). Original notices remain in `source/` and `licenses/`.
+Bear Detector is named for the author's love of bears and is a keepsake of seven years in computer vision, with the hope of finding a goal in life. V2 continues the DEIMv2/DEIM/D-FINE/RT-DETR and DINOv3 integration; upstream non-commercial and weight-specific terms remain applicable.

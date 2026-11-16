@@ -21,12 +21,15 @@ def main():
         raise FileExistsError('Refusing to overwrite an existing checkpoint')
     if any(v.is_floating_point() and v.dtype != torch.float32 for v in source.values()):
         raise ValueError('Conversion requires the original FP32 EMA checkpoint')
+    v2 = 'backbone.context_scale' in source
+    def protected(key):
+        return key.startswith('decoder.') or (v2 and key.startswith(('backbone.projections.', 'backbone.context.', 'backbone.context_scale')))
     converted = {}
     elements = {'fp16': 0, 'fp32': 0, 'other': 0}
     for key, value in source.items():
         value = value.detach().cpu()
         if value.is_floating_point():
-            target = value.float() if key.startswith('decoder.') else value.half()
+            target = value.float() if protected(key) else value.half()
             # Invalid anchors intentionally use +Inf and are masked by valid_mask.
             # Preserve that decoder buffer exactly; never permit new nonfinite values.
             if key == 'decoder.anchors':
@@ -34,16 +37,18 @@ def main():
                     raise FloatingPointError('Invalid source anchor buffer')
             elif not torch.isfinite(target).all():
                 raise FloatingPointError('Nonfinite source or storage conversion: ' + key)
+            if v2 and ((value != 0) & (target == 0)).any():
+                raise FloatingPointError('V2 storage conversion would underflow; retain FP32: ' + key)
             elements['fp32' if target.dtype == torch.float32 else 'fp16'] += target.numel()
         else:
             target = value.clone()
             elements['other'] += target.numel()
-        if key.startswith('decoder.') and not torch.equal(value, target):
-            raise RuntimeError('Decoder changed: ' + key)
+        if protected(key) and not torch.equal(value, target):
+            raise RuntimeError('Protected FP32 tensor changed: ' + key)
         converted[key] = target
     metadata = dict(ck.get('metadata', {}))
     metadata['storage_conversion'] = {'source_sha256': digest(a.checkpoint),
-        'format': 'FP16 backbone/context/neck; original FP32 decoder',
+        'format': 'FP16 bulk; original FP32 v2 context/projections/gates/decoder' if v2 else 'FP16 backbone/context/neck; original FP32 decoder',
         'load_into': 'FP32 parameters; never model.half()', 'accuracy_validated': False,
         'elements': elements}
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -54,7 +59,7 @@ def main():
     assert set(saved) == set(source)
     for key in source:
         assert saved[key].shape == source[key].shape
-        if key.startswith('decoder.'):
+        if protected(key):
             assert saved[key].dtype == source[key].dtype and torch.equal(saved[key], source[key])
     report = dict(metadata['storage_conversion'], checkpoint_sha256=digest(out),
         checkpoint_bytes=out.stat().st_size, decoder_byte_values_preserved=True)

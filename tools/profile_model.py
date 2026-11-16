@@ -40,7 +40,7 @@ def main():
     torch.manual_seed(42)
     torch.backends.mha.set_fastpath_enabled(False)
     cfg = config(args.config)
-    if cfg.yaml_cfg.get('DeepStageHybrid', {}).get('weights_path'):
+    if cfg.yaml_cfg.get(cfg.yaml_cfg['DEIM']['backbone'], {}).get('weights_path'):
         raise ValueError('Use a release config with empty weights_path; profiling needs no checkpoint')
     model = cfg.model.eval().cpu()
     full_params = sum(p.numel() for p in model.parameters())
@@ -50,7 +50,10 @@ def main():
     components['pretrained_cnn'] = sum(p.numel() for p in backbone.body.parameters())
     components['context'] = sum(p.numel() for p in backbone.context.parameters())
     components['pyramid_projections'] = sum(p.numel() for p in backbone.projections.parameters())
-    components['detail'] = sum(p.numel() for p in backbone.detail.parameters()) + backbone.detail_scale.numel()
+    if hasattr(backbone, 'detail'):
+        components['detail'] = sum(p.numel() for p in backbone.detail.parameters()) + backbone.detail_scale.numel()
+    else:
+        components['context_gates'] = backbone.context_scale.numel()
     state = model.state_dict()
     state_elements = Counter()
     state_bytes = Counter()

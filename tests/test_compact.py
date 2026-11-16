@@ -44,6 +44,33 @@ class Compact(unittest.TestCase):
             self.assertNotEqual(p.returncode, 0)
             self.assertFalse(out.exists())
 
+    def test_v2_preserves_context_projections_and_small_gates(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source, out = Path(tmp) / 'source.pt', Path(tmp) / 'mixed.pt'
+            state = {'backbone.context_scale': torch.tensor([1e-12]),
+                     'backbone.context.weight': torch.tensor([1e-12]),
+                     'backbone.projections.0.weight': torch.tensor([1e-12]),
+                     'backbone.body.weight': torch.tensor([.1])}
+            torch.save({'model': state}, source)
+            subprocess.run([sys.executable, 'tools/compact_weights.py', '--checkpoint', str(source),
+                            '--output', str(out)], cwd=ROOT, check=True, capture_output=True)
+            got = torch.load(out, weights_only=False)['model']
+            for key in state:
+                if key != 'backbone.body.weight':
+                    self.assertEqual(got[key].dtype, torch.float32)
+                    self.assertTrue(torch.equal(got[key], state[key]))
+
+    def test_v2_rejects_storage_underflow(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source, out = Path(tmp) / 'source.pt', Path(tmp) / 'mixed.pt'
+            torch.save({'model': {'backbone.context_scale': torch.tensor([.1]),
+                                  'backbone.body.weight': torch.tensor([1e-12])}}, source)
+            result = subprocess.run([sys.executable, 'tools/compact_weights.py', '--checkpoint', str(source),
+                                     '--output', str(out)], cwd=ROOT, capture_output=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(b'underflow', result.stderr)
+            self.assertFalse(out.exists())
+
 
 if __name__ == '__main__':
     unittest.main()

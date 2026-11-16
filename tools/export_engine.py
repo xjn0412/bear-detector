@@ -8,6 +8,7 @@ out=Path(a.output);out.mkdir(parents=True,exist_ok=True);torch.set_num_threads(4
 torch.backends.mha.set_fastpath_enabled(False)
 if not a.build_only:
  cfg,core=load_model(a.config,a.checkpoint,deploy=True)
+ v2=type(core.backbone).__name__=='FourScaleHybrid'
  m=Inference.create(core,cfg.postprocessor,amp=False,checked=False)
  x=torch.zeros(1,3,640,640);sz=torch.tensor([[640,640]],dtype=torch.int64)
  from portable_sampling import grid_sample as portable_grid_sample
@@ -17,7 +18,7 @@ if not a.build_only:
   torch.onnx.export(m,(x,sz),str(out/'model.onnx'),opset_version=17,dynamo=False,do_constant_folding=True,input_names=['images','orig_target_sizes'],output_names=['labels','boxes','scores'])
  torch.nn.functional.grid_sample=native_grid_sample
  onnx.checker.check_model(str(out/'model.onnx'))
- report={'checkpoint_sha256':digest(a.checkpoint),'onnx_sha256':digest(out/'model.onnx'),'classes':int(cfg.yaml_cfg['num_classes']),'shape':[1,3,640,640],'size_order':'width,height','precision':'FP16 bulk; P5 projection, decoder and sensitive reductions FP32','accuracy_validated':False,'runtime_fallback_exported':False,'rebuild_required_for_p5_fp32':True,'sampling':'explicit bilinear GatherElements; no ONNX GridSample'}
+ report={'checkpoint_sha256':digest(a.checkpoint),'onnx_sha256':digest(out/'model.onnx'),'architecture':'v2' if v2 else 'v1','classes':int(cfg.yaml_cfg['num_classes']),'shape':[1,3,640,640],'size_order':'width,height','precision':'FP32 ONNX graph; v2 context/projections/decoder protected in mixed TensorRT' if v2 else 'FP16 bulk; P5 projection, decoder and sensitive reductions FP32','accuracy_validated':False,'runtime_fallback_exported':False,'rebuild_required_for_p5_fp32':True,'sampling':'explicit bilinear GatherElements; no ONNX GridSample'}
 else:
  report=json.loads((out/'export.json').read_text())
  if report['checkpoint_sha256']!=digest(a.checkpoint) or report['onnx_sha256']!=digest(out/'model.onnx'):raise ValueError('Export provenance mismatch')
@@ -37,17 +38,23 @@ if a.build:
  config=builder.create_builder_config();config.set_memory_pool_limit(trt.MemoryPoolType.WORKSPACE,2<<30)
  if a.precision!='fp32':config.set_flag(trt.BuilderFlag.FP16)
  config.set_flag(trt.BuilderFlag.OBEY_PRECISION_CONSTRAINTS);config.clear_flag(trt.BuilderFlag.TF32);config.builder_optimization_level=3
- protected=[];decoder=[];p5_convolutions=[]
+ protected=[];decoder=[];p5_convolutions=[];context_layers=[];projection_convolutions=[]
  sensitive=[trt.LayerType.SOFTMAX,trt.LayerType.REDUCE]
  if hasattr(trt.LayerType,'NORMALIZATION'):sensitive.append(trt.LayerType.NORMALIZATION)
  for i in range(network.num_layers):
   layer=network.get_layer(i)
   dec='decoder' in layer.name
   scope=layer.name.replace('/', '.')
-  p5='backbone' in scope and 'projections.2' in scope
+  v2=report.get('architecture')=='v2'
+  p5='backbone' in scope and ('projections.3' if v2 else 'projections.2') in scope
+  v2_context=v2 and 'backbone.context' in scope
+  v2_projection=v2 and 'backbone.projections' in scope
+  v2_fusion=v2 and 'backbone' in scope and 'backbone.body' not in scope
+  if v2_context:context_layers.append(layer.name)
+  if v2_projection and layer.type==trt.LayerType.CONVOLUTION:projection_convolutions.append(layer.name)
   if p5 and layer.type==trt.LayerType.CONVOLUTION:p5_convolutions.append(layer.name)
   if dec:decoder.append(layer.name)
-  if dec or p5 or layer.type in sensitive or (a.precision=='fp32-backbone' and 'backbone' in layer.name):
+  if dec or p5 or v2_context or v2_projection or v2_fusion or layer.type in sensitive or a.precision=='fp32' or (a.precision=='fp32-backbone' and 'backbone' in layer.name):
    # Shape/int tensors have no floating arithmetic precision to constrain.
    if layer.type not in [trt.LayerType.CONSTANT,trt.LayerType.SHAPE] and any(layer.get_output(j).dtype in [trt.float32,trt.float16] for j in range(layer.num_outputs)):
     layer.precision=trt.float32
@@ -55,10 +62,14 @@ if a.build:
      if layer.get_output(j).dtype in [trt.float32,trt.float16]:layer.set_output_type(j,trt.float32)
     protected.append(layer.name)
  if not p5_convolutions:raise RuntimeError('P5 projection scope missing; refusing an unsafe mixed-precision build')
+ if v2 and (len(projection_convolutions)!=4 or not context_layers):raise RuntimeError('V2 FP32 projection/context scopes missing; refusing unsafe build')
  if len(decoder)<50:raise RuntimeError('Decoder scope missing from ONNX; refusing unsafe FP16 build')
  t=time.time();plan=builder.build_serialized_network(network,config)
  if plan is None:raise RuntimeError('Engine build failed')
  (out/'model.engine').write_bytes(bytes(plan))
  report['precision']={'fp32':'FP32','fp32-backbone':'FP32 backbone/context and decoder; FP16 neck','mixed':'FP16 bulk; FP32 P5 projection, decoder and sensitive reductions'}[a.precision]
  report.update(engine_sha256=digest(out/'model.engine'),build_seconds=time.time()-t,tensorrt=trt.__version__,protected_layers=len(protected),decoder_layers=len(decoder),p5_fp32_convolutions=p5_convolutions,p5_fp32_enforced=True,rebuild_required_for_p5_fp32=False)
+ if v2:
+  report.update(v2_fp32_projection_convolutions=projection_convolutions,v2_fp32_context_layers=len(context_layers))
+  if a.precision=='mixed':report['precision']='FP16 CNN/neck; FP32 four-scale projections, pooled context, decoder and sensitive reductions'
 (out/'export.json').write_text(json.dumps(report,indent=2));print(json.dumps(report),flush=True)

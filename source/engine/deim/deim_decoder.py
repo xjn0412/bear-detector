@@ -102,7 +102,9 @@ class TransformerDecoderLayer(nn.Module):
         # ffn
         target2 = self.swish_ffn(target)
         target = target + self.dropout4(target2)
-        target = self.norm3(target.clamp(min=-65504, max=65504))
+        # v2 uses an FP32 decoder. Preserve nonfinite failures for the
+        # runtime guard instead of hiding infinities behind an FP16 clamp.
+        target = self.norm3(target) if getattr(self, '_bear_v2', False) else self.norm3(target.clamp(min=-65504, max=65504))
 
         return target
 

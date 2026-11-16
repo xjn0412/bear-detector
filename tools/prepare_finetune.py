@@ -42,7 +42,7 @@ def main():
  coll.update(mixup_prob=0.,copyblend_prob=0.,stop_epoch=a.epochs,base_size_repeat=None)
  if len(tr['images'])<a.batch:raise ValueError('Batch exceeds training images; reduce --batch')
  d['warmup_iter']=max(1,min(500,(len(tr['images'])//a.batch)*a.epochs//10))
- d['scaler']['init_scale']=1.0
+ d['scaler']['init_scale']=1024.0 if d['DEIM']['backbone']=='FourScaleHybrid' else 1.0
  d['optimizer']['lr']=a.lr;d['flat_epoch']=0;d['no_aug_epoch']=min(5,a.epochs//4)
  d['DEIMCriterion']['matcher']['matcher_change_epoch']=a.epochs
  (out/'config.yml').write_text(yaml.safe_dump(d,sort_keys=False))

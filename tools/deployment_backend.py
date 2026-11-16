@@ -9,7 +9,7 @@ def load_backend(backend, config, checkpoint, engine_path=None):
     if backend != 'tensorrt':
         cfg, core = load_model(config, checkpoint, deploy=True)
         model = Inference.create(core, cfg.postprocessor, backend == 'torch-amp').cuda().eval()
-        return model, int(cfg.yaml_cfg['num_classes']), {'precision': 'Checked FP16 bulk + FP32 P5 projection/decoder, with persistent FP32 fallback' if backend == 'torch-amp' else 'FP32', 'inference_precision': model.precision_report}
+        return model, int(cfg.yaml_cfg['num_classes']), {'precision': 'Checked FP16 bulk + FP32 protected projections/context/decoder, with persistent FP32 fallback' if backend == 'torch-amp' else 'FP32', 'inference_precision': model.precision_report}
     import tensorrt as trt
     path = Path(engine_path)
     meta = json.loads((path.parent / 'export.json').read_text())

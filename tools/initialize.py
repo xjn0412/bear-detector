@@ -22,7 +22,8 @@ def main():
     torch.set_num_threads(4)
     torch.manual_seed(42)
     cfg = config(a.config)
-    cfg.yaml_cfg['DeepStageHybrid']['weights_path'] = a.backbone_weights or ''
+    backbone_key = cfg.yaml_cfg['DEIM']['backbone']
+    cfg.yaml_cfg[backbone_key]['weights_path'] = a.backbone_weights or ''
     model = cfg.model
     if a.pretrained:
         source = timm.create_model(model.backbone.variant + '.dinov3_lvd1689m', pretrained=True, num_classes=0)

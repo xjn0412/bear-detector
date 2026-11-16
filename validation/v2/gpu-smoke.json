@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "config": "configs/V2-L.yml",
+  "config_sha256": "83dc70ae645b1c2b3ac114340616d7c973883182203c7bae4851184da684e77e",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "training": [
+    {
+      "step": 0,
+      "loss": 80.2736587524414,
+      "grad_norm": 4027.598876953125,
+      "scale": 1024.0
+    },
+    {
+      "step": 1,
+      "loss": 78.50729370117188,
+      "grad_norm": 1983.328857421875,
+      "scale": 1024.0
+    }
+  ],
+  "skipped_scaled_overflow": [],
+  "training_precision": {
+    "version": 1,
+    "requested": "auto",
+    "amp_enabled": true,
+    "checked": true,
+    "events": [
+      {
+        "event": "amp_check_passed",
+        "failed_layers": [],
+        "failed_layer_count": 0,
+        "selected": "fp16_amp"
+      }
+    ]
+  },
+  "inference_cases": [
+    "normal",
+    "zeros",
+    "tiny",
+    "large"
+  ],
+  "inference_precision": {
+    "requested": "fp16_amp",
+    "selected": "fp16_amp",
+    "fallback_count": 0,
+    "checked": true,
+    "feature_relative_l2_errors": [
+      0.000768381655595417,
+      0.0003706487004336564,
+      0.00037630856010989244,
+      0.0009117578619662836
+    ]
+  },
+  "peak_memory_bytes": 29932740608,
+  "weights": "seed42 random initialization; two synthetic updates",
+  "limitations": "Smoke check only; no dataset AP, convergence, TensorRT parity or universal numeric guarantee"
+}
