@@ -102,3 +102,26 @@ validation selection and patience are restored as well. The original checkpoint
 does not contain RNG state, so resumed data/drop-path randomness is reseeded.
 The recovery precision change is disclosed in KSDD2's protocol; other already
 running jobs retain the code imported at their launch.
+
+### General AMP safeguards supersede the P5-only recovery
+
+The P5-only recovery completed epochs15–17, best validation AP39.200894256286
+at17, but another nonfinite forward interrupted epoch18. The narrow P5 fix
+therefore did not establish general AMP stability. The new precision policy
+adds a YOLO-style per-layer AMP check and a complete-forward finite check on
+the actual first training batch. Later forward overflow triggers a synchronized
+same-batch FP32 retry, restoring buffers and CPU/CUDA RNG before retry. The
+fallback is sticky in checkpoints and uses ConvNeXt activation checkpointing.
+Existing finite loss guards remain. Scaled-gradient overflow skips updates
+without advancing EMA. See the fine-tuning guide for controls and limitations.
+
+Tests passed: CUDA preflight rejection and healthy AMP retention, forward-state/RNG
+rollback, finite retry backward, explicit FP32, precision checkpoint round-trip,
+EMA deepcopy binding, actual training-loop GradScaler skip/EMA behavior, and
+two-GPU one-rank overflow followed by DDP backward and another optimizer update.
+Full Bear-L batch8 tests with restored optimizer state/EMA and a synthetic
+positive target passed in AMP, FP32 and injected-overflow retry modes. Peak
+allocated memory was20.708GiB in AMP and23.867GiB with checkpointed FP32; the
+uncheckpointed FP32 test approached30.506GiB. These are diagnostic measurements,
+not dataset AP or throughput claims. Production resumes from the finite full
+epoch17 checkpoint; precision reports will disclose any actual fallback.

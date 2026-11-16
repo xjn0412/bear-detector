@@ -21,6 +21,8 @@ class FP32Projection(nn.Sequential):
     range. Casting after the convolution cannot recover those values.
     Parameter names and checkpoint layout remain unchanged.
     """
+    _keep_fp32 = True
+
     def forward(self, x):
         with torch.autocast(device_type=x.device.type, enabled=False):
             return super().forward(x.float())

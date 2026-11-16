@@ -74,3 +74,27 @@ python tools/train_custom.py --run runs/my_dataset --resume runs/my_dataset/trai
 ## 已完成的小数据集示例
 
 [African Wildlife迁移实验](../benchmarks/WILDLIFE_TRANSFER.zh-CN.md)提供Bear-B实际微调、YOLO对照、去重划分、50轮记录与可下载四类权重。
+
+## 自动检查混合精度
+
+训练默认使用 `--amp auto`：在真实训练首批数据上，用已加载的 Bear
+权重比较主干和颈部卷积/线性层的 FP16 与 FP32 结果，并检查完整 AMP 前向是否有限。
+相对 L2 误差阈值为5%，绝对容差下限为1e-6；受保护的 P5 FP32 投影不参与降精度检查。
+检查后恢复模型缓冲区以及 CPU/CUDA 随机数状态，不推进优化器、EMA 或 BatchNorm 统计。
+
+若后续某批前向出现非有限输出，所有 DDP 进程同步恢复前向前的缓冲区与随机数状态，
+在反向传播前用 FP32 重算同一批数据，并在之后及断点恢复时保持 FP32。
+ConvNeXt 的 FP32 回退会启用激活检查点以节省显存。事件写入日志与
+`training/precision-policy.json`，完整断点也保存精度策略。
+若 FP32 仍产生无效输出，训练停止；不把无效预测或损失替换成零。
+
+GradScaler 对缩放梯度溢出跳过优化器更新并降低缩放系数，EMA 只在真正更新后推进。
+强制 FP32 训练也会在更新前检查梯度。模型参数保持 FP32，AMP 下 P5 投影、
+解码器与损失仍受 FP32 保护。此功能不代表纯 FP16 ONNX/TensorRT 推理已经通过验证。
+
+```bash
+python tools/train_custom.py --run runs/my_run --amp auto
+python tools/train_custom.py --run runs/my_run --resume runs/my_run/training/last.pth --amp fp32
+```
+
+FP32 回退可能降低速度，比较实验时应保留精度报告。网络结构、参数名与断点张量形状不变。

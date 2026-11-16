@@ -38,7 +38,7 @@ def snapshot(base,jobs):
             if rows:
                 (d/(model+'-curves.json')).write_text(json.dumps(rows,indent=2))
                 result.update(completed_epochs=len(rows),best_val_AP=max(x['val_AP'] for x in rows))
-            for source,target in [('protocol.json',model+'-protocol.json'),('test-report.json',model+'-test.json'),('COMPLETE.json',model+'-complete.json')]:
+            for source,target in [('protocol.json',model+'-protocol.json'),('test-report.json',model+'-test.json'),('COMPLETE.json',model+'-complete.json'),('prepared/training/precision-policy.json',model+'-precision-policy.json')]:
                 if (out/source).exists():(d/target).write_bytes((out/source).read_bytes())
             if (out/'COMPLETE.json').exists():result.update(json.loads((out/'COMPLETE.json').read_text()))
             summary[ds][model]=result

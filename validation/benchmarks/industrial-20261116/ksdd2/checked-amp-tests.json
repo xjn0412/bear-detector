@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "policy": "checked AMP with sticky same-batch FP32 fallback",
+  "tests": {
+    "cuda_regression": true,
+    "actual_trainer_scaler_and_ema": true,
+    "checkpoint_roundtrip": true,
+    "ema_deepcopy": true,
+    "two_gpu_one_rank_overflow": true,
+    "full_bear_amp_forward_backward_update": true,
+    "full_bear_fp32_forward_backward_update": true,
+    "full_bear_injected_overflow_retry_update": true
+  },
+  "diagnostic_peak_allocated_gib": {
+    "amp": 20.708072662353516,
+    "fp32_checkpointed": 23.866806030273438,
+    "fp32_uncheckpointed": 30.505950450897217
+  },
+  "resumed_checkpoint_epoch": 17,
+  "source_reference": "Installed Ultralytics8.4.215 utils.checks.check_amp; per-layer relative norm comparison; Bear adds actual-model/data and late-forward fallback"
+}

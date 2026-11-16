@@ -68,9 +68,10 @@ def main():
             prior=json.loads((out/'protocol.json').read_text())
             protocol['started']=prior['started']
             protocol['recovery']=prior.get('recovery',[])+[dict(time=time.time(),from_epoch=json.loads((prepared/"training/log.txt").read_text().splitlines()[-1])["epoch"]+1,
-                reason='Reproduced FP16 overflow in P5 projection convolution before GroupNorm',
-                precision='P5 projection FP32; remaining backbone/neck FP16 AMP; decoder/loss FP32',
+                reason='Forward overflow; resume with checked AMP and persistent same-batch FP32 fallback',
+                precision='Checked FP16 AMP with FP32 projection/decoder/loss; automatic persistent FP32 fallback and activation checkpointing',
                 preserves='Full model/optimizer/scaler/EMA, validation history and patience')]
+        protocol['precision_strategy']=dict(requested=os.getenv('BEAR_PRECISION','auto'),preflight='FP32 versus AMP per-layer and complete forward; actual first training batch',fallback='Same batch FP32 retry after RNG/buffer rollback, persistent and checkpointed',gradient_scaling='Dynamic GradScaler; EMA only after successful update')
         protocol['settings']=cfg
         (out/'protocol.json').write_text(json.dumps(protocol,indent=2))
         train_cmd=[py,'tools/benchmarks/train_industrial_bear.py','--run',str(prepared)]

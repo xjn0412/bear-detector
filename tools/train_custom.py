@@ -1,9 +1,11 @@
 """Train prepared custom data. Resume accepts only a full checkpoint from this run."""
-import argparse,sys,runpy
+import argparse,sys,runpy,os
 from pathlib import Path
 from common import ROOT
-p=argparse.ArgumentParser();p.add_argument('--run',required=True);p.add_argument('--resume');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--run',required=True);p.add_argument('--resume');p.add_argument('--amp',choices=['auto','fp32'],default=os.getenv('BEAR_PRECISION','auto'));a=p.parse_args()
+os.environ['BEAR_PRECISION']=a.amp
 r=Path(a.run).resolve()
+os.environ["BEAR_PRECISION_LOG"]=str(r/"training/precision-policy.json")
 import backbone,compat
 import runtime
 runtime.install_training_loop()
@@ -33,5 +35,5 @@ det_solver.train_one_epoch=checked_epoch
 # Plain full-checkpoint loading avoids the upstream hard-coded COCO tuning remap.
 checkpoint=Path(a.resume).resolve() if a.resume else r/'initial.pth'
 if a.resume and checkpoint.parent!=r/'training':raise ValueError('Resume must belong to this prepared run')
-sys.argv=['train.py','-c',str(r/'config.yml'),'-r',str(checkpoint),'--use-amp','--seed','42']
+sys.argv=['train.py','-c',str(r/'config.yml'),'-r',str(checkpoint), '--seed','42'] + (['--use-amp'] if a.amp=='auto' else [])
 runpy.run_path(str(ROOT/'source/train.py'),run_name='__main__')

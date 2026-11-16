@@ -4,6 +4,7 @@ import os
 import inspect
 import torch
 from torch import nn
+from precision import install_precision_policy, finite_gradients
 from engine.misc import dist_utils
 from engine.core.yaml_config import YAMLConfig
 
@@ -87,6 +88,7 @@ def optimize_query_attention(model):
 
 def wrap_model(model,sync_bn=False,dist_mode='ddp',find_unused_parameters=True,**kwargs):
     model=optimize_query_attention(model)
+    model=install_precision_policy(model, os.getenv("BEAR_PRECISION", "auto"))
     if os.getenv('CHANNELS_LAST','1')=='1':model=model.to(memory_format=torch.channels_last)
     if sync_bn:raise ValueError('The optimized configuration uses local normalization')
     if dist_utils.is_dist_available_and_initialized():
@@ -186,8 +188,29 @@ def install_stable_swiglu():
   DEIMCriterion.forward=namespace['forward']
   DEIMCriterion._raw_loss_guard=True
 
+def install_precision_checkpointing():
+ from engine.solver._solver import BaseSolver
+ if getattr(BaseSolver, '_bear_precision_state', False):return
+ original_state=BaseSolver.state_dict
+ original_load=BaseSolver.load_state_dict
+ def state_dict(self):
+  state=original_state(self)
+  model=dist_utils.de_parallel(self.model)
+  if hasattr(model, '_bear_precision'):
+   state['precision_policy']=model._bear_precision.state_dict()
+  return state
+ def load_state_dict(self,state):
+  original_load(self,state)
+  model=dist_utils.de_parallel(self.model)
+  if hasattr(model,'_bear_precision') and 'precision_policy' in state:
+   model._bear_precision.load_state_dict(state['precision_policy'])
+ BaseSolver.state_dict=state_dict
+ BaseSolver.load_state_dict=load_state_dict
+ BaseSolver._bear_precision_state=True
+
 def install_training_loop():
  install_stable_swiglu()
+ install_precision_checkpointing()
  # Authorized decoder FP32 repair: FP16 backbone/neck remain unchanged.
  from engine.deim.deim_decoder import DEIMTransformer
  if not getattr(DEIMTransformer,'_full_fp32_decoder',False):
@@ -209,14 +232,17 @@ def install_training_loop():
   'scaler.scale(loss).backward()':'scaler_guard(scaler)\n            scaler.scale(loss).backward()',
   'loss = sum(loss_dict.values())':"loss = sum(loss_dict.values())\n            finite_flag(loss, 'loss')",
   'scaler.step(optimizer)\n            scaler.update()':"scale_before = scaler.get_scale()\n            observed_before = getattr(optimizer, '_observed_steps', None)\n            scaler.step(optimizer)\n            scaler.update()\n            optimizer_did_step = (optimizer._observed_steps > observed_before) if observed_before is not None else (scaler.get_scale() >= scale_before and scaler.get_scale() > 0)\n            if not optimizer_did_step and dist_utils.is_main_process():\n                print('AMP_SKIPPED_UPDATE', global_step, scaler.get_scale(), flush=True)",
-  'if ema is not None:':'if ema is not None and (scaler is None or optimizer_did_step):'
+  'if ema is not None:':'if ema is not None and (scaler is None or optimizer_did_step):',
+  'optimizer.step()':"finite_gradients(optimizer, device)\n            optimizer.step()",
+  'loss : torch.Tensor = sum(loss_dict.values())':"loss : torch.Tensor = sum(loss_dict.values())\n            finite_flag(loss, 'loss')"
+
  }
  # GradScaler must handle overflow by skipping the update and lowering its scale.
  # Gradient clipping follows unscale_; do not raise for recoverable scaled overflow.
  for before,after in replacements.items():
   if before not in source:raise RuntimeError('Pinned source changed: '+before)
   source=source.replace(before,after)
- engine.__dict__.update(fp32_tree=fp32_tree,finite_outputs=finite_outputs,finite_flag=finite_flag,scaler_guard=scaler_guard,os=os)
+ engine.__dict__.update(fp32_tree=fp32_tree,finite_outputs=finite_outputs,finite_flag=finite_flag,scaler_guard=scaler_guard,finite_gradients=finite_gradients,os=os)
  exec(compile(source,'<fp16_fp32criterion_training>','exec'),engine.__dict__)
  solver.train_one_epoch=engine.train_one_epoch
  original_evaluate=solver.evaluate
