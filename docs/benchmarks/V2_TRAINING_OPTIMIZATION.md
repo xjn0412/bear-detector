@@ -1,6 +1,6 @@
 # V2 training execution optimization
 
-Status on 2026-11-16: implementation and CPU checks complete; GPU acceptance and throughput selection are queued after L's first complete epoch checkpoint. **No GPU speedup or unchanged final AP has yet been measured.**
+Status on 2026-11-16: L epoch1 completed at AP50:95 **49.3219%**, AP50 **66.1290%**. The first handoff stopped the queue after saving its full checkpoint, then failed in `psutil.wait_procs`: container `pidfd_open` returned EINVAL. This happened before the original recovery guard, leaving training interrupted from approximately 21:40 to 23:00 Asia/Shanghai. Baseline L was relaunched from its intact full checkpoint. Process waiting now polls identity-aware running/zombie state without pidfd, and termination/waiting are covered by baseline recovery. Three regression tests passed. GPU acceptance is requeued after epoch2. **No GPU speedup or unchanged final AP has yet been measured.**
 
 The full P2 neck, four-scale head, decoder, losses, augmentation, learning-rate schedule, FP32 safety islands, FP16 overflow handling, EMA and effective batch8 remain the same. L → B → S → T still uses the measured eight-GPU selection. Increasing batch size changes BatchNorm statistics and the optimizer trajectory, so capacity measurements cannot change the formal recipe automatically.
 

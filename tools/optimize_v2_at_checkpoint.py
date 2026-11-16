@@ -13,6 +13,22 @@ import psutil
 import yaml
 
 
+def wait_until_exited(processes, timeout):
+    """Poll identity-aware process state; do not depend on container pidfd support."""
+    deadline = time.monotonic() + timeout
+    while True:
+        alive = []
+        for process in processes:
+            try:
+                if process.is_running() and process.status() != psutil.STATUS_ZOMBIE:
+                    alive.append(process)
+            except psutil.NoSuchProcess:
+                pass
+        if not alive or time.monotonic() >= deadline:
+            return alive
+        time.sleep(.2)
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--workdir',required=True)
@@ -74,16 +90,18 @@ def main():
         raise RuntimeError('Supervisor identity/group validation failed; no process stopped')
     status('checkpoint_preserved',epoch=preserved_epoch,checkpoint=str(checkpoint))
     jobs=[owner,*owner.children(recursive=True)]
-    # Only this detached queue's process group is stopped, after its checkpoint.
-    os.killpg(supervisor,signal.SIGTERM)
-    _,alive=psutil.wait_procs(jobs,timeout=20)
-    for process in alive:
-        try:
-            if process.is_running() and os.getpgid(process.pid)==supervisor:process.kill()
-        except (ProcessLookupError,psutil.NoSuchProcess):pass
-    psutil.wait_procs(alive,timeout=10)
     resumed=False
     try:
+        # Recovery covers termination and waiting too, not only experiments.
+        # Poll status because pidfd_open can fail with EINVAL in containers.
+        os.killpg(supervisor,signal.SIGTERM)
+        alive=wait_until_exited(jobs,20)
+        for process in alive:
+            try:
+                if process.is_running() and os.getpgid(process.pid)==supervisor:process.kill()
+            except (ProcessLookupError,psutil.NoSuchProcess):pass
+        if wait_until_exited(alive,10):
+            raise RuntimeError('Owned queue did not exit; abort experiments')
         env=dict(os.environ,CUDA_VISIBLE_DEVICES='0',OMP_NUM_THREADS='4',
                  TORCHINDUCTOR_COMPILE_THREADS='1',BEAR_FAST_RUNTIME='0',BEAR_COMPILE_NECK='0')
         parity_path=output/'execution-parity.json'
