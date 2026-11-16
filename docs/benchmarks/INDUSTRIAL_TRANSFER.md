@@ -69,3 +69,36 @@ CUDA_VISIBLE_DEVICES=1 python tools/benchmarks/run_industrial.py --base <base> -
 ## Citation
 
 Please cite the original dataset creators, including the CR7-DET paper *An efficient detector for detecting surface defects on cold-rolled steel strips*, the GC10 paper *Deep Metallic Surface Defect Detection: The New Benchmark and Detection Network*, the NEU-DET work *An End-to-end Steel Surface Defect Detection Approach via Fusing Multiple Hierarchical Features*, and Božič, Tabernik and Skočaj's *Mixed supervision for surface-defect detection: from weakly to fully supervised learning* for KSDD2.
+
+### KSDD2 numerical recovery (2026-11-16)
+
+Bear-L stopped during epoch15 with nonfinite box predictions. The last complete
+checkpoint (epoch14) has finite model, EMA and optimizer tensors. Infinite
+decoder anchor buffers are intentional invalid-location masks.
+
+An isolated replay from that checkpoint reproduced the failure in epoch16.
+The original interrupted batch/RNG was not saved, so this is a reproduced failure
+of the same kind, not a claim to replay the original batch exactly. The replay
+captured model state, inputs, targets and pre-forward RNG for a deterministic
+comparison. First invalid operation: backbone.projections.2.0, the P5 1x1
+convolution, before GroupNorm. Its inputs were finite (absolute maximum9053.694).
+FP16 convolution yielded2268 nonfinite values. GroupNorm spread these to22400
+values and the neck/decoder then produced nonfinite boxes. Entire-forward FP32
+was finite (projection maximum65658.195, above FP16 maximum65504).
+
+The fix runs only the P5 projection (conv/GroupNorm/SiLU) with autocast disabled
+and FP32 inputs. Other backbone/neck operations retain FP16 AMP and the decoder
+and loss retain FP32. Architecture, parameter names and checkpoint shapes are
+unchanged. With this narrow fix the captured projection maximum was65668.672,
+all boxes/losses/gradients were finite. No NaN replacement, clipping or skipped
+bad batch was introduced; finite-value guards stay enabled.
+
+`tools/benchmarks/check_p5_projection.py` provides a CUDA regression for
+pre-normalization overflow, finite backward, strict checkpoint compatibility and
+FP32 parity. The captured-batch forward/backward test also passed. Original logs
+and full checkpoints were retained on the host. Production resumed at epoch15
+from the full epoch14 checkpoint, restoring model/optimizer/scaler/EMA; historical
+validation selection and patience are restored as well. The original checkpoint
+does not contain RNG state, so resumed data/drop-path randomness is reseeded.
+The recovery precision change is disclosed in KSDD2's protocol; other already
+running jobs retain the code imported at their launch.

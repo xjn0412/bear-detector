@@ -30,7 +30,9 @@ def main():
     ap.add_argument('--base',type=Path,required=True)
     ap.add_argument('--dataset',required=True)
     ap.add_argument('--model',choices=['bear_l','yolo26x'],required=True)
+    ap.add_argument('--resume',action='store_true',help='Resume Bear from its full last checkpoint')
     a=ap.parse_args()
+    if a.resume and a.model!='bear_l':raise ValueError('Resume currently supports Bear only')
     base=a.base.resolve();repo=base/'repo';data=base/'datasets'/a.dataset
     out=base/'runs'/a.dataset/a.model;out.mkdir(parents=True,exist_ok=True)
     if (out/'COMPLETE.json').exists():return
@@ -44,7 +46,7 @@ def main():
                   gpu=os.environ.get('CUDA_VISIBLE_DEVICES'),started=time.time())
     def run(cmd,name):
         print('RUN',a.dataset,a.model,name,flush=True)
-        with (out/(name+'.log')).open('w') as log:
+        with (out/(name+'.log')).open('a' if a.resume else 'w') as log:
             subprocess.run(cmd,cwd=repo,stdout=log,stderr=subprocess.STDOUT,check=True)
     if a.model=='bear_l':
         ck=base/'downloads/bear-l-coco-mixed.pt';prepared=out/'prepared'
@@ -62,9 +64,21 @@ def main():
         cfg['optimizer']['weight_decay']=1e-4
         cfg['train_dataloader']['dataset']['transforms']['ops']=[op for op in cfg['train_dataloader']['dataset']['transforms']['ops'] if op['type'] not in ['RandomPhotometricDistort','SanitizeBoundingBoxes']]
         cfgpath.write_text(yaml.safe_dump(cfg,sort_keys=False))
+        if a.resume:
+            prior=json.loads((out/'protocol.json').read_text())
+            protocol['started']=prior['started']
+            protocol['recovery']=prior.get('recovery',[])+[dict(time=time.time(),from_epoch=json.loads((prepared/"training/log.txt").read_text().splitlines()[-1])["epoch"]+1,
+                reason='Reproduced FP16 overflow in P5 projection convolution before GroupNorm',
+                precision='P5 projection FP32; remaining backbone/neck FP16 AMP; decoder/loss FP32',
+                preserves='Full model/optimizer/scaler/EMA, validation history and patience')]
         protocol['settings']=cfg
         (out/'protocol.json').write_text(json.dumps(protocol,indent=2))
-        run([py,'tools/benchmarks/train_industrial_bear.py','--run',str(prepared)],'train')
+        train_cmd=[py,'tools/benchmarks/train_industrial_bear.py','--run',str(prepared)]
+        if a.resume:
+            last=prepared/'training/last.pth'
+            if not last.exists():raise FileNotFoundError(last)
+            train_cmd+=['--resume',str(last)]
+        run(train_cmd,'train')
         rows=[json.loads(l) for l in (prepared/'training/log.txt').read_text().splitlines()]
         curves=[dict(epoch=r['epoch']+1,val_AP=r['test_coco_eval_bbox'][0]*100,val_AP50=r['test_coco_eval_bbox'][1]*100) for r in rows]
         selected=max(curves,key=lambda r:r['val_AP'])['epoch']
