@@ -34,7 +34,7 @@ All four maps enter query selection and deformable sampling: 34,000 locations. T
 
 ## Numerical policy
 
-Use FP32 master parameters and optimizer state. The supported `tools/train_v2.py` launcher installs the checked training loop. `--amp auto` tests layer-level FP16 error against FP32 and exercises the complete AMP forward on the first batch. A failed check selects FP32 across DDP ranks. Later nonfinite forwards restore RNG and mutable buffers, retry the same batch in FP32, and retain FP32 for subsequent batches.
+Use FP32 master parameters and optimizer state. The supported `tools/train_v2.py` launcher installs the checked training loop, gradient accumulation, a maximum100-epoch schedule and configurable validation patience (default20). `--amp auto` tests layer-level FP16 error against FP32 and exercises the complete AMP forward on the first batch. A failed check selects FP32 across DDP ranks. Later nonfinite forwards restore RNG and mutable buffers, retry the same batch in FP32, and retain FP32 for subsequent batches.
 
 The four full-resolution projections, pooled context projections/attention/gated FFNs, context residual additions and the entire decoder execute in FP32 even under outer FP16 autocast. FP32 precision is entered **before** convolution or matrix multiplication, not after an overflow. The v2 decoder removes the upstream FP16-range clamp so infinities cannot be hidden behind saturation. Matching, criterion and raw loss checks stay FP32; invalid losses are never converted to zero. Dynamic GradScaler starts at1024 and unscales before clipping. Skipped optimizer updates do not advance EMA; an epoch with no updates fails.
 
@@ -59,6 +59,8 @@ torchrun --standalone --nproc_per_node=8 tools/train_v2.py --config configs/V2-L
 
 DINOv3 weight access/download must be available. Alternatively use `--backbone-weights /path/to/backbone.safetensors`. Do not initialize v2 using a v1 detector checkpoint. Adjust COCO paths in the YAML before training. Detection supervision remains COCO train2017 only; DINOv3 backbone pretraining uses external data.
 
+For four GPUs at the same effective batch8, use a config with total micro-batch4 and `--accumulate 2`; for eight GPUs use total micro-batch8 and `--accumulate 1`. The learning-rate schedule advances per optimizer window, so accumulation does not shorten the warmup. The launcher saves full `last.pth`/`best-full.pth`, selected EMA `best.pt`, and per-epoch CSV/JSON statistics.
+
 Default total training batch is8 (one sample per GPU on8 GPUs), with ConvNeXt gradient checkpointing enabled. The full P2 neck is memory intensive; increase batch only after measuring available headroom with the actual recipe. `--amp fp32` uses more memory. Resume with `--resume runs/coco640_v2_L/last.pth` to restore optimizer/scaler/EMA/precision state, rather than restarting from inference weights.
 
 For custom datasets, initialize a v2 checkpoint and use the existing `prepare_finetune.py` and `train_custom.py` workflow with a V2 config. Until a trained v2 detector exists, this starts detection learning from backbone pretraining rather than a COCO-finetuned v2 detector.
@@ -75,3 +77,9 @@ python tools/profile_model.py --config configs/V2-L.yml --output results/v2-L-pr
 The smoke test uses random initialization, two real synthetic optimizer updates and normal/zero/tiny/large inference inputs. It checks nonzero gradients through the backbone, pooled context, P2 fusion and decoder. Failure-path tests inject AMP overflow and finite signal loss, verify persistent FP32 fallback, RNG/buffer restoration, and tiny FP32 gradients. They do not establish dataset accuracy or convergence.
 
 Measured v2-L deployed arithmetic at640 is **783.9922 GFLOPs/image**, with **224.5296M full /223.1572M deployed parameters**. This supersedes the earlier0.80–0.83 TFLOPs estimate. The same [counting scope](../benchmarks/COMPLEXITY.md) is used:2 FLOPs/MAC, attention products and bilinear sampling, excluding normalization/activation/softmax/indexing/memory traffic. V1-L is622.32 GFLOPs, so the increase is about26%. FLOPs do not predict latency.
+
+## COCO sequence and scaling measurements
+
+`tools/run_v2_coco_sequence.py --workdir /path/to/work` compares4/8 GPUs for each model and trains L→B→S→T sequentially using each selected count. Both counts use effective batch8 and per-GPU micro-batch1. Initialization checkpoints used for timing are discarded; formal training reloads the untouched DINOv3-initialized detector. The queue defaults to60 warmup and20 measured optimizer windows, including real COCO augmentation, criterion, backward, AdamW and EMA. This launch used20 warmup for both L cases and60 for both B/S/T cases; raw reports record the exact counts. Timed overflow skips invalidate a result.
+
+A fixed1,024-image train timing subset and512-image held-out val timing subset may be used while full archives finish downloading; their completed ZIP entries are CRC checked. Reported full-epoch time extrapolates to118,287 train images and5,000 val images and excludes checkpoint I/O. These are scheduling estimates rather than full-epoch timing or time-to-convergence guarantees. The queue waits for the complete official dataset before formal training; it never trains a reported COCO model on the timing subset. No mining runs during measurement or training.

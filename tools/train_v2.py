@@ -14,8 +14,14 @@ def main():
     group.add_argument('--checkpoint', help='V2 initialization/detector checkpoint; fresh optimizer')
     group.add_argument('--resume', help='Full training checkpoint, including optimizer/scaler/EMA')
     p.add_argument('--amp', choices=['auto', 'fp32'], default='auto')
+    p.add_argument('--accumulate', type=int, default=1)
+    p.add_argument('--patience', type=int, default=20)
     a = p.parse_args()
     os.environ['BEAR_PRECISION'] = a.amp
+    if a.accumulate < 1 or a.patience < 0:
+        p.error('Invalid accumulation/patience')
+    os.environ['BEAR_ACCUMULATE'] = str(a.accumulate)
+    os.environ['BEAR_PATIENCE'] = str(a.patience)
     cfg = config(a.config)
     if cfg.yaml_cfg['DEIM']['backbone'] != 'FourScaleHybrid':
         p.error('Use a v2 configuration')
@@ -24,6 +30,8 @@ def main():
     import runtime
     from engine.core import YAMLConfig
     runtime.install_training_loop()
+    import v2_training
+    v2_training.install()
     # Install the same actual-step audit as the custom-data launcher.
     original = YAMLConfig.optimizer
 

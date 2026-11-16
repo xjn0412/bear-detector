@@ -6,6 +6,9 @@
 
 V2 is an experimental development branch. Implementation and numerical smoke checks are available; trained v2 weights and COCO AP are not available yet. Published v1 results and weights belong to [v1](https://github.com/xjn0412/bear-detector/tree/main).
 
+
+**COCO training launched:** L → B → S → T,8 GPUs/model selected by measured4/8-GPU scaling. [Training policy and timing estimates](docs/benchmarks/V2_COCO_TRAINING.md).
+
 | Component | V2 |
 |---|---|
 | Backbone | DINOv3-pretrained ConvNeXt T/S/B/L; four spatial scales |

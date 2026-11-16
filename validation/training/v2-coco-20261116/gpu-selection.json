@@ -1,0 +1,10 @@
+{
+  "effective_global_batch": 8,
+  "selection": "Minimum measured estimated epoch wall time, fixed effective batch8, sequential L/B/S/T; checkpoint time common to both counts",
+  "selected": {
+    "L": 8,
+    "B": 8,
+    "S": 8,
+    "T": 8
+  }
+}

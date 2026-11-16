@@ -1,0 +1,35 @@
+{
+  "as_of_utc": "2026-11-16T12:12:56.404586+00:00",
+  "sequence": {
+    "phase": "training",
+    "order": [
+      "L",
+      "B",
+      "S",
+      "T"
+    ],
+    "model": "L",
+    "gpus": 8,
+    "selected": {
+      "L": 8,
+      "B": 8,
+      "S": 8,
+      "T": 8
+    }
+  },
+  "selection": {
+    "effective_global_batch": 8,
+    "selection": "Minimum measured estimated epoch wall time, fixed effective batch8, sequential L/B/S/T; checkpoint time common to both counts",
+    "selected": {
+      "L": 8,
+      "B": 8,
+      "S": 8,
+      "T": 8
+    }
+  },
+  "latest_progress": "V2_TRAIN epoch=1 micro=400/14786 updates=388 skipped=12 loss=95.36077 lr=4.42225e-06",
+  "completed_formal_epochs": 0,
+  "formal_ap_available": false,
+  "full_dataset_ready": true,
+  "config_sha256": "b7e2554e2f470e1c881fb70e6bf692a408542bfcedacfdb23777ffeb72908901"
+}

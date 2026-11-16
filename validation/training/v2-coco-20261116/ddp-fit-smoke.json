@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "scope": "Two GPUs, v2-T, synthetic4-image dataset, accumulation2; validates launcher/checkpoint/EMA/patience plumbing only",
+  "last_epoch": 1,
+  "ema_updates": 2,
+  "scaler": {
+    "scale": 1.0,
+    "growth_factor": 2.0,
+    "backoff_factor": 0.5,
+    "growth_interval": 2000,
+    "_growth_tracker": 2
+  },
+  "control": {
+    "best_ap": 0.0,
+    "best_epoch": 1,
+    "stale": 1
+  },
+  "checkpoint_keys": [
+    "date",
+    "last_epoch",
+    "model",
+    "criterion",
+    "postprocessor",
+    "ema",
+    "scaler",
+    "optimizer",
+    "lr_warmup_scheduler",
+    "precision_policy",
+    "v2_training_control"
+  ]
+}

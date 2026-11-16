@@ -6,6 +6,9 @@
 
 v2 是实验开发分支。代码与数值测试已提供；尚无训练完成的 v2 权重或 COCO AP。已发布的 v1 成绩和权重请查看 [v1](https://github.com/xjn0412/bear-detector/tree/main)。
 
+
+**COCO 训练已启动：** 按 L → B → S → T 顺序，4/8卡测速后均选择8卡。[训练策略与耗时估计](docs/benchmarks/V2_COCO_TRAINING.md)。
+
 | 组件 | v2 配置 |
 |---|---|
 | 主干 | DINOv3 预训练 ConvNeXt T/S/B/L，输出四尺度 |

@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "config": "/var/lib/sentinelx/bear-v2-coco/configs/T-g4.yml",
+  "config_sha256": "d76ef149bcf1969d936fbb2c52e4df074f9db97e3225e7137b90516d7c9af42a",
+  "checkpoint_sha256": "7ff1db8bdf291caa0ce600071187ce5c8454c4c08350d4eb22286dd93da83f93",
+  "gpus": 4,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.14.1+cu130",
+  "micro_batch_per_gpu": 1,
+  "effective_global_batch": 8,
+  "accumulation": 2,
+  "warmup_windows": 60,
+  "measured_windows": 20,
+  "stats": {
+    "loss": 73.91563314646483,
+    "optimizer_updates": 70,
+    "skipped_updates": 10,
+    "micro_batches": 160,
+    "seconds": 59.49448435101658,
+    "final_loss_scale": 1.0,
+    "timed_seconds": 7.509291073889472,
+    "measured_windows": 20,
+    "timed_successful": 20,
+    "timed_skipped": 0,
+    "accumulation": 2,
+    "peak_memory_bytes": 29374083584
+  },
+  "seconds_per_optimizer_window": 0.375469366251491,
+  "images_per_second": 21.306664988060742,
+  "estimated_training_seconds_per_epoch": 5551.690049394546,
+  "measured_validation_images": 512,
+  "measured_validation_seconds": 8.089118567062542,
+  "estimated_full_val_seconds": 78.99529850647014,
+  "estimated_epoch_seconds_excluding_checkpoint": 5630.685347901016,
+  "peak_memory_bytes_max_rank": 29374083584,
+  "selected_precision": {
+    "version": 1,
+    "requested": "auto",
+    "amp_enabled": true,
+    "checked": true,
+    "events": [
+      {
+        "event": "amp_check_passed",
+        "failed_layers": [],
+        "failed_layer_count": 0,
+        "selected": "fp16_amp"
+      }
+    ]
+  },
+  "accuracy_claim": false,
+  "scope": "COCO timing subset with real augmentation/forward/backward/AdamW/EMA; extrapolate118287 train and5000 val images; checkpoint time excluded"
+}

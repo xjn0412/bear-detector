@@ -1,0 +1,14 @@
+{
+  "source": "official COCO2017; DINOv3 ConvNeXt initialization",
+  "detection_training": "train2017 only",
+  "train": {
+    "images": 118287,
+    "annotations": "/var/lib/sentinelx/bear-v2-coco/coco/annotations/instances_train2017.json",
+    "directory": "/var/lib/sentinelx/bear-v2-coco/coco/train2017"
+  },
+  "val": {
+    "images": 5000,
+    "annotations": "/var/lib/sentinelx/bear-v2-coco/coco/annotations/instances_val2017.json",
+    "directory": "/var/lib/sentinelx/bear-v2-coco/coco/val2017"
+  }
+}
