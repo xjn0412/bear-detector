@@ -44,7 +44,21 @@ def load_records(root, dataset):
             if p.suffix.lower() in ['.jpg', '.png', '.bmp', '.jpeg']:
                 images[p.name].append(p)
         annotations = sorted(root.rglob('*.xml'))
-        all_names = {o.findtext('name').strip() for p in annotations for o in ET.parse(p).getroot().findall('object')}
+        excluded_bad=[]
+        if dataset=='gc10':
+            canonical={str(i)+'_'+n for i,n in enumerate(['chongkong','hanfeng','yueyawan','shuiban','youban','siban','yiwu','yahen','zhehen','yaozhe'],1)}
+            accepted=[]
+            for path in annotations:
+                tree=ET.parse(path).getroot()
+                raw_names={o.findtext('name').strip() for o in tree.findall('object')}
+                if any(n not in canonical and n!='10_yaozhed' for n in raw_names):
+                    excluded_bad.append(tree.findtext('filename'));continue
+                accepted.append(path)
+            annotations=accepted
+        def canonical_name(name):
+            return '10_yaozhe' if dataset=='gc10' and name=='10_yaozhed' else name
+        all_names = {canonical_name(o.findtext('name').strip()) for p in annotations for o in ET.parse(p).getroot().findall('object')}
+        if dataset=='gc10':assert len(all_names)==10,all_names
         names = sorted(all_names)
         ids = {name: i for i, name in enumerate(names)}
         used = set()
@@ -75,7 +89,7 @@ def load_records(root, dataset):
                 bb = o.find('bndbox')
                 # Pascal VOC: one-based inclusive to zero-based half-open.
                 x1, y1, x2, y2 = [float(bb.findtext(k)) for k in ['xmin','ymin','xmax','ymax']]
-                boxes.append([ids[o.findtext('name').strip()], x1-1, y1-1, x2, y2])
+                boxes.append([ids[canonical_name(o.findtext('name').strip())], x1-1, y1-1, x2, y2])
             for image in candidates:
                 records.append(dict(image=image, boxes=[list(bb) for bb in boxes], source=str(image.relative_to(root))))
         if len(used) != sum(len(x) for x in images.values()):
@@ -100,6 +114,7 @@ def load_records(root, dataset):
     else:
         raise ValueError(dataset)
     assert records and names
+    assert len(names)=={'cr7':7,'gc10':10,'neu-det':6,'ksdd2':1}[dataset], (dataset,names)
     return records, names
 
 
@@ -162,6 +177,14 @@ def prepare(base, dataset):
     if dataset=='gc10':
         included={r['source'] for r in records}
         manifest['excluded_unannotated_images']=[str(p.relative_to(raw)) for p in raw.rglob('*.jpg') if str(p.relative_to(raw)) not in included]
+    if dataset=='gc10':
+        manifest['class_aliases']={'10_yaozhed':'10_yaozhe'}
+        manifest['excluded_ambiguous_annotation_images']=['img_02_425616500_00770.jpg']
+        manifest['revision']='Corrected10-class schema; initial12-class runs invalidated'
+    cache={}
+    old=base/'datasets'/(dataset+'-invalid-12class')
+    if (old/'split-membership.json').exists():
+        for m in json.loads((old/'split-membership.json').read_text()):cache[m['pixel_sha256']]=old/'images'/m['split']/m['file_name']
     out.mkdir(parents=True,exist_ok=True)
     membership=[]
     for split, rs in assigned.items():
@@ -172,8 +195,13 @@ def prepare(base, dataset):
         for i,r in enumerate(sorted(rs,key=lambda x:x['source'])):
             filename=f'{i:05d}_{r["image"].stem}.png'
             w,h=r['original_size']
-            with Image.open(r['image']) as im:
-                im.convert('RGB').resize((640,640),Image.Resampling.BILINEAR).save(out/'images'/split/filename)
+            destination=out/'images'/split/filename
+            if r['pixel_sha256'] in cache:
+                import shutil
+                shutil.copyfile(cache[r['pixel_sha256']],destination)
+            else:
+                with Image.open(r['image']) as im:
+                    im.convert('RGB').resize((640,640),Image.Resampling.BILINEAR).save(destination)
             ims.append(dict(id=i,file_name=filename,width=640,height=640))
             labels=[]
             for c,x1,y1,x2,y2 in r['boxes']:

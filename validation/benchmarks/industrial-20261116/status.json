@@ -1,5 +1,5 @@
 {
-  "updated": 1794813001.4609935,
+  "updated": 1794814578.3317535,
   "jobs": {
     "cr7/bear_l": {
       "pid": 2938,
@@ -36,7 +36,7 @@
     "neu-det/bear_l": {
       "pid": 2940,
       "gpu": 4,
-      "status": "running",
+      "status": "complete",
       "started": 1794812341.1168566,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -47,12 +47,14 @@
         "neu-det",
         "--model",
         "bear_l"
-      ]
+      ],
+      "returncode": 0,
+      "finished": 1794814578.3183284
     },
     "neu-det/yolo26x": {
       "pid": 2941,
       "gpu": 5,
-      "status": "running",
+      "status": "complete",
       "started": 1794812341.1177294,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -63,44 +65,14 @@
         "neu-det",
         "--model",
         "yolo26x"
-      ]
-    },
-    "gc10/bear_l": {
-      "pid": 3577,
-      "gpu": 2,
-      "status": "running",
-      "started": 1794812401.1955795,
-      "command": [
-        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
-        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
-        "--base",
-        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
-        "--dataset",
-        "gc10",
-        "--model",
-        "bear_l"
-      ]
-    },
-    "gc10/yolo26x": {
-      "pid": 3578,
-      "gpu": 3,
-      "status": "running",
-      "started": 1794812401.196837,
-      "command": [
-        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
-        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
-        "--base",
-        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
-        "--dataset",
-        "gc10",
-        "--model",
-        "yolo26x"
-      ]
+      ],
+      "returncode": 0,
+      "finished": 1794814141.9690664
     },
     "ksdd2/bear_l": {
       "pid": 35233,
       "gpu": 6,
-      "status": "running",
+      "status": "failed",
       "started": 1794812911.3747172,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -111,7 +83,9 @@
         "ksdd2",
         "--model",
         "bear_l"
-      ]
+      ],
+      "returncode": 1,
+      "finished": 1794814292.055556
     },
     "ksdd2/yolo26x": {
       "pid": 35234,
@@ -128,53 +102,154 @@
         "--model",
         "yolo26x"
       ]
+    },
+    "gc10/bear_l": {
+      "pid": 142272,
+      "gpu": 2,
+      "status": "running",
+      "started": 1794814398.2271564,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "gc10",
+        "--model",
+        "bear_l"
+      ]
+    },
+    "gc10/yolo26x": {
+      "pid": 142273,
+      "gpu": 3,
+      "status": "running",
+      "started": 1794814398.228477,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "gc10",
+        "--model",
+        "yolo26x"
+      ]
     }
   },
   "results": {
     "cr7": {
       "bear_l": {
         "status": "running",
-        "completed_epochs": 4,
-        "best_val_AP": 59.09140821064883
+        "completed_epochs": 15,
+        "best_val_AP": 59.56057734868444
       },
       "yolo26x": {
         "status": "running",
-        "completed_epochs": 15,
-        "best_val_AP": 48.495
+        "completed_epochs": 54,
+        "best_val_AP": 54.324
       }
     },
     "gc10": {
       "bear_l": {
         "status": "running",
-        "completed_epochs": 6,
-        "best_val_AP": 41.139613775146984
+        "completed_epochs": 1,
+        "best_val_AP": 0.5607644737374342
       },
       "yolo26x": {
         "status": "running",
-        "completed_epochs": 24,
-        "best_val_AP": 23.07
+        "completed_epochs": 6,
+        "best_val_AP": 14.41
       }
     },
     "neu-det": {
       "bear_l": {
-        "status": "running",
-        "completed_epochs": 8,
-        "best_val_AP": 50.15132243635681
+        "status": "complete",
+        "completed_epochs": 31,
+        "best_val_AP": 51.08846051091107,
+        "dataset": "neu-det",
+        "model": "bear_l",
+        "selected_epoch": 11,
+        "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/neu-det/bear_l/prepared/training/best_stg1.pth",
+        "checkpoint_sha256": "e5d7091b2c315be20f240f8bba9f73a3ed40e2518a87fed810e5d1c3794a9e31",
+        "finished": 1794814558.0969226,
+        "report": {
+          "backend": "torch-fp32",
+          "images": 181,
+          "full_coco_val2017": false,
+          "checkpoint_sha256": "e5d7091b2c315be20f240f8bba9f73a3ed40e2518a87fed810e5d1c3794a9e31",
+          "annotations_sha256": "f75de2bbd3346f2f371d9bc2cd4e9537c756850ec8504f13f37db753ffd8a767",
+          "predictions_sha256": "1e778ebb2d8c9347589be8e61bac48d0d784d9522307d81878dd80cc9d6a8539",
+          "batch_size": 4,
+          "input": 640,
+          "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+          "finite_outputs": true,
+          "elapsed_seconds": 21.493221521377563,
+          "AP": 49.45648589424726,
+          "AP50": 81.93143069013794,
+          "AP75": 50.48700669058237,
+          "AP_small": -100.0,
+          "AP_medium": 42.78780176538302,
+          "AP_large": 50.723680287324804,
+          "precision": "FP32"
+        }
       },
       "yolo26x": {
-        "status": "running",
-        "completed_epochs": 35,
-        "best_val_AP": 40.861
+        "status": "complete",
+        "completed_epochs": 100,
+        "best_val_AP": 49.534,
+        "dataset": "neu-det",
+        "model": "yolo26x",
+        "selected_epoch": 100,
+        "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/neu-det/yolo26x/training/weights/best.pt",
+        "checkpoint_sha256": "02347266e216e95e9622f7623b5ba366e02b846f6092e6194087f0ff73586947",
+        "finished": 1794814137.8712149,
+        "report": {
+          "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/neu-det/yolo26x/training/weights/best.pt",
+          "checkpoint_sha256": "02347266e216e95e9622f7623b5ba366e02b846f6092e6194087f0ff73586947",
+          "annotations_sha256": "f75de2bbd3346f2f371d9bc2cd4e9537c756850ec8504f13f37db753ffd8a767",
+          "AP": 45.86054055386942,
+          "AP50": 79.28763529513768,
+          "AP75": 45.589770321154084,
+          "AP_small": -100.0,
+          "AP_medium": 36.909415467581965,
+          "AP_large": 47.14512622628468,
+          "per_class_AP": {
+            "crazing": 22.297153082874598,
+            "inclusion": 48.2822324829093,
+            "patches": 60.091002954683724,
+            "pitted_surface": 55.722732517374986,
+            "rolled-in_scale": 36.35753627292309,
+            "scratches": 52.41258601245081
+          },
+          "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
+          "num_images": 181,
+          "num_predictions": 54093,
+          "parameters_before_fusion": 58822428,
+          "settings": {
+            "imgsz": 640,
+            "conf": 1e-05,
+            "iou": 0.7,
+            "max_det": 300,
+            "half": false,
+            "augment": false,
+            "nms": null,
+            "end2end": false
+          },
+          "ultralytics_version": "8.4.215",
+          "torch_version": "2.14.1+cu130"
+        }
       }
     },
     "ksdd2": {
       "bear_l": {
-        "status": "running"
+        "status": "failed",
+        "completed_epochs": 14,
+        "best_val_AP": 33.50530332249787
       },
       "yolo26x": {
         "status": "running",
-        "completed_epochs": 2,
-        "best_val_AP": 1.467
+        "completed_epochs": 63,
+        "best_val_AP": 24.483
       }
     }
   }

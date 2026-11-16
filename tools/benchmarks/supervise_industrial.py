@@ -50,7 +50,21 @@ def snapshot(base,jobs):
 def main():
     p=argparse.ArgumentParser();p.add_argument('--base',type=Path,required=True);a=p.parse_args()
     b=a.base.resolve();repo=b/'repo';py=str(b/'venv/bin/python')
-    jobs={};processes={};preparing={}
+    state=json.loads((b/'status.json').read_text()) if (b/'status.json').exists() else {}
+    jobs=state.get('jobs',{});processes={};preparing={}
+    class Existing:
+        def __init__(self,pid,out):self.pid,self.out,self.returncode=pid,out,None
+        def poll(self):
+            try:
+                txt=Path('/proc/'+str(self.pid)+'/stat').read_text()
+                if txt[txt.rfind(')')+2:].split()[0]!='Z':return None
+            except OSError:pass
+            self.returncode=0 if (self.out/'COMPLETE.json').exists() else 1
+            return self.returncode
+    for key,job in jobs.items():
+        if job['status']=='running':
+            ds,model=key.split('/')
+            processes[key]=Existing(job['pid'],b/'runs'/ds/model)
     # One GPU per run avoids DDP overhead for these small datasets.
     while True:
         for dsindex,ds in enumerate(['cr7','gc10','neu-det','ksdd2']):

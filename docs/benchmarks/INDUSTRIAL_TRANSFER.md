@@ -1,6 +1,9 @@
 # Industrial defect transfer benchmark
 
-Status: running. No final test results are claimed until the corresponding run has a completed test report.
+Status: running.
+
+**GC10 correction:** Initial GC10 runs used12 raw XML label strings and are invalid. The corrected benchmark merges `10_yaozhed` into `10_yaozhe` and excludes the entire image `img_02_425616500_00770.jpg` because one box is labeled only `d`. Both models restart from their original COCO checkpoints. Archived initial runs are diagnostics only and must not appear as valid GC10 results. A schema assertion now requires exactly7/10/6/1 classes for CR7/GC10/NEU/KSDD2.
+ No final test results are claimed until the corresponding run has a completed test report.
 
 This experiment compares the **released Bear-L architecture** with **YOLO26x** on CR7-DET, GC10-DET, NEU-DET and a derived KSDD2 bounding-box task. It does not use the proposed four-scale Bear architecture.
 
@@ -38,7 +41,7 @@ KSDD2 is CC BY-NC-SA4.0. Raw datasets are not redistributed in this repository. 
 See [`validation/benchmarks/industrial-20261116/`](../../validation/benchmarks/industrial-20261116/) for:
 
 - `status.json`: current job status and completed epochs;
-- per-dataset manifests, counts and exact split membership (`split-membership.json.gz`);
+- per-dataset manifests, counts and exact split membership;
 - per-model resolved protocols and validation curves;
 - final held-out test reports and checkpoint hashes, once completed;
 - acquisition checksums and installed-package versions.

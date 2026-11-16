@@ -10,13 +10,13 @@
   "checkpoint_selection": "Best validation AP50:95; test excluded from training and selection",
   "test_metric": "COCO bbox AP50:95 maxDets100 with faster-coco-eval",
   "annotations": {
-    "train": "c615c8582e81cef4af0c4ad7423906e7e63762b042f793ac80b23ab24a041bd7",
-    "val": "d52cfde5901c4d5977e39c5ef96f821bc50941055d5ffb8e9fe37153ccb6c713",
-    "test": "bb6b92ef672f3602134b9bfb75007ab030aea2636de9d275a4eddf878ffdff2f"
+    "train": "01a828460ea2bdef271691b33b9049c0a6299a1bcaa1955d1c3b5a7ec91ecdd3",
+    "val": "97bf17bd4810d99baf6f856df5d97c1d5a2aee96ac2711531e38552f96ec1d51",
+    "test": "e2a0d1104112872d05a3bd9d900b6004f4a92d78d7aafa4715ec41fc41e1b360"
   },
   "source_commit": "d45fc0af01e86c6fc1da0cd0a7ef43851b37a56c",
   "gpu": "2",
-  "started": 1794812401.2370534,
+  "started": 1794814398.268195,
   "initialization_sha256": "e096089a14152fd17e610a2ad2f407db52eeea77d66375e02933c43fd720694b",
   "initialization": "Released Bear-L COCO mixed checkpoint; FP32 parameters and decoder; fresh class heads/optimizer/EMA",
   "settings": {
@@ -27,7 +27,7 @@
         "bbox"
       ]
     },
-    "num_classes": 12,
+    "num_classes": 10,
     "remap_mscoco_category": false,
     "train_dataloader": {
       "type": "DataLoader",
