@@ -37,6 +37,10 @@ def main():
         env = dict(os.environ, CUDA_VISIBLE_DEVICES=','.join(map(str, range(gpus))),
                    OMP_NUM_THREADS='4', CHANNELS_LAST='1', BEAR_PRECISION='auto',
                    NCCL_ASYNC_ERROR_HANDLING='1', TORCH_NCCL_ASYNC_ERROR_HANDLING='1')
+        profile = work/'execution-profile.json'
+        if profile.exists():
+            setting=json.loads(profile.read_text())
+            env.update({key:str(value) for key,value in setting['environment'].items()})
         with logfile.open('a') as log:
             child = subprocess.Popen(command, cwd=root, env=env, stdout=log, stderr=log)
             (work / 'active-child.pid').write_text(str(child.pid))

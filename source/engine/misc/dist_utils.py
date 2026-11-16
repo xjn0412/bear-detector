@@ -40,12 +40,18 @@ def setup_distributed(print_rank: int=0, print_method: str='builtin', seed: int=
         LOCAL_RANK = int(os.getenv('LOCAL_RANK', -1))
         WORLD_SIZE = int(os.getenv('WORLD_SIZE', 1))
 
+        # Select the local CUDA device before NCCL initialization/barrier. The
+        # previous ordering could create extra rank-local contexts on GPU0.
+        if LOCAL_RANK >= 0 and torch.cuda.is_available():
+            torch.cuda.set_device(LOCAL_RANK)
+
         # torch.distributed.init_process_group(backend=backend, init_method='env://')
         torch.distributed.init_process_group(init_method='env://')
         torch.distributed.barrier()
 
         rank = torch.distributed.get_rank()
-        torch.cuda.set_device(rank)
+        if torch.cuda.is_available():
+            torch.cuda.set_device(LOCAL_RANK if LOCAL_RANK >= 0 else rank)
         torch.cuda.empty_cache()
         enabled_dist = True
         if get_rank() == print_rank:

@@ -1,0 +1,19 @@
+{
+  "scope": "Live full-COCO L training, unchanged optimizer/model/data order; two non-overlapping windows are not a controlled GPU profiler",
+  "before": {
+    "epoch": 1,
+    "start": 4600,
+    "end": 4800,
+    "seconds": 65.88266871403903,
+    "seconds_per_window": 0.3294133539503673
+  },
+  "after": {
+    "epoch": 1,
+    "start": 4820,
+    "end": 5020,
+    "seconds": 71.21867708000354,
+    "seconds_per_window": 0.35609339085989633
+  },
+  "speedup": 0.9250757312706593,
+  "kept": false
+}

@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "     --- Use Gateway@True ---\n     --- Use Share Bbox Head@False ---\n     --- Use Share Score Head@False ---\n     --- Wide Layer@1 ---\n",
+  "stderr": "/usr/local/lib/python3.11/site-packages/torch/jit/_script.py:1643: FutureWarning: `torch.jit.interface` is deprecated. Please use `torch.compile` instead.\n  warnings.warn(\n.s.s..sss\n----------------------------------------------------------------------\nRan 9 tests in 0.402s\n\nOK (skipped=5)\n"
+}

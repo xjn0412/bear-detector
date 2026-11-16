@@ -16,6 +16,8 @@ def main():
     p.add_argument('--accumulate', type=int, required=True)
     p.add_argument('--warmup', type=int, default=20)
     p.add_argument('--steps', type=int, default=20)
+    p.add_argument('--restore-training-state', action='store_true')
+    p.add_argument('--skip-validation', action='store_true')
     a = p.parse_args()
     os.environ.update(BEAR_ACCUMULATE=str(a.accumulate), BEAR_BENCHMARK='1',
                       BEAR_BENCHMARK_WARMUP=str(a.warmup), BEAR_BENCHMARK_STEPS=str(a.steps))
@@ -24,14 +26,18 @@ def main():
     from engine.misc import dist_utils
     runtime.install_training_loop()
     from v2_training import train_epoch, synchronize
+    if 'LOCAL_RANK' in os.environ:
+        torch.cuda.set_device(int(os.environ['LOCAL_RANK']))
     dist_utils.setup_distributed(seed=42)
     rank, world = dist_utils.get_rank(), dist_utils.get_world_size()
     device = torch.device('cuda', rank)
     torch.set_num_threads(4)
     cfg = config(a.config)
     state, package = weights(a.checkpoint)
+    if a.restore_training_state:
+        state = package['model']
     cfg.model.load_state_dict(state, strict=True)
-    del state, package
+    del state
     model = dist_utils.warp_model(cfg.model.to(device), find_unused_parameters=True)
     optimizer = cfg.optimizer
     for group in optimizer.param_groups:
@@ -39,6 +45,14 @@ def main():
     criterion = cfg.criterion.to(device)
     ema = cfg.ema.to(device)
     scaler = cfg.scaler
+    if a.restore_training_state:
+        if 'precision_policy' in package:cfg.model._bear_precision.load_state_dict(package['precision_policy'])
+        optimizer.load_state_dict(package['optimizer'])
+        scaler.load_state_dict(package['scaler'])
+        ema.load_state_dict(package['ema'])
+    del package
+    for group in optimizer.param_groups:
+        group['lr']=min(group['lr'],1e-5)
     loader = dist_utils.warp_loader(cfg.train_dataloader, shuffle=True)
     loader.set_epoch(5)
     loader.sampler.set_epoch(5)
@@ -50,7 +64,8 @@ def main():
     import engine.solver.det_solver as solver
     synchronize()
     start = time.perf_counter()
-    solver.evaluate(ema.module, criterion, cfg.postprocessor.to(device), val, cfg.evaluator, device)
+    if not a.skip_validation:
+        solver.evaluate(ema.module, criterion, cfg.postprocessor.to(device), val, cfg.evaluator, device)
     synchronize()
     validation_seconds = time.perf_counter() - start
     effective = cfg.yaml_cfg['train_dataloader']['total_batch_size'] * a.accumulate
@@ -77,7 +92,8 @@ def main():
                       estimated_epoch_seconds_excluding_checkpoint=epoch_train_seconds+estimated_full_val_seconds,
                       peak_memory_bytes_max_rank=int(local[2]),
                       selected_precision=cfg.model._bear_precision.state_dict(),
-                      accuracy_claim=False, scope='COCO timing subset with real augmentation/forward/backward/AdamW/EMA; extrapolate118287 train and5000 val images; checkpoint time excluded')
+                      execution_environment={k:os.getenv(k,'') for k in ['BEAR_FAST_RUNTIME','BEAR_BACKBONE_CHECKPOINT','BEAR_COMPILE_NECK']},
+                      validation_performed=not a.skip_validation, accuracy_claim=False, scope='COCO timing subset with real augmentation/forward/backward/AdamW/EMA; extrapolate118287 train and5000 val images; checkpoint time excluded')
         if stats['timed_skipped']:
             report['passed'] = False
             report['reason'] = 'Scaled-overflow skips in timed window; do not use this result to select throughput'

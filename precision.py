@@ -155,6 +155,11 @@ class PrecisionPolicy:
             with torch.autocast(device_type=device.type, enabled=False):
                 return forward(*args, **kwargs)
         self.preflight(model, forward, args, kwargs, device)
+        if os.getenv('BEAR_COMPILE_NECK','0')=='1' and not getattr(model,'_bear_neck_compiled',False):
+            # Compile after the AMP preflight has removed its temporary hooks.
+            # Wrapping forward preserves every parameter/state-dict key.
+            model.encoder.forward = torch.compile(model.encoder.forward, mode='default')
+            model._bear_neck_compiled = True
         if not self.amp_enabled:
             self.enable_fp32_checkpointing(model)
         snapshot = ForwardSnapshot(model, device) if self.amp_enabled else None

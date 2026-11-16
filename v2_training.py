@@ -20,7 +20,7 @@ def synchronize():
 
 def train_epoch(self_lr_scheduler, lr_scheduler, model, criterion, data_loader,
                 optimizer, device, epoch, max_norm=0, **kwargs):
-    from runtime import finite_outputs, finite_flag, scaler_guard
+    from runtime import finite_outputs, finite_flag, scaler_guard, fp32_tree
     model.train()
     criterion.train()
     scaler, ema = kwargs.get('scaler'), kwargs.get('ema')
@@ -34,6 +34,8 @@ def train_epoch(self_lr_scheduler, lr_scheduler, model, criterion, data_loader,
     measured = int(os.getenv('BEAR_BENCHMARK_STEPS', '20')) if benchmark else windows
     completed = successful = skipped = timed_successful = timed_skipped = 0
     loss_sum = 0.
+    core = dist_utils.de_parallel(model)
+    checked_forward = os.getenv('BEAR_FAST_RUNTIME','0')=='1' and hasattr(core, '_bear_precision')
     start = time.perf_counter()
     timed_start = None
     optimizer.zero_grad(set_to_none=True)
@@ -47,7 +49,13 @@ def train_epoch(self_lr_scheduler, lr_scheduler, model, criterion, data_loader,
         targets = [{k: v.to(device, non_blocking=True) for k, v in t.items()} for t in targets]
         sync = model.no_sync() if hasattr(model, 'no_sync') and not end_window else nullcontext()
         with sync:
-            outputs = finite_outputs(model(samples, targets=targets))
+            # The policy already checks every floating output and synchronizes
+            # failure before returning. Retain legacy checks for unwrapped models.
+            outputs = model(samples, targets=targets)
+            if checked_forward:
+                outputs = fp32_tree(outputs)
+            else:
+                outputs = finite_outputs(outputs)
             with torch.autocast(device_type='cuda', enabled=False):
                 losses = criterion(outputs, targets, epoch=epoch, step=i,
                                    global_step=epoch * micro_count + i, epoch_step=micro_count)

@@ -87,6 +87,12 @@ def optimize_query_attention(model):
 
 
 def wrap_model(model,sync_bn=False,dist_mode='ddp',find_unused_parameters=True,**kwargs):
+    if os.getenv('BEAR_FAST_RUNTIME','0')=='1':
+        from fast_runtime import install
+        install()
+    checkpoint=os.getenv('BEAR_BACKBONE_CHECKPOINT')
+    if checkpoint is not None:
+        model.backbone.body.set_grad_checkpointing(checkpoint=='1')
     model=optimize_query_attention(model)
     model=install_precision_policy(model, os.getenv("BEAR_PRECISION", "auto"))
     if os.getenv('CHANNELS_LAST','1')=='1':model=model.to(memory_format=torch.channels_last)

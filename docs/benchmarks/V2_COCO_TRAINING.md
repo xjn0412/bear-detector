@@ -1,5 +1,7 @@
 # V2 COCO training and GPU scaling
 
+[Execution optimization status and acceptance gates](V2_TRAINING_OPTIMIZATION.md): CPU checks passed; automatic GPU testing is staged after L's first complete epoch checkpoint. No optimization speedup is claimed yet.
+
 COCO training launched2026-11-16 in the requested **L → B → S → T** sequence. Each selected run uses8 RTX5090 GPUs, input640, micro-batch1/GPU and effective global batch8. Each model has an independent fresh detector initialized with its corresponding DINOv3 ConvNeXt backbone. Timing updates are discarded before formal training.
 
 Detection supervision is **COCO train2017 only** (118,287 images); every formal epoch validates the selected EMA on all5,000 val2017 images. Maximum100 epochs/model; stop after20 consecutive epochs without AP50:95 improvement. V2 weights and AP are not yet available. DINOv3 representation pretraining uses external LVD data, as disclosed for v1.

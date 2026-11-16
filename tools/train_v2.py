@@ -16,8 +16,14 @@ def main():
     p.add_argument('--amp', choices=['auto', 'fp32'], default='auto')
     p.add_argument('--accumulate', type=int, default=1)
     p.add_argument('--patience', type=int, default=20)
+    p.add_argument('--fast-runtime', choices=['on','off'], default=None)
+    p.add_argument('--backbone-checkpoint', choices=['on','off'], default=None)
     a = p.parse_args()
     os.environ['BEAR_PRECISION'] = a.amp
+    if a.fast_runtime is not None:
+        os.environ['BEAR_FAST_RUNTIME'] = '1' if a.fast_runtime=='on' else '0'
+    if a.backbone_checkpoint is not None:
+        os.environ['BEAR_BACKBONE_CHECKPOINT'] = '1' if a.backbone_checkpoint=='on' else '0'
     if a.accumulate < 1 or a.patience < 0:
         p.error('Invalid accumulation/patience')
     os.environ['BEAR_ACCUMULATE'] = str(a.accumulate)
