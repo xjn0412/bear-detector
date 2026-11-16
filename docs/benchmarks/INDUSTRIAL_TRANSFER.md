@@ -125,3 +125,9 @@ allocated memory was20.708GiB in AMP and23.867GiB with checkpointed FP32; the
 uncheckpointed FP32 test approached30.506GiB. These are diagnostic measurements,
 not dataset AP or throughput claims. Production resumes from the finite full
 epoch17 checkpoint; precision reports will disclose any actual fallback.
+
+Observed in production: the new policy passed its startup check, then caught a
+real forward overflow during epoch20, between progress reports at steps200 and220
+(zero-based batch indices). It retried the same batch in FP32 and subsequent
+training losses remained finite. The run selected persistent FP32 with activation
+checkpointing; this precision change is recorded in the published policy report.
