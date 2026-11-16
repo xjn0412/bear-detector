@@ -1,8 +1,6 @@
-# Per-epoch native validation mAP50:95 (%)
+# Final per-epoch native validation mAP50:95 (%)
 
-Snapshot: 2026-11-16 09:01:19 UTC. B = Bear-L; Y = YOLO26x. A dash means no completed epoch for that run. These are the original native validation metrics; historical Bear curves retain the annotation-ID0 evaluator limitation. Final test reports use corrected positive annotation IDs and must not be confused with these curves.
-
-KSDD2 Bear-L uses the recovered production trajectory; interrupted partial epochs and diagnostic replays are excluded. Best checkpoint: epoch17, native validation AP39.200894. Production switched to persistent FP32 during epoch20. Seven other runs are complete.
+All8 runs complete. B=Bear-L; Y=YOLO26x. Historical native Bear metrics retain the annotation-ID0 evaluator limitation; final held-out test reports use positive annotation IDs. Interrupted partial epochs and diagnostic replays are excluded.
 
 |Epoch|CR7 B|CR7 Y|GC10 B|GC10 Y|NEU B|NEU Y|KSDD2 B|KSDD2 Y|
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -17,7 +15,7 @@ KSDD2 Bear-L uses the recovered production trajectory; interrupted partial epoch
 |9|58.15|43.44|38.03|19.25|49.45|29.83|20.51|2.36|
 |10|58.48|43.66|37.34|19.17|49.85|34.67|28.27|3.57|
 |11|57.93|45.88|37.46|22.19|51.09|31.79|26.11|2.07|
-|12|57.81|47.16|37.70|18.63|50.11|34.37|4.35|2.46|
+|12|57.81|47.16|37.70|18.62|50.11|34.37|4.35|2.46|
 |13|57.55|43.26|36.91|19.66|50.98|32.93|26.62|3.96|
 |14|56.99|48.49|35.41|21.28|50.60|33.68|33.51|1.89|
 |15|56.56|48.15|36.23|19.64|50.51|33.97|33.73|4.52|
@@ -40,9 +38,9 @@ KSDD2 Bear-L uses the recovered production trajectory; interrupted partial epoch
 |32|—|51.85|—|26.22|—|40.82|4.15|10.40|
 |33|—|51.02|—|23.72|—|37.73|4.28|12.35|
 |34|—|50.83|—|25.01|—|40.60|4.79|13.17|
-|35|—|51.90|—|26.85|—|40.09|—|11.92|
-|36|—|50.81|—|25.59|—|41.95|—|6.96|
-|37|—|51.14|—|25.43|—|38.56|—|8.45|
+|35|—|51.90|—|26.85|—|40.09|4.79|11.92|
+|36|—|50.81|—|25.59|—|41.95|4.17|6.96|
+|37|—|51.14|—|25.43|—|38.56|4.40|8.45|
 |38|—|52.70|—|26.44|—|40.01|—|10.17|
 |39|—|52.09|—|24.93|—|42.02|—|12.97|
 |40|—|52.86|—|29.20|—|44.24|—|7.07|

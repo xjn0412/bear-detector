@@ -1,5 +1,5 @@
 {
-  "updated": 1794818896.4436936,
+  "updated": 1794820097.3819008,
   "jobs": {
     "cr7/bear_l": {
       "pid": 2938,
@@ -76,7 +76,7 @@
     "ksdd2/bear_l": {
       "pid": 248974,
       "gpu": 6,
-      "status": "running",
+      "status": "complete",
       "started": 1794812911.3747172,
       "command": [
         "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
@@ -89,7 +89,9 @@
         "bear_l",
         "--resume"
       ],
-      "recovered": 1794816854.929076
+      "recovered": 1794816854.929076,
+      "returncode": 0,
+      "finished": 1794820097.359405
     },
     "ksdd2/yolo26x": {
       "pid": 35234,
@@ -438,9 +440,42 @@
     },
     "ksdd2": {
       "bear_l": {
-        "status": "running",
-        "completed_epochs": 30,
-        "best_val_AP": 39.200894256286
+        "status": "complete",
+        "completed_epochs": 37,
+        "best_val_AP": 39.200894256286,
+        "dataset": "ksdd2",
+        "model": "bear_l",
+        "selected_epoch": 17,
+        "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/ksdd2/bear_l/prepared/training/best_stg1.pth",
+        "checkpoint_sha256": "0b5011f9c41d8bb5e7e7ecff964472fb48162c9c2d67183e7dcd2667f6cd2fd6",
+        "finished": 1794820070.8847022,
+        "report": {
+          "backend": "torch-fp32",
+          "images": 1004,
+          "full_coco_val2017": false,
+          "checkpoint_sha256": "0b5011f9c41d8bb5e7e7ecff964472fb48162c9c2d67183e7dcd2667f6cd2fd6",
+          "annotations_sha256": "6aa4e56c2fa7c29cfb831d604a9f770c590596da32ebc73ec1c479df2018f688",
+          "predictions_sha256": "34701230b37048e358d053bccd42ab07008b6645b3be13ee05a27fae11c53e0e",
+          "batch_size": 4,
+          "input": 640,
+          "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+          "finite_outputs": true,
+          "annotation_ids_reindexed": true,
+          "elapsed_seconds": 24.34399914741516,
+          "AP": 36.690646744272854,
+          "AP50": 62.86693390241778,
+          "AP75": 39.20162355782263,
+          "AP_small": 0.0,
+          "AP_medium": 20.581679491076887,
+          "AP_large": 51.906988317334154,
+          "precision": "FP32",
+          "inference_precision": {
+            "requested": "fp32",
+            "selected": "fp32",
+            "fallback_count": 0,
+            "checked": true
+          }
+        }
       },
       "yolo26x": {
         "status": "complete",

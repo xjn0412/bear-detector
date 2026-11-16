@@ -1,6 +1,6 @@
 # Industrial defect transfer benchmark
 
-Status: **7/8 runs complete**, checked 2026-11-16T08:38:51+00:00. Bear-L KSDD2 is still training (latest completed epoch32); its best validation AP is39.20% at epoch17. Recent validation AP has fallen despite finite FP32 outputs; the best checkpoint remains preserved. No final KSDD2 Bear test score is claimed.
+Status: **8/8 runs complete**, checked 2026-11-16T09:10:34+00:00. KSDD2 Bear-L stopped at epoch37 after20 epochs without a validation improvement and selected epoch17. The preserved best checkpoint scored test AP36.6906%. Late training accuracy collapsed despite finite FP32 outputs; best-checkpoint protection prevented that trajectory from replacing the selected model.
 
 ## Completed held-out test results
 
@@ -11,7 +11,7 @@ All values below are **test AP50:95 in percent**, shared COCO evaluator/maxDets1
 | CR7-DET |58.52|51.80|+6.72|26 /83|6 /63|
 | GC10-DET (corrected10 classes) |41.87|31.14|+10.73|26 /85|6 /65|
 | NEU-DET |49.65|45.91|+3.74|31 /100|11 /100|
-| KSDD2 derived boxes |Pending|11.07|Pending|Running /100|Pending /84|
+| KSDD2 derived boxes |36.69|11.07|+25.62|37 /100|17 /84|
 
 Per-epoch validation curves and final test reports are in the linked evidence directory below. Validation AP and test AP are distinct. Different pretraining/recipes and one seed limit the comparison.
 
@@ -163,5 +163,30 @@ Earlier test numbers are superseded, with original reports archived as diagnosti
 evidence under `evaluation-id0-legacy/`. Historical native Bear validation curves
 and checkpoint selection used the original evaluator and remain unchanged; this
 rescore does not reconstruct corrected per-epoch curves or claim to remove that
-selection limitation. The ongoing KSDD2 run retains its historical validation
+selection limitation. The completed KSDD2 run retained its historical validation
 metric for consistent early stopping; its final test evaluation uses the repair.
+
+## Why Bear peaked earlier
+
+The runs use different transfer recipes, so epoch counts do not isolate architecture.
+For CR7, Bear training loss fell29.39→21.28 between epochs6 and26 while native
+validation AP fell59.56→55.42. GC10 similarly fell in training loss39.06→23.09
+while native AP fell38.67→36.03. These trends are consistent with overfitting.
+The logged Bear LR remained9.985e-5 at epoch6 and8.857e-5 at26: the100-epoch
+cosine schedule had barely decayed before early stopping. A shorter transfer
+schedule or plateau-triggered LR reduction should be tested, not assumed to work.
+
+Bear augmentation was horizontal flip only, whereas resolved YOLO settings used
+mosaic1.0, scale0.5, translation0.1 and HSV jitter. YOLO weight decay was5e-4
+versus Bear1e-4. Bear-L has roughly221M parameters versus YOLO26x59M. These
+differences plausibly explain slower initial YOLO adaptation and less early
+overfitting, but their individual effects have not been isolated in ablations.
+Both models began from COCO detector checkpoints; neither was trained from scratch.
+
+KSDD2 is a separate optimization failure: Bear's training localization errors
+increased sharply as validation collapsed, and training has1877 negative images
+out of2098. Imbalance is a plausible contributor, not a proven root cause.
+FP32 recovery prevents representational overflow but does not guarantee sound
+optimization. Best-checkpoint protection selected epoch17, whose corrected final
+test AP is36.6906, rather than the collapsed final epoch. All experimental
+follow-ups should use validation, with the original benchmark retained unchanged.
