@@ -1,0 +1,38 @@
+{
+  "cr7.zip": {
+    "url": "https://zenodo.org/records/14264153/files/CR7-DET.zip?download=1",
+    "bytes": 53049441,
+    "sha256": "8cb7bf241cf180b77d3aba9093afa815cd81a667f21c3642d76deed07a0923fb",
+    "md5": "411d3cf20b9949cdc369b4f7124ea6d3"
+  },
+  "gc10.zip": {
+    "url": "https://www.kaggle.com/api/v1/datasets/download/alex000kim/gc10det",
+    "bytes": 970561145,
+    "sha256": "7b1f8b2fbdc90d2ae64a03e2ae44957cf3318b01bf566c26e46e46f8132aad9c",
+    "md5": "d8d17527cc7637e1dacbfe45a21a3143"
+  },
+  "neu-det.zip": {
+    "url": "https://zenodo.org/api/records/16882077/files/NEU-DET.zip/content",
+    "bytes": 27428830,
+    "sha256": "b1386dd9b7ba2112f11c44edbedcae88c81f9908267295915826d5f5d56b484e",
+    "md5": "a62818cfdd92e617890e546ab40945ea"
+  },
+  "ksdd2.zip": {
+    "url": "https://data.vicos.si/datasets/KSDD/KolektorSDD2.zip",
+    "bytes": 853126555,
+    "sha256": "edcdb486809b24f1d17b785e30c52fafc5999554dd5fe18ddf77b61ceb6f36a8",
+    "md5": "1ed0f628122776ace4965afa30dfe316"
+  },
+  "bear-l-coco-mixed.pt": {
+    "url": "https://github.com/xjn0412/bear-detector/releases/download/v0.3.0-large/bear-l-coco-mixed.pt",
+    "bytes": 463184637,
+    "sha256": "e096089a14152fd17e610a2ad2f407db52eeea77d66375e02933c43fd720694b",
+    "md5": "92d042bca946111a6551afd5c07f583f"
+  },
+  "yolo26x.pt": {
+    "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26x.pt",
+    "bytes": 118667365,
+    "sha256": "9fdd44a31c504547ffb81d2c6d9e6dac3493c8eaa8b0398d3f43bae6c7003e92",
+    "md5": "84da48ba7b49f98e1c2c85dddb895fcd"
+  }
+}

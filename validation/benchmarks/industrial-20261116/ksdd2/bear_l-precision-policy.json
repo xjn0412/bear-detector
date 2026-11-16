@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "requested": "auto",
+  "amp_enabled": false,
+  "checked": true,
+  "events": [
+    {
+      "event": "amp_check_passed",
+      "failed_layers": [],
+      "failed_layer_count": 0,
+      "selected": "fp16_amp"
+    },
+    {
+      "event": "forward_overflow_fallback",
+      "selected": "fp32",
+      "action": "restore RNG/buffers and retry same batch before backward"
+    },
+    {
+      "event": "fp32_activation_checkpointing",
+      "backbone": "ConvNeXt"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "dataset": "neu-det",
+  "model": "bear_l",
+  "completed_epochs": 31,
+  "selected_epoch": 11,
+  "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/neu-det/bear_l/prepared/training/best_stg1.pth",
+  "checkpoint_sha256": "e5d7091b2c315be20f240f8bba9f73a3ed40e2518a87fed810e5d1c3794a9e31",
+  "finished": 1794814558.0969226,
+  "report": {
+    "backend": "torch-fp32",
+    "images": 181,
+    "full_coco_val2017": false,
+    "checkpoint_sha256": "e5d7091b2c315be20f240f8bba9f73a3ed40e2518a87fed810e5d1c3794a9e31",
+    "annotations_sha256": "f75de2bbd3346f2f371d9bc2cd4e9537c756850ec8504f13f37db753ffd8a767",
+    "predictions_sha256": "1e778ebb2d8c9347589be8e61bac48d0d784d9522307d81878dd80cc9d6a8539",
+    "batch_size": 4,
+    "input": 640,
+    "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+    "finite_outputs": true,
+    "elapsed_seconds": 21.493221521377563,
+    "AP": 49.647294714166314,
+    "AP50": 82.32313071883169,
+    "AP75": 50.64329437024367,
+    "AP_small": -100.0,
+    "AP_medium": 42.78780176538302,
+    "AP_large": 50.9144867532685,
+    "precision": "FP32",
+    "per_class_AP": {
+      "crazing": 24.962100261907587,
+      "inclusion": 53.366860080451886,
+      "patches": 65.42141248174183,
+      "pitted_surface": 60.4348395635719,
+      "rolled-in_scale": 37.19893627690164,
+      "scratches": 56.49961962042307
+    },
+    "annotation_ids_reindexed": true,
+    "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+  },
+  "evaluation_correction": "positive COCO annotation IDs; original report retained locally"
+}

@@ -1,0 +1,146 @@
+{
+  "dataset": "gc10",
+  "seed": 42,
+  "classes": [
+    "10_yaozhe",
+    "1_chongkong",
+    "2_hanfeng",
+    "3_yueyawan",
+    "4_shuiban",
+    "5_youban",
+    "6_siban",
+    "7_yiwu",
+    "8_yahen",
+    "9_zhehen"
+  ],
+  "input": "RGB direct PIL bilinear 640x640 PNG; boxes scaled independently in x/y",
+  "split": "Custom approximately 80/10/10 split stratified by class-presence signature, seed42; source split not benchmarked",
+  "raw_images": 2305,
+  "unique_images": 2293,
+  "duplicate_groups": [
+    [
+      "3/img_01_425503100_00018.jpg",
+      "7/img_01_425503100_00018.jpg"
+    ],
+    [
+      "7/img_03_436068500_00002.jpg",
+      "8/img_03_436068500_00002.jpg"
+    ],
+    [
+      "1/img_06_425502900_00052.jpg",
+      "2/img_06_425502900_00052.jpg"
+    ],
+    [
+      "4/img_07_425503000_00061.jpg",
+      "7/img_07_425503000_00061.jpg"
+    ],
+    [
+      "2/img_04_425503600_00017.jpg",
+      "3/img_04_425503600_00017.jpg"
+    ],
+    [
+      "1/img_07_425502900_00052.jpg",
+      "2/img_07_425502900_00052.jpg"
+    ],
+    [
+      "10/img_07_436163600_01161.jpg",
+      "2/img_07_436163600_01161.jpg"
+    ],
+    [
+      "7/img_02_425392000_00984.jpg",
+      "8/img_02_425392000_00984.jpg"
+    ],
+    [
+      "2/img_06_425505500_00052.jpg",
+      "8/img_06_425505500_00052.jpg"
+    ],
+    [
+      "1/img_03_425506300_00018.jpg",
+      "2/img_03_425506300_00018.jpg"
+    ],
+    [
+      "1/img_07_425391800_00054.jpg",
+      "6/img_07_425391800_00054.jpg"
+    ],
+    [
+      "10/img_06_3436814000_00687.jpg",
+      "9/img_06_3436814000_00687.jpg"
+    ]
+  ],
+  "clipped_boxes": 0,
+  "annotation_conversion": "VOC one-based inclusive converted to zero-based half-open",
+  "counts": {
+    "train": {
+      "images": 1833,
+      "boxes": 2849,
+      "positive_images": 1831,
+      "per_class": {
+        "1_chongkong": 261,
+        "4_shuiban": 280,
+        "2_hanfeng": 406,
+        "6_siban": 715,
+        "5_youban": 457,
+        "3_yueyawan": 212,
+        "7_yiwu": 278,
+        "8_yahen": 66,
+        "9_zhehen": 61,
+        "10_yaozhe": 113
+      }
+    },
+    "val": {
+      "images": 230,
+      "boxes": 354,
+      "positive_images": 230,
+      "per_class": {
+        "1_chongkong": 34,
+        "2_hanfeng": 53,
+        "3_yueyawan": 27,
+        "6_siban": 86,
+        "5_youban": 52,
+        "10_yaozhe": 14,
+        "7_yiwu": 28,
+        "8_yahen": 10,
+        "4_shuiban": 42,
+        "9_zhehen": 8
+      }
+    },
+    "test": {
+      "images": 230,
+      "boxes": 359,
+      "positive_images": 230,
+      "per_class": {
+        "1_chongkong": 34,
+        "2_hanfeng": 53,
+        "8_yahen": 9,
+        "6_siban": 83,
+        "5_youban": 60,
+        "3_yueyawan": 26,
+        "10_yaozhe": 16,
+        "9_zhehen": 5,
+        "4_shuiban": 32,
+        "7_yiwu": 41
+      }
+    }
+  },
+  "sources": {
+    "train_annotations_sha256": "01a828460ea2bdef271691b33b9049c0a6299a1bcaa1955d1c3b5a7ec91ecdd3",
+    "val_annotations_sha256": "97bf17bd4810d99baf6f856df5d97c1d5a2aee96ac2711531e38552f96ec1d51",
+    "test_annotations_sha256": "e2a0d1104112872d05a3bd9d900b6004f4a92d78d7aafa4715ec41fc41e1b360"
+  },
+  "excluded_unannotated_images": [
+    "10/img_06_425614600_00429.jpg",
+    "10/img_06_425614600_00438.jpg",
+    "10/img_07_3436814000_00020.jpg",
+    "10/img_07_436164700_01539.jpg",
+    "2/img_02_425616500_00770.jpg",
+    "6/img_08_4406743300_00407.jpg",
+    "9/img_05_425382900_00002.jpg"
+  ],
+  "class_aliases": {
+    "10_yaozhed": "10_yaozhe"
+  },
+  "excluded_ambiguous_annotation_images": [
+    "img_02_425616500_00770.jpg"
+  ],
+  "revision": "Corrected10-class schema; initial12-class runs invalidated"
+}

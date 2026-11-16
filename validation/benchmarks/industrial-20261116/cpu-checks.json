@@ -1,0 +1,32 @@
+[
+  {
+    "test": "tests/test_classes.py",
+    "returncode": 0,
+    "output": "     --- Use Gateway@True ---\n     --- Use Share Bbox Head@False ---\n     --- Use Share Score Head@False ---\n     --- Wide Layer@1 ---\n     --- Use Gateway@True ---\n     --- Use Share Bbox Head@False ---\n     --- Use Share Score Head@False ---\n     --- Wide Layer@1 ---\n     --- Use Gateway@True ---\n     --- Use Share Bbox Head@False ---\n     --- Use Share Score Head@False ---\n     --- Wide Layer@1 ---\n     --- Use Gateway@True ---\n     --- Use Share Bbox Head@False ---\n     --- Use Share Score Head@False ---\n     --- Wide Layer@1 ---\n......\n----------------------------------------------------------------------\nRan 6 tests in 1.128s\n\nOK\n"
+  },
+  {
+    "test": "tests/test_sampling.py",
+    "returncode": 0,
+    "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.274s\n\nOK\n"
+  },
+  {
+    "test": "tests/test_yolo.py",
+    "returncode": 0,
+    "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.032s\n\nOK\n"
+  },
+  {
+    "test": "tests/test_profile.py",
+    "returncode": 0,
+    "output": "...\n----------------------------------------------------------------------\nRan 3 tests in 1.642s\n\nOK\n"
+  },
+  {
+    "test": "tests/test_compact.py",
+    "returncode": 0,
+    "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 2.556s\n\nOK\n"
+  },
+  {
+    "test": "tools/benchmarks/check_coco_annotation_ids.py",
+    "returncode": 0,
+    "output": "PASS: source annotation ID0 scores perfect AP after reindex; file/geometry unchanged; duplicate IDs rejected\n"
+  }
+]

@@ -25,6 +25,23 @@ Latency: one RTX5090 GPU7, batch1,100 warmups,3×300 CUDA-event iterations, no C
 
 PT accuracy uses batch8; TRT is fixed batch1, so AP differences include backend and batch-dependent numerics. Each acceptance gate permits at most0.1 AP-point loss. GFLOPs use the documented arithmetic scope,2 FLOPs/MAC, and do not predict latency. [Full results and reproduction](docs/benchmarks/DEPLOYMENT5090.md) · [FLOPs scope](docs/benchmarks/COMPLEXITY.md).
 
+## Industrial defect fine-tuning
+
+**Held-out test AP50:95 (%) · 640 input · all eight runs complete.**
+
+| Dataset | Bear-L | YOLO26x | Δ AP points |
+|---|---:|---:|---:|
+| CR7-DET | **58.52** | 51.80 | +6.72 |
+| GC10-DET | **41.87** | 31.14 | +10.73 |
+| NEU-DET | **49.65** | 45.91 | +3.74 |
+| KSDD2 · derived boxes | **36.69** | 11.07 | +25.62 |
+
+Shared images/splits and FP32 COCO evaluation; seed42, batch8, up to100 epochs, patience20. Model sizes, pretraining and recipes differ. CR7/GC10/NEU use internal splits; KSDD2 is a derived bounding-box task, not its official segmentation benchmark.
+
+Final test scores use corrected annotation IDs. Historical Bear validation curves and checkpoint selection retain an earlier evaluator limitation; see the audit before interpreting convergence.
+
+[Protocol & results](docs/benchmarks/INDUSTRIAL_TRANSFER.md) · [Every epoch](validation/benchmarks/industrial-20261116/epoch-progress.md) · [AP50/AP50:95 CSV](validation/benchmarks/industrial-20261116/all-epochs.csv) · [Verification](docs/benchmarks/INDUSTRIAL_TRANSFER.md#publication-audit) · [TensorRT validation](docs/benchmarks/TENSORRT_REVALIDATION_20261116.md)
+
 ## COCO-only detection-training comparison
 
 ![COCO-only detector training: accuracy versus parameters and FLOPs](assets/benchmarks/comparison-efficiency.png)

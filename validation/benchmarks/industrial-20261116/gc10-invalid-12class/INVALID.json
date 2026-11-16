@@ -1,0 +1,9 @@
+{
+  "reason": "Raw XML aliases were treated as12classes; expected10. Not a valid GC10 benchmark. Fresh corrected runs replace these results.",
+  "alias": {
+    "10_yaozhed": "10_yaozhe"
+  },
+  "exclude_unknown_image": "img_02_425616500_00770.jpg",
+  "time": 1794814295.9694824,
+  "archive_audit": "Incomplete published curves refreshed to all22 Bear /71 YOLO recorded epochs. Still INVALID for GC10 comparison."
+}

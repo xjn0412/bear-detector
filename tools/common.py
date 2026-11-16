@@ -36,7 +36,7 @@ def normalize(data, schema):
         if a['id'] in ann_ids:raise ValueError('Duplicate annotation ID')
         ann_ids.add(a['id'])
         if len(a['bbox'])!=4 or not all(isinstance(v,(int,float)) and math.isfinite(v) for v in a['bbox']) or a['bbox'][2]<=0 or a['bbox'][3]<=0:raise ValueError('Invalid bbox: require finite coordinates and positive size')
-        anns.append(dict(a,category_id=ids[a['category_id']],iscrowd=a.get('iscrowd',0),area=a.get('area',a['bbox'][2]*a['bbox'][3])))
+        anns.append(dict(a,id=len(anns)+1,category_id=ids[a['category_id']],iscrowd=a.get('iscrowd',0),area=a.get('area',a['bbox'][2]*a['bbox'][3])))
     out['annotations']=anns
     return out
 
@@ -74,15 +74,6 @@ def load_model(path, checkpoint, deploy=False):
 
 class Inference: # factory avoids importing torch for schema-only tools
     @staticmethod
-    def create(model,post,amp=False):
-        import torch
-        class Wrapper(torch.nn.Module):
-            def __init__(self):super().__init__();self.core=model;self.post=post.deploy()
-            def forward(self, images, orig_target_sizes):
-                # Explicit FP32 decoder: same contract in PyTorch and exported ONNX.
-                with torch.autocast(device_type=images.device.type,dtype=torch.float16,enabled=amp):
-                    features=self.core.encoder(self.core.backbone(images))
-                with torch.autocast(device_type=images.device.type,enabled=False):
-                    outputs=self.core.decoder([f.float() for f in features])
-                    return self.post(outputs,orig_target_sizes)
-        return Wrapper().eval()
+    def create(model,post,amp=False,checked=True):
+        from inference_precision import CheckedInference
+        return CheckedInference(model,post,amp=amp,checked=checked).eval()

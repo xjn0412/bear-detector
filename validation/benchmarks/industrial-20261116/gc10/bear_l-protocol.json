@@ -1,0 +1,315 @@
+{
+  "dataset": "gc10",
+  "model": "bear_l",
+  "seed": 42,
+  "input": 640,
+  "batch": 8,
+  "epoch_limit": 100,
+  "patience": 20,
+  "recipe": "Model-specific fine-tuning recipes, shared image geometry/splits/budget; not an architecture-only ablation",
+  "checkpoint_selection": "Best validation AP50:95; test excluded from training and selection",
+  "test_metric": "COCO bbox AP50:95 maxDets100 with faster-coco-eval",
+  "annotations": {
+    "train": "01a828460ea2bdef271691b33b9049c0a6299a1bcaa1955d1c3b5a7ec91ecdd3",
+    "val": "97bf17bd4810d99baf6f856df5d97c1d5a2aee96ac2711531e38552f96ec1d51",
+    "test": "e2a0d1104112872d05a3bd9d900b6004f4a92d78d7aafa4715ec41fc41e1b360"
+  },
+  "source_commit": "d45fc0af01e86c6fc1da0cd0a7ef43851b37a56c",
+  "gpu": "2",
+  "started": 1794814398.268195,
+  "initialization_sha256": "e096089a14152fd17e610a2ad2f407db52eeea77d66375e02933c43fd720694b",
+  "initialization": "Released Bear-L COCO mixed checkpoint; FP32 parameters and decoder; fresh class heads/optimizer/EMA",
+  "settings": {
+    "task": "detection",
+    "evaluator": {
+      "type": "CocoEvaluator",
+      "iou_types": [
+        "bbox"
+      ]
+    },
+    "num_classes": 10,
+    "remap_mscoco_category": false,
+    "train_dataloader": {
+      "type": "DataLoader",
+      "dataset": {
+        "type": "CocoDetection",
+        "img_folder": "/var/lib/sentinelx/uploads/bear-industrial-20261116/datasets/gc10/images/train",
+        "ann_file": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/gc10/bear_l/prepared/train.json",
+        "return_masks": false,
+        "transforms": {
+          "type": "Compose",
+          "ops": [
+            {
+              "type": "RandomHorizontalFlip"
+            },
+            {
+              "type": "Resize",
+              "size": [
+                640,
+                640
+              ]
+            },
+            {
+              "type": "ConvertPILImage",
+              "dtype": "float32",
+              "scale": true
+            },
+            {
+              "type": "Normalize",
+              "mean": [
+                0.485,
+                0.456,
+                0.406
+              ],
+              "std": [
+                0.229,
+                0.224,
+                0.225
+              ]
+            },
+            {
+              "type": "ConvertBoxes",
+              "fmt": "cxcywh",
+              "normalize": true
+            }
+          ]
+        }
+      },
+      "shuffle": true,
+      "num_workers": 2,
+      "drop_last": false,
+      "collate_fn": {
+        "type": "BatchImageCollateFunction",
+        "base_size": 640,
+        "base_size_repeat": null,
+        "stop_epoch": 100,
+        "mixup_prob": 0.0,
+        "mixup_epochs": [
+          4,
+          29
+        ],
+        "copyblend_prob": 0.0,
+        "copyblend_epochs": [
+          4,
+          90
+        ],
+        "area_threshold": 100,
+        "num_objects": 3,
+        "with_expand": true,
+        "expand_ratios": [
+          0.1,
+          0.25
+        ],
+        "ema_restart_decay": 0.9999
+      },
+      "total_batch_size": 8,
+      "pin_memory": true
+    },
+    "val_dataloader": {
+      "type": "DataLoader",
+      "dataset": {
+        "type": "CocoDetection",
+        "img_folder": "/var/lib/sentinelx/uploads/bear-industrial-20261116/datasets/gc10/images/val",
+        "ann_file": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/gc10/bear_l/prepared/val.json",
+        "return_masks": false,
+        "transforms": {
+          "type": "Compose",
+          "ops": [
+            {
+              "type": "Resize",
+              "size": [
+                640,
+                640
+              ]
+            },
+            {
+              "type": "ConvertPILImage",
+              "dtype": "float32",
+              "scale": true
+            },
+            {
+              "type": "Normalize",
+              "mean": [
+                0.485,
+                0.456,
+                0.406
+              ],
+              "std": [
+                0.229,
+                0.224,
+                0.225
+              ]
+            }
+          ]
+        }
+      },
+      "shuffle": false,
+      "num_workers": 2,
+      "drop_last": false,
+      "collate_fn": {
+        "type": "BatchImageCollateFunction"
+      },
+      "total_batch_size": 8,
+      "pin_memory": true
+    },
+    "print_freq": 20,
+    "output_dir": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/gc10/bear_l/prepared/training",
+    "checkpoint_freq": 100,
+    "sync_bn": false,
+    "find_unused_parameters": true,
+    "use_amp": true,
+    "scaler": {
+      "type": "GradScaler",
+      "enabled": true,
+      "init_scale": 1.0
+    },
+    "use_ema": true,
+    "ema": {
+      "type": "ModelEMA",
+      "decay": 0.9999,
+      "warmups": 1000,
+      "start": 0
+    },
+    "epoches": 100,
+    "clip_max_norm": 0.1,
+    "optimizer": {
+      "type": "AdamW",
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "weight_decay": 0.0001,
+      "fused": true
+    },
+    "lr_scheduler": {
+      "type": "MultiStepLR",
+      "milestones": [
+        500
+      ],
+      "gamma": 0.1
+    },
+    "lr_warmup_scheduler": {
+      "type": "LinearWarmup",
+      "warmup_duration": 500
+    },
+    "model": "DEIM",
+    "criterion": "DEIMCriterion",
+    "postprocessor": "PostProcessor",
+    "use_focal_loss": true,
+    "eval_spatial_size": [
+      640,
+      640
+    ],
+    "DEIM": {
+      "backbone": "DeepStageHybrid",
+      "encoder": "HybridEncoder",
+      "decoder": "DEIMTransformer"
+    },
+    "HybridEncoder": {
+      "in_channels": [
+        256,
+        256,
+        256
+      ],
+      "feat_strides": [
+        8,
+        16,
+        32
+      ],
+      "hidden_dim": 256,
+      "use_encoder_idx": [],
+      "num_encoder_layers": 0,
+      "nhead": 8,
+      "dim_feedforward": 1024,
+      "dropout": 0.0,
+      "enc_act": "gelu",
+      "expansion": 1.25,
+      "depth_mult": 1.37,
+      "act": "silu",
+      "version": "deim",
+      "csp_type": "csp2",
+      "fuse_op": "sum"
+    },
+    "DEIMTransformer": {
+      "feat_channels": [
+        256,
+        256,
+        256
+      ],
+      "feat_strides": [
+        8,
+        16,
+        32
+      ],
+      "hidden_dim": 256,
+      "num_levels": 3,
+      "num_layers": 6,
+      "eval_idx": -1,
+      "num_queries": 300,
+      "num_denoising": 100,
+      "label_noise_ratio": 0.5,
+      "box_noise_scale": 1.0,
+      "reg_max": 32,
+      "reg_scale": 4,
+      "layer_scale": 1,
+      "num_points": [
+        3,
+        6,
+        3
+      ],
+      "cross_attn_method": "default",
+      "query_select_method": "default",
+      "activation": "silu",
+      "mlp_act": "silu",
+      "dim_feedforward": 2048
+    },
+    "PostProcessor": {
+      "num_top_queries": 300
+    },
+    "lrsheduler": "flatcosine",
+    "lr_gamma": 0.1,
+    "warmup_iter": 690,
+    "flat_epoch": 3,
+    "no_aug_epoch": 0,
+    "DEIMCriterion": {
+      "weight_dict": {
+        "loss_mal": 1,
+        "loss_bbox": 5,
+        "loss_giou": 2,
+        "loss_fgl": 0.15,
+        "loss_ddf": 1.5
+      },
+      "losses": [
+        "mal",
+        "boxes",
+        "local"
+      ],
+      "gamma": 1.5,
+      "alpha": 0.75,
+      "reg_max": 32,
+      "matcher": {
+        "type": "HungarianMatcher",
+        "weight_dict": {
+          "cost_class": 2,
+          "cost_bbox": 5,
+          "cost_giou": 2
+        },
+        "alpha": 0.25,
+        "gamma": 2.0,
+        "change_matcher": true,
+        "iou_order_alpha": 4.0,
+        "matcher_change_epoch": 100
+      }
+    },
+    "DeepStageHybrid": {
+      "variant": "convnext_large",
+      "weights_path": "",
+      "hidden_dim": 256,
+      "attention_dim": 384,
+      "attention_layers": 2,
+      "detail_channels": 64
+    },
+    "device": "cuda"
+  }
+}

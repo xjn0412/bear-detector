@@ -1,0 +1,45 @@
+{
+  "dataset": "ksdd2",
+  "seed": 42,
+  "classes": [
+    "defect"
+  ],
+  "input": "RGB direct PIL bilinear 640x640 PNG; boxes scaled independently in x/y",
+  "split": "Official KSDD2 test; 10% stratified validation from official train",
+  "raw_images": 3335,
+  "unique_images": 3335,
+  "duplicate_groups": [],
+  "clipped_boxes": 0,
+  "annotation_conversion": "8-connected mask components, no area threshold",
+  "counts": {
+    "train": {
+      "images": 2098,
+      "boxes": 247,
+      "positive_images": 221,
+      "per_class": {
+        "defect": 247
+      }
+    },
+    "val": {
+      "images": 233,
+      "boxes": 28,
+      "positive_images": 25,
+      "per_class": {
+        "defect": 28
+      }
+    },
+    "test": {
+      "images": 1004,
+      "boxes": 119,
+      "positive_images": 110,
+      "per_class": {
+        "defect": 119
+      }
+    }
+  },
+  "sources": {
+    "train_annotations_sha256": "b82b6e2430862281efef79fe13dbb6efdec5943635febe1808354091803e7c6f",
+    "val_annotations_sha256": "d75f5176b3a5b30ee2c38796d9b6bbe7f5bf152ccbfb1d888eae9b25593b734b",
+    "test_annotations_sha256": "6aa4e56c2fa7c29cfb831d604a9f770c590596da32ebc73ec1c479df2018f688"
+  }
+}

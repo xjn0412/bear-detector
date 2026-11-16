@@ -1,0 +1,1098 @@
+{
+  "audited_at": "2026-11-16T09:27:22Z",
+  "published_commit": "9c3b2f0df252494c12556a7d446c59cf8fa68a32",
+  "passed": true,
+  "completed_runs": 8,
+  "epoch_rows": 488,
+  "epoch_metric_values": 976,
+  "checks": [
+    {
+      "check": "published files equal audited local bytes",
+      "passed": true,
+      "files": 86
+    },
+    {
+      "check": "cr7/bear_l: contiguous completed epochs",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: every published epoch matches raw log",
+      "passed": true,
+      "epochs": 26,
+      "metric_values": 52
+    },
+    {
+      "check": "cr7/bear_l: selected epoch and run length",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: published final records match source reports",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: checkpoint SHA256",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: annotation SHA256",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: predictions SHA256",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: split annotation hashes",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: corrected COCO annotation IDs disclosed",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: saved predictions finite",
+      "passed": true
+    },
+    {
+      "check": "cr7/bear_l: independently rescored test metrics",
+      "passed": true,
+      "recalculated": {
+        "AP": 58.52086705494893,
+        "AP50": 89.00499925377322,
+        "AP75": 60.151927329196674,
+        "AP_small": 35.78609733050039,
+        "AP_medium": 58.97452032837456,
+        "AP_large": 62.86062808910857
+      }
+    },
+    {
+      "check": "cr7/yolo26x: contiguous completed epochs",
+      "passed": true
+    },
+    {
+      "check": "cr7/yolo26x: every published epoch matches raw log",
+      "passed": true,
+      "epochs": 83,
+      "metric_values": 166
+    },
+    {
+      "check": "cr7/yolo26x: selected epoch and run length",
+      "passed": true
+    },
+    {
+      "check": "cr7/yolo26x: published final records match source reports",
+      "passed": true
+    },
+    {
+      "check": "cr7/yolo26x: checkpoint SHA256",
+      "passed": true
+    },
+    {
+      "check": "cr7/yolo26x: annotation SHA256",
+      "passed": true
+    },
+    {
+      "check": "cr7/yolo26x: split annotation hashes",
+      "passed": true
+    },
+    {
+      "check": "cr7/yolo26x: corrected COCO annotation IDs disclosed",
+      "passed": true
+    },
+    {
+      "check": "cr7/yolo26x: saved predictions finite",
+      "passed": true
+    },
+    {
+      "check": "cr7/yolo26x: independently rescored test metrics",
+      "passed": true,
+      "recalculated": {
+        "AP": 51.798962883804954,
+        "AP50": 83.92439080600163,
+        "AP75": 51.10984349004949,
+        "AP_small": 32.40638447057051,
+        "AP_medium": 50.77224826891113,
+        "AP_large": 51.993379884263256
+      }
+    },
+    {
+      "check": "gc10/bear_l: contiguous completed epochs",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: every published epoch matches raw log",
+      "passed": true,
+      "epochs": 26,
+      "metric_values": 52
+    },
+    {
+      "check": "gc10/bear_l: selected epoch and run length",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: published final records match source reports",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: checkpoint SHA256",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: annotation SHA256",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: predictions SHA256",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: split annotation hashes",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: corrected COCO annotation IDs disclosed",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: saved predictions finite",
+      "passed": true
+    },
+    {
+      "check": "gc10/bear_l: independently rescored test metrics",
+      "passed": true,
+      "recalculated": {
+        "AP": 41.87046105930581,
+        "AP50": 73.36396331877657,
+        "AP75": 44.076766400457714,
+        "AP_small": 22.107641724829573,
+        "AP_medium": 39.73555142564884,
+        "AP_large": 47.371596807849
+      }
+    },
+    {
+      "check": "gc10/yolo26x: contiguous completed epochs",
+      "passed": true
+    },
+    {
+      "check": "gc10/yolo26x: every published epoch matches raw log",
+      "passed": true,
+      "epochs": 85,
+      "metric_values": 170
+    },
+    {
+      "check": "gc10/yolo26x: selected epoch and run length",
+      "passed": true
+    },
+    {
+      "check": "gc10/yolo26x: published final records match source reports",
+      "passed": true
+    },
+    {
+      "check": "gc10/yolo26x: checkpoint SHA256",
+      "passed": true
+    },
+    {
+      "check": "gc10/yolo26x: annotation SHA256",
+      "passed": true
+    },
+    {
+      "check": "gc10/yolo26x: split annotation hashes",
+      "passed": true
+    },
+    {
+      "check": "gc10/yolo26x: corrected COCO annotation IDs disclosed",
+      "passed": true
+    },
+    {
+      "check": "gc10/yolo26x: saved predictions finite",
+      "passed": true
+    },
+    {
+      "check": "gc10/yolo26x: independently rescored test metrics",
+      "passed": true,
+      "recalculated": {
+        "AP": 31.139865603093337,
+        "AP50": 65.05870279048797,
+        "AP75": 25.835903772008745,
+        "AP_small": 17.387432751545223,
+        "AP_medium": 32.48972054413433,
+        "AP_large": 33.42577625637592
+      }
+    },
+    {
+      "check": "neu-det/bear_l: contiguous completed epochs",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: every published epoch matches raw log",
+      "passed": true,
+      "epochs": 31,
+      "metric_values": 62
+    },
+    {
+      "check": "neu-det/bear_l: selected epoch and run length",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: published final records match source reports",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: checkpoint SHA256",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: annotation SHA256",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: predictions SHA256",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: split annotation hashes",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: corrected COCO annotation IDs disclosed",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: saved predictions finite",
+      "passed": true
+    },
+    {
+      "check": "neu-det/bear_l: independently rescored test metrics",
+      "passed": true,
+      "recalculated": {
+        "AP": 49.647294714166314,
+        "AP50": 82.32313071883169,
+        "AP75": 50.64329437024367,
+        "AP_small": -100.0,
+        "AP_medium": 42.78780176538302,
+        "AP_large": 50.9144867532685
+      }
+    },
+    {
+      "check": "neu-det/yolo26x: contiguous completed epochs",
+      "passed": true
+    },
+    {
+      "check": "neu-det/yolo26x: every published epoch matches raw log",
+      "passed": true,
+      "epochs": 100,
+      "metric_values": 200
+    },
+    {
+      "check": "neu-det/yolo26x: selected epoch and run length",
+      "passed": true
+    },
+    {
+      "check": "neu-det/yolo26x: published final records match source reports",
+      "passed": true
+    },
+    {
+      "check": "neu-det/yolo26x: checkpoint SHA256",
+      "passed": true
+    },
+    {
+      "check": "neu-det/yolo26x: annotation SHA256",
+      "passed": true
+    },
+    {
+      "check": "neu-det/yolo26x: split annotation hashes",
+      "passed": true
+    },
+    {
+      "check": "neu-det/yolo26x: corrected COCO annotation IDs disclosed",
+      "passed": true
+    },
+    {
+      "check": "neu-det/yolo26x: saved predictions finite",
+      "passed": true
+    },
+    {
+      "check": "neu-det/yolo26x: independently rescored test metrics",
+      "passed": true,
+      "recalculated": {
+        "AP": 45.90789080350432,
+        "AP50": 79.40623612913745,
+        "AP75": 45.619504178234536,
+        "AP_small": -100.0,
+        "AP_medium": 36.909415467581965,
+        "AP_large": 47.19252303867458
+      }
+    },
+    {
+      "check": "ksdd2/bear_l: contiguous completed epochs",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: every published epoch matches raw log",
+      "passed": true,
+      "epochs": 37,
+      "metric_values": 74
+    },
+    {
+      "check": "ksdd2/bear_l: selected epoch and run length",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: published final records match source reports",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: checkpoint SHA256",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: annotation SHA256",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: predictions SHA256",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: split annotation hashes",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: corrected COCO annotation IDs disclosed",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: saved predictions finite",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/bear_l: independently rescored test metrics",
+      "passed": true,
+      "recalculated": {
+        "AP": 36.690646744272854,
+        "AP50": 62.86693390241778,
+        "AP75": 39.20162355782263,
+        "AP_small": 0.0,
+        "AP_medium": 20.581679491076887,
+        "AP_large": 51.906988317334154
+      }
+    },
+    {
+      "check": "ksdd2/yolo26x: contiguous completed epochs",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/yolo26x: every published epoch matches raw log",
+      "passed": true,
+      "epochs": 100,
+      "metric_values": 200
+    },
+    {
+      "check": "ksdd2/yolo26x: selected epoch and run length",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/yolo26x: published final records match source reports",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/yolo26x: checkpoint SHA256",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/yolo26x: annotation SHA256",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/yolo26x: split annotation hashes",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/yolo26x: corrected COCO annotation IDs disclosed",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/yolo26x: saved predictions finite",
+      "passed": true
+    },
+    {
+      "check": "ksdd2/yolo26x: independently rescored test metrics",
+      "passed": true,
+      "recalculated": {
+        "AP": 11.070189816960815,
+        "AP50": 30.692707604206753,
+        "AP75": 5.634356332668139,
+        "AP_small": 0.6280930808793482,
+        "AP_medium": 13.096365558897578,
+        "AP_large": 11.24549717493105
+      }
+    },
+    {
+      "check": "combined per-epoch table matches all eight curves",
+      "passed": true
+    },
+    {
+      "check": "cr7: published compressed split membership matches source",
+      "passed": true
+    },
+    {
+      "check": "gc10-invalid-12class: published compressed split membership matches source",
+      "passed": true
+    },
+    {
+      "check": "gc10: published compressed split membership matches source",
+      "passed": true
+    },
+    {
+      "check": "ksdd2: published compressed split membership matches source",
+      "passed": true
+    },
+    {
+      "check": "neu-det: published compressed split membership matches source",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "publication_file_checks": [
+    {
+      "path": "README.md",
+      "published_blob": "c42509eb60a9dfcdf987415577b378c5e536d57f",
+      "local_blob": "c42509eb60a9dfcdf987415577b378c5e536d57f",
+      "matched": true
+    },
+    {
+      "path": "README.zh-CN.md",
+      "published_blob": "ed14233cf7b6c94d17bdc0bec94b239892c5475f",
+      "local_blob": "ed14233cf7b6c94d17bdc0bec94b239892c5475f",
+      "matched": true
+    },
+    {
+      "path": "docs/benchmarks/INDUSTRIAL_TRANSFER.md",
+      "published_blob": "f63c7b6b3c496fceb065a8d9de67637d5c120792",
+      "local_blob": "f63c7b6b3c496fceb065a8d9de67637d5c120792",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/acquisition.json",
+      "published_blob": "bc8acf3b191b73d0a3c2cbe0cbfaf8be03e43651",
+      "local_blob": "bc8acf3b191b73d0a3c2cbe0cbfaf8be03e43651",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/bear_l-complete.json",
+      "published_blob": "ef9eecdbe6cae263464c6cd15b87aba995f1fe1b",
+      "local_blob": "ef9eecdbe6cae263464c6cd15b87aba995f1fe1b",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/bear_l-curves.json",
+      "published_blob": "2a95404e786fe09b8206d1e8146fa840b7e0e192",
+      "local_blob": "2a95404e786fe09b8206d1e8146fa840b7e0e192",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/bear_l-protocol.json",
+      "published_blob": "ce8f5d13b14cab516d83aded957110792b6c745d",
+      "local_blob": "ce8f5d13b14cab516d83aded957110792b6c745d",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/bear_l-test.json",
+      "published_blob": "741e80b9545b4f0ab9a3f72e60be15cc5146fe10",
+      "local_blob": "741e80b9545b4f0ab9a3f72e60be15cc5146fe10",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/dataset-manifest.json",
+      "published_blob": "3a2556e3668f57730ee02fb05c6f7892aa559741",
+      "local_blob": "3a2556e3668f57730ee02fb05c6f7892aa559741",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/split-membership.json.gz",
+      "published_blob": "38664d3dbf02aac73db6a64ad0b4047bf3cead8f",
+      "local_blob": "38664d3dbf02aac73db6a64ad0b4047bf3cead8f",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/yolo26x-complete.json",
+      "published_blob": "38f23b7f1629aac61bfb9903bee9ca641ca3dab5",
+      "local_blob": "38f23b7f1629aac61bfb9903bee9ca641ca3dab5",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/yolo26x-curves.json",
+      "published_blob": "a5d7502b681fbab1244ad96dada59a259bbfb8ea",
+      "local_blob": "a5d7502b681fbab1244ad96dada59a259bbfb8ea",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/yolo26x-protocol.json",
+      "published_blob": "03dfa615ed16e5bdc1bededb753b718c5550c025",
+      "local_blob": "03dfa615ed16e5bdc1bededb753b718c5550c025",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/cr7/yolo26x-test.json",
+      "published_blob": "33e72a17435e8faa3b4fdab4f62246e12b636f73",
+      "local_blob": "33e72a17435e8faa3b4fdab4f62246e12b636f73",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/epoch-progress.md",
+      "published_blob": "1ee8ff0479edccb787dc43924bd9890cc770d509",
+      "local_blob": "1ee8ff0479edccb787dc43924bd9890cc770d509",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/evaluation-id-correction.json",
+      "published_blob": "c4eeacab7ca19f90d54a94bdf0775e73ff0fe9a3",
+      "local_blob": "c4eeacab7ca19f90d54a94bdf0775e73ff0fe9a3",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/cr7/bear_l-test.json",
+      "published_blob": "6fba02e466ef21c3bc4880567c66ce84f184e5e4",
+      "local_blob": "6fba02e466ef21c3bc4880567c66ce84f184e5e4",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/cr7/yolo26x-test.json",
+      "published_blob": "68c527cc55a9dc75bf7633765c497546dcf42723",
+      "local_blob": "68c527cc55a9dc75bf7633765c497546dcf42723",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/gc10/bear_l-test.json",
+      "published_blob": "89563c9f4d0dcdf38f4014c498a56de31f67b2f4",
+      "local_blob": "89563c9f4d0dcdf38f4014c498a56de31f67b2f4",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/gc10/yolo26x-test.json",
+      "published_blob": "87e952358b1adbafe5acd4bbac91dc1b936c488d",
+      "local_blob": "87e952358b1adbafe5acd4bbac91dc1b936c488d",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/ksdd2/yolo26x-test.json",
+      "published_blob": "d6983726421cb9c5341a220f51b67e6c775e5728",
+      "local_blob": "d6983726421cb9c5341a220f51b67e6c775e5728",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/neu-det/bear_l-test.json",
+      "published_blob": "a929fb808c2a6dd448dbd285eca958fc0555c3a7",
+      "local_blob": "a929fb808c2a6dd448dbd285eca958fc0555c3a7",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/neu-det/yolo26x-test.json",
+      "published_blob": "39c6bc33dcebfdaf394ab7c281afb1f161ca29a5",
+      "local_blob": "39c6bc33dcebfdaf394ab7c281afb1f161ca29a5",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/INVALID.json",
+      "published_blob": "a43fc1e4a761215f6b6eb5c36f2d20ed28f159ba",
+      "local_blob": "a43fc1e4a761215f6b6eb5c36f2d20ed28f159ba",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/bear_l-curves.json",
+      "published_blob": "56179370c095506fbdb49f95fcc122ece9978041",
+      "local_blob": "56179370c095506fbdb49f95fcc122ece9978041",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/bear_l-protocol.json",
+      "published_blob": "7712d772099c7b56e7024998f49863c8f626a08a",
+      "local_blob": "7712d772099c7b56e7024998f49863c8f626a08a",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/dataset-manifest.json",
+      "published_blob": "f820356c04454a276430324f79ee978922e52561",
+      "local_blob": "f820356c04454a276430324f79ee978922e52561",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/split-membership.json.gz",
+      "published_blob": "5358d22bdc00506a463c97428fff60b17a256703",
+      "local_blob": "5358d22bdc00506a463c97428fff60b17a256703",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/yolo26x-curves.json",
+      "published_blob": "13235e3714cd39d87ec07a370507b5f223a97fe0",
+      "local_blob": "13235e3714cd39d87ec07a370507b5f223a97fe0",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/yolo26x-protocol.json",
+      "published_blob": "0b969869f5c899ca673c3119b40f2c5a9863029d",
+      "local_blob": "0b969869f5c899ca673c3119b40f2c5a9863029d",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/bear_l-complete.json",
+      "published_blob": "9d2fb42732ac4595c6f3d68cf4529f0d01191aab",
+      "local_blob": "9d2fb42732ac4595c6f3d68cf4529f0d01191aab",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/bear_l-curves.json",
+      "published_blob": "90032ce636de1bba459eeaa9ffc109d2a40f0629",
+      "local_blob": "90032ce636de1bba459eeaa9ffc109d2a40f0629",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/bear_l-protocol.json",
+      "published_blob": "81dc05d2dfd8a8ddb844a801d4332b04c9c5018d",
+      "local_blob": "81dc05d2dfd8a8ddb844a801d4332b04c9c5018d",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/bear_l-test.json",
+      "published_blob": "cf9a9c840647cef137fd52503d2274d39bfe45d8",
+      "local_blob": "cf9a9c840647cef137fd52503d2274d39bfe45d8",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/dataset-manifest.json",
+      "published_blob": "fc0a9cf8ff17f17dfb4d72714a3cf91bb279e2a6",
+      "local_blob": "fc0a9cf8ff17f17dfb4d72714a3cf91bb279e2a6",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/split-membership.json.gz",
+      "published_blob": "f8b1de708033c28a5224beadd5cce6b8b22d638d",
+      "local_blob": "f8b1de708033c28a5224beadd5cce6b8b22d638d",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/yolo26x-complete.json",
+      "published_blob": "cfb16c0b2e3ee28d3065864fae57ce317498e895",
+      "local_blob": "cfb16c0b2e3ee28d3065864fae57ce317498e895",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/yolo26x-curves.json",
+      "published_blob": "3decc8cce3b26d1ab17b39b0cbaaf5a5dccfdcda",
+      "local_blob": "3decc8cce3b26d1ab17b39b0cbaaf5a5dccfdcda",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/yolo26x-protocol.json",
+      "published_blob": "89ea49690d9432bfa94b18e72cfec4ff537b23c5",
+      "local_blob": "89ea49690d9432bfa94b18e72cfec4ff537b23c5",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/gc10/yolo26x-test.json",
+      "published_blob": "fb33e64bde52cfe4ccfcc1f6a6bbfcc7c382a600",
+      "local_blob": "fb33e64bde52cfe4ccfcc1f6a6bbfcc7c382a600",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-complete.json",
+      "published_blob": "25783cb8abea8e437e90abaa73065d41a15aca8d",
+      "local_blob": "25783cb8abea8e437e90abaa73065d41a15aca8d",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-curves.json",
+      "published_blob": "b292b45f3f511be64bfb112a2ccb634f1a8005ae",
+      "local_blob": "b292b45f3f511be64bfb112a2ccb634f1a8005ae",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-precision-policy.json",
+      "published_blob": "95fc8babd6ae5a4d20b5440cada00d38f2aac51a",
+      "local_blob": "95fc8babd6ae5a4d20b5440cada00d38f2aac51a",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-protocol.json",
+      "published_blob": "7f1a1ef74983dbee5fb015b10a6207ff6a2a147b",
+      "local_blob": "7f1a1ef74983dbee5fb015b10a6207ff6a2a147b",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-test.json",
+      "published_blob": "a7f35d9b9b8efd512e6cea6720f08ae1708b0966",
+      "local_blob": "a7f35d9b9b8efd512e6cea6720f08ae1708b0966",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/checked-amp-tests.json",
+      "published_blob": "0853e8a7ab1ae6f2dd39e23507abe69aa4210c56",
+      "local_blob": "0853e8a7ab1ae6f2dd39e23507abe69aa4210c56",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/dataset-manifest.json",
+      "published_blob": "940298ff0d831876e786f3781cd04c8a8aee3de2",
+      "local_blob": "940298ff0d831876e786f3781cd04c8a8aee3de2",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/inference-precision-tests.json",
+      "published_blob": "a816ed99a36f0b787ea017cce748cdd6753e2eb6",
+      "local_blob": "a816ed99a36f0b787ea017cce748cdd6753e2eb6",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/numerical-recovery.json",
+      "published_blob": "21aaa8f27e119851df4bd18cabf5e075e06001d8",
+      "local_blob": "21aaa8f27e119851df4bd18cabf5e075e06001d8",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/split-membership.json.gz",
+      "published_blob": "9b1223ccf6f08c83659a8599eab2e29428a20577",
+      "local_blob": "9b1223ccf6f08c83659a8599eab2e29428a20577",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/yolo26x-complete.json",
+      "published_blob": "8d229f44d526b0f8c29e360ccb481716057c38f5",
+      "local_blob": "8d229f44d526b0f8c29e360ccb481716057c38f5",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/yolo26x-curves.json",
+      "published_blob": "8f9a6b9abaaaf5d6dad8900fc3613939abd071e7",
+      "local_blob": "8f9a6b9abaaaf5d6dad8900fc3613939abd071e7",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/yolo26x-protocol.json",
+      "published_blob": "a3deda78d35c83b21b35aa7453766a90537a1bf9",
+      "local_blob": "a3deda78d35c83b21b35aa7453766a90537a1bf9",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/ksdd2/yolo26x-test.json",
+      "published_blob": "10a5f34dd23c7899335d08e66e6aab84c73c704c",
+      "local_blob": "10a5f34dd23c7899335d08e66e6aab84c73c704c",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/bear_l-complete.json",
+      "published_blob": "0a4c93b8954b837990e80e64810374a08712f316",
+      "local_blob": "0a4c93b8954b837990e80e64810374a08712f316",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/bear_l-curves.json",
+      "published_blob": "18a7e162914499acca719e581366276c037b9ff1",
+      "local_blob": "18a7e162914499acca719e581366276c037b9ff1",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/bear_l-protocol.json",
+      "published_blob": "7b72ac0ef4304364397ead85ec28e7218d568a91",
+      "local_blob": "7b72ac0ef4304364397ead85ec28e7218d568a91",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/bear_l-test.json",
+      "published_blob": "7b923b157660c97631070854ad43bddccff1e694",
+      "local_blob": "7b923b157660c97631070854ad43bddccff1e694",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/dataset-manifest.json",
+      "published_blob": "52426f7cc376e8f6f3df23fc82a376ee6ec264b6",
+      "local_blob": "52426f7cc376e8f6f3df23fc82a376ee6ec264b6",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/split-membership.json.gz",
+      "published_blob": "d7a1a68329531948941c94ce81cb54f71b9ed72a",
+      "local_blob": "d7a1a68329531948941c94ce81cb54f71b9ed72a",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/yolo26x-complete.json",
+      "published_blob": "4f8c2aea2a307308e098663205cf041e51f499d6",
+      "local_blob": "4f8c2aea2a307308e098663205cf041e51f499d6",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/yolo26x-curves.json",
+      "published_blob": "92257128c99e965b7bee89fb5d93d51fda8b6e53",
+      "local_blob": "92257128c99e965b7bee89fb5d93d51fda8b6e53",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/yolo26x-protocol.json",
+      "published_blob": "aa00b903419e06caa9a9619549d6422d435fc097",
+      "local_blob": "aa00b903419e06caa9a9619549d6422d435fc097",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/neu-det/yolo26x-test.json",
+      "published_blob": "4b4add7a0eedfca52f2629060224b22adfac47b6",
+      "local_blob": "4b4add7a0eedfca52f2629060224b22adfac47b6",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/pip-freeze.txt",
+      "published_blob": "8430a132eb875d78cfd897cc6e523c6df827dfac",
+      "local_blob": "8430a132eb875d78cfd897cc6e523c6df827dfac",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/status.json",
+      "published_blob": "7c750fbc35ad7c5c105f11e40fa4cdfcc7a5dc70",
+      "local_blob": "7c750fbc35ad7c5c105f11e40fa4cdfcc7a5dc70",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/COMPLETE.json",
+      "published_blob": "e0243a92d77ffac09e3d76cbdaede189d5299fce",
+      "local_blob": "e0243a92d77ffac09e3d76cbdaede189d5299fce",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/export.json",
+      "published_blob": "55a2bd40543661fe81ca286d12e32ae15d24dd7d",
+      "local_blob": "55a2bd40543661fe81ca286d12e32ae15d24dd7d",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/fp32-val.json",
+      "published_blob": "96939923bfb9e180f254b7132b11e868a5826e14",
+      "local_blob": "96939923bfb9e180f254b7132b11e868a5826e14",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/latency-tensorrt.json",
+      "published_blob": "06f688ee49bac18aa9e0e8569a66b32ead22d3e8",
+      "local_blob": "06f688ee49bac18aa9e0e8569a66b32ead22d3e8",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/latency-torch-fp32.json",
+      "published_blob": "3fd7b6de1b5a6cb35425f0831c44b963ef51a625",
+      "local_blob": "3fd7b6de1b5a6cb35425f0831c44b963ef51a625",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/precision-attempts.json",
+      "published_blob": "d1bc4ab624cbf43b6d59ae4c010547be5bc532f9",
+      "local_blob": "d1bc4ab624cbf43b6d59ae4c010547be5bc532f9",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/stress.json",
+      "published_blob": "00a4e17081e38a890c8ab945bf9485dfa9bb5025",
+      "local_blob": "00a4e17081e38a890c8ab945bf9485dfa9bb5025",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/test-fp32.json",
+      "published_blob": "dc1172019bd4e56afe280d959c4468ae73e11cce",
+      "local_blob": "dc1172019bd4e56afe280d959c4468ae73e11cce",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/test-tensorrt.json",
+      "published_blob": "19f086d673b5ce2b98a277da1a2cc1e8b7e91a0a",
+      "local_blob": "19f086d673b5ce2b98a277da1a2cc1e8b7e91a0a",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/val-fp32-backbone.json",
+      "published_blob": "eaf334b3752754619c9a5596a1105a8ebe659595",
+      "local_blob": "eaf334b3752754619c9a5596a1105a8ebe659595",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/COMPLETE.json",
+      "published_blob": "209d092044c1f72c2eeb5f1e80c15289ab67b416",
+      "local_blob": "209d092044c1f72c2eeb5f1e80c15289ab67b416",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/export.json",
+      "published_blob": "d49f9978c56689fab6f8f0e56ac1bba908dfc99c",
+      "local_blob": "d49f9978c56689fab6f8f0e56ac1bba908dfc99c",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/fp32-val.json",
+      "published_blob": "96939923bfb9e180f254b7132b11e868a5826e14",
+      "local_blob": "96939923bfb9e180f254b7132b11e868a5826e14",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/latency-tensorrt.json",
+      "published_blob": "21e66eae8fe40348221c1f090dacbf38c3762840",
+      "local_blob": "21e66eae8fe40348221c1f090dacbf38c3762840",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/latency-torch-fp32.json",
+      "published_blob": "d1d431423a1992f85d89c402b94378200b43e47b",
+      "local_blob": "d1d431423a1992f85d89c402b94378200b43e47b",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/precision-attempts.json",
+      "published_blob": "62ea1dd9f20cf36733d59f1046f854e3433b84d8",
+      "local_blob": "62ea1dd9f20cf36733d59f1046f854e3433b84d8",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/stress.json",
+      "published_blob": "00a4e17081e38a890c8ab945bf9485dfa9bb5025",
+      "local_blob": "00a4e17081e38a890c8ab945bf9485dfa9bb5025",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/test-fp32.json",
+      "published_blob": "62d9150030a49c0d97d9d8806fce1460d44d4b44",
+      "local_blob": "62d9150030a49c0d97d9d8806fce1460d44d4b44",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/test-tensorrt.json",
+      "published_blob": "f2fc8067fbfb228cc4cd39e739175b0bfebb683e",
+      "local_blob": "f2fc8067fbfb228cc4cd39e739175b0bfebb683e",
+      "matched": true
+    },
+    {
+      "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/val-mixed.json",
+      "published_blob": "976006c9ada80cbbab5853702bc08d6ebe6836ac",
+      "local_blob": "976006c9ada80cbbab5853702bc08d6ebe6836ac",
+      "matched": true
+    }
+  ],
+  "runs": [
+    {
+      "dataset": "cr7",
+      "model": "bear_l",
+      "epochs": 26,
+      "best_epoch": 6,
+      "best_native_val_AP": 59.56057734868444,
+      "native_curve_source_sha256": "dbc4afdc92caaadf6ca1ad792fe45e9c23ce223bcb3f044e207b69e90d6bd987",
+      "test_AP": 58.52086705494893,
+      "test_AP50": 89.00499925377322,
+      "selected_checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+      "saved_predictions_sha256": "f1e5adb55aa08eb83648c9b3796c57015e004df430774468d1640d61a46ea9a8"
+    },
+    {
+      "dataset": "cr7",
+      "model": "yolo26x",
+      "epochs": 83,
+      "best_epoch": 63,
+      "best_native_val_AP": 54.996,
+      "native_curve_source_sha256": "f15278912cd8ba679ffb396280fe56c01dfec39c9657b95cc11689ff901a498b",
+      "test_AP": 51.798962883804954,
+      "test_AP50": 83.92439080600163,
+      "selected_checkpoint_sha256": "36ec831570d3a852fedbd67073b077bf01aa6a0b9d2bd57c870d9a8b2d874bdd",
+      "saved_predictions_sha256": "e2232d3700f89349431af4f3320889aa3b205856623c21041f62f9ca1c2d99d2"
+    },
+    {
+      "dataset": "gc10",
+      "model": "bear_l",
+      "epochs": 26,
+      "best_epoch": 6,
+      "best_native_val_AP": 38.67026696154478,
+      "native_curve_source_sha256": "2766e48910907364e7587ad6ade1b41964a3703e9860c7d70490dbfdfaffa14b",
+      "test_AP": 41.87046105930581,
+      "test_AP50": 73.36396331877657,
+      "selected_checkpoint_sha256": "b6fb2344692292a2b72a8a8ae2bcc5a627c87186cf16d4bbe2ebf52510841e19",
+      "saved_predictions_sha256": "82ab562a82e0fa06bd1b23e19d36caa5fda8a270bb62d99078426ea9d7c1ef54"
+    },
+    {
+      "dataset": "gc10",
+      "model": "yolo26x",
+      "epochs": 85,
+      "best_epoch": 65,
+      "best_native_val_AP": 31.439,
+      "native_curve_source_sha256": "66da7c511db7f7e757f9ec7af596b7650929f6e93b162e19cd257e4c825fd54a",
+      "test_AP": 31.139865603093337,
+      "test_AP50": 65.05870279048797,
+      "selected_checkpoint_sha256": "51b76023f261e62ba909353b5c56e8eff79448d0d0b090438f69856b500500e3",
+      "saved_predictions_sha256": "8269bb2b93464952a1b7a4f861dfad908c6c3c32d8ef70631c36d7862be0c65d"
+    },
+    {
+      "dataset": "neu-det",
+      "model": "bear_l",
+      "epochs": 31,
+      "best_epoch": 11,
+      "best_native_val_AP": 51.08846051091107,
+      "native_curve_source_sha256": "4f0edf3dd40bf8bee5655eb2e938fff69ab182ebbeb1c74a7c0fccb5e87668a4",
+      "test_AP": 49.647294714166314,
+      "test_AP50": 82.32313071883169,
+      "selected_checkpoint_sha256": "e5d7091b2c315be20f240f8bba9f73a3ed40e2518a87fed810e5d1c3794a9e31",
+      "saved_predictions_sha256": "1e778ebb2d8c9347589be8e61bac48d0d784d9522307d81878dd80cc9d6a8539"
+    },
+    {
+      "dataset": "neu-det",
+      "model": "yolo26x",
+      "epochs": 100,
+      "best_epoch": 100,
+      "best_native_val_AP": 49.534,
+      "native_curve_source_sha256": "38e4ed6b960b357e1d993e7bb3691a3110743aec10e810e4a9dd7042610168b7",
+      "test_AP": 45.90789080350432,
+      "test_AP50": 79.40623612913745,
+      "selected_checkpoint_sha256": "02347266e216e95e9622f7623b5ba366e02b846f6092e6194087f0ff73586947",
+      "saved_predictions_sha256": "5a294f8c6118acd04acfb572f99e1897b7158cc2444457fc3355e693ffe4edc8"
+    },
+    {
+      "dataset": "ksdd2",
+      "model": "bear_l",
+      "epochs": 37,
+      "best_epoch": 17,
+      "best_native_val_AP": 39.200894256286,
+      "native_curve_source_sha256": "ff96340cb67f6a34edf0461baeb2061c4f2c5f35675c836760ef585ad60b27b9",
+      "test_AP": 36.690646744272854,
+      "test_AP50": 62.86693390241778,
+      "selected_checkpoint_sha256": "0b5011f9c41d8bb5e7e7ecff964472fb48162c9c2d67183e7dcd2667f6cd2fd6",
+      "saved_predictions_sha256": "34701230b37048e358d053bccd42ab07008b6645b3be13ee05a27fae11c53e0e"
+    },
+    {
+      "dataset": "ksdd2",
+      "model": "yolo26x",
+      "epochs": 100,
+      "best_epoch": 84,
+      "best_native_val_AP": 26.815,
+      "native_curve_source_sha256": "b2f208854b69971fdad999174f17a1908b1dbe59aea36f2dbeec373cbb4a14b0",
+      "test_AP": 11.070189816960815,
+      "test_AP50": 30.692707604206753,
+      "selected_checkpoint_sha256": "29ba3fbc0440ed367273982451f19e59be79a7042cb8f6ff6904e462f8c9cbff",
+      "saved_predictions_sha256": "f1219764e497882f9cad89594999c17e0d2ad2b10ec3dd067f9ba71ff68904b4"
+    }
+  ],
+  "findings": [
+    {
+      "scope": "invalid GC10 diagnostic archive",
+      "model": "bear_l",
+      "published_epochs": 6,
+      "full_archived_epochs": 22,
+      "active_results_affected": false,
+      "repair": "Complete archived raw-log curves included in this update; invalid status retained",
+      "repair_status": "complete"
+    },
+    {
+      "scope": "invalid GC10 diagnostic archive",
+      "model": "yolo26x",
+      "published_epochs": 24,
+      "full_archived_epochs": 71,
+      "active_results_affected": false,
+      "repair": "Complete archived raw-log curves included in this update; invalid status retained",
+      "repair_status": "complete"
+    }
+  ],
+  "limitations": [
+    "Historical Bear native validation curves and checkpoint selection retain the annotation-ID0 evaluator limitation; only final test scores were corrected.",
+    "Single seed, different pretrained systems and model-specific recipes; not an architecture-only comparison.",
+    "Original invalid12-class GC10 runs are diagnostic archives only."
+  ],
+  "frontpage_metric_source": "Eight independently rescored final test reports; native validation values are not test scores."
+}

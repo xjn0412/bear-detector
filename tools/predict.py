@@ -47,7 +47,7 @@ def main():
             rows.append(d)
     out = Path(a.output)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({'image': a.image, 'width': w, 'height': h, 'detections': rows}, indent=2))
+    out.write_text(json.dumps({'image': a.image, 'width': w, 'height': h, 'detections': rows, 'inference_precision': model.precision_report}, indent=2))
     print(out)
 
 

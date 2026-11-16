@@ -108,3 +108,48 @@ Read `data/converted/dataset.json` for generated JSON/image roots. No Ultralytic
 ## Recorded small-dataset example
 
 See the [African Wildlife transfer experiment](../benchmarks/WILDLIFE_TRANSFER.md) for a completed Bear-B fine-tune and YOLO comparison, with audited splits, 50-epoch histories and downloadable four-class weights.
+
+## Checked mixed precision
+
+`tools/train_custom.py` now defaults to `--amp auto`.
+Like Ultralytics' AMP checks, it compares lower-precision operations with FP32
+before enabling AMP. Bear uses its own loaded weights and first training batch:
+backbone/neck convolution and linear outputs must agree within5% relative L2
+(with1e-6 absolute floor), and a complete AMP forward must remain finite.
+The explicit FP32 P5 projection is excluded from lower-precision checks.
+The check restores model buffers and CPU/CUDA RNG, so it consumes no update and
+does not advance BatchNorm statistics or stochastic-depth randomness.
+
+If a later training forward produces nonfinite outputs, all DDP ranks restore
+their pre-forward buffers/RNG and retry that same batch in FP32 **before
+backward**. FP32 remains selected for the run and across resume. ConvNeXt
+activation checkpointing reduces FP32 memory usage. Events are printed as
+`BEAR_PRECISION` and saved in `training/precision-policy.json`;
+full checkpoints also include `precision_policy`. A failed FP32 retry
+still stops training. Invalid predictions/losses are never converted to zeros.
+
+GradScaler handles scaled-gradient overflow by skipping the update and reducing
+the scale; EMA advances only on an actual optimizer update. Explicit FP32
+training also checks gradients before updating. Weights and optimizer master
+parameters stay FP32. Decoder/loss and the P5 projection retain their FP32
+protection under AMP. This is a training safeguard, not certification of a pure
+FP16 ONNX/TensorRT engine or a promise of stability on every dataset.
+
+```bash
+python tools/train_custom.py --run runs/my_run --amp auto
+python tools/train_custom.py --run runs/my_run --resume runs/my_run/training/last.pth --amp fp32
+```
+
+The first command checks AMP automatically. The second forces FP32 when
+resuming a full checkpoint from the same prepared run. A fallback changes
+precision and may reduce speed; retain the precision report when comparing runs.
+The detector architecture, parameter names and checkpoint tensor shapes do not
+change.
+
+CUDA regression checks:
+
+```bash
+python tools/benchmarks/check_p5_projection.py
+python tools/benchmarks/check_precision.py
+torchrun --standalone --nproc-per-node=2 tools/benchmarks/check_precision.py
+```

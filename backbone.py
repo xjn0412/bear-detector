@@ -14,6 +14,20 @@ def conv_norm(cin,cout,kernel=1,stride=1,groups=1):
         groups=groups,bias=False),nn.GroupNorm(32,cout),nn.SiLU())
 
 
+class FP32Projection(nn.Sequential):
+    """Keep the stride32 projection finite before GroupNorm rescales it.
+
+    ConvNeXt-L features can produce convolution outputs above FP16's65504
+    range. Casting after the convolution cannot recover those values.
+    Parameter names and checkpoint layout remain unchanged.
+    """
+    _keep_fp32 = True
+
+    def forward(self, x):
+        with torch.autocast(device_type=x.device.type, enabled=False):
+            return super().forward(x.float())
+
+
 class DeepStageBlock(nn.Module):
     def __init__(self,dim=384,heads=6,drop_path=.05):
         super().__init__()
@@ -74,6 +88,7 @@ class DeepStageHybrid(nn.Module):
         else:raise ValueError(variant)
         self.context=DeepestContext(channels[-1],attention_dim,attention_layers)
         self.projections=nn.ModuleList([conv_norm(c,hidden_dim) for c in channels[1:]])
+        self.projections[-1]=FP32Projection(*self.projections[-1])
         # P2 detail contributes to P3 through cheap convolutions. No P2 attention
         # and no stride4 decoder memory map are introduced.
         self.detail=nn.Sequential(conv_norm(channels[0],detail_channels),

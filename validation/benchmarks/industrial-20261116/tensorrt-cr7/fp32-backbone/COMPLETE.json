@@ -1,0 +1,146 @@
+{
+  "dataset": "cr7",
+  "selected_precision": "fp32-backbone",
+  "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+  "engine_sha256": "9261a5ea9ef9efc8eae6e8a371bb0202bdaefd190b64ae63c69d28fed837df29",
+  "accuracy_validated": true,
+  "val_attempts": [
+    {
+      "precision": "fp32-backbone",
+      "AP": 59.73046813968526,
+      "AP_delta_points": -0.06883190707933551,
+      "accepted": true
+    }
+  ],
+  "test_fp32": {
+    "backend": "torch-fp32",
+    "images": 410,
+    "full_coco_val2017": false,
+    "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+    "annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82",
+    "predictions_sha256": "280206e9e4538174d849b28af03de4450d319875fce695bbfd3b2359cbc58371",
+    "batch_size": 1,
+    "input": 640,
+    "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+    "finite_outputs": true,
+    "annotation_ids_reindexed": true,
+    "elapsed_seconds": 24.30489444732666,
+    "AP": 58.52086717941841,
+    "AP50": 89.00499933686442,
+    "AP75": 60.151928554739655,
+    "AP_small": 35.78609996226533,
+    "AP_medium": 58.97452037702422,
+    "AP_large": 62.86062808910857,
+    "precision": "FP32",
+    "inference_precision": {
+      "requested": "fp32",
+      "selected": "fp32",
+      "fallback_count": 0,
+      "checked": true
+    }
+  },
+  "test_tensorrt": {
+    "backend": "tensorrt",
+    "images": 410,
+    "full_coco_val2017": false,
+    "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+    "annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82",
+    "predictions_sha256": "097a4f222f6f103dc954c2c1b7291746d9de614cc8b9d080f8ddcbaa27191002",
+    "batch_size": 1,
+    "input": 640,
+    "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+    "finite_outputs": true,
+    "annotation_ids_reindexed": true,
+    "elapsed_seconds": 9.211926460266113,
+    "AP": 58.34540513093428,
+    "AP50": 89.03894084377157,
+    "AP75": 60.06538227817556,
+    "AP_small": 35.67527428412569,
+    "AP_medium": 58.9521904090981,
+    "AP_large": 62.707582367617185,
+    "tensorrt": "10.13.3.9",
+    "precision": "FP32 backbone/context and decoder; FP16 neck",
+    "engine_sha256": "9261a5ea9ef9efc8eae6e8a371bb0202bdaefd190b64ae63c69d28fed837df29"
+  },
+  "test_AP_delta_points": -0.17546204848412827,
+  "stress": {
+    "performed": true,
+    "images": 8,
+    "finite_outputs": true,
+    "meaning": "Captured inputs only; no annotation/AP inference"
+  },
+  "latency": {
+    "torch-fp32": {
+      "backend": "torch-fp32",
+      "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+      "image_sha256": "f7215db824ec6e55ad4a434a8566ac935b157700d47625064d4d865dfce9092e",
+      "input": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "classes": 7,
+      "mean_ms": 28.008731842041016,
+      "median_ms": 28.002336502075195,
+      "p95_ms": 28.07652702331543,
+      "FPS": 35.70315163284199,
+      "round_mean_ms": [
+        27.933644733428956,
+        28.034820556640625,
+        28.057730236053466
+      ],
+      "round_mean_cv_pct": 0.19248312129093662,
+      "warmup": 50,
+      "iterations_per_round": 100,
+      "repeats": 3,
+      "torch_peak_allocated_GiB": 1.0640521049499512,
+      "process_gpu_memory_MiB": 1866,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "torch": "2.14.1+cu130",
+      "timing_scope": "Batch1 eager CUDA-event latency: GPU inputs through top300; no CUDA Graph.\n\nPreprocessing/host transfers excluded. TensorRT includes device-buffer copies.\nEach command must run alone on a GPU with no mining/training/build workload.\n",
+      "precision": "FP32",
+      "inference_precision": {
+        "requested": "fp32",
+        "selected": "fp32",
+        "fallback_count": 0,
+        "checked": true
+      }
+    },
+    "tensorrt": {
+      "backend": "tensorrt",
+      "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+      "image_sha256": "f7215db824ec6e55ad4a434a8566ac935b157700d47625064d4d865dfce9092e",
+      "input": [
+        1,
+        3,
+        640,
+        640
+      ],
+      "classes": 7,
+      "mean_ms": 13.254038095474243,
+      "median_ms": 13.250959873199463,
+      "p95_ms": 13.303684902191161,
+      "FPS": 75.44870422105264,
+      "round_mean_ms": [
+        13.232961263656616,
+        13.266289319992065,
+        13.262863702774048
+      ],
+      "round_mean_cv_pct": 0.11293948480963603,
+      "warmup": 50,
+      "iterations_per_round": 100,
+      "repeats": 3,
+      "torch_peak_allocated_GiB": 0.009173870086669922,
+      "process_gpu_memory_MiB": 1714,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "torch": "2.14.1+cu130",
+      "timing_scope": "Batch1 eager CUDA-event latency: GPU inputs through top300; no CUDA Graph.\n\nPreprocessing/host transfers excluded. TensorRT includes device-buffer copies.\nEach command must run alone on a GPU with no mining/training/build workload.\n",
+      "tensorrt": "10.13.3.9",
+      "precision": "FP32 backbone/context and decoder; FP16 neck",
+      "engine_sha256": "9261a5ea9ef9efc8eae6e8a371bb0202bdaefd190b64ae63c69d28fed837df29"
+    }
+  },
+  "validation_performed": true,
+  "accuracy_tolerance_met": true
+}

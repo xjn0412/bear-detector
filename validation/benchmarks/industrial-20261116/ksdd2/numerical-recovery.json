@@ -1,0 +1,14 @@
+{
+  "cause": "FP16 P5 projection convolution overflow before GroupNorm",
+  "checkpoint_epoch": 14,
+  "replay_first_bad": "backbone.projections.2.0",
+  "fp16_nonfinite": 2268,
+  "fp32_full_projection_absmax": 65658.1953125,
+  "fp32_projection_fix_absmax": 65668.671875,
+  "captured_fixed_boxes_finite": true,
+  "captured_fixed_loss_finite": true,
+  "captured_fixed_gradients_finite": true,
+  "regression": "PASS: overflow fixture, finite backward, unchanged state keys, FP32 parity",
+  "recovery": "Full checkpoint resume; preserve validation best and patience",
+  "rng_limit": "Original checkpoint has no RNG; replay and production resume reseed42"
+}

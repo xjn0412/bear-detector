@@ -1,0 +1,41 @@
+{
+  "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/gc10/yolo26x/training/weights/best.pt",
+  "checkpoint_sha256": "51b76023f261e62ba909353b5c56e8eff79448d0d0b090438f69856b500500e3",
+  "annotations_sha256": "e2a0d1104112872d05a3bd9d900b6004f4a92d78d7aafa4715ec41fc41e1b360",
+  "AP": 31.139865603093337,
+  "AP50": 65.05870279048797,
+  "AP75": 25.835903772008745,
+  "AP_small": 17.387432751545223,
+  "AP_medium": 32.48972054413433,
+  "AP_large": 33.42577625637592,
+  "per_class_AP": {
+    "10_yaozhe": 24.786670417188127,
+    "1_chongkong": 59.652620755806886,
+    "2_hanfeng": 31.80228770854443,
+    "3_yueyawan": 50.66727741261413,
+    "4_shuiban": 41.036624106613864,
+    "5_youban": 35.149119123793035,
+    "6_siban": 20.313105155435036,
+    "7_yiwu": 8.624716761356222,
+    "8_yahen": 21.25616760401764,
+    "9_zhehen": 18.110066985563964
+  },
+  "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
+  "num_images": 230,
+  "num_predictions": 66244,
+  "parameters_before_fusion": 58831668,
+  "settings": {
+    "imgsz": 640,
+    "conf": 1e-05,
+    "iou": 0.7,
+    "max_det": 300,
+    "half": false,
+    "augment": false,
+    "nms": null,
+    "end2end": false
+  },
+  "ultralytics_version": "8.4.215",
+  "torch_version": "2.14.1+cu130",
+  "annotation_ids_reindexed": true,
+  "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+}
