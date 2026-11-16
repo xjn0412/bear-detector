@@ -1,0 +1,489 @@
+dataset,model,epoch,val_mAP50_95_pct,val_mAP50_pct,selected_epoch,metric_source
+cr7,bear_l,1,11.27413961848363,16.11186905228049,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,2,52.183661963560446,80.05374009054331,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,3,55.6445642144641,84.62623485783303,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,4,59.09140821064883,88.76796840722939,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,5,58.47433455823575,88.43779185053833,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,6,59.56057734868444,89.41846999326131,True,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,7,58.66506028070933,87.76036206577635,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,8,58.70862762670889,88.47272933513862,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,9,58.1526898668834,88.01309983769113,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,10,58.476854026153944,88.58572891475411,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,11,57.93312893567417,87.8112025933359,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,12,57.81150061515746,88.08816974066502,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,13,57.54560172641289,87.54785772575347,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,14,56.98799435130735,86.72045055376573,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,15,56.56475645891533,86.44001552394214,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,16,56.3720959528103,86.21660996702269,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,17,56.30089924524818,86.01561465702662,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,18,56.20511501233425,86.22014954437373,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,19,56.12360190169081,86.3958432706505,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,20,56.03239170090835,86.43838638110512,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,21,55.941622014959904,86.29794632462068,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,22,55.75300667335286,86.28938631857363,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,23,55.7250329390748,86.24693738883354,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,24,55.58658567929072,86.2535292095726,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,25,55.559105829044576,86.12950821271616,False,native Bear evaluator (historical annotation-ID0)
+cr7,bear_l,26,55.421677329597465,85.84874570395804,False,native Bear evaluator (historical annotation-ID0)
+cr7,yolo26x,1,29.112,52.791999999999994,False,native Ultralytics evaluator
+cr7,yolo26x,2,36.796,69.62,False,native Ultralytics evaluator
+cr7,yolo26x,3,38.171,68.908,False,native Ultralytics evaluator
+cr7,yolo26x,4,40.050999999999995,70.462,False,native Ultralytics evaluator
+cr7,yolo26x,5,41.442,72.673,False,native Ultralytics evaluator
+cr7,yolo26x,6,42.675000000000004,73.48700000000001,False,native Ultralytics evaluator
+cr7,yolo26x,7,44.088,74.81,False,native Ultralytics evaluator
+cr7,yolo26x,8,43.641999999999996,75.32799999999999,False,native Ultralytics evaluator
+cr7,yolo26x,9,43.443,75.504,False,native Ultralytics evaluator
+cr7,yolo26x,10,43.665,74.591,False,native Ultralytics evaluator
+cr7,yolo26x,11,45.882,79.156,False,native Ultralytics evaluator
+cr7,yolo26x,12,47.156,79.925,False,native Ultralytics evaluator
+cr7,yolo26x,13,43.26,74.022,False,native Ultralytics evaluator
+cr7,yolo26x,14,48.495,80.77,False,native Ultralytics evaluator
+cr7,yolo26x,15,48.148,78.525,False,native Ultralytics evaluator
+cr7,yolo26x,16,47.646,80.336,False,native Ultralytics evaluator
+cr7,yolo26x,17,46.043,77.676,False,native Ultralytics evaluator
+cr7,yolo26x,18,49.145,81.491,False,native Ultralytics evaluator
+cr7,yolo26x,19,49.572,81.42200000000001,False,native Ultralytics evaluator
+cr7,yolo26x,20,47.236,77.104,False,native Ultralytics evaluator
+cr7,yolo26x,21,47.8,79.935,False,native Ultralytics evaluator
+cr7,yolo26x,22,50.090999999999994,82.73899999999999,False,native Ultralytics evaluator
+cr7,yolo26x,23,50.12799999999999,83.202,False,native Ultralytics evaluator
+cr7,yolo26x,24,51.403,83.31,False,native Ultralytics evaluator
+cr7,yolo26x,25,50.525,83.514,False,native Ultralytics evaluator
+cr7,yolo26x,26,49.449,81.45400000000001,False,native Ultralytics evaluator
+cr7,yolo26x,27,49.391,81.63,False,native Ultralytics evaluator
+cr7,yolo26x,28,50.954,81.854,False,native Ultralytics evaluator
+cr7,yolo26x,29,49.464999999999996,80.31700000000001,False,native Ultralytics evaluator
+cr7,yolo26x,30,49.81,81.54,False,native Ultralytics evaluator
+cr7,yolo26x,31,51.017999999999994,82.381,False,native Ultralytics evaluator
+cr7,yolo26x,32,51.852,83.525,False,native Ultralytics evaluator
+cr7,yolo26x,33,51.019999999999996,82.502,False,native Ultralytics evaluator
+cr7,yolo26x,34,50.831,81.27799999999999,False,native Ultralytics evaluator
+cr7,yolo26x,35,51.898999999999994,83.7,False,native Ultralytics evaluator
+cr7,yolo26x,36,50.809000000000005,82.45,False,native Ultralytics evaluator
+cr7,yolo26x,37,51.139,83.095,False,native Ultralytics evaluator
+cr7,yolo26x,38,52.697,83.11500000000001,False,native Ultralytics evaluator
+cr7,yolo26x,39,52.093999999999994,83.10600000000001,False,native Ultralytics evaluator
+cr7,yolo26x,40,52.861999999999995,84.20299999999999,False,native Ultralytics evaluator
+cr7,yolo26x,41,52.001,83.893,False,native Ultralytics evaluator
+cr7,yolo26x,42,53.223,84.774,False,native Ultralytics evaluator
+cr7,yolo26x,43,52.152,82.876,False,native Ultralytics evaluator
+cr7,yolo26x,44,52.154,83.577,False,native Ultralytics evaluator
+cr7,yolo26x,45,52.729000000000006,83.279,False,native Ultralytics evaluator
+cr7,yolo26x,46,53.330999999999996,84.803,False,native Ultralytics evaluator
+cr7,yolo26x,47,53.357,84.6,False,native Ultralytics evaluator
+cr7,yolo26x,48,53.395,85.483,False,native Ultralytics evaluator
+cr7,yolo26x,49,52.842,84.075,False,native Ultralytics evaluator
+cr7,yolo26x,50,53.19199999999999,84.907,False,native Ultralytics evaluator
+cr7,yolo26x,51,52.54299999999999,83.53699999999999,False,native Ultralytics evaluator
+cr7,yolo26x,52,47.387,75.339,False,native Ultralytics evaluator
+cr7,yolo26x,53,54.324,85.854,False,native Ultralytics evaluator
+cr7,yolo26x,54,53.778000000000006,84.894,False,native Ultralytics evaluator
+cr7,yolo26x,55,53.43599999999999,84.786,False,native Ultralytics evaluator
+cr7,yolo26x,56,52.63099999999999,83.22,False,native Ultralytics evaluator
+cr7,yolo26x,57,52.949999999999996,82.738,False,native Ultralytics evaluator
+cr7,yolo26x,58,53.164,83.493,False,native Ultralytics evaluator
+cr7,yolo26x,59,53.879999999999995,83.83800000000001,False,native Ultralytics evaluator
+cr7,yolo26x,60,53.274,84.49600000000001,False,native Ultralytics evaluator
+cr7,yolo26x,61,54.982,85.453,False,native Ultralytics evaluator
+cr7,yolo26x,62,53.754000000000005,84.608,False,native Ultralytics evaluator
+cr7,yolo26x,63,54.996,86.129,True,native Ultralytics evaluator
+cr7,yolo26x,64,53.708,84.576,False,native Ultralytics evaluator
+cr7,yolo26x,65,54.576,85.583,False,native Ultralytics evaluator
+cr7,yolo26x,66,53.800000000000004,85.062,False,native Ultralytics evaluator
+cr7,yolo26x,67,53.447,84.94699999999999,False,native Ultralytics evaluator
+cr7,yolo26x,68,54.161,85.538,False,native Ultralytics evaluator
+cr7,yolo26x,69,53.593,83.731,False,native Ultralytics evaluator
+cr7,yolo26x,70,53.309,84.17999999999999,False,native Ultralytics evaluator
+cr7,yolo26x,71,53.751000000000005,83.92399999999999,False,native Ultralytics evaluator
+cr7,yolo26x,72,53.483999999999995,83.931,False,native Ultralytics evaluator
+cr7,yolo26x,73,53.864000000000004,84.294,False,native Ultralytics evaluator
+cr7,yolo26x,74,54.196,84.806,False,native Ultralytics evaluator
+cr7,yolo26x,75,54.905,85.533,False,native Ultralytics evaluator
+cr7,yolo26x,76,54.309,85.289,False,native Ultralytics evaluator
+cr7,yolo26x,77,54.44799999999999,85.006,False,native Ultralytics evaluator
+cr7,yolo26x,78,54.173,84.563,False,native Ultralytics evaluator
+cr7,yolo26x,79,54.26299999999999,84.816,False,native Ultralytics evaluator
+cr7,yolo26x,80,53.89699999999999,84.025,False,native Ultralytics evaluator
+cr7,yolo26x,81,53.669999999999995,84.028,False,native Ultralytics evaluator
+cr7,yolo26x,82,53.702000000000005,83.858,False,native Ultralytics evaluator
+cr7,yolo26x,83,53.591,83.729,False,native Ultralytics evaluator
+gc10,bear_l,1,0.5607644737374342,1.626411121383281,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,2,22.38882364276075,40.659006179283566,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,3,30.753981387393058,61.58695569461117,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,4,34.159884860342125,65.61484236072651,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,5,35.99752015938374,68.57027073676826,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,6,38.67026696154478,72.38476064526573,True,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,7,37.061019699965094,72.92531228698847,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,8,36.53861426587437,72.9070741783548,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,9,38.02879116223969,76.05011305830787,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,10,37.34409981157769,73.25294954585823,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,11,37.45573818435478,73.30434405784246,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,12,37.69773593843598,71.84244970509788,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,13,36.909810071679765,75.83149073392099,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,14,35.405901083515374,71.59165136642393,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,15,36.22732993299959,69.92020787535928,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,16,35.81378468234298,70.55120214903683,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,17,36.63943274503229,72.21889529387354,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,18,36.21730148433949,71.29755926896992,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,19,36.212834876984026,71.65179850149383,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,20,36.561321873180944,73.38650888784372,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,21,35.93723620938453,71.85662131224817,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,22,35.960218541472486,71.75886434740008,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,23,35.691042584505375,71.36537325893822,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,24,35.428594583351185,71.02713299032253,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,25,36.063729388207996,73.23990476329661,False,native Bear evaluator (historical annotation-ID0)
+gc10,bear_l,26,36.03490197810321,73.83044598081551,False,native Bear evaluator (historical annotation-ID0)
+gc10,yolo26x,1,9.350999999999999,23.634,False,native Ultralytics evaluator
+gc10,yolo26x,2,8.042,20.727,False,native Ultralytics evaluator
+gc10,yolo26x,3,11.004999999999999,24.837,False,native Ultralytics evaluator
+gc10,yolo26x,4,12.280000000000001,29.828,False,native Ultralytics evaluator
+gc10,yolo26x,5,13.584999999999999,30.843999999999998,False,native Ultralytics evaluator
+gc10,yolo26x,6,14.41,35.503,False,native Ultralytics evaluator
+gc10,yolo26x,7,15.784,38.481,False,native Ultralytics evaluator
+gc10,yolo26x,8,19.147,43.384,False,native Ultralytics evaluator
+gc10,yolo26x,9,19.252,43.053000000000004,False,native Ultralytics evaluator
+gc10,yolo26x,10,19.168,44.791,False,native Ultralytics evaluator
+gc10,yolo26x,11,22.192999999999998,48.656,False,native Ultralytics evaluator
+gc10,yolo26x,12,18.625,48.738,False,native Ultralytics evaluator
+gc10,yolo26x,13,19.664,43.189,False,native Ultralytics evaluator
+gc10,yolo26x,14,21.282,47.553,False,native Ultralytics evaluator
+gc10,yolo26x,15,19.641000000000002,43.653,False,native Ultralytics evaluator
+gc10,yolo26x,16,21.905,48.956,False,native Ultralytics evaluator
+gc10,yolo26x,17,19.982,46.097,False,native Ultralytics evaluator
+gc10,yolo26x,18,22.191,49.929,False,native Ultralytics evaluator
+gc10,yolo26x,19,20.598,46.126,False,native Ultralytics evaluator
+gc10,yolo26x,20,21.127000000000002,46.257,False,native Ultralytics evaluator
+gc10,yolo26x,21,21.314,48.662,False,native Ultralytics evaluator
+gc10,yolo26x,22,21.848,48.908,False,native Ultralytics evaluator
+gc10,yolo26x,23,22.5,51.178999999999995,False,native Ultralytics evaluator
+gc10,yolo26x,24,22.883,54.449000000000005,False,native Ultralytics evaluator
+gc10,yolo26x,25,24.585,54.035,False,native Ultralytics evaluator
+gc10,yolo26x,26,23.696,51.737,False,native Ultralytics evaluator
+gc10,yolo26x,27,23.236,51.007000000000005,False,native Ultralytics evaluator
+gc10,yolo26x,28,22.42,50.479,False,native Ultralytics evaluator
+gc10,yolo26x,29,23.315,49.445,False,native Ultralytics evaluator
+gc10,yolo26x,30,22.708000000000002,51.815,False,native Ultralytics evaluator
+gc10,yolo26x,31,20.918,48.57,False,native Ultralytics evaluator
+gc10,yolo26x,32,26.223000000000003,58.899,False,native Ultralytics evaluator
+gc10,yolo26x,33,23.721999999999998,52.125,False,native Ultralytics evaluator
+gc10,yolo26x,34,25.013999999999996,54.06100000000001,False,native Ultralytics evaluator
+gc10,yolo26x,35,26.846999999999998,61.439,False,native Ultralytics evaluator
+gc10,yolo26x,36,25.592,56.191,False,native Ultralytics evaluator
+gc10,yolo26x,37,25.429000000000002,54.294,False,native Ultralytics evaluator
+gc10,yolo26x,38,26.444000000000003,58.126999999999995,False,native Ultralytics evaluator
+gc10,yolo26x,39,24.928,55.83,False,native Ultralytics evaluator
+gc10,yolo26x,40,29.204,60.412,False,native Ultralytics evaluator
+gc10,yolo26x,41,26.029999999999998,56.721,False,native Ultralytics evaluator
+gc10,yolo26x,42,24.686,52.352,False,native Ultralytics evaluator
+gc10,yolo26x,43,27.569,59.862,False,native Ultralytics evaluator
+gc10,yolo26x,44,28.066999999999997,62.11600000000001,False,native Ultralytics evaluator
+gc10,yolo26x,45,27.657999999999998,59.59100000000001,False,native Ultralytics evaluator
+gc10,yolo26x,46,26.321,57.445,False,native Ultralytics evaluator
+gc10,yolo26x,47,28.412,62.399,False,native Ultralytics evaluator
+gc10,yolo26x,48,27.053,60.104,False,native Ultralytics evaluator
+gc10,yolo26x,49,25.637999999999998,55.598000000000006,False,native Ultralytics evaluator
+gc10,yolo26x,50,27.650999999999996,60.87200000000001,False,native Ultralytics evaluator
+gc10,yolo26x,51,27.777,61.31100000000001,False,native Ultralytics evaluator
+gc10,yolo26x,52,27.605,61.941,False,native Ultralytics evaluator
+gc10,yolo26x,53,27.323999999999998,61.8,False,native Ultralytics evaluator
+gc10,yolo26x,54,26.491,58.742000000000004,False,native Ultralytics evaluator
+gc10,yolo26x,55,26.937,58.209999999999994,False,native Ultralytics evaluator
+gc10,yolo26x,56,27.285999999999998,57.652,False,native Ultralytics evaluator
+gc10,yolo26x,57,28.955,63.39,False,native Ultralytics evaluator
+gc10,yolo26x,58,29.696,62.73,False,native Ultralytics evaluator
+gc10,yolo26x,59,30.253999999999998,65.694,False,native Ultralytics evaluator
+gc10,yolo26x,60,28.054000000000002,62.324999999999996,False,native Ultralytics evaluator
+gc10,yolo26x,61,29.152,62.12800000000001,False,native Ultralytics evaluator
+gc10,yolo26x,62,28.104000000000003,62.388,False,native Ultralytics evaluator
+gc10,yolo26x,63,28.869,61.281,False,native Ultralytics evaluator
+gc10,yolo26x,64,28.859,63.007999999999996,False,native Ultralytics evaluator
+gc10,yolo26x,65,31.439,67.616,True,native Ultralytics evaluator
+gc10,yolo26x,66,28.009,61.617,False,native Ultralytics evaluator
+gc10,yolo26x,67,28.044000000000004,62.952,False,native Ultralytics evaluator
+gc10,yolo26x,68,27.679,60.409,False,native Ultralytics evaluator
+gc10,yolo26x,69,28.715000000000003,59.879000000000005,False,native Ultralytics evaluator
+gc10,yolo26x,70,28.479,61.068999999999996,False,native Ultralytics evaluator
+gc10,yolo26x,71,28.1,59.751,False,native Ultralytics evaluator
+gc10,yolo26x,72,29.584,63.185,False,native Ultralytics evaluator
+gc10,yolo26x,73,29.073999999999998,62.522999999999996,False,native Ultralytics evaluator
+gc10,yolo26x,74,29.846,63.275999999999996,False,native Ultralytics evaluator
+gc10,yolo26x,75,29.555999999999997,60.915,False,native Ultralytics evaluator
+gc10,yolo26x,76,30.797,64.625,False,native Ultralytics evaluator
+gc10,yolo26x,77,30.641000000000002,64.854,False,native Ultralytics evaluator
+gc10,yolo26x,78,29.471000000000004,61.665000000000006,False,native Ultralytics evaluator
+gc10,yolo26x,79,29.651,59.941,False,native Ultralytics evaluator
+gc10,yolo26x,80,29.731999999999996,64.265,False,native Ultralytics evaluator
+gc10,yolo26x,81,30.726,63.099000000000004,False,native Ultralytics evaluator
+gc10,yolo26x,82,29.711,63.268,False,native Ultralytics evaluator
+gc10,yolo26x,83,30.018,63.449999999999996,False,native Ultralytics evaluator
+gc10,yolo26x,84,29.715000000000003,62.087,False,native Ultralytics evaluator
+gc10,yolo26x,85,30.220000000000002,64.61,False,native Ultralytics evaluator
+neu-det,bear_l,1,0.27242717222626217,0.882087336049907,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,2,26.16964405928962,49.09989694700323,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,3,42.12953392936795,69.27242830802304,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,4,47.80545264158002,77.18230897542368,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,5,48.574033575465705,76.32032330435976,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,6,49.661598171757895,79.0949360203952,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,7,50.15132243635681,78.88334802939245,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,8,49.54057404647743,78.1728911373034,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,9,49.45391479599968,79.84892992502733,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,10,49.84961172098086,80.35204864443358,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,11,51.08846051091107,79.64307078677437,True,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,12,50.1145871499122,78.94766164946958,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,13,50.97625671287346,81.17244402734208,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,14,50.60208497616075,80.21264331304964,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,15,50.51092765898824,81.23791538808666,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,16,50.25382023918621,80.76441430335245,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,17,49.442244480105984,80.9912315932662,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,18,49.92241398085006,79.45880889871036,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,19,49.85594749983636,81.31293563361164,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,20,50.173692754854635,81.11699073829229,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,21,50.780111418159116,80.83954337919074,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,22,48.74403666158144,80.60833604996682,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,23,49.469711510865224,79.96344692769655,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,24,49.39151683489596,81.19337154053116,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,25,49.03386875293231,80.39540252693807,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,26,48.582135408548325,79.16511351471817,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,27,49.09697578230296,80.03226559239778,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,28,48.30041278799167,79.61426797051611,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,29,48.97769725599453,80.20927239359136,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,30,49.69159260697834,80.29624467222375,False,native Bear evaluator (historical annotation-ID0)
+neu-det,bear_l,31,49.57408872717958,81.08337043940665,False,native Bear evaluator (historical annotation-ID0)
+neu-det,yolo26x,1,8.290000000000001,22.942999999999998,False,native Ultralytics evaluator
+neu-det,yolo26x,2,11.762,30.965999999999998,False,native Ultralytics evaluator
+neu-det,yolo26x,3,14.896999999999998,32.573,False,native Ultralytics evaluator
+neu-det,yolo26x,4,16.006999999999998,41.319,False,native Ultralytics evaluator
+neu-det,yolo26x,5,18.215999999999998,39.841,False,native Ultralytics evaluator
+neu-det,yolo26x,6,23.267,52.778000000000006,False,native Ultralytics evaluator
+neu-det,yolo26x,7,27.834999999999997,55.174,False,native Ultralytics evaluator
+neu-det,yolo26x,8,25.441000000000003,55.519,False,native Ultralytics evaluator
+neu-det,yolo26x,9,29.833,62.824999999999996,False,native Ultralytics evaluator
+neu-det,yolo26x,10,34.668,65.782,False,native Ultralytics evaluator
+neu-det,yolo26x,11,31.785000000000004,60.574,False,native Ultralytics evaluator
+neu-det,yolo26x,12,34.373,65.309,False,native Ultralytics evaluator
+neu-det,yolo26x,13,32.927,62.516000000000005,False,native Ultralytics evaluator
+neu-det,yolo26x,14,33.684,65.89399999999999,False,native Ultralytics evaluator
+neu-det,yolo26x,15,33.973,69.80499999999999,False,native Ultralytics evaluator
+neu-det,yolo26x,16,34.594,65.354,False,native Ultralytics evaluator
+neu-det,yolo26x,17,37.807,69.039,False,native Ultralytics evaluator
+neu-det,yolo26x,18,35.963,68.718,False,native Ultralytics evaluator
+neu-det,yolo26x,19,36.945,70.77,False,native Ultralytics evaluator
+neu-det,yolo26x,20,37.135,66.889,False,native Ultralytics evaluator
+neu-det,yolo26x,21,36.788,69.899,False,native Ultralytics evaluator
+neu-det,yolo26x,22,38.519999999999996,70.686,False,native Ultralytics evaluator
+neu-det,yolo26x,23,39.467,69.324,False,native Ultralytics evaluator
+neu-det,yolo26x,24,40.614,73.225,False,native Ultralytics evaluator
+neu-det,yolo26x,25,37.421,68.772,False,native Ultralytics evaluator
+neu-det,yolo26x,26,37.402,69.394,False,native Ultralytics evaluator
+neu-det,yolo26x,27,39.084,70.10499999999999,False,native Ultralytics evaluator
+neu-det,yolo26x,28,40.861,72.53500000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,29,40.031,72.202,False,native Ultralytics evaluator
+neu-det,yolo26x,30,38.73,71.638,False,native Ultralytics evaluator
+neu-det,yolo26x,31,38.808,71.235,False,native Ultralytics evaluator
+neu-det,yolo26x,32,40.816,71.195,False,native Ultralytics evaluator
+neu-det,yolo26x,33,37.728,68.664,False,native Ultralytics evaluator
+neu-det,yolo26x,34,40.598,73.56099999999999,False,native Ultralytics evaluator
+neu-det,yolo26x,35,40.092,73.08200000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,36,41.949999999999996,74.21900000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,37,38.556000000000004,70.858,False,native Ultralytics evaluator
+neu-det,yolo26x,38,40.005,72.249,False,native Ultralytics evaluator
+neu-det,yolo26x,39,42.024,72.2,False,native Ultralytics evaluator
+neu-det,yolo26x,40,44.238,76.52600000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,41,42.219,74.129,False,native Ultralytics evaluator
+neu-det,yolo26x,42,40.757,72.122,False,native Ultralytics evaluator
+neu-det,yolo26x,43,43.546,74.088,False,native Ultralytics evaluator
+neu-det,yolo26x,44,42.537000000000006,76.237,False,native Ultralytics evaluator
+neu-det,yolo26x,45,41.813,73.179,False,native Ultralytics evaluator
+neu-det,yolo26x,46,44.435,75.713,False,native Ultralytics evaluator
+neu-det,yolo26x,47,43.897999999999996,76.773,False,native Ultralytics evaluator
+neu-det,yolo26x,48,44.195,75.641,False,native Ultralytics evaluator
+neu-det,yolo26x,49,44.224999999999994,75.875,False,native Ultralytics evaluator
+neu-det,yolo26x,50,45.083,76.74600000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,51,44.662,76.924,False,native Ultralytics evaluator
+neu-det,yolo26x,52,44.157000000000004,75.69500000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,53,44.884,78.115,False,native Ultralytics evaluator
+neu-det,yolo26x,54,43.744,75.074,False,native Ultralytics evaluator
+neu-det,yolo26x,55,45.186,77.122,False,native Ultralytics evaluator
+neu-det,yolo26x,56,42.733,76.561,False,native Ultralytics evaluator
+neu-det,yolo26x,57,43.171,73.70400000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,58,46.07,78.29,False,native Ultralytics evaluator
+neu-det,yolo26x,59,44.489000000000004,77.659,False,native Ultralytics evaluator
+neu-det,yolo26x,60,44.191,76.69,False,native Ultralytics evaluator
+neu-det,yolo26x,61,46.749,79.13,False,native Ultralytics evaluator
+neu-det,yolo26x,62,45.129000000000005,78.129,False,native Ultralytics evaluator
+neu-det,yolo26x,63,45.682,78.583,False,native Ultralytics evaluator
+neu-det,yolo26x,64,46.538000000000004,79.545,False,native Ultralytics evaluator
+neu-det,yolo26x,65,46.418,78.84100000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,66,48.233,79.567,False,native Ultralytics evaluator
+neu-det,yolo26x,67,45.73,78.984,False,native Ultralytics evaluator
+neu-det,yolo26x,68,46.222,78.006,False,native Ultralytics evaluator
+neu-det,yolo26x,69,46.658,79.008,False,native Ultralytics evaluator
+neu-det,yolo26x,70,44.879999999999995,77.647,False,native Ultralytics evaluator
+neu-det,yolo26x,71,47.238,79.58,False,native Ultralytics evaluator
+neu-det,yolo26x,72,47.238,79.628,False,native Ultralytics evaluator
+neu-det,yolo26x,73,47.739,80.796,False,native Ultralytics evaluator
+neu-det,yolo26x,74,46.655,77.596,False,native Ultralytics evaluator
+neu-det,yolo26x,75,46.977000000000004,79.784,False,native Ultralytics evaluator
+neu-det,yolo26x,76,46.556,79.938,False,native Ultralytics evaluator
+neu-det,yolo26x,77,47.531,80.219,False,native Ultralytics evaluator
+neu-det,yolo26x,78,47.423,80.233,False,native Ultralytics evaluator
+neu-det,yolo26x,79,47.171,79.003,False,native Ultralytics evaluator
+neu-det,yolo26x,80,47.984,80.431,False,native Ultralytics evaluator
+neu-det,yolo26x,81,46.658,77.86999999999999,False,native Ultralytics evaluator
+neu-det,yolo26x,82,47.598,79.634,False,native Ultralytics evaluator
+neu-det,yolo26x,83,48.498999999999995,81.446,False,native Ultralytics evaluator
+neu-det,yolo26x,84,46.503,79.821,False,native Ultralytics evaluator
+neu-det,yolo26x,85,47.72,78.604,False,native Ultralytics evaluator
+neu-det,yolo26x,86,49.211,81.023,False,native Ultralytics evaluator
+neu-det,yolo26x,87,49.037,81.10000000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,88,49.196,80.783,False,native Ultralytics evaluator
+neu-det,yolo26x,89,48.016,79.054,False,native Ultralytics evaluator
+neu-det,yolo26x,90,48.681000000000004,80.312,False,native Ultralytics evaluator
+neu-det,yolo26x,91,47.878,79.00399999999999,False,native Ultralytics evaluator
+neu-det,yolo26x,92,47.809000000000005,79.20700000000001,False,native Ultralytics evaluator
+neu-det,yolo26x,93,48.367,79.027,False,native Ultralytics evaluator
+neu-det,yolo26x,94,48.744,79.361,False,native Ultralytics evaluator
+neu-det,yolo26x,95,48.807,79.701,False,native Ultralytics evaluator
+neu-det,yolo26x,96,49.016,79.762,False,native Ultralytics evaluator
+neu-det,yolo26x,97,49.451,80.43,False,native Ultralytics evaluator
+neu-det,yolo26x,98,49.141,79.629,False,native Ultralytics evaluator
+neu-det,yolo26x,99,49.196,79.96799999999999,False,native Ultralytics evaluator
+neu-det,yolo26x,100,49.534,80.25099999999999,True,native Ultralytics evaluator
+ksdd2,bear_l,1,15.835393129026823,32.15591575844945,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,2,23.946377254983926,48.92392994921682,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,3,18.197945977756515,53.16692493798847,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,4,20.348446836929572,54.442162904405166,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,5,2.7722772277227725,7.920792079207921,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,6,14.0636728357478,39.97034402725875,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,7,17.992056187814974,40.17870394777192,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,8,18.019131745107288,34.94027974225994,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,9,20.50731037435555,41.098464177126374,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,10,28.272574380897346,59.79187951559607,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,11,26.10795016982717,59.4786992841333,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,12,4.351720886374352,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,13,26.61533185732577,50.091509150915094,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,14,33.50530332249787,66.6493954165663,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,15,33.73361314874532,64.1828299449825,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,16,33.15736267503684,62.85913479472271,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,17,39.200894256286,76.04291065711347,True,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,18,26.968452945633537,47.32266769126486,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,19,28.189302143329087,47.648514851485146,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,20,6.835511695668746,9.745141180784744,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,21,6.345490099930201,9.071602812455158,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,22,4.374040723871966,5.970800469877496,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,23,3.6337608083658592,5.989287453335497,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,24,4.64646746736148,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,25,4.518151815181519,6.831683168316832,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,26,4.703795379537954,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,27,4.925153229608674,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,28,5.225225225225224,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,29,4.924964194532659,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,30,4.482650967799482,7.59075907590759,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,31,4.966830016334967,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,32,4.146393210749647,7.046204620462045,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,33,4.281330835786281,8.382838283828383,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,34,4.79242661108216,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,35,4.7911362564827895,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,36,4.170383929762964,7.005700570057003,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,bear_l,37,4.400231724418964,10.891089108910892,False,native Bear evaluator (historical annotation-ID0)
+ksdd2,yolo26x,1,0.123,0.8880000000000001,False,native Ultralytics evaluator
+ksdd2,yolo26x,2,1.467,4.743,False,native Ultralytics evaluator
+ksdd2,yolo26x,3,1.696,7.156,False,native Ultralytics evaluator
+ksdd2,yolo26x,4,1.9959999999999998,6.702,False,native Ultralytics evaluator
+ksdd2,yolo26x,5,0.744,3.7159999999999997,False,native Ultralytics evaluator
+ksdd2,yolo26x,6,3.357,8.026,False,native Ultralytics evaluator
+ksdd2,yolo26x,7,1.282,4.748,False,native Ultralytics evaluator
+ksdd2,yolo26x,8,1.318,5.487,False,native Ultralytics evaluator
+ksdd2,yolo26x,9,2.363,9.325,False,native Ultralytics evaluator
+ksdd2,yolo26x,10,3.5749999999999997,12.369,False,native Ultralytics evaluator
+ksdd2,yolo26x,11,2.0709999999999997,8.862,False,native Ultralytics evaluator
+ksdd2,yolo26x,12,2.4570000000000003,8.291,False,native Ultralytics evaluator
+ksdd2,yolo26x,13,3.962,12.030000000000001,False,native Ultralytics evaluator
+ksdd2,yolo26x,14,1.8929999999999998,6.139,False,native Ultralytics evaluator
+ksdd2,yolo26x,15,4.522,13.905000000000001,False,native Ultralytics evaluator
+ksdd2,yolo26x,16,3.8609999999999998,11.599,False,native Ultralytics evaluator
+ksdd2,yolo26x,17,2.276,7.555000000000001,False,native Ultralytics evaluator
+ksdd2,yolo26x,18,5.75,19.578,False,native Ultralytics evaluator
+ksdd2,yolo26x,19,7.585,20.982,False,native Ultralytics evaluator
+ksdd2,yolo26x,20,5.614,17.038,False,native Ultralytics evaluator
+ksdd2,yolo26x,21,4.723,13.786000000000001,False,native Ultralytics evaluator
+ksdd2,yolo26x,22,5.904,19.650000000000002,False,native Ultralytics evaluator
+ksdd2,yolo26x,23,5.897,16.098000000000003,False,native Ultralytics evaluator
+ksdd2,yolo26x,24,5.292,19.156000000000002,False,native Ultralytics evaluator
+ksdd2,yolo26x,25,5.92,18.304000000000002,False,native Ultralytics evaluator
+ksdd2,yolo26x,26,7.0169999999999995,18.57,False,native Ultralytics evaluator
+ksdd2,yolo26x,27,10.133000000000001,24.365000000000002,False,native Ultralytics evaluator
+ksdd2,yolo26x,28,6.848,22.233,False,native Ultralytics evaluator
+ksdd2,yolo26x,29,8.767999999999999,23.429,False,native Ultralytics evaluator
+ksdd2,yolo26x,30,7.192,26.069,False,native Ultralytics evaluator
+ksdd2,yolo26x,31,8.295,21.561,False,native Ultralytics evaluator
+ksdd2,yolo26x,32,10.404,25.454,False,native Ultralytics evaluator
+ksdd2,yolo26x,33,12.350999999999999,35.794,False,native Ultralytics evaluator
+ksdd2,yolo26x,34,13.168,32.539,False,native Ultralytics evaluator
+ksdd2,yolo26x,35,11.915000000000001,30.005,False,native Ultralytics evaluator
+ksdd2,yolo26x,36,6.962,25.182,False,native Ultralytics evaluator
+ksdd2,yolo26x,37,8.445,27.035999999999998,False,native Ultralytics evaluator
+ksdd2,yolo26x,38,10.173,33.79,False,native Ultralytics evaluator
+ksdd2,yolo26x,39,12.974,32.910000000000004,False,native Ultralytics evaluator
+ksdd2,yolo26x,40,7.0680000000000005,24.462,False,native Ultralytics evaluator
+ksdd2,yolo26x,41,12.589,38.007000000000005,False,native Ultralytics evaluator
+ksdd2,yolo26x,42,15.713,41.615,False,native Ultralytics evaluator
+ksdd2,yolo26x,43,17.423,49.763000000000005,False,native Ultralytics evaluator
+ksdd2,yolo26x,44,18.82,43.061,False,native Ultralytics evaluator
+ksdd2,yolo26x,45,16.297,36.539,False,native Ultralytics evaluator
+ksdd2,yolo26x,46,16.182,31.429000000000002,False,native Ultralytics evaluator
+ksdd2,yolo26x,47,15.432000000000002,41.126000000000005,False,native Ultralytics evaluator
+ksdd2,yolo26x,48,18.634999999999998,40.111000000000004,False,native Ultralytics evaluator
+ksdd2,yolo26x,49,18.559,39.553,False,native Ultralytics evaluator
+ksdd2,yolo26x,50,14.893,34.14,False,native Ultralytics evaluator
+ksdd2,yolo26x,51,17.09,41.398,False,native Ultralytics evaluator
+ksdd2,yolo26x,52,18.462,44.653,False,native Ultralytics evaluator
+ksdd2,yolo26x,53,16.633,42.556,False,native Ultralytics evaluator
+ksdd2,yolo26x,54,19.465,40.708,False,native Ultralytics evaluator
+ksdd2,yolo26x,55,19.506999999999998,40.102,False,native Ultralytics evaluator
+ksdd2,yolo26x,56,24.483,47.43,False,native Ultralytics evaluator
+ksdd2,yolo26x,57,23.014000000000003,48.353,False,native Ultralytics evaluator
+ksdd2,yolo26x,58,19.792,45.652,False,native Ultralytics evaluator
+ksdd2,yolo26x,59,19.356,51.105999999999995,False,native Ultralytics evaluator
+ksdd2,yolo26x,60,23.824,50.085,False,native Ultralytics evaluator
+ksdd2,yolo26x,61,22.774,44.662,False,native Ultralytics evaluator
+ksdd2,yolo26x,62,23.0,49.348,False,native Ultralytics evaluator
+ksdd2,yolo26x,63,19.887,44.301,False,native Ultralytics evaluator
+ksdd2,yolo26x,64,23.169999999999998,51.736000000000004,False,native Ultralytics evaluator
+ksdd2,yolo26x,65,22.684,49.969,False,native Ultralytics evaluator
+ksdd2,yolo26x,66,22.595000000000002,47.922,False,native Ultralytics evaluator
+ksdd2,yolo26x,67,21.468999999999998,43.061,False,native Ultralytics evaluator
+ksdd2,yolo26x,68,23.426,51.129000000000005,False,native Ultralytics evaluator
+ksdd2,yolo26x,69,24.018,50.605999999999995,False,native Ultralytics evaluator
+ksdd2,yolo26x,70,22.402,50.23800000000001,False,native Ultralytics evaluator
+ksdd2,yolo26x,71,22.06,50.32600000000001,False,native Ultralytics evaluator
+ksdd2,yolo26x,72,22.248,45.795,False,native Ultralytics evaluator
+ksdd2,yolo26x,73,22.997999999999998,50.41,False,native Ultralytics evaluator
+ksdd2,yolo26x,74,24.634,49.225,False,native Ultralytics evaluator
+ksdd2,yolo26x,75,23.06,52.227999999999994,False,native Ultralytics evaluator
+ksdd2,yolo26x,76,23.939,51.331,False,native Ultralytics evaluator
+ksdd2,yolo26x,77,22.047,45.342,False,native Ultralytics evaluator
+ksdd2,yolo26x,78,20.645,46.642,False,native Ultralytics evaluator
+ksdd2,yolo26x,79,23.647000000000002,51.068999999999996,False,native Ultralytics evaluator
+ksdd2,yolo26x,80,24.512999999999998,45.687,False,native Ultralytics evaluator
+ksdd2,yolo26x,81,25.430999999999997,52.19200000000001,False,native Ultralytics evaluator
+ksdd2,yolo26x,82,24.997,51.403,False,native Ultralytics evaluator
+ksdd2,yolo26x,83,24.618000000000002,49.599,False,native Ultralytics evaluator
+ksdd2,yolo26x,84,26.815,52.547,True,native Ultralytics evaluator
+ksdd2,yolo26x,85,24.062,49.958000000000006,False,native Ultralytics evaluator
+ksdd2,yolo26x,86,24.477,52.759,False,native Ultralytics evaluator
+ksdd2,yolo26x,87,24.921,49.629,False,native Ultralytics evaluator
+ksdd2,yolo26x,88,24.087,51.676,False,native Ultralytics evaluator
+ksdd2,yolo26x,89,23.041,48.92,False,native Ultralytics evaluator
+ksdd2,yolo26x,90,23.446,50.029999999999994,False,native Ultralytics evaluator
+ksdd2,yolo26x,91,24.425,47.715,False,native Ultralytics evaluator
+ksdd2,yolo26x,92,23.119999999999997,49.944,False,native Ultralytics evaluator
+ksdd2,yolo26x,93,24.589,52.588,False,native Ultralytics evaluator
+ksdd2,yolo26x,94,25.39,48.747,False,native Ultralytics evaluator
+ksdd2,yolo26x,95,24.927,48.102000000000004,False,native Ultralytics evaluator
+ksdd2,yolo26x,96,22.985,48.853,False,native Ultralytics evaluator
+ksdd2,yolo26x,97,23.407,50.859,False,native Ultralytics evaluator
+ksdd2,yolo26x,98,24.245,51.629000000000005,False,native Ultralytics evaluator
+ksdd2,yolo26x,99,24.563,51.532999999999994,False,native Ultralytics evaluator
+ksdd2,yolo26x,100,24.756,50.066,False,native Ultralytics evaluator

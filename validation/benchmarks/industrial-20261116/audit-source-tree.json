@@ -1,0 +1,346 @@
+[
+  {
+    "path": "README.md",
+    "sha": "c42509eb60a9dfcdf987415577b378c5e536d57f"
+  },
+  {
+    "path": "README.zh-CN.md",
+    "sha": "ed14233cf7b6c94d17bdc0bec94b239892c5475f"
+  },
+  {
+    "path": "docs/benchmarks/INDUSTRIAL_TRANSFER.md",
+    "sha": "f63c7b6b3c496fceb065a8d9de67637d5c120792"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/acquisition.json",
+    "sha": "bc8acf3b191b73d0a3c2cbe0cbfaf8be03e43651"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/bear_l-complete.json",
+    "sha": "ef9eecdbe6cae263464c6cd15b87aba995f1fe1b"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/bear_l-curves.json",
+    "sha": "2a95404e786fe09b8206d1e8146fa840b7e0e192"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/bear_l-protocol.json",
+    "sha": "ce8f5d13b14cab516d83aded957110792b6c745d"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/bear_l-test.json",
+    "sha": "741e80b9545b4f0ab9a3f72e60be15cc5146fe10"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/dataset-manifest.json",
+    "sha": "3a2556e3668f57730ee02fb05c6f7892aa559741"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/split-membership.json.gz",
+    "sha": "38664d3dbf02aac73db6a64ad0b4047bf3cead8f"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/yolo26x-complete.json",
+    "sha": "38f23b7f1629aac61bfb9903bee9ca641ca3dab5"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/yolo26x-curves.json",
+    "sha": "a5d7502b681fbab1244ad96dada59a259bbfb8ea"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/yolo26x-protocol.json",
+    "sha": "03dfa615ed16e5bdc1bededb753b718c5550c025"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/cr7/yolo26x-test.json",
+    "sha": "33e72a17435e8faa3b4fdab4f62246e12b636f73"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/epoch-progress.md",
+    "sha": "1ee8ff0479edccb787dc43924bd9890cc770d509"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/evaluation-id-correction.json",
+    "sha": "c4eeacab7ca19f90d54a94bdf0775e73ff0fe9a3"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/cr7/bear_l-test.json",
+    "sha": "6fba02e466ef21c3bc4880567c66ce84f184e5e4"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/cr7/yolo26x-test.json",
+    "sha": "68c527cc55a9dc75bf7633765c497546dcf42723"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/gc10/bear_l-test.json",
+    "sha": "89563c9f4d0dcdf38f4014c498a56de31f67b2f4"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/gc10/yolo26x-test.json",
+    "sha": "87e952358b1adbafe5acd4bbac91dc1b936c488d"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/ksdd2/yolo26x-test.json",
+    "sha": "d6983726421cb9c5341a220f51b67e6c775e5728"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/neu-det/bear_l-test.json",
+    "sha": "a929fb808c2a6dd448dbd285eca958fc0555c3a7"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/evaluation-id0-legacy/neu-det/yolo26x-test.json",
+    "sha": "39c6bc33dcebfdaf394ab7c281afb1f161ca29a5"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/INVALID.json",
+    "sha": "a43fc1e4a761215f6b6eb5c36f2d20ed28f159ba"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/bear_l-curves.json",
+    "sha": "56179370c095506fbdb49f95fcc122ece9978041"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/bear_l-protocol.json",
+    "sha": "7712d772099c7b56e7024998f49863c8f626a08a"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/dataset-manifest.json",
+    "sha": "f820356c04454a276430324f79ee978922e52561"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/split-membership.json.gz",
+    "sha": "5358d22bdc00506a463c97428fff60b17a256703"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/yolo26x-curves.json",
+    "sha": "13235e3714cd39d87ec07a370507b5f223a97fe0"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10-invalid-12class/yolo26x-protocol.json",
+    "sha": "0b969869f5c899ca673c3119b40f2c5a9863029d"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/bear_l-complete.json",
+    "sha": "9d2fb42732ac4595c6f3d68cf4529f0d01191aab"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/bear_l-curves.json",
+    "sha": "90032ce636de1bba459eeaa9ffc109d2a40f0629"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/bear_l-protocol.json",
+    "sha": "81dc05d2dfd8a8ddb844a801d4332b04c9c5018d"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/bear_l-test.json",
+    "sha": "cf9a9c840647cef137fd52503d2274d39bfe45d8"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/dataset-manifest.json",
+    "sha": "fc0a9cf8ff17f17dfb4d72714a3cf91bb279e2a6"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/split-membership.json.gz",
+    "sha": "f8b1de708033c28a5224beadd5cce6b8b22d638d"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/yolo26x-complete.json",
+    "sha": "cfb16c0b2e3ee28d3065864fae57ce317498e895"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/yolo26x-curves.json",
+    "sha": "3decc8cce3b26d1ab17b39b0cbaaf5a5dccfdcda"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/yolo26x-protocol.json",
+    "sha": "89ea49690d9432bfa94b18e72cfec4ff537b23c5"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/gc10/yolo26x-test.json",
+    "sha": "fb33e64bde52cfe4ccfcc1f6a6bbfcc7c382a600"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-complete.json",
+    "sha": "25783cb8abea8e437e90abaa73065d41a15aca8d"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-curves.json",
+    "sha": "b292b45f3f511be64bfb112a2ccb634f1a8005ae"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-precision-policy.json",
+    "sha": "95fc8babd6ae5a4d20b5440cada00d38f2aac51a"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-protocol.json",
+    "sha": "7f1a1ef74983dbee5fb015b10a6207ff6a2a147b"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/bear_l-test.json",
+    "sha": "a7f35d9b9b8efd512e6cea6720f08ae1708b0966"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/checked-amp-tests.json",
+    "sha": "0853e8a7ab1ae6f2dd39e23507abe69aa4210c56"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/dataset-manifest.json",
+    "sha": "940298ff0d831876e786f3781cd04c8a8aee3de2"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/inference-precision-tests.json",
+    "sha": "a816ed99a36f0b787ea017cce748cdd6753e2eb6"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/numerical-recovery.json",
+    "sha": "21aaa8f27e119851df4bd18cabf5e075e06001d8"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/split-membership.json.gz",
+    "sha": "9b1223ccf6f08c83659a8599eab2e29428a20577"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/yolo26x-complete.json",
+    "sha": "8d229f44d526b0f8c29e360ccb481716057c38f5"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/yolo26x-curves.json",
+    "sha": "8f9a6b9abaaaf5d6dad8900fc3613939abd071e7"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/yolo26x-protocol.json",
+    "sha": "a3deda78d35c83b21b35aa7453766a90537a1bf9"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/ksdd2/yolo26x-test.json",
+    "sha": "10a5f34dd23c7899335d08e66e6aab84c73c704c"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/bear_l-complete.json",
+    "sha": "0a4c93b8954b837990e80e64810374a08712f316"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/bear_l-curves.json",
+    "sha": "18a7e162914499acca719e581366276c037b9ff1"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/bear_l-protocol.json",
+    "sha": "7b72ac0ef4304364397ead85ec28e7218d568a91"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/bear_l-test.json",
+    "sha": "7b923b157660c97631070854ad43bddccff1e694"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/dataset-manifest.json",
+    "sha": "52426f7cc376e8f6f3df23fc82a376ee6ec264b6"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/split-membership.json.gz",
+    "sha": "d7a1a68329531948941c94ce81cb54f71b9ed72a"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/yolo26x-complete.json",
+    "sha": "4f8c2aea2a307308e098663205cf041e51f499d6"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/yolo26x-curves.json",
+    "sha": "92257128c99e965b7bee89fb5d93d51fda8b6e53"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/yolo26x-protocol.json",
+    "sha": "aa00b903419e06caa9a9619549d6422d435fc097"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/neu-det/yolo26x-test.json",
+    "sha": "4b4add7a0eedfca52f2629060224b22adfac47b6"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/pip-freeze.txt",
+    "sha": "8430a132eb875d78cfd897cc6e523c6df827dfac"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/status.json",
+    "sha": "7c750fbc35ad7c5c105f11e40fa4cdfcc7a5dc70"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/COMPLETE.json",
+    "sha": "e0243a92d77ffac09e3d76cbdaede189d5299fce"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/export.json",
+    "sha": "55a2bd40543661fe81ca286d12e32ae15d24dd7d"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/fp32-val.json",
+    "sha": "96939923bfb9e180f254b7132b11e868a5826e14"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/latency-tensorrt.json",
+    "sha": "06f688ee49bac18aa9e0e8569a66b32ead22d3e8"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/latency-torch-fp32.json",
+    "sha": "3fd7b6de1b5a6cb35425f0831c44b963ef51a625"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/precision-attempts.json",
+    "sha": "d1bc4ab624cbf43b6d59ae4c010547be5bc532f9"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/stress.json",
+    "sha": "00a4e17081e38a890c8ab945bf9485dfa9bb5025"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/test-fp32.json",
+    "sha": "dc1172019bd4e56afe280d959c4468ae73e11cce"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/test-tensorrt.json",
+    "sha": "19f086d673b5ce2b98a277da1a2cc1e8b7e91a0a"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/fp32-backbone/val-fp32-backbone.json",
+    "sha": "eaf334b3752754619c9a5596a1105a8ebe659595"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/COMPLETE.json",
+    "sha": "209d092044c1f72c2eeb5f1e80c15289ab67b416"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/export.json",
+    "sha": "d49f9978c56689fab6f8f0e56ac1bba908dfc99c"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/fp32-val.json",
+    "sha": "96939923bfb9e180f254b7132b11e868a5826e14"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/latency-tensorrt.json",
+    "sha": "21e66eae8fe40348221c1f090dacbf38c3762840"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/latency-torch-fp32.json",
+    "sha": "d1d431423a1992f85d89c402b94378200b43e47b"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/precision-attempts.json",
+    "sha": "62ea1dd9f20cf36733d59f1046f854e3433b84d8"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/stress.json",
+    "sha": "00a4e17081e38a890c8ab945bf9485dfa9bb5025"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/test-fp32.json",
+    "sha": "62d9150030a49c0d97d9d8806fce1460d44d4b44"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/test-tensorrt.json",
+    "sha": "f2fc8067fbfb228cc4cd39e739175b0bfebb683e"
+  },
+  {
+    "path": "validation/benchmarks/industrial-20261116/tensorrt-cr7/mixed/val-mixed.json",
+    "sha": "976006c9ada80cbbab5853702bc08d6ebe6836ac"
+  }
+]

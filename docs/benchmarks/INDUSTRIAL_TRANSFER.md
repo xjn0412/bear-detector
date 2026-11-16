@@ -190,3 +190,18 @@ FP32 recovery prevents representational overflow but does not guarantee sound
 optimization. Best-checkpoint protection selected epoch17, whose corrected final
 test AP is36.6906, rather than the collapsed final epoch. All experimental
 follow-ups should use validation, with the original benchmark retained unchanged.
+
+## Publication audit
+
+Verified published commit 9c3b2f0df252494c12556a7d446c59cf8fa68a32 against the original completed run files:
+
+- **8 runs,488 epoch records,976 native validation AP50/AP50:95 values** match the original Bear JSON logs and YOLO CSV logs.
+- All eight final test scores were independently recomputed from saved predictions with positive annotation IDs. AP50:95/AP50/AP75 and size metrics match within1e-9 AP points.
+- Selected epochs, completed epoch counts, checkpoint SHA256, source annotation hashes and prediction provenance were checked.
+- The combined per-epoch table matches all eight curves. Five published compressed split manifests, including the invalid archive, decompress to the recorded memberships.
+- Actual published bytes were verified against GitHub blob hashes. Compressed-file and KSDD2 YOLO JSON-formatting differences did not change data.
+- Two **invalid GC10 diagnostic archives** had incomplete published curve snapshots (6/24 epochs versus22/71 recorded). They are refreshed in this update and remain explicitly invalid. Active ten-class GC10 scores were unaffected.
+
+Historical Bear validation curves and checkpoint selection retain the annotation-ID0 evaluator limitation. They are faithful log records, not retroactively corrected validation AP. Correcting every past epoch would require unavailable past predictions/checkpoints or a new training run. Final test scores use the repaired evaluator. The audit does not establish statistical significance, identical recipes, near-duplicate independence or official leaderboard performance.
+
+[Every epoch](../../validation/benchmarks/industrial-20261116/epoch-progress.md) · [Combined CSV](../../validation/benchmarks/industrial-20261116/all-epochs.csv) · [Machine-readable audit](../../validation/benchmarks/industrial-20261116/audit.json)

@@ -1,6 +1,6 @@
 # Final per-epoch native validation mAP50:95 (%)
 
-All8 runs complete. B=Bear-L; Y=YOLO26x. Historical native Bear metrics retain the annotation-ID0 evaluator limitation; final held-out test reports use positive annotation IDs. Interrupted partial epochs and diagnostic replays are excluded.
+All8 runs complete. [Combined AP50/AP50:95 CSV](all-epochs.csv) · [Verification report](audit.json). B=Bear-L; Y=YOLO26x. Historical native Bear metrics retain the annotation-ID0 evaluator limitation; final held-out test reports use positive annotation IDs. Interrupted partial epochs and diagnostic replays are excluded.
 
 |Epoch|CR7 B|CR7 Y|GC10 B|GC10 Y|NEU B|NEU Y|KSDD2 B|KSDD2 Y|
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
