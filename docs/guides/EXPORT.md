@@ -69,3 +69,8 @@ reductions must remain FP32. Python same-image inference retry is not exported.
 Old engines are unchanged; rebuild and validate finite outputs and AP. No new
 TensorRT engine was built or validated for this fix; export metadata retains
 accuracy_validated=false. Use torch-fp32 for a validated precision baseline.
+
+
+Update2026-11-16: TensorRT has now been rebuilt and validated for the selected
+CR7 Bear-L checkpoint, including full validation/test, captured-input finite
+stress and batch1 timing. See [measured scope and results](../benchmarks/TENSORRT_REVALIDATION_20261116.md). This supersedes the earlier statement that no rebuilt engine had yet been validated; it does not certify other checkpoints.

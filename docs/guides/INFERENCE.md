@@ -49,3 +49,8 @@ and tells the caller to use the FP32 PyTorch backend; it has no automatic retry
 inside the engine. Rebuilt engines require their own finite-output and AP
 validation. The inference fix was tested on CUDA PyTorch, including deployed
 Bear-L; a TensorRT engine has not been built or validated for this change.
+
+
+Update2026-11-16: TensorRT has now been rebuilt and validated for the selected
+CR7 Bear-L checkpoint, including full validation/test, captured-input finite
+stress and batch1 timing. See [measured scope and results](../benchmarks/TENSORRT_REVALIDATION_20261116.md). This supersedes the earlier statement that no rebuilt engine had yet been validated; it does not certify other checkpoints.

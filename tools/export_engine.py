@@ -27,6 +27,7 @@ if classes_file.exists():
  (out/'classes.json').write_text(classes_file.read_text())
 if a.build:
  report.update(accuracy_validated=False,runtime_fallback_exported=False)
+ for key in ['validation','test_validation','captured_input_stress','validation_performed','accuracy_tolerance_met']:report.pop(key,None)
  import tensorrt as trt
  if int(trt.__version__.split('.')[0]) != 10:
   raise RuntimeError('This precision-constrained exporter is validated with TensorRT10.13.3.9; TensorRT11 requires a strong-typing export path. Install tensorrt-cu13==10.13.3.9.')
@@ -59,5 +60,5 @@ if a.build:
  if plan is None:raise RuntimeError('Engine build failed')
  (out/'model.engine').write_bytes(bytes(plan))
  report['precision']={'fp32':'FP32','fp32-backbone':'FP32 backbone/context and decoder; FP16 neck','mixed':'FP16 bulk; FP32 P5 projection, decoder and sensitive reductions'}[a.precision]
- report.update(engine_sha256=digest(out/'model.engine'),build_seconds=time.time()-t,tensorrt=trt.__version__,protected_layers=len(protected),decoder_layers=len(decoder),p5_fp32_convolutions=p5_convolutions)
+ report.update(engine_sha256=digest(out/'model.engine'),build_seconds=time.time()-t,tensorrt=trt.__version__,protected_layers=len(protected),decoder_layers=len(decoder),p5_fp32_convolutions=p5_convolutions,p5_fp32_enforced=True,rebuild_required_for_p5_fp32=False)
 (out/'export.json').write_text(json.dumps(report,indent=2));print(json.dumps(report),flush=True)

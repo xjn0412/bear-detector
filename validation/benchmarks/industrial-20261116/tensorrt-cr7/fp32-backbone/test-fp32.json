@@ -1,0 +1,27 @@
+{
+  "backend": "torch-fp32",
+  "images": 410,
+  "full_coco_val2017": false,
+  "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+  "annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82",
+  "predictions_sha256": "280206e9e4538174d849b28af03de4450d319875fce695bbfd3b2359cbc58371",
+  "batch_size": 1,
+  "input": 640,
+  "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+  "finite_outputs": true,
+  "annotation_ids_reindexed": true,
+  "elapsed_seconds": 24.30489444732666,
+  "AP": 58.52086717941841,
+  "AP50": 89.00499933686442,
+  "AP75": 60.151928554739655,
+  "AP_small": 35.78609996226533,
+  "AP_medium": 58.97452037702422,
+  "AP_large": 62.86062808910857,
+  "precision": "FP32",
+  "inference_precision": {
+    "requested": "fp32",
+    "selected": "fp32",
+    "fallback_count": 0,
+    "checked": true
+  }
+}

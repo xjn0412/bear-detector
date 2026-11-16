@@ -1,0 +1,88 @@
+{
+  "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+  "onnx_sha256": "97cad72dc6b4909c681d7857647e70790baeb29a9d3491c68d79edbf29e49698",
+  "classes": 7,
+  "shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "size_order": "width,height",
+  "precision": "FP16 bulk; FP32 P5 projection, decoder and sensitive reductions",
+  "accuracy_validated": false,
+  "runtime_fallback_exported": false,
+  "rebuild_required_for_p5_fp32": false,
+  "sampling": "explicit bilinear GatherElements; no ONNX GridSample",
+  "class_mapping": {
+    "num_classes": 7,
+    "classes": [
+      {
+        "index": 0,
+        "category_id": 0,
+        "name": "inclusion"
+      },
+      {
+        "index": 1,
+        "category_id": 1,
+        "name": "dents"
+      },
+      {
+        "index": 2,
+        "category_id": 2,
+        "name": "oil_spots"
+      },
+      {
+        "index": 3,
+        "category_id": 3,
+        "name": "pits"
+      },
+      {
+        "index": 4,
+        "category_id": 4,
+        "name": "punching"
+      },
+      {
+        "index": 5,
+        "category_id": 5,
+        "name": "linear"
+      },
+      {
+        "index": 6,
+        "category_id": 6,
+        "name": "macular"
+      }
+    ]
+  },
+  "engine_sha256": "1d538fb1cf6dfb9275571d0db289029f3883e0031e336df41788106250816efb",
+  "build_seconds": 297.95261454582214,
+  "tensorrt": "10.13.3.9",
+  "protected_layers": 2146,
+  "decoder_layers": 4423,
+  "p5_fp32_convolutions": [
+    "/backbone/projections.2/projections.2.0/Conv"
+  ],
+  "validation": {
+    "dataset": "cr7",
+    "split": "val",
+    "images": 410,
+    "AP_tolerance_points": 0.2,
+    "selected_precision": "mixed"
+  },
+  "test_validation": {
+    "images": 410,
+    "FP32_AP": 58.52086717941841,
+    "TensorRT_AP": 58.28829598060078,
+    "AP_delta_points": -0.2325711988176309,
+    "finite_outputs": true
+  },
+  "captured_input_stress": {
+    "performed": true,
+    "images": 8,
+    "finite_outputs": true,
+    "meaning": "Captured inputs only; no annotation/AP inference"
+  },
+  "validation_performed": true,
+  "accuracy_tolerance_met": false,
+  "p5_fp32_enforced": true
+}

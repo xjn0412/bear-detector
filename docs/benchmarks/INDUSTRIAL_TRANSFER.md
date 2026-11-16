@@ -1,6 +1,6 @@
 # Industrial defect transfer benchmark
 
-Status: **7/8 runs complete**, checked 2026-11-16T08:38:51+00:00. Bear-L KSDD2 is still training (latest completed epoch26); its best validation AP is39.20% at epoch17. Recent validation AP has fallen despite finite FP32 outputs; the best checkpoint remains preserved. No final KSDD2 Bear test score is claimed.
+Status: **7/8 runs complete**, checked 2026-11-16T08:38:51+00:00. Bear-L KSDD2 is still training (latest completed epoch32); its best validation AP is39.20% at epoch17. Recent validation AP has fallen despite finite FP32 outputs; the best checkpoint remains preserved. No final KSDD2 Bear test score is claimed.
 
 ## Completed held-out test results
 
@@ -15,7 +15,7 @@ All values below are **test AP50:95 in percent**, shared COCO evaluator/maxDets1
 
 Per-epoch validation curves and final test reports are in the linked evidence directory below. Validation AP and test AP are distinct. Different pretraining/recipes and one seed limit the comparison.
 
-TensorRT rebuild/validation is in progress on the selected CR7 Bear-L checkpoint. The mixed engine completed finite-output checks on410 test images plus8 captured inputs; test AP58.2883 vs FP32 58.5209 (−0.2326 points), slightly outside the predeclared0.20-point target. A separately declared FP32-backbone engine is being measured; both results will be retained.
+TensorRT rebuild and validation are complete for the selected CR7 Bear-L checkpoint: mixed208FPS/AP58.2883, or conservative FP32-backbone75.4FPS/AP58.3454, versus FP32 AP58.5209. See [precision revalidation](TENSORRT_REVALIDATION_20261116.md) for full reports, scope and the0.20-point acceptance target.
 
 
 **GC10 correction:** Initial GC10 runs used12 raw XML label strings and are invalid. The corrected benchmark merges `10_yaozhed` into `10_yaozhe` and excludes the entire image `img_02_425616500_00770.jpg` because one box is labeled only `d`. Both models restart from their original COCO checkpoints. Archived initial runs are diagnostics only and must not appear as valid GC10 results. A schema assertion now requires exactly7/10/6/1 classes for CR7/GC10/NEU/KSDD2.

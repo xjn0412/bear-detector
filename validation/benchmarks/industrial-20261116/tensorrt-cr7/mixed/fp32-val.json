@@ -1,0 +1,37 @@
+{
+  "backend": "torch-fp32",
+  "images": 410,
+  "full_coco_val2017": false,
+  "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+  "annotations_sha256": "9b5f1154db4128a84420766fbd55245a595594d009f792b57b4bd8d3e460e7fa",
+  "predictions_sha256": "901b35708dd080d06565d4628f55c7748613f7507e703d107a952ffa71fa76b8",
+  "batch_size": 1,
+  "input": 640,
+  "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+  "finite_outputs": true,
+  "elapsed_seconds": 17.460997581481934,
+  "AP": 59.79930004676459,
+  "AP50": 89.69204807933107,
+  "AP75": 61.033409605889766,
+  "AP_small": 40.73045945996985,
+  "AP_medium": 58.62271198686455,
+  "AP_large": 60.662864968442676,
+  "precision": "FP32",
+  "inference_precision": {
+    "requested": "fp32",
+    "selected": "fp32",
+    "fallback_count": 0,
+    "checked": true
+  },
+  "per_class_AP": {
+    "inclusion": 43.09362187453069,
+    "dents": 88.49500698714704,
+    "oil_spots": 68.4576116063504,
+    "pits": 35.236067239034796,
+    "punching": 84.0623622688231,
+    "linear": 40.29215690244624,
+    "macular": 58.95827344901985
+  },
+  "annotation_ids_reindexed": true,
+  "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+}

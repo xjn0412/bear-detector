@@ -1,0 +1,8 @@
+[
+  {
+    "precision": "fp32-backbone",
+    "AP": 59.73046813968526,
+    "AP_delta_points": -0.06883190707933551,
+    "accepted": true
+  }
+]

@@ -94,9 +94,9 @@ Path(sys.argv[5]).write_text(json.dumps(dict(performed=True,images=count,finite_
     metadata=json.loads((out/selected/'export.json').read_text())
     test_delta=test_trt['AP']-test_fp32['AP']
     accepted=test_trt['finite_outputs'] and abs(test_delta)<=0.2
-    metadata.update(accuracy_validated=accepted,validation=dict(dataset=a.dataset,split='val',images=baseline['images'],AP_tolerance_points=0.2,selected_precision=selected),test_validation=dict(images=test_trt['images'],FP32_AP=test_fp32['AP'],TensorRT_AP=test_trt['AP'],AP_delta_points=test_delta,finite_outputs=test_trt['finite_outputs']),captured_input_stress=stress)
+    metadata.update(accuracy_validated=accepted,validation_performed=True,accuracy_tolerance_met=accepted,validation=dict(dataset=a.dataset,split='val',images=baseline['images'],AP_tolerance_points=0.2,selected_precision=selected),test_validation=dict(images=test_trt['images'],FP32_AP=test_fp32['AP'],TensorRT_AP=test_trt['AP'],AP_delta_points=test_delta,finite_outputs=test_trt['finite_outputs']),captured_input_stress=stress)
     (out/selected/'export.json').write_text(json.dumps(metadata,indent=2))
-    result=dict(dataset=a.dataset,selected_precision=selected,checkpoint_sha256=metadata['checkpoint_sha256'],engine_sha256=metadata['engine_sha256'],accuracy_validated=accepted,val_attempts=attempts,test_fp32=test_fp32,test_tensorrt=test_trt,test_AP_delta_points=test_delta,stress=stress,latency={backend:json.loads((out/('latency-'+backend+'.json')).read_text()) for backend in ['torch-fp32','tensorrt']})
+    result=dict(dataset=a.dataset,selected_precision=selected,checkpoint_sha256=metadata['checkpoint_sha256'],engine_sha256=metadata['engine_sha256'],accuracy_validated=accepted,validation_performed=True,accuracy_tolerance_met=accepted,val_attempts=attempts,test_fp32=test_fp32,test_tensorrt=test_trt,test_AP_delta_points=test_delta,stress=stress,latency={backend:json.loads((out/('latency-'+backend+'.json')).read_text()) for backend in ['torch-fp32','tensorrt']})
     (out/'COMPLETE.json').write_text(json.dumps(result,indent=2))
     save('complete',status='complete',accuracy_validated=accepted,result=str(out/'COMPLETE.json'))
 except Exception as error:

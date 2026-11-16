@@ -1,0 +1,23 @@
+{
+  "backend": "tensorrt",
+  "images": 410,
+  "full_coco_val2017": false,
+  "checkpoint_sha256": "8e8e3df65c6473aea4e4aa8acb7a500006f6e21f6256b5148f8cbaf98fe1dafd",
+  "annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82",
+  "predictions_sha256": "097a4f222f6f103dc954c2c1b7291746d9de614cc8b9d080f8ddcbaa27191002",
+  "batch_size": 1,
+  "input": 640,
+  "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+  "finite_outputs": true,
+  "annotation_ids_reindexed": true,
+  "elapsed_seconds": 9.211926460266113,
+  "AP": 58.34540513093428,
+  "AP50": 89.03894084377157,
+  "AP75": 60.06538227817556,
+  "AP_small": 35.67527428412569,
+  "AP_medium": 58.9521904090981,
+  "AP_large": 62.707582367617185,
+  "tensorrt": "10.13.3.9",
+  "precision": "FP32 backbone/context and decoder; FP16 neck",
+  "engine_sha256": "9261a5ea9ef9efc8eae6e8a371bb0202bdaefd190b64ae63c69d28fed837df29"
+}
