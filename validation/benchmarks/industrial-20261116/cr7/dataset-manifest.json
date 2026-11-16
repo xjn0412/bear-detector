@@ -1,0 +1,306 @@
+{
+  "dataset": "cr7",
+  "seed": 42,
+  "classes": [
+    "inclusion",
+    "dents",
+    "oil_spots",
+    "pits",
+    "punching",
+    "linear",
+    "macular"
+  ],
+  "input": "RGB direct PIL bilinear 640x640 PNG; boxes scaled independently in x/y",
+  "split": "Custom approximately 80/10/10 split stratified by class-presence signature, seed42; source split not benchmarked",
+  "raw_images": 4140,
+  "unique_images": 4081,
+  "duplicate_groups": [
+    [
+      "CR7-DET/CR7-DET/image/inclusions460.jpg",
+      "CR7-DET/CR7-DET/image/inclusions484.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/dents550.jpg",
+      "CR7-DET/CR7-DET/image/dents551.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits281.jpg",
+      "CR7-DET/CR7-DET/image/pits506.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions488.jpg",
+      "CR7-DET/CR7-DET/image/inclusions493.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits387.jpg",
+      "CR7-DET/CR7-DET/image/pits62.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits260.jpg",
+      "CR7-DET/CR7-DET/image/pits512.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits436.jpg",
+      "CR7-DET/CR7-DET/image/pits437.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits388.jpg",
+      "CR7-DET/CR7-DET/image/pits64.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits211.jpg",
+      "CR7-DET/CR7-DET/image/pits381.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits286.jpg",
+      "CR7-DET/CR7-DET/image/pits516.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions399.jpg",
+      "CR7-DET/CR7-DET/image/inclusions482.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions171.jpg",
+      "CR7-DET/CR7-DET/image/inclusions499.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/macular299.jpg",
+      "CR7-DET/CR7-DET/image/macular300.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions492.jpg",
+      "CR7-DET/CR7-DET/image/inclusions494.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/dents353.jpg",
+      "CR7-DET/CR7-DET/image/dents364.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits378.jpg",
+      "CR7-DET/CR7-DET/image/pits85.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions236.jpg",
+      "CR7-DET/CR7-DET/image/macular522.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/dents199.jpg",
+      "CR7-DET/CR7-DET/image/dents202.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits433.jpg",
+      "CR7-DET/CR7-DET/image/pits534.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/linear280.jpg",
+      "CR7-DET/CR7-DET/image/linear303.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits203.jpg",
+      "CR7-DET/CR7-DET/image/pits504.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits240.jpg",
+      "CR7-DET/CR7-DET/image/pits524.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits309.jpg",
+      "CR7-DET/CR7-DET/image/pits511.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/dents229.jpg",
+      "CR7-DET/CR7-DET/image/dents30.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/dents427.jpg",
+      "CR7-DET/CR7-DET/image/dents428.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits434.jpg",
+      "CR7-DET/CR7-DET/image/pits523.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits386.jpg",
+      "CR7-DET/CR7-DET/image/pits56.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions384.jpg",
+      "CR7-DET/CR7-DET/image/inclusions481.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/linear19.jpg",
+      "CR7-DET/CR7-DET/image/linear21.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits493.jpg",
+      "CR7-DET/CR7-DET/image/pits494.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits252.jpg",
+      "CR7-DET/CR7-DET/image/pits526.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/linear85.jpg",
+      "CR7-DET/CR7-DET/image/linear86.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions202.jpg",
+      "CR7-DET/CR7-DET/image/inclusions502.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits360.jpg",
+      "CR7-DET/CR7-DET/image/pits385.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits299.jpg",
+      "CR7-DET/CR7-DET/image/pits522.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/dents203.jpg",
+      "CR7-DET/CR7-DET/image/dents204.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/dents548.jpg",
+      "CR7-DET/CR7-DET/image/dents549.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits379.jpg",
+      "CR7-DET/CR7-DET/image/pits515.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/linear2.jpg",
+      "CR7-DET/CR7-DET/image/linear590.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits340.jpg",
+      "CR7-DET/CR7-DET/image/pits498.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions214.jpg",
+      "CR7-DET/CR7-DET/image/inclusions435.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions353.jpg",
+      "CR7-DET/CR7-DET/image/inclusions476.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits271.jpg",
+      "CR7-DET/CR7-DET/image/pits514.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions151.jpg",
+      "CR7-DET/CR7-DET/image/inclusions495.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits356.jpg",
+      "CR7-DET/CR7-DET/image/pits529.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits307.jpg",
+      "CR7-DET/CR7-DET/image/pits383.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits326.jpg",
+      "CR7-DET/CR7-DET/image/pits528.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits298.jpg",
+      "CR7-DET/CR7-DET/image/pits508.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits503.jpg",
+      "CR7-DET/CR7-DET/image/pits9.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits485.jpg",
+      "CR7-DET/CR7-DET/image/pits539.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits109.jpg",
+      "CR7-DET/CR7-DET/image/pits255.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions159.jpg",
+      "CR7-DET/CR7-DET/image/inclusions497.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions483.jpg",
+      "CR7-DET/CR7-DET/image/inclusions487.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions367.jpg",
+      "CR7-DET/CR7-DET/image/inclusions477.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/linear270.jpg",
+      "CR7-DET/CR7-DET/image/linear271.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions186.jpg",
+      "CR7-DET/CR7-DET/image/inclusions500.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/inclusions110.jpg",
+      "CR7-DET/CR7-DET/image/inclusions111.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/dents218.jpg",
+      "CR7-DET/CR7-DET/image/dents76.jpg"
+    ],
+    [
+      "CR7-DET/CR7-DET/image/pits279.jpg",
+      "CR7-DET/CR7-DET/image/pits390.jpg"
+    ]
+  ],
+  "clipped_boxes": 1233,
+  "annotation_conversion": "YOLO normalized boxes",
+  "counts": {
+    "train": {
+      "images": 3261,
+      "boxes": 8751,
+      "positive_images": 3261,
+      "per_class": {
+        "dents": 994,
+        "inclusion": 1490,
+        "macular": 1121,
+        "linear": 1210,
+        "oil_spots": 1370,
+        "pits": 1549,
+        "punching": 1017
+      }
+    },
+    "val": {
+      "images": 410,
+      "boxes": 1156,
+      "positive_images": 410,
+      "per_class": {
+        "dents": 125,
+        "inclusion": 181,
+        "linear": 168,
+        "macular": 158,
+        "oil_spots": 196,
+        "pits": 195,
+        "punching": 133
+      }
+    },
+    "test": {
+      "images": 410,
+      "boxes": 1113,
+      "positive_images": 410,
+      "per_class": {
+        "dents": 123,
+        "inclusion": 193,
+        "linear": 153,
+        "macular": 147,
+        "oil_spots": 187,
+        "pits": 175,
+        "punching": 135
+      }
+    }
+  },
+  "sources": {
+    "train_annotations_sha256": "2421859c1663e3b5396de2d92cdfce6f80f563ee0a78751280e471b965038583",
+    "val_annotations_sha256": "9b5f1154db4128a84420766fbd55245a595594d009f792b57b4bd8d3e460e7fa",
+    "test_annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82"
+  }
+}

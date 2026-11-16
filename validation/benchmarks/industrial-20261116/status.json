@@ -1,0 +1,147 @@
+{
+  "updated": 1794812671.2803552,
+  "jobs": {
+    "cr7/bear_l": {
+      "pid": 2938,
+      "gpu": 0,
+      "status": "running",
+      "started": 1794812341.114664,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "cr7",
+        "--model",
+        "bear_l"
+      ]
+    },
+    "cr7/yolo26x": {
+      "pid": 2939,
+      "gpu": 1,
+      "status": "running",
+      "started": 1794812341.1158385,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "cr7",
+        "--model",
+        "yolo26x"
+      ]
+    },
+    "neu-det/bear_l": {
+      "pid": 2940,
+      "gpu": 4,
+      "status": "running",
+      "started": 1794812341.1168566,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "neu-det",
+        "--model",
+        "bear_l"
+      ]
+    },
+    "neu-det/yolo26x": {
+      "pid": 2941,
+      "gpu": 5,
+      "status": "running",
+      "started": 1794812341.1177294,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "neu-det",
+        "--model",
+        "yolo26x"
+      ]
+    },
+    "gc10/bear_l": {
+      "pid": 3577,
+      "gpu": 2,
+      "status": "running",
+      "started": 1794812401.1955795,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "gc10",
+        "--model",
+        "bear_l"
+      ]
+    },
+    "gc10/yolo26x": {
+      "pid": 3578,
+      "gpu": 3,
+      "status": "running",
+      "started": 1794812401.196837,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "gc10",
+        "--model",
+        "yolo26x"
+      ]
+    }
+  },
+  "results": {
+    "cr7": {
+      "bear_l": {
+        "status": "running",
+        "completed_epochs": 1,
+        "best_val_AP": 11.27413961848363
+      },
+      "yolo26x": {
+        "status": "running",
+        "completed_epochs": 7,
+        "best_val_AP": 44.088
+      }
+    },
+    "gc10": {
+      "bear_l": {
+        "status": "running",
+        "completed_epochs": 2,
+        "best_val_AP": 16.672912877830814
+      },
+      "yolo26x": {
+        "status": "running",
+        "completed_epochs": 9,
+        "best_val_AP": 17.846999999999998
+      }
+    },
+    "neu-det": {
+      "bear_l": {
+        "status": "running",
+        "completed_epochs": 3,
+        "best_val_AP": 42.12953392936795
+      },
+      "yolo26x": {
+        "status": "running",
+        "completed_epochs": 17,
+        "best_val_AP": 37.807
+      }
+    },
+    "ksdd2": {
+      "bear_l": {
+        "status": "waiting"
+      },
+      "yolo26x": {
+        "status": "waiting"
+      }
+    }
+  }
+}

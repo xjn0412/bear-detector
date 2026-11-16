@@ -1,0 +1,70 @@
+{
+  "dataset": "neu-det",
+  "seed": 42,
+  "classes": [
+    "crazing",
+    "inclusion",
+    "patches",
+    "pitted_surface",
+    "rolled-in_scale",
+    "scratches"
+  ],
+  "input": "RGB direct PIL bilinear 640x640 PNG; boxes scaled independently in x/y",
+  "split": "Custom approximately 80/10/10 split stratified by class-presence signature, seed42; source split not benchmarked",
+  "raw_images": 1800,
+  "unique_images": 1799,
+  "duplicate_groups": [
+    [
+      "images/train/patches_101.jpg",
+      "images/train/patches_105.jpg"
+    ]
+  ],
+  "clipped_boxes": 0,
+  "annotation_conversion": "YOLO normalized boxes",
+  "counts": {
+    "train": {
+      "images": 1437,
+      "boxes": 3346,
+      "positive_images": 1437,
+      "per_class": {
+        "crazing": 545,
+        "patches": 689,
+        "inclusion": 816,
+        "pitted_surface": 352,
+        "rolled-in_scale": 508,
+        "scratches": 436
+      }
+    },
+    "val": {
+      "images": 181,
+      "boxes": 407,
+      "positive_images": 181,
+      "per_class": {
+        "crazing": 70,
+        "patches": 92,
+        "inclusion": 92,
+        "pitted_surface": 37,
+        "rolled-in_scale": 61,
+        "scratches": 55
+      }
+    },
+    "test": {
+      "images": 181,
+      "boxes": 433,
+      "positive_images": 181,
+      "per_class": {
+        "crazing": 73,
+        "patches": 99,
+        "inclusion": 102,
+        "pitted_surface": 43,
+        "rolled-in_scale": 59,
+        "scratches": 57
+      }
+    }
+  },
+  "sources": {
+    "train_annotations_sha256": "0c36e4d24fc7bb83d179bcfb01c3a07989c8020ff8ce9dda98c5ec573ea3e2ef",
+    "val_annotations_sha256": "b2e7a9a215b97d54c22354dad0f56b2f06cba2a416e2f86520350a9bba1c1021",
+    "test_annotations_sha256": "f75de2bbd3346f2f371d9bc2cd4e9537c756850ec8504f13f37db753ffd8a767"
+  }
+}
