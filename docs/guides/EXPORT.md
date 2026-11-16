@@ -60,3 +60,12 @@ Use an otherwise idle GPU. The evaluator runs50 warm-ups/200 timed iterations wi
 - TensorRT11/strongly-typed API changes: not verified; use the documented TensorRT10 environment.
 
 For the final released models, use [current full-COCO deployment tests and latency commands](../benchmarks/DEPLOYMENT5090.md). The tested precision-constrained builder is TensorRT10.13.3.9; TensorRT11 is rejected rather than silently changing precision.
+
+### Precision fix: rebuild existing engines
+
+The exporter now requires a recognized P5 projection convolution and forces its
+FP32 arithmetic/output in mixed engines. P5 projection, decoder and sensitive
+reductions must remain FP32. Python same-image inference retry is not exported.
+Old engines are unchanged; rebuild and validate finite outputs and AP. No new
+TensorRT engine was built or validated for this fix; export metadata retains
+accuracy_validated=false. Use torch-fp32 for a validated precision baseline.

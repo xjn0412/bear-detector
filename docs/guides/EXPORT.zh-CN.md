@@ -36,3 +36,9 @@ AMP结果也应与FP32比较。门限0.1是0.1个AP百分点，不是10%。检�
 计时默认50次预热、200次CUDA-event测量，无CUDA Graph；包含top300，不含CPU预处理/主机传输；TRT额外含设备缓冲区拷贝，另报图像到CPU输出的端到端时间。GPU应无竞争计算。TensorRT10弱类型精度约束已验证，TensorRT11/强类型API尚未验证。详细协议见[基准说明](../benchmarks/BENCHMARKS.zh-CN.md)。
 
 最终发布模型的新全量COCO验证和独立测速见[部署基准](../benchmarks/DEPLOYMENT5090.zh-CN.md)。当前精度约束导出器实测版本为TensorRT10.13.3.9，遇到TensorRT11会明确拒绝，不会悄悄改变精度策略。
+
+### 精度修复：旧引擎需要重建
+
+混合精度导出现在要求找到 P5 投影卷积，并将该投影、解码器和敏感归约约束为 FP32。
+Python 推理回退不会嵌入引擎。旧引擎不受代码修改影响，需重建并验证有限输出及 AP。
+本次尚未构建或验证新的 TensorRT 引擎；可先使用 PyTorch FP32。

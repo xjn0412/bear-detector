@@ -9,7 +9,7 @@ def load_backend(backend, config, checkpoint, engine_path=None):
     if backend != 'tensorrt':
         cfg, core = load_model(config, checkpoint, deploy=True)
         model = Inference.create(core, cfg.postprocessor, backend == 'torch-amp').cuda().eval()
-        return model, int(cfg.yaml_cfg['num_classes']), {'precision': 'FP16 bulk + FP32 decoder' if backend == 'torch-amp' else 'FP32'}
+        return model, int(cfg.yaml_cfg['num_classes']), {'precision': 'Checked FP16 bulk + FP32 P5 projection/decoder, with persistent FP32 fallback' if backend == 'torch-amp' else 'FP32', 'inference_precision': model.precision_report}
     import tensorrt as trt
     path = Path(engine_path)
     meta = json.loads((path.parent / 'export.json').read_text())
@@ -35,7 +35,10 @@ def load_backend(backend, config, checkpoint, engine_path=None):
         buffers['orig_target_sizes'].copy_(sizes)
         if not context.execute_async_v3(torch.cuda.current_stream().cuda_stream):
             raise RuntimeError('TensorRT execute failed')
-        return tuple(buffers[n] for n in ['labels', 'boxes', 'scores'])
+        predictions=tuple(buffers[n] for n in ['labels', 'boxes', 'scores'])
+        if not torch.isfinite(predictions[1]).all() or not torch.isfinite(predictions[2]).all():
+            raise FloatingPointError('Nonfinite TensorRT predictions; use torch-fp32 and rebuild/validate the engine')
+        return predictions
     # Retain all TensorRT owners in the closure for the lifetime of forward.
     forward.owners = (logger, runtime, engine, context, buffers)
     return forward, int(meta['classes']), {'tensorrt': trt.__version__, 'precision': meta['precision'],

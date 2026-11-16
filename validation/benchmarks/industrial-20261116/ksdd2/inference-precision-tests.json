@@ -1,0 +1,11 @@
+{
+  "cuda_regression": "PASS",
+  "same_image_fp32_retry": true,
+  "persistent_fallback": true,
+  "static_export_separation": true,
+  "deployed_bear_captured_batch_finite": true,
+  "deployed_bear_injected_overflow_retry_matches_fp32_exactly": true,
+  "deployed_bear_peak_allocated_gib": 2.536684513092041,
+  "tensorrt_engine_built": false,
+  "tensorrt_accuracy_validated": false
+}

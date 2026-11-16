@@ -15,6 +15,6 @@ RUN python -m pip install torch==2.14.1 torchvision==0.29.1 --index-url https://
     && python -m pip check
 COPY . .
 RUN mkdir -p /cache/huggingface /cache/torch \
-    && python -m compileall -q backbone.py runtime.py precision.py compat.py tools \
+    && python -m compileall -q backbone.py runtime.py precision.py inference_precision.py compat.py tools \
     && python -c "import torch,torchvision,timm; assert torch.__version__.startswith('2.14.1'); assert torch.version.cuda == '13.0'; print(torch.__version__,torchvision.__version__,timm.__version__)"
 CMD ["bash"]
