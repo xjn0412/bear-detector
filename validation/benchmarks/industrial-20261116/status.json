@@ -1,5 +1,5 @@
 {
-  "updated": 1794812671.2803552,
+  "updated": 1794813001.4609935,
   "jobs": {
     "cr7/bear_l": {
       "pid": 2938,
@@ -96,51 +96,85 @@
         "--model",
         "yolo26x"
       ]
+    },
+    "ksdd2/bear_l": {
+      "pid": 35233,
+      "gpu": 6,
+      "status": "running",
+      "started": 1794812911.3747172,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "ksdd2",
+        "--model",
+        "bear_l"
+      ]
+    },
+    "ksdd2/yolo26x": {
+      "pid": 35234,
+      "gpu": 7,
+      "status": "running",
+      "started": 1794812911.3764384,
+      "command": [
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/venv/bin/python",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116/repo/tools/benchmarks/run_industrial.py",
+        "--base",
+        "/var/lib/sentinelx/uploads/bear-industrial-20261116",
+        "--dataset",
+        "ksdd2",
+        "--model",
+        "yolo26x"
+      ]
     }
   },
   "results": {
     "cr7": {
       "bear_l": {
         "status": "running",
-        "completed_epochs": 1,
-        "best_val_AP": 11.27413961848363
+        "completed_epochs": 4,
+        "best_val_AP": 59.09140821064883
       },
       "yolo26x": {
         "status": "running",
-        "completed_epochs": 7,
-        "best_val_AP": 44.088
+        "completed_epochs": 15,
+        "best_val_AP": 48.495
       }
     },
     "gc10": {
       "bear_l": {
         "status": "running",
-        "completed_epochs": 2,
-        "best_val_AP": 16.672912877830814
+        "completed_epochs": 6,
+        "best_val_AP": 41.139613775146984
       },
       "yolo26x": {
         "status": "running",
-        "completed_epochs": 9,
-        "best_val_AP": 17.846999999999998
+        "completed_epochs": 24,
+        "best_val_AP": 23.07
       }
     },
     "neu-det": {
       "bear_l": {
         "status": "running",
-        "completed_epochs": 3,
-        "best_val_AP": 42.12953392936795
+        "completed_epochs": 8,
+        "best_val_AP": 50.15132243635681
       },
       "yolo26x": {
         "status": "running",
-        "completed_epochs": 17,
-        "best_val_AP": 37.807
+        "completed_epochs": 35,
+        "best_val_AP": 40.861
       }
     },
     "ksdd2": {
       "bear_l": {
-        "status": "waiting"
+        "status": "running"
       },
       "yolo26x": {
-        "status": "waiting"
+        "status": "running",
+        "completed_epochs": 2,
+        "best_val_AP": 1.467
       }
     }
   }
