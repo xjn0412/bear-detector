@@ -5,6 +5,9 @@ import torch
 import numpy as np
 from ultralytics import YOLO
 from faster_coco_eval import COCO,COCOeval_faster
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from coco_metrics import ground_truth
 
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -17,7 +20,7 @@ if __name__ == '__main__':
     torch.backends.cuda.matmul.allow_tf32=False
     torch.backends.cudnn.allow_tf32=False
     torch.set_num_threads(4)
-    gt=COCO(a.annotations);model=YOLO(a.checkpoint);preds=[]
+    gt=ground_truth(a.annotations);model=YOLO(a.checkpoint);preds=[]
     parameters_before_fusion=sum(p.numel() for p in model.model.parameters())
     ims=sorted(gt.dataset['images'],key=lambda x:x['id'])
     for start in range(0,len(ims),16):
@@ -40,6 +43,6 @@ if __name__ == '__main__':
     import ultralytics,torch
     report=dict(checkpoint=str(Path(a.checkpoint).resolve()),checkpoint_sha256=sha(a.checkpoint),annotations_sha256=sha(a.annotations),
         AP=float(evaluator.stats[0]*100),AP50=float(evaluator.stats[1]*100),AP75=float(evaluator.stats[2]*100),AP_small=float(evaluator.stats[3]*100),AP_medium=float(evaluator.stats[4]*100),AP_large=float(evaluator.stats[5]*100),per_class_AP=per_class,
-        evaluator='faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]',num_images=len(ims),num_predictions=len(preds),
+        annotation_ids_reindexed=True,evaluator='faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]',num_images=len(ims),num_predictions=len(preds),
         parameters_before_fusion=parameters_before_fusion,settings=dict(imgsz=640,conf=1e-5,iou=0.7,max_det=300,half=False,augment=False,nms=None,end2end=getattr(model.model,'end2end',None)),ultralytics_version=ultralytics.__version__,torch_version=torch.__version__)
     (out/'report.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))

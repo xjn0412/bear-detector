@@ -10,11 +10,25 @@
   "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
   "finite_outputs": true,
   "elapsed_seconds": 12.763694763183594,
-  "AP": 41.63846578088103,
-  "AP50": 72.97584840330823,
-  "AP75": 43.78021706869595,
-  "AP_small": 19.689692279885836,
+  "AP": 41.87046105930581,
+  "AP50": 73.36396331877657,
+  "AP75": 44.076766400457714,
+  "AP_small": 22.107641724829573,
   "AP_medium": 39.73555142564884,
   "AP_large": 47.371596807849,
-  "precision": "FP32"
+  "precision": "FP32",
+  "per_class_AP": {
+    "10_yaozhe": 34.99366713834265,
+    "1_chongkong": 59.11562877787869,
+    "2_hanfeng": 60.99922755483278,
+    "3_yueyawan": 64.20290718470906,
+    "4_shuiban": 56.60477558695632,
+    "5_youban": 40.19347351826268,
+    "6_siban": 28.781767983860036,
+    "7_yiwu": 9.746466186998697,
+    "8_yahen": 30.359991106940786,
+    "9_zhehen": 33.706705554276354
+  },
+  "annotation_ids_reindexed": true,
+  "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
 }

@@ -1,5 +1,5 @@
 {
-  "updated": 1794818326.0486267,
+  "updated": 1794818896.4436936,
   "jobs": {
     "cr7/bear_l": {
       "pid": 2938,
@@ -170,14 +170,26 @@
           "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
           "finite_outputs": true,
           "elapsed_seconds": 22.4790997505188,
-          "AP": 58.31814454949426,
-          "AP50": 88.74565476416677,
-          "AP75": 59.941077476083215,
+          "AP": 58.52086705494893,
+          "AP50": 89.00499925377322,
+          "AP75": 60.151927329196674,
           "AP_small": 35.78609733050039,
           "AP_medium": 58.97452032837456,
-          "AP_large": 62.62163038130715,
-          "precision": "FP32"
-        }
+          "AP_large": 62.86062808910857,
+          "precision": "FP32",
+          "per_class_AP": {
+            "inclusion": 42.37741328893428,
+            "dents": 85.01829084509463,
+            "oil_spots": 65.12360114618933,
+            "pits": 34.844919007416046,
+            "punching": 82.98300382349522,
+            "linear": 39.6055642246,
+            "macular": 59.69327704891296
+          },
+          "annotation_ids_reindexed": true,
+          "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+        },
+        "evaluation_correction": "positive COCO annotation IDs; original report retained locally"
       },
       "yolo26x": {
         "status": "complete",
@@ -193,15 +205,15 @@
           "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/cr7/yolo26x/training/weights/best.pt",
           "checkpoint_sha256": "36ec831570d3a852fedbd67073b077bf01aa6a0b9d2bd57c870d9a8b2d874bdd",
           "annotations_sha256": "50f829101df18a5ac27f873c48e3e7004764c7c2573a42a13d93b32bc408cf82",
-          "AP": 51.58664175438534,
-          "AP50": 83.67684069314495,
-          "AP75": 50.84829341633643,
+          "AP": 51.798962883804954,
+          "AP50": 83.92439080600163,
+          "AP75": 51.10984349004949,
           "AP_small": 32.40638447057051,
           "AP_medium": 50.77224826891113,
-          "AP_large": 51.763445939812335,
+          "AP_large": 51.993379884263256,
           "per_class_AP": {
             "inclusion": 38.37992028758608,
-            "dents": 73.6938419822176,
+            "dents": 75.18008988815494,
             "oil_spots": 56.20916952130436,
             "pits": 26.08462424642696,
             "punching": 81.85882073169563,
@@ -223,8 +235,11 @@
             "end2end": false
           },
           "ultralytics_version": "8.4.215",
-          "torch_version": "2.14.1+cu130"
-        }
+          "torch_version": "2.14.1+cu130",
+          "annotation_ids_reindexed": true,
+          "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+        },
+        "evaluation_correction": "positive COCO annotation IDs; original report retained locally"
       }
     },
     "gc10": {
@@ -250,14 +265,29 @@
           "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
           "finite_outputs": true,
           "elapsed_seconds": 12.763694763183594,
-          "AP": 41.63846578088103,
-          "AP50": 72.97584840330823,
-          "AP75": 43.78021706869595,
-          "AP_small": 19.689692279885836,
+          "AP": 41.87046105930581,
+          "AP50": 73.36396331877657,
+          "AP75": 44.076766400457714,
+          "AP_small": 22.107641724829573,
           "AP_medium": 39.73555142564884,
           "AP_large": 47.371596807849,
-          "precision": "FP32"
-        }
+          "precision": "FP32",
+          "per_class_AP": {
+            "10_yaozhe": 34.99366713834265,
+            "1_chongkong": 59.11562877787869,
+            "2_hanfeng": 60.99922755483278,
+            "3_yueyawan": 64.20290718470906,
+            "4_shuiban": 56.60477558695632,
+            "5_youban": 40.19347351826268,
+            "6_siban": 28.781767983860036,
+            "7_yiwu": 9.746466186998697,
+            "8_yahen": 30.359991106940786,
+            "9_zhehen": 33.706705554276354
+          },
+          "annotation_ids_reindexed": true,
+          "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+        },
+        "evaluation_correction": "positive COCO annotation IDs; original report retained locally"
       },
       "yolo26x": {
         "status": "complete",
@@ -273,15 +303,15 @@
           "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/gc10/yolo26x/training/weights/best.pt",
           "checkpoint_sha256": "51b76023f261e62ba909353b5c56e8eff79448d0d0b090438f69856b500500e3",
           "annotations_sha256": "e2a0d1104112872d05a3bd9d900b6004f4a92d78d7aafa4715ec41fc41e1b360",
-          "AP": 30.967125227318785,
-          "AP50": 64.74899514478545,
-          "AP75": 25.591244566634114,
-          "AP_small": 15.368510254899956,
+          "AP": 31.139865603093337,
+          "AP50": 65.05870279048797,
+          "AP75": 25.835903772008745,
+          "AP_small": 17.387432751545223,
           "AP_medium": 32.48972054413433,
           "AP_large": 33.42577625637592,
           "per_class_AP": {
             "10_yaozhe": 24.786670417188127,
-            "1_chongkong": 57.92521699806138,
+            "1_chongkong": 59.652620755806886,
             "2_hanfeng": 31.80228770854443,
             "3_yueyawan": 50.66727741261413,
             "4_shuiban": 41.036624106613864,
@@ -306,8 +336,11 @@
             "end2end": false
           },
           "ultralytics_version": "8.4.215",
-          "torch_version": "2.14.1+cu130"
-        }
+          "torch_version": "2.14.1+cu130",
+          "annotation_ids_reindexed": true,
+          "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+        },
+        "evaluation_correction": "positive COCO annotation IDs; original report retained locally"
       }
     },
     "neu-det": {
@@ -333,14 +366,25 @@
           "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
           "finite_outputs": true,
           "elapsed_seconds": 21.493221521377563,
-          "AP": 49.45648589424726,
-          "AP50": 81.93143069013794,
-          "AP75": 50.48700669058237,
+          "AP": 49.647294714166314,
+          "AP50": 82.32313071883169,
+          "AP75": 50.64329437024367,
           "AP_small": -100.0,
           "AP_medium": 42.78780176538302,
-          "AP_large": 50.723680287324804,
-          "precision": "FP32"
-        }
+          "AP_large": 50.9144867532685,
+          "precision": "FP32",
+          "per_class_AP": {
+            "crazing": 24.962100261907587,
+            "inclusion": 53.366860080451886,
+            "patches": 65.42141248174183,
+            "pitted_surface": 60.4348395635719,
+            "rolled-in_scale": 37.19893627690164,
+            "scratches": 56.49961962042307
+          },
+          "annotation_ids_reindexed": true,
+          "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+        },
+        "evaluation_correction": "positive COCO annotation IDs; original report retained locally"
       },
       "yolo26x": {
         "status": "complete",
@@ -356,14 +400,14 @@
           "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/neu-det/yolo26x/training/weights/best.pt",
           "checkpoint_sha256": "02347266e216e95e9622f7623b5ba366e02b846f6092e6194087f0ff73586947",
           "annotations_sha256": "f75de2bbd3346f2f371d9bc2cd4e9537c756850ec8504f13f37db753ffd8a767",
-          "AP": 45.86054055386942,
-          "AP50": 79.28763529513768,
-          "AP75": 45.589770321154084,
+          "AP": 45.90789080350432,
+          "AP50": 79.40623612913745,
+          "AP75": 45.619504178234536,
           "AP_small": -100.0,
           "AP_medium": 36.909415467581965,
-          "AP_large": 47.14512622628468,
+          "AP_large": 47.19252303867458,
           "per_class_AP": {
-            "crazing": 22.297153082874598,
+            "crazing": 22.581254580684025,
             "inclusion": 48.2822324829093,
             "patches": 60.091002954683724,
             "pitted_surface": 55.722732517374986,
@@ -385,14 +429,17 @@
             "end2end": false
           },
           "ultralytics_version": "8.4.215",
-          "torch_version": "2.14.1+cu130"
-        }
+          "torch_version": "2.14.1+cu130",
+          "annotation_ids_reindexed": true,
+          "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+        },
+        "evaluation_correction": "positive COCO annotation IDs; original report retained locally"
       }
     },
     "ksdd2": {
       "bear_l": {
         "status": "running",
-        "completed_epochs": 26,
+        "completed_epochs": 30,
         "best_val_AP": 39.200894256286
       },
       "yolo26x": {
@@ -409,14 +456,14 @@
           "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/ksdd2/yolo26x/training/weights/best.pt",
           "checkpoint_sha256": "29ba3fbc0440ed367273982451f19e59be79a7042cb8f6ff6904e462f8c9cbff",
           "annotations_sha256": "6aa4e56c2fa7c29cfb831d604a9f770c590596da32ebc73ec1c479df2018f688",
-          "AP": 10.983664175489109,
-          "AP50": 30.377369942255516,
-          "AP75": 5.615416986956595,
+          "AP": 11.070189816960815,
+          "AP50": 30.692707604206753,
+          "AP75": 5.634356332668139,
           "AP_small": 0.6280930808793482,
           "AP_medium": 13.096365558897578,
-          "AP_large": 11.06316048307411,
+          "AP_large": 11.24549717493105,
           "per_class_AP": {
-            "defect": 10.983664175489109
+            "defect": 11.070189816960815
           },
           "evaluator": "faster_coco_eval.COCOeval_faster bbox maxDets [1,10,100]",
           "num_images": 1004,
@@ -433,8 +480,11 @@
             "end2end": false
           },
           "ultralytics_version": "8.4.215",
-          "torch_version": "2.14.1+cu130"
-        }
+          "torch_version": "2.14.1+cu130",
+          "annotation_ids_reindexed": true,
+          "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
+        },
+        "evaluation_correction": "positive COCO annotation IDs; original report retained locally"
       }
     }
   }

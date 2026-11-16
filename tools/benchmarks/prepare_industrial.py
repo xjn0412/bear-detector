@@ -206,7 +206,7 @@ def prepare(base, dataset):
             labels=[]
             for c,x1,y1,x2,y2 in r['boxes']:
                 x,y,bw,bh=x1/w*640,y1/h*640,(x2-x1)/w*640,(y2-y1)/h*640
-                anns.append(dict(id=len(anns),image_id=i,category_id=c,bbox=[x,y,bw,bh],area=bw*bh,iscrowd=0))
+                anns.append(dict(id=len(anns)+1,image_id=i,category_id=c,bbox=[x,y,bw,bh],area=bw*bh,iscrowd=0))
                 labels.append(f'{c} {(x+bw/2)/640:.10f} {(y+bh/2)/640:.10f} {bw/640:.10f} {bh/640:.10f}')
             (out/'labels'/split/Path(filename).with_suffix('.txt')).write_text('\n'.join(labels)+'\n' if labels else '')
             membership.append(dict(split=split,source=r['source'],pixel_sha256=r['pixel_sha256'],file_name=filename,boxes=len(r['boxes'])))

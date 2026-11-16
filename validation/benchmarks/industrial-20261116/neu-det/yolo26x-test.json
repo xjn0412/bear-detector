@@ -2,14 +2,14 @@
   "checkpoint": "/var/lib/sentinelx/uploads/bear-industrial-20261116/runs/neu-det/yolo26x/training/weights/best.pt",
   "checkpoint_sha256": "02347266e216e95e9622f7623b5ba366e02b846f6092e6194087f0ff73586947",
   "annotations_sha256": "f75de2bbd3346f2f371d9bc2cd4e9537c756850ec8504f13f37db753ffd8a767",
-  "AP": 45.86054055386942,
-  "AP50": 79.28763529513768,
-  "AP75": 45.589770321154084,
+  "AP": 45.90789080350432,
+  "AP50": 79.40623612913745,
+  "AP75": 45.619504178234536,
   "AP_small": -100.0,
   "AP_medium": 36.909415467581965,
-  "AP_large": 47.14512622628468,
+  "AP_large": 47.19252303867458,
   "per_class_AP": {
-    "crazing": 22.297153082874598,
+    "crazing": 22.581254580684025,
     "inclusion": 48.2822324829093,
     "patches": 60.091002954683724,
     "pitted_surface": 55.722732517374986,
@@ -31,5 +31,7 @@
     "end2end": false
   },
   "ultralytics_version": "8.4.215",
-  "torch_version": "2.14.1+cu130"
+  "torch_version": "2.14.1+cu130",
+  "annotation_ids_reindexed": true,
+  "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
 }

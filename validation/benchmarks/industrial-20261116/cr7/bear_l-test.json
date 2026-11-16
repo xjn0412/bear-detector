@@ -10,11 +10,22 @@
   "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
   "finite_outputs": true,
   "elapsed_seconds": 22.4790997505188,
-  "AP": 58.31814454949426,
-  "AP50": 88.74565476416677,
-  "AP75": 59.941077476083215,
+  "AP": 58.52086705494893,
+  "AP50": 89.00499925377322,
+  "AP75": 60.151927329196674,
   "AP_small": 35.78609733050039,
   "AP_medium": 58.97452032837456,
-  "AP_large": 62.62163038130715,
-  "precision": "FP32"
+  "AP_large": 62.86062808910857,
+  "precision": "FP32",
+  "per_class_AP": {
+    "inclusion": 42.37741328893428,
+    "dents": 85.01829084509463,
+    "oil_spots": 65.12360114618933,
+    "pits": 34.844919007416046,
+    "punching": 82.98300382349522,
+    "linear": 39.6055642246,
+    "macular": 59.69327704891296
+  },
+  "annotation_ids_reindexed": true,
+  "evaluation_correction": "Ground-truth annotation IDs replaced in memory by1..N; predictions/geometry/checkpoint unchanged"
 }

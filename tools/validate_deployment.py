@@ -10,6 +10,7 @@ from pathlib import Path
 import time
 from common import categories, digest
 from deployment_backend import load_backend, image_tensor
+from coco_metrics import ground_truth
 
 
 def main():
@@ -86,7 +87,7 @@ def main():
                 print('VALIDATE', a.backend, done, '/', len(selected), flush=True)
     pred = out.with_suffix('.predictions.json')
     pred.write_text(json.dumps(rows, separators=(',', ':')))
-    gt = COCO(a.annotations)
+    gt = ground_truth(a.annotations)
     gt.dataset.setdefault('info', {})
     dt = gt.loadRes(rows)
     ev = COCOeval_faster(gt, dt, 'bbox')
@@ -102,7 +103,7 @@ def main():
         checkpoint_sha256=digest(a.checkpoint), annotations_sha256=digest(a.annotations),
         predictions_sha256=digest(pred), batch_size=a.batch_size if a.backend!='tensorrt' else 1,
         input=640, metric='faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions',
-        finite_outputs=True, elapsed_seconds=time.time()-started, **metrics, **extra)
+        finite_outputs=True, annotation_ids_reindexed=True, elapsed_seconds=time.time()-started, **metrics, **extra)
     out.write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report), flush=True)
 

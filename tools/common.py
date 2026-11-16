@@ -36,7 +36,7 @@ def normalize(data, schema):
         if a['id'] in ann_ids:raise ValueError('Duplicate annotation ID')
         ann_ids.add(a['id'])
         if len(a['bbox'])!=4 or not all(isinstance(v,(int,float)) and math.isfinite(v) for v in a['bbox']) or a['bbox'][2]<=0 or a['bbox'][3]<=0:raise ValueError('Invalid bbox: require finite coordinates and positive size')
-        anns.append(dict(a,category_id=ids[a['category_id']],iscrowd=a.get('iscrowd',0),area=a.get('area',a['bbox'][2]*a['bbox'][3])))
+        anns.append(dict(a,id=len(anns)+1,category_id=ids[a['category_id']],iscrowd=a.get('iscrowd',0),area=a.get('area',a['bbox'][2]*a['bbox'][3])))
     out['annotations']=anns
     return out
 

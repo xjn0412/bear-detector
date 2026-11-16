@@ -8,14 +8,14 @@ All values below are **test AP50:95 in percent**, shared COCO evaluator/maxDets1
 
 | Dataset | Bear-L | YOLO26x | Difference (points) | Completed epochs Bear / YOLO | Selected epoch Bear / YOLO |
 |---|---:|---:|---:|---|---|
-| CR7-DET |58.32|51.59|+6.73|26 /83|6 /63|
-| GC10-DET (corrected10 classes) |41.64|30.97|+10.67|26 /85|6 /65|
-| NEU-DET |49.46|45.86|+3.60|31 /100|11 /100|
-| KSDD2 derived boxes |Pending|10.98|Pending|Running /100|Pending /84|
+| CR7-DET |58.52|51.80|+6.72|26 /83|6 /63|
+| GC10-DET (corrected10 classes) |41.87|31.14|+10.73|26 /85|6 /65|
+| NEU-DET |49.65|45.91|+3.74|31 /100|11 /100|
+| KSDD2 derived boxes |Pending|11.07|Pending|Running /100|Pending /84|
 
 Per-epoch validation curves and final test reports are in the linked evidence directory below. Validation AP and test AP are distinct. Different pretraining/recipes and one seed limit the comparison.
 
-TensorRT rebuild/validation is in progress on the selected CR7 Bear-L checkpoint; engine precision will be checked on validation before evaluating held-out test. No TensorRT accuracy result is claimed yet.
+TensorRT rebuild/validation is in progress on the selected CR7 Bear-L checkpoint. The mixed engine completed finite-output checks on410 test images plus8 captured inputs; test AP58.2883 vs FP32 58.5209 (−0.2326 points), slightly outside the predeclared0.20-point target. A separately declared FP32-backbone engine is being measured; both results will be retained.
 
 
 **GC10 correction:** Initial GC10 runs used12 raw XML label strings and are invalid. The corrected benchmark merges `10_yaozhed` into `10_yaozhe` and excludes the entire image `img_02_425616500_00770.jpg` because one box is labeled only `d`. Both models restart from their original COCO checkpoints. Archived initial runs are diagnostics only and must not appear as valid GC10 results. A schema assertion now requires exactly7/10/6/1 classes for CR7/GC10/NEU/KSDD2.
@@ -147,3 +147,21 @@ real forward overflow during epoch20, between progress reports at steps200 and22
 (zero-based batch indices). It retried the same batch in FP32 and subsequent
 training losses remained finite. The run selected persistent FP32 with activation
 checkpointing; this precision change is recorded in the published policy report.
+
+## Evaluation ID correction
+
+A deployment validation warning exposed ground-truth annotation ID0, which
+conflicts with the COCO evaluator unmatched sentinel. Final reports above now
+reindex annotation IDs to1..N **in memory only**. Images, categories, geometry,
+weights and saved predictions are unchanged. All seven completed reports were
+rescored from saved predictions; source annotation hashes remain recorded.
+`tools/coco_metrics.py` is shared by both evaluators, and future dataset
+preparation emits positive IDs. The regression test checks a perfect prediction
+against a source annotation with ID0 and confirms AP100 after reindexing.
+
+Earlier test numbers are superseded, with original reports archived as diagnostic
+evidence under `evaluation-id0-legacy/`. Historical native Bear validation curves
+and checkpoint selection used the original evaluator and remain unchanged; this
+rescore does not reconstruct corrected per-epoch curves or claim to remove that
+selection limitation. The ongoing KSDD2 run retains its historical validation
+metric for consistent early stopping; its final test evaluation uses the repair.

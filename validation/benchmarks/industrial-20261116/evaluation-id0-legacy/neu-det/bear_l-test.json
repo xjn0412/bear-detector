@@ -1,0 +1,21 @@
+{
+  "backend": "torch-fp32",
+  "images": 181,
+  "full_coco_val2017": false,
+  "checkpoint_sha256": "e5d7091b2c315be20f240f8bba9f73a3ed40e2518a87fed810e5d1c3794a9e31",
+  "annotations_sha256": "f75de2bbd3346f2f371d9bc2cd4e9537c756850ec8504f13f37db753ffd8a767",
+  "predictions_sha256": "1e778ebb2d8c9347589be8e61bac48d0d784d9522307d81878dd80cc9d6a8539",
+  "batch_size": 4,
+  "input": 640,
+  "metric": "faster-coco-eval box AP50:95, maxDets100 standard COCO summary; top300 predictions",
+  "finite_outputs": true,
+  "elapsed_seconds": 21.493221521377563,
+  "AP": 49.45648589424726,
+  "AP50": 81.93143069013794,
+  "AP75": 50.48700669058237,
+  "AP_small": -100.0,
+  "AP_medium": 42.78780176538302,
+  "AP_large": 50.723680287324804,
+  "precision": "FP32",
+  "status": "SUPERSEDED: ground-truth annotation ID0 evaluator issue; diagnostic only"
+}

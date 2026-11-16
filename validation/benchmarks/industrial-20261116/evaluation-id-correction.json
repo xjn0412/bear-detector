@@ -1,0 +1,49 @@
+{
+  "correction": "positive annotation IDs in memory; predictions and geometry unchanged",
+  "regression": "PASS",
+  "historical_native_validation_curves_corrected": false,
+  "measurements": [
+    {
+      "dataset": "cr7",
+      "model": "bear_l",
+      "original_AP": 58.31814454949426,
+      "corrected_AP": 58.52086705494893
+    },
+    {
+      "dataset": "cr7",
+      "model": "yolo26x",
+      "original_AP": 51.58664175438534,
+      "corrected_AP": 51.798962883804954
+    },
+    {
+      "dataset": "gc10",
+      "model": "bear_l",
+      "original_AP": 41.63846578088103,
+      "corrected_AP": 41.87046105930581
+    },
+    {
+      "dataset": "gc10",
+      "model": "yolo26x",
+      "original_AP": 30.967125227318785,
+      "corrected_AP": 31.139865603093337
+    },
+    {
+      "dataset": "neu-det",
+      "model": "bear_l",
+      "original_AP": 49.45648589424726,
+      "corrected_AP": 49.647294714166314
+    },
+    {
+      "dataset": "neu-det",
+      "model": "yolo26x",
+      "original_AP": 45.86054055386942,
+      "corrected_AP": 45.90789080350432
+    },
+    {
+      "dataset": "ksdd2",
+      "model": "yolo26x",
+      "original_AP": 10.983664175489109,
+      "corrected_AP": 11.070189816960815
+    }
+  ]
+}
